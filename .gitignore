@@ -1,0 +1,6 @@
+*.log
+log/
+debug/
+obj/
+web/bin/
+*.suo
