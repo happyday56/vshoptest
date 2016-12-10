@@ -50,6 +50,8 @@
         private Literal litIsBuy;
         private Literal litIsPdBuy;
         private Literal litD1;
+        private Literal litD2;
+        private Literal litDistributor;
         private int ptTypeId = 0;
         private int sjCode = 0;
 
@@ -77,7 +79,7 @@
             {
                 XTrace.WriteLine("----------------分享时带过来的ReferralId：" + this.referralUserId);
             }
-            
+
 
             this.rptProductImages = (VshopTemplatedRepeater)this.FindControl("rptProductImages");
             this.litItemParams = (Literal)this.FindControl("litItemParams");
@@ -102,11 +104,13 @@
             this.litSaleLocation = (Literal)this.FindControl("litSaleLocation");
             this.litReturnInfo = (Literal)this.FindControl("litReturnInfo");
             this.siteImglogo = (HiImage)this.FindControl("siteImglogo");
-            this.litGood = (Literal)this.FindControl("litGood");
+            // this.litGood = (Literal)this.FindControl("litGood");
             this.litMaxCross = (Literal)this.FindControl("litMaxCross");
             this.litIsBuy = (Literal)this.FindControl("litIsBuy");
             this.litIsPdBuy = (Literal)this.FindControl("litIsPdBuy");
             this.litD1 = (Literal)this.FindControl("litD1");
+            this.litD2 = (Literal)this.FindControl("litD2");
+            this.litDistributor = (Literal)this.FindControl("litDistributor");
 
             SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
 
@@ -125,7 +129,9 @@
 
             ProductInfo product = ProductBrowser.GetProduct(MemberProcessor.GetCurrentMember(), this.productId);
             this.litproductid.Value = this.productId.ToString();
-            this.litReferralUserId.Value = this.referralUserId.ToString();
+
+            var distributor = DistributorsBrower.GetCurrentDistributors();
+            this.litDistributor.Text = distributor == null ? "" : distributor.StoreName;
 
             if (product.IsCross == 1)
             {
@@ -142,6 +148,8 @@
                 this.litMaxCross.Text = "200";
             }
 
+            this.litD2.Text = "display:block;";
+
             if (product.IsDistributorBuy == 1)
             {
                 this.litD1.Text = "display:none;";
@@ -150,6 +158,32 @@
             {
                 this.litD1.Text = "display:block;";
             }
+
+            // Modify by 2016-04-13 Start
+            //if (null != distributor && null != currentMember)
+            //{
+            //    if (distributor.IsTempStore == 1)
+            //    {
+            //        if (distributor.UserId == currentMember.UserId)
+            //        {
+            //            if (product.IsDistributorBuy == 1)
+            //            {
+            //                this.litD1.Text = "display:none;";
+            //            }
+            //            else
+            //            {
+            //                this.litD1.Text = "display:block;";
+            //            }
+            //            this.litD2.Text = "display:block;";
+            //        }
+            //        else
+            //        {
+            //            this.litD1.Text = "display:none;";
+            //            this.litD2.Text = "display:none;";
+            //        }
+            //    }
+            //}
+            // Modify by 2016-04-13 End
 
 
             int refId = 0;
@@ -252,7 +286,7 @@
             }
             this.litConsultationsCount.SetWhenIsNotNull(ProductBrowser.GetProductConsultationsCount(this.productId, false).ToString());
             this.litReviewsCount.SetWhenIsNotNull(ProductBrowser.GetProductReviewsCount(this.productId).ToString());
-            this.litGood.Text = product.GoodCounts.ToString();
+            //this.litGood.Text = product.GoodCounts.ToString();
 
             bool flag = false;
             if (currentMember != null)
@@ -262,7 +296,7 @@
             this.litHasCollected.SetWhenIsNotNull(flag ? "1" : "0");
             ProductBrowser.UpdateVisitCounts(this.productId);
             PageTitle.AddSiteNameTitle("商品详情");
-            
+
             string str3 = "";
             if (!string.IsNullOrEmpty(masterSettings.GoodsPic))
             {
@@ -270,8 +304,8 @@
             }
             string shareUrl = HttpContext.Current.Request.Url.ToString();
             string sharePic = Globals.HostPath(HttpContext.Current.Request.Url) + product.ImageUrl1;
-            string shareTitle = product.ProductName;
-            string shareDescription = product.ShortDescription;
+            string shareTitle = distributor == null ? "全婴汇" : distributor.StoreName + "的店铺";
+            string shareDescription = product.ProductName;
             string shareGoodsName = masterSettings.GoodsName;
             string shareGoodsDescription = masterSettings.GoodsDescription;
             string shareGoodsPic = Globals.HostPath(HttpContext.Current.Request.Url) + masterSettings.GoodsPic;
@@ -293,7 +327,7 @@
             XTrace.WriteLine("----------------商品分享时点击链接：" + shareUrl);
 
             this.litItemParams.Text = string.Concat(new object[] { shareGoodsPic, "|", shareGoodsName, "|", shareGoodsDescription, "$", sharePic, "|", shareTitle, "|", shareDescription, "|", shareUrl });
-            
+
             //this.litItemParams.Text = string.Concat(new object[] { str3, "|", masterSettings.GoodsName, "|", masterSettings.GoodsDescription, "$", Globals.HostPath(HttpContext.Current.Request.Url), product.ImageUrl1, "|", this.litProdcutName.Text, "|", product.ShortDescription, "|", HttpContext.Current.Request.Url });
         }
 

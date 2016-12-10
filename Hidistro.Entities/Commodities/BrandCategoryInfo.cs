@@ -51,6 +51,8 @@
         public string RewriteName { get; set; }
 
         public string Theme { get; set; }
+
+        public int? cVendor { get; set; }
     }
 }
 

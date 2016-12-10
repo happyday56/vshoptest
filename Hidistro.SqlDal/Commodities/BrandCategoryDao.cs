@@ -16,7 +16,7 @@
 
         public int AddBrandCategory(BrandCategoryInfo brandCategory)
         {
-            DbCommand sqlStringCommand = this.database.GetSqlStringCommand("DECLARE @DisplaySequence AS INT SELECT @DisplaySequence = (CASE WHEN MAX(DisplaySequence) IS NULL THEN 1 ELSE MAX(DisplaySequence) + 1 END) FROM Hishop_BrandCategories;INSERT INTO Hishop_BrandCategories(BrandName, Logo, CompanyUrl,RewriteName,MetaKeywords,MetaDescription, Description, DisplaySequence) VALUES(@BrandName, @Logo, @CompanyUrl,@RewriteName,@MetaKeywords,@MetaDescription, @Description, @DisplaySequence); SELECT @@IDENTITY");
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand("DECLARE @DisplaySequence AS INT SELECT @DisplaySequence = (CASE WHEN MAX(DisplaySequence) IS NULL THEN 1 ELSE MAX(DisplaySequence) + 1 END) FROM Hishop_BrandCategories;INSERT INTO Hishop_BrandCategories(BrandName, Logo, CompanyUrl,RewriteName,MetaKeywords,MetaDescription, Description, DisplaySequence, cVendor) VALUES(@BrandName, @Logo, @CompanyUrl,@RewriteName,@MetaKeywords,@MetaDescription, @Description, @DisplaySequence, @cVendor); SELECT @@IDENTITY");
             this.database.AddInParameter(sqlStringCommand, "BrandName", DbType.String, brandCategory.BrandName);
             this.database.AddInParameter(sqlStringCommand, "Logo", DbType.String, brandCategory.Logo);
             this.database.AddInParameter(sqlStringCommand, "CompanyUrl", DbType.String, brandCategory.CompanyUrl);
@@ -24,6 +24,7 @@
             this.database.AddInParameter(sqlStringCommand, "MetaKeywords", DbType.String, brandCategory.MetaKeywords);
             this.database.AddInParameter(sqlStringCommand, "MetaDescription", DbType.String, brandCategory.MetaDescription);
             this.database.AddInParameter(sqlStringCommand, "Description", DbType.String, brandCategory.Description);
+            this.database.AddInParameter(sqlStringCommand, "cVendor", DbType.Int32, brandCategory.cVendor);
             object obj2 = this.database.ExecuteScalar(sqlStringCommand);
             if (obj2 != null)
             {
@@ -133,7 +134,7 @@
 
         public bool UpdateBrandCategory(BrandCategoryInfo brandCategory)
         {
-            DbCommand sqlStringCommand = this.database.GetSqlStringCommand("UPDATE Hishop_BrandCategories SET BrandName = @BrandName, Logo = @Logo, CompanyUrl = @CompanyUrl,RewriteName=@RewriteName,MetaKeywords=@MetaKeywords,MetaDescription=@MetaDescription, Description = @Description WHERE BrandId = @BrandId");
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand("UPDATE Hishop_BrandCategories SET BrandName = @BrandName, Logo = @Logo, CompanyUrl = @CompanyUrl,RewriteName=@RewriteName,MetaKeywords=@MetaKeywords,MetaDescription=@MetaDescription, Description = @Description, cVendor = @cVendor WHERE BrandId = @BrandId");
             this.database.AddInParameter(sqlStringCommand, "BrandId", DbType.Int32, brandCategory.BrandId);
             this.database.AddInParameter(sqlStringCommand, "BrandName", DbType.String, brandCategory.BrandName);
             this.database.AddInParameter(sqlStringCommand, "Logo", DbType.String, brandCategory.Logo);
@@ -142,6 +143,7 @@
             this.database.AddInParameter(sqlStringCommand, "MetaKeywords", DbType.String, brandCategory.MetaKeywords);
             this.database.AddInParameter(sqlStringCommand, "MetaDescription", DbType.String, brandCategory.MetaDescription);
             this.database.AddInParameter(sqlStringCommand, "Description", DbType.String, brandCategory.Description);
+            this.database.AddInParameter(sqlStringCommand, "cVendor", DbType.Int32, brandCategory.cVendor);
             return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
         }
 

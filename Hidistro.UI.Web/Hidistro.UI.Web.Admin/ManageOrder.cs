@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -47,9 +48,9 @@ namespace Hidistro.UI.Web.Admin
 
         protected HyperLink hlinkHistory;
 
-        protected WebCalendar calendarStartDate;
+        protected TextBox calendarStartDate;
 
-        protected WebCalendar calendarEndDate;
+        protected TextBox calendarEndDate;
 
         protected TextBox txtUserName;
 
@@ -82,6 +83,8 @@ namespace Hidistro.UI.Web.Admin
         protected ImageLinkButton lkbtnDeleteCheck;
 
         protected ImageLinkButton lkbtnExportSubOrder;
+
+        protected ImageLinkButton lkbtnExportVendorOrder;
 
         protected HtmlInputHidden hidOrderId;
 
@@ -184,6 +187,11 @@ namespace Hidistro.UI.Web.Admin
         protected BrandCategoriesDropDownList dropBrandId;
 
         protected DropDownList ddlOrderStatusId;
+
+        protected VendorDropDownList dropVendorId;
+
+        private int? BrandId ;
+        private int? VendorId ;
 
         #endregion
 
@@ -395,11 +403,11 @@ namespace Hidistro.UI.Web.Admin
                     Label label1 = label;
                     if (orderStatu == OrderStatus.BuyerAlreadyPaid)
                     {
-                        flag = true; 
+                        flag = true;
                     }
-                    else 
-                    { 
-                        flag = (orderStatu != OrderStatus.WaitBuyerPay ? false : str == "hishop.plugins.payment.podrequest"); 
+                    else
+                    {
+                        flag = (orderStatu != OrderStatus.WaitBuyerPay ? false : str == "hishop.plugins.payment.podrequest");
                     }
                     label1.Visible = flag;
                     //SellerAlreadySent
@@ -498,8 +506,8 @@ namespace Hidistro.UI.Web.Admin
             this.txtOrderId.Text = orderQuery.OrderId;
             this.txtProductName.Text = orderQuery.ProductName;
             this.txtShopTo.Text = orderQuery.ShipTo;
-            this.calendarStartDate.SelectedDate = orderQuery.StartDate;
-            this.calendarEndDate.SelectedDate = orderQuery.EndDate;
+            this.calendarStartDate.Text = orderQuery.StartDate == null ? "" : orderQuery.StartDate.ToString();
+            this.calendarEndDate.Text = orderQuery.EndDate == null ? "" : orderQuery.EndDate.ToString();
             this.lblStatus.Text = orderQuery.Status.ToString();
             this.shippingModeDropDownList.SelectedValue = orderQuery.ShippingModeId;
             if (orderQuery.IsPrinted.HasValue)
@@ -525,6 +533,10 @@ namespace Hidistro.UI.Web.Admin
             if (orderQuery.OrderStatus.HasValue)
             {
                 this.ddlOrderStatusId.SelectedValue = orderQuery.OrderStatus.Value.ToString();
+            }
+            if (orderQuery.VendorId.HasValue)
+            {
+                this.dropVendorId.SelectedValue = orderQuery.VendorId.Value;
             }
         }
 
@@ -622,11 +634,18 @@ namespace Hidistro.UI.Web.Admin
             if (!string.IsNullOrEmpty(this.Page.Request.QueryString["BrandId"]) && int.TryParse(this.Page.Request.QueryString["BrandId"], out num15))
             {
                 query.BrandId = new int?(num15);
+                this.BrandId = query.BrandId;
             }
             int num16;
             if (!string.IsNullOrEmpty(this.Page.Request.QueryString["OrderStatusId"]) && int.TryParse(this.Page.Request.QueryString["OrderStatusId"], out num16))
             {
                 query.OrderStatus = new int?(num16);
+            }
+            int num17;
+            if (!string.IsNullOrEmpty(this.Page.Request.QueryString["VendorId"]) && int.TryParse(this.Page.Request.QueryString["VendorId"], out num17))
+            {
+                query.VendorId = new int?(num17);
+                this.VendorId = query.VendorId;
             }
             return query;
         }
@@ -642,13 +661,13 @@ namespace Hidistro.UI.Web.Admin
             queryStrings.Add("OrderType", this.OrderFromList.SelectedValue);
             queryStrings.Add("OrderStatus", this.lblStatus.Text);
             queryStrings.Add("OrderStatusId", this.ddlOrderStatusId.SelectedValue);
-            if (this.calendarStartDate.SelectedDate.HasValue)
+            if (!string.IsNullOrEmpty(this.calendarStartDate.Text))
             {
-                queryStrings.Add("StartDate", this.calendarStartDate.SelectedDate.Value.ToString());
+                queryStrings.Add("StartDate", this.calendarStartDate.Text);
             }
-            if (this.calendarEndDate.SelectedDate.HasValue)
+            if (!string.IsNullOrEmpty(this.calendarEndDate.Text))
             {
-                queryStrings.Add("EndDate", this.calendarEndDate.SelectedDate.Value.ToString());
+                queryStrings.Add("EndDate", this.calendarEndDate.Text.ToString());
             }
             if (!isSearch)
             {
@@ -682,7 +701,11 @@ namespace Hidistro.UI.Web.Admin
             {
                 queryStrings.Add("BrandId", this.dropBrandId.SelectedValue.ToString());
             }
-            
+            if (this.dropVendorId.SelectedValue.HasValue)
+            {
+                queryStrings.Add("VendorId", this.dropVendorId.SelectedValue.ToString());
+            }
+
             base.ReloadPage(queryStrings);
         }
 
@@ -821,6 +844,87 @@ namespace Hidistro.UI.Web.Admin
                     this.ShowMsg("订单中商品有退货(款)不允许完成!", false);
                 }
             }
+        }
+
+        protected void lkbtnExportVendorOrder_Click(object sender, System.EventArgs e)
+        {
+            OrderQuery orderQuery = this.GetOrderQuery();
+            orderQuery.PageIndex = 1;
+            orderQuery.PageSize = int.MaxValue;
+
+            DataTable subOrderData = OrderHelper.GetOrdersByProc(orderQuery).Data as DataTable;
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("<html><head><meta http-equiv=Content-Type content=\"text/html; charset=gb2312\"></head><body>");
+            builder.AppendLine("<table cellspacing=\"0\" cellpadding=\"15\" rules=\"all\" border=\"1\">");
+            builder.AppendLine("<caption style='text-align:center;'>品牌商发货单</caption>");
+            builder.AppendLine("<tr style=\"font-weight: bold; white-space: nowrap;\">");
+            builder.AppendLine("<td>订单编号</td>");
+            builder.AppendLine("<td>品牌名称</td>");
+            builder.AppendLine("<td>收货人</td>");
+            builder.AppendLine("<td>收货人省市区编号</td>");
+            builder.AppendLine("<td>收货人省市区</td>");
+            builder.AppendLine("<td>收货人地址</td>");
+            builder.AppendLine("<td>收货人电话</td>");
+            builder.AppendLine("<td>收货人身份证号码</td>");
+            builder.AppendLine("<td>物流公司</td>");
+            builder.AppendLine("<td>物流单号</td>");
+            builder.AppendLine("<td>商品名称</td>");
+            builder.AppendLine("<td>货号</td>");
+            builder.AppendLine("<td>规格</td>");
+            builder.AppendLine("<td>发货数量</td>");
+            builder.AppendLine("<td>商品重量</td>");
+            builder.AppendLine("<td>商品备注</td>");
+            builder.AppendLine("<td>支付方式</td>");
+            builder.AppendLine("<td>支付交易号</td>");
+            builder.AppendLine("<td>订单状态编号</td>");
+            builder.AppendLine("<td>订单状态</td>");
+            builder.AppendLine("<td>订单日期</td>");
+            builder.AppendLine("<td>支付日期</td>");
+            builder.AppendLine("</tr>");
+            foreach (DataRow row in subOrderData.Rows)
+            {
+                builder.AppendLine("<tr>");
+                builder.AppendLine("<td style=\"vnd.ms-excel.numberformat:@\">" + row["OrderId"] + "</td>");
+                builder.AppendLine("<td>" + row["BrandName"] + "</td>");
+                builder.AppendLine("<td>" + row["ShipTo"] + "</td>");
+                builder.AppendLine("<td>" + row["RegionId"] + "</td>");
+                builder.AppendLine("<td>" + row["ShippingRegion"] + "</td>");
+                builder.AppendLine("<td>" + row["Address"] + "</td>");
+                builder.AppendLine("<td style=\"vnd.ms-excel.numberformat:@\">" + row["CellPhone"] + "</td>");
+                builder.AppendLine("<td style=\"vnd.ms-excel.numberformat:@\">" + row["IdCard"] + "</td>");
+                builder.AppendLine("<td>" + row["ModeName"] + "</td>");
+                builder.AppendLine("<td style=\"vnd.ms-excel.numberformat:@\">" + row["ShipOrderNumber"] + "</td>");
+                builder.AppendLine("<td>" + row["ItemDescription"] + "</td>");
+                builder.AppendLine("<td style=\"vnd.ms-excel.numberformat:@\">" + row["SKU"] + "</td>");
+                builder.AppendLine("<td>" + row["SKUContent"] + "</td>");
+                builder.AppendLine("<td>" + row["ShipmentQuantity"] + "</td>");
+                builder.AppendLine("<td>" + row["Freight"] + "</td>");
+                builder.AppendLine("<td>" + row["Remark"] + "</td>");
+                builder.AppendLine("<td>" + row["PaymentType"] + "</td>");
+                builder.AppendLine("<td style=\"vnd.ms-excel.numberformat:@\">" + row["GatewayOrderId"] + "</td>");
+                builder.AppendLine("<td>" + row["OrderStatus"] + "</td>");
+                builder.AppendLine("<td>" + row["StatusDescription"] + "</td>");
+                builder.AppendLine("<td>" + row["OrderDate"] + "</td>");
+                builder.AppendLine("<td>" + row["PayDate"] + "</td>");
+
+                builder.AppendLine("</tr>");
+
+            }
+            builder.AppendLine("</table>");
+            builder.AppendLine("</body></html>");
+            base.Response.Clear();
+            base.Response.Buffer = false;
+            base.Response.Charset = "GB2312";
+            base.Response.AppendHeader("Content-Disposition", "attachment;filename=VendorOrder_" + System.DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls");
+            base.Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+            base.Response.ContentType = "application/ms-excel";
+            this.EnableViewState = false;
+            base.Response.Write(builder.ToString());
+            base.Response.End();
+
+            //this.BindOrders();
+            //this.ShowMsg("成功导出数据", true);
+
         }
 
         protected void lkbtnExportSubOrder_Click(object sender, System.EventArgs e)
@@ -995,6 +1099,7 @@ namespace Hidistro.UI.Web.Admin
             this.btnCloseOrder.Click += new EventHandler(this.btnCloseOrder_Click);
             this.lkbtnDeleteCheck.Click += new EventHandler(this.lkbtnDeleteCheck_Click);
             this.lkbtnExportSubOrder.Click += new EventHandler(this.lkbtnExportSubOrder_Click);
+            this.lkbtnExportVendorOrder.Click += new EventHandler(this.lkbtnExportVendorOrder_Click);
             this.btnProductGoods.Click += new EventHandler(this.btnProductGoods_Click);
             this.btnOrderGoods.Click += new EventHandler(this.btnOrderGoods_Click);
             if (!this.Page.IsPostBack)
@@ -1016,6 +1121,9 @@ namespace Hidistro.UI.Web.Admin
                 this.bindOrderType();
                 this.BindOrders();
                 this.dropBrandId.DataBind();
+                this.dropVendorId.DataBind();
+                this.dropBrandId.SelectedValue = this.BrandId;
+                this.dropVendorId.SelectedValue = this.VendorId;
             }
             CheckBoxColumn.RegisterClientCheckEvents(this.Page, this.Page.Form.ClientID);
         }

@@ -25,6 +25,8 @@ namespace Hidistro.UI.Web.Admin
 		protected System.Web.UI.WebControls.TextBox txtkeyword;
 		protected System.Web.UI.WebControls.TextBox txtMetaDescription;
 		protected System.Web.UI.WebControls.TextBox txtReUrl;
+        protected VendorDropDownList dropVendor;
+
 		protected void btnAddBrandCategory_Click(object sender, System.EventArgs e)
 		{
 			BrandCategoryInfo brandCategoryInfo = this.GetBrandCategoryInfo();
@@ -114,6 +116,7 @@ namespace Hidistro.UI.Web.Admin
 			}
 			info.ProductTypes = list;
 			info.Description = ((!string.IsNullOrEmpty(this.fckDescription.Text) && this.fckDescription.Text.Length > 0) ? this.fckDescription.Text : null);
+            info.cVendor = this.dropVendor.SelectedValue;
 			return info;
 		}
 		protected void Page_Load(object sender, System.EventArgs e)
@@ -123,6 +126,7 @@ namespace Hidistro.UI.Web.Admin
 			if (!base.IsPostBack)
 			{
 				this.chlistProductTypes.DataBind();
+                this.dropVendor.DataBind();
 			}
 		}
 		private bool ValidationBrandCategory(BrandCategoryInfo brandCategory)

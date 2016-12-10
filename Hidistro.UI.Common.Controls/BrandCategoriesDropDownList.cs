@@ -22,7 +22,8 @@
             foreach (DataRow row in CatalogHelper.GetBrandCategories().Rows)
             {
                 int num = (int) row["BrandId"];
-                this.Items.Add(new ListItem((string) row["BrandName"], num.ToString(CultureInfo.InvariantCulture)));
+                //this.Items.Add(new ListItem((string) row["BrandName"], num.ToString(CultureInfo.InvariantCulture)));
+                this.Items.Add(new ListItem(row["BrandName"].ToString(), num.ToString()));
             }
         }
 
@@ -65,11 +66,13 @@
                 if (value.HasValue)
                 {
                     base.SelectedIndex = base.Items.IndexOf(base.Items.FindByValue(value.Value.ToString(CultureInfo.InvariantCulture)));
+                    
                 }
-                else
-                {
-                    base.SelectedIndex = -1;
-                }
+                //else
+                //{
+                //    base.SelectedIndex = -1;
+                //    base.SelectedValue = string.Empty;
+                //}
             }
         }
     }

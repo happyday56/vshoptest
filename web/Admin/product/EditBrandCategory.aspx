@@ -35,6 +35,10 @@
             <asp:TextBox ID="txtCompanyUrl" CssClass="forminput" runat="server" />
             <p id="ctl00_contentHolder_txtCompanyUrlTip">品牌官方网站的网址必须以http://开头，长度限制在100个字符以内</p>
           </li>
+            <li>
+                <span class="formitemtitle Pw_100">供应商：</span>
+                <abbr class="formselect"><Hi:VendorDropDownList runat="server" ID="dropVendor" NullToDisplay="--请选择--" /></abbr>
+            </li>
            <li style="margin-bottom:0px;"> <span class="formitemtitle Pw_100">URL重写名称：</span>
             <asp:TextBox ID="txtReUrl" CssClass="forminput" runat="server" />
             <p id="ctl00_contentHolder_txtReUrlTip"></p>

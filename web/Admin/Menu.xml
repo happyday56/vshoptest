@@ -73,6 +73,7 @@
   <Module Title="微订单" Link="sales/manageorder.aspx">
     <Item Title="订单管理">
       <PageLink  Title="订单列表" privilege="5001" Link="sales/manageorder.aspx"/>
+      <!--<PageLink  Title="订单详细列表" privilege="5001" Link="sales/manageorder2.aspx"/>-->
       <PageLink  Title="订单设置" Link="sales/setorderoption.aspx"/>
     </Item>
     <Item Title="退换货(款)">

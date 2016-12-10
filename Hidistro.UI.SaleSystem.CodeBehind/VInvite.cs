@@ -58,6 +58,8 @@
 
                     this.rptInviteComplatedList.DataSource = InviteBrowser.GetInviteComplatedList(currentMember.UserId);
                     this.rptInviteComplatedList.DataBind();
+
+
                 }
                 else
                 {

@@ -5,7 +5,7 @@
 [assembly: System.Reflection.AssemblyCompany("")]
 [assembly: System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)]
 [assembly: System.Reflection.AssemblyProduct("TransferManager")]
-[assembly: System.Reflection.AssemblyCopyright("Copyright \x00a9 QDX Dev Team  2015")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright \x00a9 SZQXD  2011")]
 [assembly: System.Runtime.CompilerServices.CompilationRelaxations(8)]
 [assembly: System.Runtime.InteropServices.Guid("9cfe990d-fe98-40e4-bd3f-50a519d05978")]
 [assembly: System.Diagnostics.Debuggable(System.Diagnostics.DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints)]

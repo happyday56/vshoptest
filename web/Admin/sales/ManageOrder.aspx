@@ -10,6 +10,7 @@
     <script type="text/javascript">
         var goUrl = "<%=Reurl %>" + "&t=" + (new Date().getTime());
     </script>
+    <script type="text/javascript" src="http://www.my97.net/dp/My97DatePicker/WdatePicker.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder" runat="server">
     <div class="optiongroup mainwidth">
@@ -40,12 +41,15 @@
         </style>
         <div class="searcharea clearfix br_search">
             <ul>
-                <li><span>选择时间段：</span><span><UI:WebCalendar CalendarType="StartDate" ID="calendarStartDate" runat="server" CssClass="forminput" />
+                <li><span>下单时间：</span><span>
+                     <asp:TextBox runat="server" id="calendarStartDate" class="forminput" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"/>
+                    <%--<UI:WebCalendar CalendarType="StartDate" ID="calendarStartDate" runat="server" CssClass="forminput" />--%>
                 </span><span class="Pg_1010">至</span> <span>
-                    <UI:WebCalendar ID="calendarEndDate" runat="server" CalendarType="EndDate" CssClass="forminput" />
+                    <%--<UI:WebCalendar ID="calendarEndDate" runat="server" CalendarType="EndDate" CssClass="forminput" />--%>
+                    <asp:TextBox runat="server" id="calendarEndDate" class="forminput" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"/>
                 </span></li>
                 <li style="margin-left: 13px;"><span>昵称：</span><span>
-                    <asp:TextBox ID="txtUserName" runat="server" CssClass="forminput" />
+                    <asp:TextBox ID="txtUserName" runat="server" CssClass="forminput"/>
                 </span></li>
                 <li><span>订单编号：</span><span>
                     <asp:TextBox ID="txtOrderId" runat="server" CssClass="forminput" /><asp:Label ID="lblStatus"
@@ -85,10 +89,15 @@
                 </li>
                 <li>
                         <abbr class="formselect">
-                            <Hi:BrandCategoriesDropDownList runat="server" ID="dropBrandId" NullToDisplay="--请选择品牌--"
+                            <Hi:BrandCategoriesDropDownList runat="server" ID="dropBrandId" AllowNull="true" NullToDisplay="--请选择品牌--"
                                 Width="153" />
                         </abbr>
                     </li>
+                <li>
+                    <abbr class="formselect">
+                        <Hi:VendorDropDownList runat="server" ID="dropVendorId" AllowNull="true" NullToDisplay="--请选择供应商--" Width="200" />
+                    </abbr>
+                </li>
                 <li><span>订单状态：</span><span>
                         <abbr class="formselect">
                             <asp:DropDownList runat="server" ID="ddlOrderStatusId" Width="107" >
@@ -146,6 +155,9 @@
                                     onclick="">批量发货</a></span>
                         <span class="downproduct">
                                 <Hi:ImageLinkButton ID="lkbtnExportSubOrder" runat="server" Text="导出子订单" /></span>
+                        <span class="printorder">
+                            <Hi:ImageLinkButton ID="lkbtnExportVendorOrder" runat="server" Text="按供应商导出订单" />
+                        </span>
                          <span><a href="/admin/printtools/install_lodop_6.198.zip">下载打印控件</a></span> </li>
                 </ul>
             </div>
@@ -179,8 +191,10 @@
                     <tr>
                         <td>&nbsp; <a href="<%# Eval("UserId").ToString()!="1100"?"javascript:DialogFrame('"+Globals.GetAdminAbsolutePath(string.Format("/member/MemberDetails.aspx?userId={0}",Eval("UserId")))+"','查看会员',null,null)":"javascript:void(0)" %>"><%#Eval("UserName")%></a><Hi:WangWangConversations runat="server" ID="WangWangConversations" WangWangAccounts='<%#Eval("Wangwang") %>' />
                         </td>
-                        <td><%#Eval("ShipTo") %>&nbsp;</td>
-                        <td style="color:#0B5BA5;"><%#Eval("PaymentType") %>&nbsp;<br />有跨境商品：<%#Eval("IsCrossOrder").ToString() == "1" ? "有" : "无" %></td>
+                        <td>&nbsp;&nbsp;支付时间：<Hi:FormatedTimeLabel ID="FormatedTimeLabel1" Time='<%#Eval("PayDate") %>' ShopTime="true" runat="server"></Hi:FormatedTimeLabel>
+						<br/><%#Eval("ShipTo") %>&nbsp;</td>
+                        <td style="color:#0B5BA5;"><%#Eval("PaymentType") %>&nbsp;
+						<br />有跨境商品：<%#Eval("IsCrossOrder").ToString() == "1" ? "有" : "无" %></td>
                         <td style="font-weight: bold; font-family: Arial;">
                             <Hi:FormatedMoneyLabel ID="lblOrderTotal" Money='<%#Eval("OrderTotal") %>' runat="server" /><span class="Name" style="margin-left: -8px;">&nbsp;<asp:HyperLink ID="lkbtnEditPrice" runat="server" NavigateUrl='<%# "EditOrder.aspx?OrderId="+ Eval("OrderId") %>' Text="修改价格" Visible="false"></asp:HyperLink></span></td>
                         <td style="color: #0B5BA5">&nbsp;<Hi:OrderStatusLabel ID="lblOrderStatus" OrderStatusCode='<%# Eval("OrderStatus") %>' runat="server" /><span style="color:red;"><asp:Literal runat="server" ID="litHandleStatus" /></span><span class="Name"><a href='<%# "OrderDetails.aspx?OrderId="+Eval("OrderId") %>'>详情</a></span></td>

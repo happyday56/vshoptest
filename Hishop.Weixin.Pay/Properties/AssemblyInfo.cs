@@ -11,7 +11,7 @@
 [assembly: System.Reflection.AssemblyTitle("Hishop.Weixin.Pay")]
 [assembly: System.Reflection.AssemblyDescription("")]
 [assembly: System.Reflection.AssemblyConfiguration("")]
-[assembly: System.Reflection.AssemblyCompany("QDX")]
+[assembly: System.Reflection.AssemblyCompany("微软中国")]
 [assembly: System.Reflection.AssemblyProduct("Hishop.Weixin.Pay")]
-[assembly: System.Reflection.AssemblyCopyright("Copyright \x00a9 QDX 2015")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright \x00a9 微软中国 2014")]
 

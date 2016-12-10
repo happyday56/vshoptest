@@ -655,7 +655,7 @@ namespace Hidistro.UI.SaleSystem.CodeBehind
             StringBuilder str = new StringBuilder();
             string defImgs = "/Storage/master/default.png";
             string defUrl = Globals.ApplicationPath + "/Vshop/ProductDetails.aspx?ProductId=";
-            string plink = Globals.GetCurrentDistributorId() > 0 ? "&&ReferralId=" + Globals.GetCurrentDistributorId() : "";
+            string plink = Globals.GetCurrentDistributorId() > 0 ? "&ReferralId=" + Globals.GetCurrentDistributorId() : "";
             bool isFlow = true;
             int countDown = 0;
             int displayIndex = 0;

@@ -25,6 +25,9 @@
 	width:25px;height:25px;background-position:-0px -0px;
 	background-size: 65px;
 }
+#emqrcode i{
+	background-position:0px -25px;
+}
 .info .title .right em:last-child i{
 	background-position:-40px -0px;
 }

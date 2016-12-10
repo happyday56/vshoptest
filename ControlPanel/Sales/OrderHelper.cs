@@ -286,6 +286,11 @@
             return new OrderDao().GetOrderInfo(orderId);
         }
 
+        public static DbQueryResult GetOrdersByProc(OrderQuery query)
+        {
+            return new OrderDao().GetOrdersByProc(query);
+        }
+
         public static DbQueryResult GetOrders(OrderQuery query)
         {
             return new OrderDao().GetOrders(query);

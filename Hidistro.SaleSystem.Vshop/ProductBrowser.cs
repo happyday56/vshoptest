@@ -139,7 +139,8 @@
 
         public static DataTable GetProductsByDisplayHome(MemberInfo member, int? topicId, int? categoryId, string keyWord, int pageNumber, int maxNum, out int total, string sort, string order)
         {
-            return new ProductBrowseDao().GetProductsByDisplayHome(member, topicId, categoryId, Globals.GetCurrentDistributorId(), keyWord, pageNumber, maxNum, out total, sort, order == "asc");
+            //return new ProductBrowseDao().GetProductsByDisplayHome(member, topicId, categoryId, Globals.GetCurrentDistributorId(), keyWord, pageNumber, maxNum, out total, sort, order == "asc");
+            return new ProductBrowseDao().GetProductsByDisplayHome(member, topicId, categoryId, -1, keyWord, pageNumber, maxNum, out total, sort, order == "asc");
         }
 
         public static DataTable GetProducts(MemberInfo member, int? topicId, int? categoryId, string keyWord, int pageNumber, int maxNum, out int total, string sort, string order, bool isselect)

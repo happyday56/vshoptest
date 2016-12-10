@@ -1,4 +1,6 @@
-﻿namespace Hidistro.SqlDal.Orders
+﻿using System.Data.SqlClient;
+
+namespace Hidistro.SqlDal.Orders
 {
     using Hidistro.Core;
     using Hidistro.Core.Entities;
@@ -55,7 +57,7 @@
             this.database.AddInParameter(storedProcCommand, "EmailAddress", DbType.String, orderInfo.EmailAddress);
             this.database.AddInParameter(storedProcCommand, "Remark", DbType.String, orderInfo.Remark);
             this.database.AddInParameter(storedProcCommand, "AdjustedDiscount", DbType.Currency, orderInfo.AdjustedDiscount);
-            this.database.AddInParameter(storedProcCommand, "OrderStatus", DbType.Int32, (int) orderInfo.OrderStatus);
+            this.database.AddInParameter(storedProcCommand, "OrderStatus", DbType.Int32, (int)orderInfo.OrderStatus);
             this.database.AddInParameter(storedProcCommand, "ShippingRegion", DbType.String, orderInfo.ShippingRegion);
             this.database.AddInParameter(storedProcCommand, "Address", DbType.String, orderInfo.Address);
             this.database.AddInParameter(storedProcCommand, "ZipCode", DbType.String, orderInfo.ZipCode);
@@ -75,7 +77,7 @@
             this.database.AddInParameter(storedProcCommand, "PaymentTypeId", DbType.Int32, orderInfo.PaymentTypeId);
             this.database.AddInParameter(storedProcCommand, "PaymentType", DbType.String, orderInfo.PaymentType);
             this.database.AddInParameter(storedProcCommand, "PayCharge", DbType.Currency, orderInfo.PayCharge);
-            this.database.AddInParameter(storedProcCommand, "RefundStatus", DbType.Int32, (int) orderInfo.RefundStatus);
+            this.database.AddInParameter(storedProcCommand, "RefundStatus", DbType.Int32, (int)orderInfo.RefundStatus);
             this.database.AddInParameter(storedProcCommand, "Gateway", DbType.String, orderInfo.Gateway);
             this.database.AddInParameter(storedProcCommand, "OrderTotal", DbType.Currency, orderInfo.GetTotal());
             this.database.AddInParameter(storedProcCommand, "OrderPoint", DbType.Int32, orderInfo.Points);
@@ -176,7 +178,7 @@
             {
                 return 0M;
             }
-            return (decimal) obj2;
+            return (decimal)obj2;
         }
 
         public DataSet GetDistributorOrder(OrderQuery query)
@@ -184,7 +186,7 @@
             string str = string.Empty;
             if (query.Status != OrderStatus.All)
             {
-                str = str + " AND OrderStatus=" + ((int) query.Status);
+                str = str + " AND OrderStatus=" + ((int)query.Status);
             }
             string str2 = "SELECT OrderId, OrderDate, OrderStatus,PaymentTypeId, OrderTotal,Gateway,ISNULL(FirstCommission, 0) AS FirstCommission,ISNULL(SecondCommission, 0) AS SecondCommission,ISNULL(ThirdCommission, 0) AS ThirdCommission, Freight, AdjustedFreight FROM Hishop_Orders o WHERE ReferralUserId = @UserId";
             str2 = (str2 + str + " ORDER BY OrderDate DESC") + " SELECT OrderId,SkuId, ThumbnailsUrl, ItemDescription, SKUContent, SKU, ProductId,Quantity,ISNULL(ItemListPrice, 0) AS ItemListPrice,ISNULL(ItemAdjustedCommssion, 0) AS ItemAdjustedCommssion,OrderItemsStatus,ISNULL(ItemsCommission, 0) AS ItemsCommission FROM Hishop_OrderItems WHERE OrderId IN (SELECT OrderId FROM Hishop_Orders WHERE ReferralUserId = @UserId" + str + ")";
@@ -205,22 +207,22 @@
             switch (query.Status)
             {
                 case OrderStatus.Finished:
-                    str = str + " AND OrderStatus=" + ((int) query.Status);
+                    str = str + " AND OrderStatus=" + ((int)query.Status);
                     break;
 
                 case OrderStatus.Today:
-                {
-                    string str2 = DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00";
-                    str = str + " AND OrderDate>='" + str2 + "'";
-                    break;
-                }
+                    {
+                        string str2 = DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00";
+                        str = str + " AND OrderDate>='" + str2 + "'";
+                        break;
+                    }
             }
             string str3 = "SELECT COUNT(*)  FROM Hishop_Orders o WHERE ReferralUserId = @ReferralUserId";
             str3 = str3 + str;
             DbCommand sqlStringCommand = this.database.GetSqlStringCommand(str3);
             sqlStringCommand.CommandType = CommandType.Text;
             this.database.AddInParameter(sqlStringCommand, "ReferralUserId", DbType.Int32, query.UserId);
-            return (int) this.database.ExecuteScalar(sqlStringCommand);
+            return (int)this.database.ExecuteScalar(sqlStringCommand);
         }
 
         public DataSet GetOrderGoods(string orderIds)
@@ -250,10 +252,56 @@
                 reader.NextResult();
                 while (reader.Read())
                 {
-                    info.LineItems.Add((string) reader["SkuId"], DataMapper.PopulateLineItem(reader));
+                    info.LineItems.Add((string)reader["SkuId"], DataMapper.PopulateLineItem(reader));
                 }
             }
             return info;
+        }
+
+        public DbQueryResult GetOrdersByProc(OrderQuery query)
+        {
+            var result=new DbQueryResult();
+            DbCommand sqlStringCommand = this.database.GetStoredProcCommand("pGetOrderDetails");
+            if (!string.IsNullOrEmpty(query.OrderId))
+            {
+                this.database.AddInParameter(sqlStringCommand, "orderID", DbType.String, query.OrderId);
+            }
+            if (query.OrderStatus.HasValue)
+            {
+                this.database.AddInParameter(sqlStringCommand, "orderStatus", DbType.Int64, query.OrderStatus);
+             
+            }
+            if (query.StartDate.HasValue)
+            {
+                this.database.AddInParameter(sqlStringCommand, "startDate", DbType.DateTime, query.StartDate);
+            }
+            else
+            {
+                this.database.AddInParameter(sqlStringCommand, "startDate", DbType.DateTime,DateTime.Parse("1990-01-01 0:0:0"));
+            }
+            if (query.EndDate.HasValue)
+            {
+                this.database.AddInParameter(sqlStringCommand, "endDate", DbType.DateTime, query.EndDate);
+            }
+            else
+            {
+                this.database.AddInParameter(sqlStringCommand, "endDate", DbType.DateTime, DateTime.Now.AddDays(1));
+            }
+            if (query.VendorId.HasValue)
+            {
+                this.database.AddInParameter(sqlStringCommand, "getType", DbType.Int32, query.VendorId);
+            }
+
+            using (IDataReader reader = database.ExecuteReader(sqlStringCommand))
+            {
+                result.Data =DataHelper.ConverDataReaderToDataTable(reader);
+                if (reader.NextResult())
+                {
+                    reader.Read();
+                    result.TotalRecords = reader.GetInt32(0);
+                }
+            }
+            return result;
         }
 
         public DbQueryResult GetOrders(OrderQuery query)
@@ -261,7 +309,7 @@
             StringBuilder builder = new StringBuilder("1=1");
             if (query.Type.HasValue)
             {
-                if (((OrderQuery.OrderType) query.Type.Value) == OrderQuery.OrderType.GroupBuy)
+                if (((OrderQuery.OrderType)query.Type.Value) == OrderQuery.OrderType.GroupBuy)
                 {
                     builder.Append(" And GroupBuyId > 0 ");
                 }
@@ -308,11 +356,11 @@
             }
             else if (query.Status == OrderStatus.BuyerAlreadyPaid)
             {
-                builder.AppendFormat(" AND (OrderStatus = {0} OR (OrderStatus = 1 AND Gateway = 'hishop.plugins.payment.podrequest'))", (int) query.Status);
+                builder.AppendFormat(" AND (OrderStatus = {0} OR (OrderStatus = 1 AND Gateway = 'hishop.plugins.payment.podrequest'))", (int)query.Status);
             }
             else if (query.Status != OrderStatus.All)
             {
-                builder.AppendFormat(" AND OrderStatus = {0}", (int) query.Status);
+                builder.AppendFormat(" AND OrderStatus = {0}", (int)query.Status);
             }
             if (query.OrderStatus.HasValue)
             {
@@ -320,11 +368,11 @@
             }
             if (query.StartDate.HasValue)
             {
-                builder.AppendFormat(" AND datediff(dd,'{0}',OrderDate)>=0", DataHelper.GetSafeDateTimeFormat(query.StartDate.Value));
+                builder.AppendFormat(" AND datediff(mi,'{0}',OrderDate)>=0", DataHelper.GetSafeDateTimeFormat(query.StartDate.Value));
             }
             if (query.EndDate.HasValue)
             {
-                builder.AppendFormat(" AND datediff(dd,'{0}',OrderDate)<=0", DataHelper.GetSafeDateTimeFormat(query.EndDate.Value));
+                builder.AppendFormat(" AND datediff(mi,'{0}',OrderDate)<=0", DataHelper.GetSafeDateTimeFormat(query.EndDate.Value));
             }
             if (query.ShippingModeId.HasValue)
             {
@@ -349,6 +397,10 @@
             if (query.BrandId.HasValue)
             {
                 builder.AppendFormat(" AND OrderId IN ( SELECT OrderId FROM Hishop_OrderItems WHERE ProductId IN ( SELECT ProductId FROM hishop_products WHERE BrandId = {0} ) )", query.BrandId.Value);
+            }
+            if (query.VendorId.HasValue)
+            {
+                builder.AppendFormat(" AND OrderId IN ( SELECT OrderId FROM Hishop_OrderItems WHERE ProductID IN ( SELECT ProductId FROM Hishop_Products WHERE BrandID IN ( SELECT BrandId FROM Hishop_BrandCategories WHERE ISNULL(cVendor, 0) = {0} ) ) )", query.VendorId.Value);
             }
             return DataHelper.PagingByRownumber(query.PageIndex, query.PageSize, query.SortBy, query.SortOrder, query.IsCount, "vw_Hishop_Order", "OrderId", builder.ToString(), "*");
         }
@@ -436,7 +488,7 @@
             DbCommand sqlStringCommand = this.database.GetSqlStringCommand(str2);
             sqlStringCommand.CommandType = CommandType.Text;
             this.database.AddInParameter(sqlStringCommand, "UserId", DbType.Int32, userId);
-            return (int) this.database.ExecuteScalar(sqlStringCommand);
+            return (int)this.database.ExecuteScalar(sqlStringCommand);
         }
 
         public DataSet GetUserOrderReturn(int userId, OrderQuery query)
@@ -463,7 +515,7 @@
             query = query + str;
             DbCommand sqlStringCommand = this.database.GetSqlStringCommand(query);
             this.database.AddInParameter(sqlStringCommand, "UserId", DbType.Int32, userId);
-            return (int) this.database.ExecuteScalar(sqlStringCommand);
+            return (int)this.database.ExecuteScalar(sqlStringCommand);
         }
 
         public bool InsertCalculationCommission(ArrayList UserIdList, ArrayList ReferralBlanceList, string orderid, ArrayList OrdersTotalList, string userid)
@@ -516,7 +568,7 @@
         public bool UpdateOrder(OrderInfo order, DbTransaction dbTran = null)
         {
             DbCommand sqlStringCommand = this.database.GetSqlStringCommand("UPDATE Hishop_Orders SET  OrderStatus = @OrderStatus, CloseReason=@CloseReason, PayDate = @PayDate, ShippingDate=@ShippingDate, FinishDate = @FinishDate, RegionId = @RegionId, ShippingRegion = @ShippingRegion, Address = @Address, ZipCode = @ZipCode,ShipTo = @ShipTo, TelPhone = @TelPhone, CellPhone = @CellPhone, ShippingModeId=@ShippingModeId ,ModeName=@ModeName, RealShippingModeId = @RealShippingModeId, RealModeName = @RealModeName, ShipOrderNumber = @ShipOrderNumber,  ExpressCompanyName = @ExpressCompanyName,ExpressCompanyAbb = @ExpressCompanyAbb, PaymentTypeId=@PaymentTypeId,PaymentType=@PaymentType, Gateway = @Gateway, ManagerMark=@ManagerMark,ManagerRemark=@ManagerRemark,IsPrinted=@IsPrinted, OrderTotal = @OrderTotal, OrderProfit=@OrderProfit,Amount=@Amount,OrderCostPrice=@OrderCostPrice, AdjustedFreight = @AdjustedFreight, PayCharge = @PayCharge, AdjustedDiscount=@AdjustedDiscount,OrderPoint=@OrderPoint,GatewayOrderId=@GatewayOrderId WHERE OrderId = @OrderId");
-            this.database.AddInParameter(sqlStringCommand, "OrderStatus", DbType.Int32, (int) order.OrderStatus);
+            this.database.AddInParameter(sqlStringCommand, "OrderStatus", DbType.Int32, (int)order.OrderStatus);
             this.database.AddInParameter(sqlStringCommand, "CloseReason", DbType.String, order.CloseReason);
             this.database.AddInParameter(sqlStringCommand, "PayDate", DbType.DateTime, order.PayDate);
             this.database.AddInParameter(sqlStringCommand, "ShippingDate", DbType.DateTime, order.ShippingDate);
@@ -663,7 +715,7 @@
             MemberInfo member = new MemberDao().GetMember(order.UserId);
             if (null != member)
             {
-                XTrace.WriteLine("退货时虚似币返还前分销商账户余额(" + order.OrderId + ")(" + order.UserId + ")：--虚似币--" + member.VirtualPoints );
+                XTrace.WriteLine("退货时虚似币返还前分销商账户余额(" + order.OrderId + ")(" + order.UserId + ")：--虚似币--" + member.VirtualPoints);
             }
 
             StringBuilder sql = new StringBuilder();

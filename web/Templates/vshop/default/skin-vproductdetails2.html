@@ -1,15 +1,93 @@
 ﻿<hi:common_header runat="server" />
 <meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="/style/newcss/css/common.css">
 <link rel="stylesheet" type="text/css" href="/style/newcss/css/product_detail_new.css">
- <link rel="stylesheet" type="text/css" href="/style/newcss/css/invite.css">
+<link rel="stylesheet" type="text/css" href="/style/newcss/css/invite.css">
+
+<style type="text/css">
+    .box {
+        background: #f1f1f1;
+        width: 100%;
+        max-width: 640px;
+        text-align: center;
+        margin: 3% auto;
+        width: 96%;
+        margin: 0 auto;
+        font-size: 16px;
+    }
+
+        .box .top {
+            width: 100%;
+            background: #fff;
+        }
+
+            .box .top .product {
+                width: 26%;
+                margin: 0 auto;
+                padding: 12%;
+            }
+
+        .box .bottom {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 25px;
+        }
+
+    .b-l {
+        width: 35%;
+        float: left;
+    }
+
+    .b-r {
+        width: 60%;
+        display: inline-block;
+        text-align: left;
+        position: relative;
+    }
+
+        .b-r p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+    p.price-yen {
+        color: red;
+        margin: 12px 0;
+    }
+
+    p.marketprice-yen {
+        
+        margin: 100px 0;
+    }
+
+    @media screen and (min-width:640px) {
+        html {
+            font-size: 24px !important;
+        }
+    }
+
+    @media screen and (max-width:414px) {
+        html {
+            font-size: 20px !important;
+        }
+    }
+
+    @media screen and (max-width:375px) {
+        html {
+            font-size: 16px !important;
+        }
+    }
+</style>
+
+<script type="text/javascript" src="/script/layer/layer.js"></script>
 <!--<div class="slides-collect-btn">
     <a id="addF" href="javascript:AddFavorite();" class="">
 
         <span class="star-null"></span>
     </a>
     <a id="addedF" href="javascript:;" class="hide">
-        
+
         <span class="star-full"></span>
     </a>
 </div>-->
@@ -24,8 +102,8 @@
         <div class="intro text-danger font-s">
             <asp:literal runat="server" id="litShortDescription" />
         </div>
-        <div class="price clearfix">            
-            <span class="spSalaPrice">¥<asp:literal runat="server" id="litSalePrice2" /></span>&nbsp;&nbsp;&nbsp;&nbsp;<del class="font-s">¥<asp:literal runat="server" id="litMarketPrice2" /></del>         
+        <div class="price clearfix">
+            <span class="spSalaPrice">¥<asp:literal runat="server" id="litSalePrice2" /></span>&nbsp;&nbsp;&nbsp;&nbsp;<del class="font-s">¥<asp:literal runat="server" id="litMarketPrice2" /></del>
             <span class="selled">销量&nbsp;&nbsp;<asp:literal id="litSoldCount2" runat="server" /></span>
         </div>
         <div>
@@ -34,42 +112,47 @@
     </div>
 </div>-->
 <div class="imgwrap banner swiper-container">
-   <div class="clearfix swiper-wrapper">
-     <!--<div class="swiper-slide">
-       <a href=""><img src="/style/newcss/imgs/product_d/banner.jpg" alt=""></a>
-     </div>
-     <div class="swiper-slide">
-       <a href=""><img src="/style/newcss/imgs/product_d/banner.jpg" alt=""></a>
-     </div>-->
-       <asp:literal runat="server" id="litBanner" />
-   </div>
-   <div class="swiper-pagination"></div>
- </div>
+    <div class="clearfix swiper-wrapper">
+        <!--<div class="swiper-slide">
+          <a href=""><img src="/style/newcss/imgs/product_d/banner.jpg" alt=""></a>
+        </div>
+        <div class="swiper-slide">
+          <a href=""><img src="/style/newcss/imgs/product_d/banner.jpg" alt=""></a>
+        </div>-->
+        <asp:literal runat="server" id="litBanner" />
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
 <div class="info">
- 	<div class="flex title">
- 		<div class="flex_item"><hi:hiimage runat="server" id="siteImglogo" imageurl="/style/newcss/imgs/product_d/logo.png" /><span>
- 	<asp:literal runat="server" id="litProdcutName" />
-</span></div>
-		<div class="right">
-			<em id="emgood"><i></i><b>赞一个(<asp:literal id="litGood" runat="server"></asp:literal>)</b></em>
-			<em id="emshare" class="em"><i></i><b>分享</b></em>
-		</div>
+    <div class="flex title">
+        <div class="flex_item">
+            <hi:hiimage runat="server" id="siteImglogo" imageurl="/style/newcss/imgs/product_d/logo.png" /><span id="ProductName">
+                <asp:literal runat="server" id="litProdcutName" />
+            </span>
+        </div>
+        <!--<div class="right">
+            <a id="QRcode" style="display:none;" href="javascript:;"><img src="/Storage/master/QRcord.jpg" /></a>
+        </div>-->
+        <div class="right">
+            <em id="emqrcode"><i></i><b>推广</b></em>
+            <em id="emshare" class="em"><i></i><b>分享</b></em>
+        </div>
         <div class="share"><img src="/style/newcss/imgs/share.png" alt=""></div>
- 	</div>
- 	<div class="price"><em>¥</em><i><asp:literal runat="server" id="litSalePrice" /></i><b>专享价</b></div>
- 	<div>价格：<del>￥<asp:literal runat="server" id="litMarketPrice" /></del></div>
- 	<div class="t_b">
- 		<span>快递：0.00</span>
- 		<span>月销<asp:literal id="litSoldCount" runat="server" />笔</span>
- 		<span><asp:literal id="litSaleLocation" runat="server" /></span>
- 	</div>
+    </div>
+    <div class="price"><em>¥</em><i><asp:literal runat="server" id="litSalePrice" /></i><b>专享价</b></div>
+    <div class="a99">价格：<del>￥<asp:literal runat="server" id="litMarketPrice" /></del></div>
+    <div class="t_b">
+        <span>快递：0.00</span>
+        <span>月销<asp:literal id="litSoldCount" runat="server" />笔</span>
+        <span><asp:literal id="litSaleLocation" runat="server" /></span>
+    </div>
 </div>
 <div class="remark">
-	<div class="d0"><span>极速退款</span><span><asp:literal id="litReturnInfo" runat="server" /></span></div>
-	<div class="d1">
-	<!--<span><i>送</i></span>-->
-	<span><asp:literal id="litActivities" runat="server" /></span>
-	</div>
+    <div class="d0"><span>极速退款</span><span><asp:literal id="litReturnInfo" runat="server" /></span></div>
+    <div class="d1">
+        <!--<span><i>送</i></span>-->
+        <span><asp:literal id="litActivities" runat="server" /></span>
+    </div>
 </div>
 
 <div class="well">
@@ -83,9 +166,9 @@
                 <div id="spAdd" class="shopcart-add">+</div>
                 <div class="info font-s" style='border-bottom:0px'>库存：<span id="spStock"><asp:literal runat="server" id="litStock" /></span>件</div>
                 <div style="display:none">
-                     <span id="maxCross"><asp:literal id="litMaxCross" runat="server" /></span>
-                     <span id="isBuy"><asp:literal id="litIsBuy" runat="server" /></span>
-                     <span id="isPdBuy"><asp:literal id="litIsPdBuy" runat="server" /></span>
+                    <span id="maxCross"><asp:literal id="litMaxCross" runat="server" /></span>
+                    <span id="isBuy"><asp:literal id="litIsBuy" runat="server" /></span>
+                    <span id="isPdBuy"><asp:literal id="litIsPdBuy" runat="server" /></span>
                 </div>
             </div>
         </div>
@@ -93,7 +176,7 @@
 </div>
 <ul class="nav nav-tabs product_detail font-m" role="tablist">
     <li role="presentation" class="active"><a href="#product-detail" data-toggle="tab">商品详情</a></li>
-<!--    <li role="presentation"><a href="#product-ask" data-toggle="tab" onclick="javascript:location.href='ProductConsultations.aspx'+location.search;">商品咨询 (<asp:literal runat="server" id="litConsultationsCount" />)</a></li>-->
+    <!--    <li role="presentation"><a href="#product-ask" data-toggle="tab" onclick="javascript:location.href='ProductConsultations.aspx'+location.search;">商品咨询 (<asp:literal runat="server" id="litConsultationsCount" />)</a></li>-->
     <li role="presentation"><a href="#product-eva" data-toggle="tab" onclick="gotoProductReview();">商品评价 (<asp:literal runat="server" id="litReviewsCount" />)</a></li>
 </ul>
 <div class="tab-content">
@@ -119,8 +202,8 @@
 </div>-->
 
 <div class="pro_d_footer flex">
-	<div class="flex_item">
-		<div class="flex">
+    <div class="flex_item">
+        <div class="flex">
             <div class="flex_item d0">
                 <a href="/Vshop/SaleService.aspx">
                     <em></em>
@@ -140,12 +223,96 @@
                 </a>
             </div>
         </div>
-	</div>
+    </div>
     <a class="a" id="addcartButton" type="shoppingBtn" onclick="AddProductToCart()" style='<asp:Literal ID="litD1" runat="server"></asp:Literal>' >加入购物车</a>
-	<a class="a buy"  id="buyButton" type="shoppingBtn" >立即购买</a>
+    <a class="a buy" id="buyButton" type="shoppingBtn" style='<asp:Literal ID="litD2" runat="server"></asp:Literal>'>立即购买</a>
 </div>
 
-<div class="share" style="z-index: 99999;"><img src="/style/newcss/imgs/share.png" alt=""></div>
+<div class="share" style="z-index: 99999;">
+    <img src="/style/newcss/imgs/share.png" alt="">
+</div>
+<!--<script src="/Utility/html2canvas.js"></script>-->
+<div id="tong" class="box" style="display:none;">
+    <img id="QRcodeImg" width="100%" />
+    <!--<div class="top">
+        <div>
+            <img id="ProductImage" />
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="b-l">
+            <img id="QRcodeImg" width="100%" />
+        </div>
+        <div class="b-r">
+            <p id="ProductNameDesc"></p>
+            <p id="ProductPrice" class="price-yen"></p>
+            <p id="ProductMarketPrice" class="marketprice-yen"></p>
+            <p style="font-size:10px;">长按识别二维码或扫一扫购买<br /><asp:Literal ID="litDistributor" runat="server"></asp:Literal>的店铺</p>
+        </div>
+    </div>-->
+</div>
+<script type="text/javascript">
+    $(function () {
+        var productUrl = $(".swiper-slide img:first").attr("src");
+        $("#ProductImage").attr("src", productUrl).attr("width", "100%");
+        var price = $(".price i").html();
+        var marketPrice = $(".a99 del").html();
+        
+        var productName = $("#ProductName").html();
+
+        $("#ProductNameDesc").html(productName);
+        $("#ProductPrice").html("&yen;" + price);
+        $("#ProductMarketPrice").html("&yen;" + marketPrice);
+
+        var logoUrl = "http://" + window.location.host + "/Storage/master/20151109094648_5529.jpg";
+        var detailUrl = window.location + "&ReferralId=" + (getCookie("Vshop-ReferralId") || 0);
+
+        $("#QRcodeImg").attr("src", "/API/GetQRCode.ashx?code=" + escape(detailUrl) + "&PTTypeId=4&productId=" + getParam('ProductId') + "&ReferralId=" + (getCookie("Vshop-ReferralId") || getParam("ReferralId") || 0));
+
+            //.load(
+            //function () {
+            //    $("#tong").show();
+            //    html2canvas($("#tong")[0]).then(function (canvas) {
+            //        img = convertCanvasToImage(canvas);
+            //        $("#tong").html(img);
+            //        //$("#QRcode").show();
+            //        // isok = true;
+            //        // $("#tong").html(canvas).hide().css("width", "100%");
+            //    });
+            //}
+            //);
+        //ttt = setInterval(function () {
+        //    //console.log('ok');
+        //    if ($("img[sc]").length > 0) {
+        //        $("#tong").hide().css("width", "100%");
+        //        $("#QRcode").show();
+        //        clearInterval(ttt);
+
+        //    }
+        //}, 300);
+    });
+
+    function getCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+
+    //function convertCanvasToImage(canvas) {
+    //    //新Image对象，可以理解为DOM
+    //    var image = new Image();
+    //    // canvas.toDataURL 返回的是一串Base64编码的URL，当然,浏览器自己肯定支持
+    //    // 指定格式 PNG
+    //    image.src = canvas.toDataURL("image/png");
+    //    image.setAttribute("sc", "true");
+    //    return image;
+    //}
+
+
+</script>
+
 
 <input type="hidden" runat="server" clientidmode="Static" id="litHasCollected" />
 <input type="hidden" runat="server" id="litCategoryId" />
@@ -190,7 +357,23 @@
         }
         //分享
         doShare();
+
+        $("#emqrcode").click(function () {
+
+            //页面层
+            layer.open({
+                type: 1,
+                title: false,
+                area: '80%',
+                closeBtn: 0,
+                skin: 'layui-layer-nobg', //没有背景色
+                shadeClose: true,
+                content: $('#tong'),
+                scrollbar: false
+            });
+        });
     });
+
     function doShare() {
         $("#emgood").click(function () {
             AddGoodCounts();
@@ -276,23 +459,23 @@
     var link;
     var imgUrl;
     var Dec;
-    if ($.trim(SetItems.split('|')[0]) != "") {
-        imgUrl = $.trim(SetItems.split('|')[0]);
-    }
-    else {
+    if ($.trim(NoSetItems.split('|')[0]) != "") {
         imgUrl = $.trim(NoSetItems.split('|')[0]);
     }
-    if ($.trim(SetItems.split('|')[1]) != "") {
-        title = SetItems.split('|')[1];
-    }
     else {
+        imgUrl = $.trim(SetItems.split('|')[0]);
+    }
+    if ($.trim(NoSetItems.split('|')[1]) != "") {
         title = NoSetItems.split('|')[1];
     }
-    if ($.trim(SetItems.split('|')[2]) != "") {
-        Dec = SetItems.split('|')[2];
+    else {
+        title = SetItems.split('|')[1];
+    }
+    if ($.trim(NoSetItems.split('|')[2]) != "") {
+        Dec = NoSetItems.split('|')[2];
     }
     else {
-        Dec = $.trim(NoSetItems.split('|')[2]);
+        Dec = $.trim(SetItems.split('|')[2]);
     }
     link = NoSetItems.split('|')[3];
     WinXinShareMessage(title, Dec, link, imgUrl);
@@ -301,15 +484,15 @@
 </script>
 <script src="/utility/vproduct.helper.js?v=1.3" type="application/javascript"> </script>
 <!--<script src="/script/swipe.js"></script>-->
- <link rel="stylesheet" type="text/css" href="/style/newcss/js/swiper/swiper.3.1.7.min.css">
+<link rel="stylesheet" type="text/css" href="/style/newcss/js/swiper/swiper.3.1.7.min.css">
 <script type="text/javascript" src="/style/newcss/js/swiper/swiper.3.1.7.min.js"></script>
-  <script>
-    window.onload=function(){
-       var slider=new Swiper(".swiper-container",{
-          // 如果需要分页器
-          pagination: '.swiper-pagination',
-          autoplayDisableOnInteraction : false
-       })
+<script>
+    window.onload = function () {
+        var slider = new Swiper(".swiper-container", {
+            // 如果需要分页器
+            pagination: '.swiper-pagination',
+            autoplayDisableOnInteraction: false
+        })
     }
-  </script>
+</script>
 <!--<hi:common_footer runat="server" />-->

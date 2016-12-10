@@ -99,6 +99,7 @@
     <Compile Include="TemplatedWebControl.cs" />
     <Compile Include="UpImg.cs" />
     <Compile Include="UploadHandler.cs" />
+    <Compile Include="VendorDropDownList.cs" />
     <Compile Include="VshopTemplatedWebControl.cs" />
     <Compile Include="Style.cs" />
     <Compile Include="Script.cs" />

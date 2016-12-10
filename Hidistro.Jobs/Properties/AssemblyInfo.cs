@@ -4,7 +4,7 @@
 [assembly: System.Reflection.AssemblyTitle("Jobs")]
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
 [assembly: System.Runtime.InteropServices.Guid("5ce6a604-176d-4d5f-9020-f66ee460117e")]
-[assembly: System.Reflection.AssemblyCompany("QDX Dev Team")]
+[assembly: System.Reflection.AssemblyCompany("SZQXD")]
 [assembly: System.Reflection.AssemblyCopyright("Copyright \x00a9 2002 - 2011 Hishop. All Rights Reserved.")]
 [assembly: System.Reflection.AssemblyProduct("Hishop")]
 [assembly: System.Reflection.AssemblyInformationalVersion("2.1")]

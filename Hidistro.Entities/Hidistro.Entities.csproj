@@ -69,6 +69,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System" />
     <Compile Include="Commodities\ProductTwoInfo.cs" />
+    <Compile Include="Commodities\VendorInfo.cs" />
     <Compile Include="Members\CommissionInfo.cs" />
     <Compile Include="Members\DistributorIncomeQuery.cs" />
     <Compile Include="Orders\OrderSubLogisticInfo.cs" />

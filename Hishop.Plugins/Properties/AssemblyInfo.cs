@@ -4,7 +4,7 @@
 [assembly: System.Runtime.CompilerServices.CompilationRelaxations(8)]
 [assembly: System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)]
 [assembly: System.Web.UI.WebResource("Hishop.Plugins.Controls.plugin.js", "text/javascript")]
-[assembly: System.Reflection.AssemblyCompany("QDX Dev Team")]
+[assembly: System.Reflection.AssemblyCompany("SZQXD")]
 [assembly: System.Reflection.AssemblyProduct("PluginManager")]
 [assembly: System.CLSCompliant(true)]
 [assembly: System.Reflection.AssemblyTitle("PluginManager")]
@@ -12,7 +12,7 @@
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
 [assembly: System.Reflection.AssemblyDescription("Debug")]
 [assembly: System.Reflection.AssemblyTrademark("")]
-[assembly: System.Reflection.AssemblyCopyright("Copyright \x00a9 QDX Dev Team 2015")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright \x00a9 SZQXD 2010")]
 [assembly: System.Runtime.InteropServices.Guid("22137225-857a-455c-986d-ae8078941e37")]
 [assembly: System.Reflection.AssemblyInformationalVersion("1.0.0")]
 

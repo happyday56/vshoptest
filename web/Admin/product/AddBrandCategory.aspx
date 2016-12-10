@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="AddBrandCategory.aspx.cs" Inherits="Hidistro.UI.Web.Admin.AddBrandCategory" Title="无标题页" %>
+<%@ Register TagPrefix="Hi" Namespace="Hidistro.UI.Common.Controls" Assembly="Hidistro.UI.Common.Controls" %>
 <%@ Register TagPrefix="Hi" Namespace="Hidistro.UI.ControlPanel.Utility" Assembly="Hidistro.UI.ControlPanel.Utility" %>
 <%@ Register TagPrefix="Kindeditor" Namespace="kindeditor.Net" Assembly="kindeditor.Net" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="headHolder" runat="server">
@@ -25,6 +26,10 @@
             <asp:TextBox ID="txtCompanyUrl" CssClass="forminput" runat="server" />
             <p id="ctl00_contentHolder_txtCompanyUrlTip">品牌官方网站的网址必须以http://开头，长度限制在100个字符以内'</p>
           </li>
+            <li>
+                <span class="formitemtitle Pw_100">供应商：</span>
+                <abbr class="formselect"><Hi:VendorDropDownList runat="server" ID="dropVendor" NullToDisplay="--请选择--" /></abbr>
+            </li>
             <li style="margin-bottom:0px;"> <span class="formitemtitle Pw_100">URL重写名称：</span>
             <asp:TextBox ID="txtReUrl" CssClass="forminput" runat="server" />
             <p id="ctl00_contentHolder_txtReUrlTip"></p>

@@ -65,6 +65,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Commodities\VendorDao.cs" />
     <Compile Include="VShop\VPGiftDao.cs" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\lib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>

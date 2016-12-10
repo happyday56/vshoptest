@@ -49,6 +49,8 @@
         public int? BrandId { get; set; }
 
         public int? OrderStatus { get; set; }
+
+        public int? VendorId { get; set; }
     }
 }
 

@@ -28,6 +28,8 @@ namespace Hidistro.UI.Web.Admin
 		protected System.Web.UI.WebControls.TextBox txtkeyword;
 		protected System.Web.UI.WebControls.TextBox txtMetaDescription;
 		protected System.Web.UI.WebControls.TextBox txtReUrl;
+        protected VendorDropDownList dropVendor;
+
 		private void btnDeleteLogo_Click(object sender, System.EventArgs e)
 		{
 			BrandCategoryInfo brandCategoryInfo = this.GetBrandCategoryInfo();
@@ -119,6 +121,7 @@ namespace Hidistro.UI.Web.Admin
 				}
 			}
 			info.ProductTypes = list;
+            info.cVendor = this.dropVendor.SelectedValue;
 			return info;
 		}
 		private void loadData()
@@ -169,6 +172,7 @@ namespace Hidistro.UI.Web.Admin
 				if (!this.Page.IsPostBack)
 				{
 					this.chlistProductTypes.DataBind();
+                    this.dropVendor.DataBind();
 					this.loadData();
 				}
 			}

@@ -27,7 +27,7 @@
                 <div id="logoText" class="logo">
                     logo文字</div>
                 <div class="cardName">
-                    海商会员卡</div>
+                    会员卡</div>
                 <div class="qrCode">
                     <img src="qrCode.jpg" id="imgqrcode" runat="server" /></div>
                 <div class="vipGrade">

@@ -114,6 +114,7 @@
                         }
                         this.litSJStore.Text = "/vshop/ProductDetails.aspx?SJCode=1&PTTypeId=1&ReferralId=" + userIdDistributors.ReferralUserId + "&ReferralUserId=" + userIdDistributors.ReferralUserId + "&ProductId=" + tmpProductId;
                         this.litSJName.Text = "升级店主";
+
                     }
                     else
                     {
