@@ -1,0 +1,2442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{091650D9-3B2D-4E02-A7C6-117CE41FDCA3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>web2</RootNamespace>
+    <AssemblyName>web2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="kindeditor.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\kindeditor.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJSON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\LitJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NewLife.Core, Version=5.4.5736.38074, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\NewLife.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="ThoughtWorks.QRCode, Version=1.0.4778.30637, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\AccessDenied.aspx" />
+    <Content Include="Admin\Ascx\Order_ChargesList.ascx" />
+    <Content Include="Admin\Ascx\Order_ItemsList.ascx" />
+    <Content Include="Admin\Ascx\Order_ShippingAddress.ascx" />
+    <Content Include="Admin\comment\ProductConsultations.aspx" />
+    <Content Include="Admin\comment\ProductConsultationsReplyed.aspx" />
+    <Content Include="Admin\comment\ProductReviews.aspx" />
+    <Content Include="Admin\comment\ReplyProductConsultations.aspx" />
+    <Content Include="Admin\comment\ReplyProductReviews.aspx" />
+    <Content Include="Admin\css\bootstrap.min.css" />
+    <Content Include="Admin\css\css.css" />
+    <Content Include="Admin\css\custom.css" />
+    <Content Include="Admin\css\frame.css" />
+    <Content Include="Admin\css\Hishopv5.css" />
+    <Content Include="Admin\css\jquery.jOrgChart.css" />
+    <Content Include="Admin\css\jquery.treeTable.css" />
+    <Content Include="Admin\css\login.css" />
+    <Content Include="Admin\css\MutiArticle.css" />
+    <Content Include="Admin\css\newlogin.css" />
+    <Content Include="Admin\css\pagevalidator.css" />
+    <Content Include="Admin\css\prettify.css" />
+    <Content Include="Admin\css\style.css" />
+    <Content Include="Admin\css\VipCard.css" />
+    <Content Include="Admin\css\windows.css" />
+    <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\default.html" />
+    <Content Include="Admin\distributor\AddDistributorBackgroundPic.aspx" />
+    <Content Include="Admin\distributor\AddFriendExtension.aspx" />
+    <Content Include="Admin\distributor\BalanceDrawApplyList.aspx" />
+    <Content Include="Admin\distributor\BalanceDrawRequestList.aspx" />
+    <Content Include="Admin\distributor\branchAddDistributors.aspx" />
+    <Content Include="Admin\distributor\CommissionsAllList.aspx" />
+    <Content Include="Admin\distributor\CommissionsList.aspx" />
+    <Content Include="Admin\distributor\DistributorApplySet.aspx" />
+    <Content Include="Admin\distributor\DistributorBackgroundPicUpload.aspx" />
+    <Content Include="Admin\distributor\DistributorDetails.aspx" />
+    <Content Include="Admin\distributor\DistributorGradeList.aspx" />
+    <Content Include="Admin\distributor\DistributorIncomeList.aspx" />
+    <Content Include="Admin\distributor\DistributorList.aspx" />
+    <Content Include="Admin\distributor\DistributorList2.aspx" />
+    <Content Include="Admin\distributor\DistributorLogo.aspx" />
+    <Content Include="Admin\distributor\DistributorLogoUpload.aspx" />
+    <Content Include="Admin\distributor\DistributorStatistics.aspx" />
+    <Content Include="Admin\distributor\EditDistributor.aspx" />
+    <Content Include="Admin\distributor\EditDistributorGrade.aspx" />
+    <Content Include="Admin\distributor\EditFriendExtension.aspx" />
+    <Content Include="Admin\distributor\FriendExtension.aspx" />
+    <Content Include="Admin\distributor\InviteApplyList.aspx" />
+    <Content Include="Admin\distributor\SaleService.aspx" />
+    <Content Include="Admin\distributor\SendRedpackRecord.aspx" />
+    <Content Include="Admin\distributor\subdistributor.aspx" />
+    <Content Include="Admin\distributor\upload.aspx" />
+    <Content Include="Admin\FileCategoryJson.aspx" />
+    <Content Include="Admin\FileManagerJson.aspx" />
+    <Content Include="Admin\help\about.html" />
+    <Content Include="Admin\help\complete.html" />
+    <Content Include="Admin\help\data.html" />
+    <Content Include="Admin\help\distribution.html" />
+    <Content Include="Admin\help\ie-css3.htc" />
+    <Content Include="Admin\help\images\arrow_gray.gif" />
+    <Content Include="Admin\help\images\jquery.corner.js" />
+    <Content Include="Admin\help\images\pic\1.jpg" />
+    <Content Include="Admin\help\images\pic\10.jpg" />
+    <Content Include="Admin\help\images\pic\2.jpg" />
+    <Content Include="Admin\help\images\pic\3.jpg" />
+    <Content Include="Admin\help\images\pic\4.jpg" />
+    <Content Include="Admin\help\images\pic\5.jpg" />
+    <Content Include="Admin\help\images\pic\6.jpg" />
+    <Content Include="Admin\help\images\pic\7.jpg" />
+    <Content Include="Admin\help\images\pic\8.jpg" />
+    <Content Include="Admin\help\images\pic\9.jpg" />
+    <Content Include="Admin\help\images\pic\buttomback.jpg" />
+    <Content Include="Admin\help\images\pic\close.jpg" />
+    <Content Include="Admin\help\images\pic\ico_1.jpg" />
+    <Content Include="Admin\help\images\pic\ico_10.jpg" />
+    <Content Include="Admin\help\images\pic\ico_2.jpg" />
+    <Content Include="Admin\help\images\pic\ico_3.jpg" />
+    <Content Include="Admin\help\images\pic\ico_4.jpg" />
+    <Content Include="Admin\help\images\pic\ico_5.jpg" />
+    <Content Include="Admin\help\images\pic\ico_6.jpg" />
+    <Content Include="Admin\help\images\pic\ico_7.jpg" />
+    <Content Include="Admin\help\images\pic\ico_8.jpg" />
+    <Content Include="Admin\help\images\pic\ico_9.jpg" />
+    <Content Include="Admin\help\images\pic\index_tit.jpg" />
+    <Content Include="Admin\help\images\pic\index_tit2.jpg" />
+    <Content Include="Admin\help\images\pic\meun_back.jpg" />
+    <Content Include="Admin\help\images\pic\meun_back2.jpg" />
+    <Content Include="Admin\help\images\pic\samll_ico.jpg" />
+    <Content Include="Admin\help\images\pic\text_a_ico.jpg" />
+    <Content Include="Admin\help\images\pic\wechat-img-1.jpg" />
+    <Content Include="Admin\help\images\pic\wechat-img-2.png" />
+    <Content Include="Admin\help\images\pic\wechat-img-3.png" />
+    <Content Include="Admin\help\images\pic\wechat-img-4.png" />
+    <Content Include="Admin\help\images\pic\yfxabout.jpg" />
+    <Content Include="Admin\help\images\pic\yfxabout.png" />
+    <Content Include="Admin\help\index.html" />
+    <Content Include="Admin\help\operation.html" />
+    <Content Include="Admin\help\promote.html" />
+    <Content Include="Admin\help\readiness.html" />
+    <Content Include="Admin\help\style\layout.css" />
+    <Content Include="Admin\help\vshopindex.html" />
+    <Content Include="Admin\help\wechat-help.html" />
+    <Content Include="Admin\images\0001.gif" />
+    <Content Include="Admin\images\0002.gif" />
+    <Content Include="Admin\images\0003.gif" />
+    <Content Include="Admin\images\01.gif" />
+    <Content Include="Admin\images\010.gif" />
+    <Content Include="Admin\images\02.gif" />
+    <Content Include="Admin\images\03.gif" />
+    <Content Include="Admin\images\04.gif" />
+    <Content Include="Admin\images\05.gif" />
+    <Content Include="Admin\images\06.gif" />
+    <Content Include="Admin\images\07.gif" />
+    <Content Include="Admin\images\07.png" />
+    <Content Include="Admin\images\08.gif" />
+    <Content Include="Admin\images\1.gif" />
+    <Content Include="Admin\images\1.png" />
+    <Content Include="Admin\images\10.gif" />
+    <Content Include="Admin\images\10.png" />
+    <Content Include="Admin\images\1_003.gif" />
+    <Content Include="Admin\images\1_01.gif" />
+    <Content Include="Admin\images\1_02.gif" />
+    <Content Include="Admin\images\1_04.gif" />
+    <Content Include="Admin\images\2.gif" />
+    <Content Include="Admin\images\2.png" />
+    <Content Include="Admin\images\20.png" />
+    <Content Include="Admin\images\21.png" />
+    <Content Include="Admin\images\22.jpg" />
+    <Content Include="Admin\images\23.jpg" />
+    <Content Include="Admin\images\23.png" />
+    <Content Include="Admin\images\24.jpg" />
+    <Content Include="Admin\images\25.jpg" />
+    <Content Include="Admin\images\26.jpg" />
+    <Content Include="Admin\images\2_01.gif" />
+    <Content Include="Admin\images\2_02.gif" />
+    <Content Include="Admin\images\2_03.gif" />
+    <Content Include="Admin\images\2_04.gif" />
+    <Content Include="Admin\images\3.gif" />
+    <Content Include="Admin\images\3.png" />
+    <Content Include="Admin\images\4.gif" />
+    <Content Include="Admin\images\4.png" />
+    <Content Include="Admin\images\5.gif" />
+    <Content Include="Admin\images\5.png" />
+    <Content Include="Admin\images\6.gif" />
+    <Content Include="Admin\images\6.png" />
+    <Content Include="Admin\images\7.gif" />
+    <Content Include="Admin\images\7.png" />
+    <Content Include="Admin\images\8.gif" />
+    <Content Include="Admin\images\8.png" />
+    <Content Include="Admin\images\9.gif" />
+    <Content Include="Admin\images\9.png" />
+    <Content Include="Admin\images\about.png" />
+    <Content Include="Admin\images\accept.png" />
+    <Content Include="Admin\images\addFile.gif" />
+    <Content Include="Admin\images\admin.jpg" />
+    <Content Include="Admin\images\arrow-left.gif" />
+    <Content Include="Admin\images\arrow-right.gif" />
+    <Content Include="Admin\images\bg-table-thead.png" />
+    <Content Include="Admin\images\bg.gif" />
+    <Content Include="Admin\images\bg_block2.png" />
+    <Content Include="Admin\images\bg_x.gif" />
+    <Content Include="Admin\images\blank.gif" />
+    <Content Include="Admin\images\body.png" />
+    <Content Include="Admin\images\bottomBg.gif" />
+    <Content Include="Admin\images\brand_ico.png" />
+    <Content Include="Admin\images\c1.gif" />
+    <Content Include="Admin\images\c2.gif" />
+    <Content Include="Admin\images\cf.png" />
+    <Content Include="Admin\images\cg_06.gif" />
+    <Content Include="Admin\images\checkInfo.gif" />
+    <Content Include="Admin\images\comeBack.gif" />
+    <Content Include="Admin\images\common_loading.gif" />
+    <Content Include="Admin\images\cross.png" />
+    <Content Include="Admin\images\cureentend.gif" />
+    <Content Include="Admin\images\current.png" />
+    <Content Include="Admin\images\C_list_bg.gif" />
+    <Content Include="Admin\images\da.gif" />
+    <Content Include="Admin\images\datagrid_header_bg.gif" />
+    <Content Include="Admin\images\db-rpt.jpg" />
+    <Content Include="Admin\images\dd-1.jpg" />
+    <Content Include="Admin\images\dd.gif" />
+    <Content Include="Admin\images\dd.jpg" />
+    <Content Include="Admin\images\DD_belatedPNG.js" />
+    <Content Include="Admin\images\dialog_bg.png" />
+    <Content Include="Admin\images\distbg_03.gif" />
+    <Content Include="Admin\images\done.png" />
+    <Content Include="Admin\images\dot_line.gif" />
+    <Content Include="Admin\images\e.gif" />
+    <Content Include="Admin\images\err.png" />
+    <Content Include="Admin\images\errorFocus.png" />
+    <Content Include="Admin\images\Failure01.gif" />
+    <Content Include="Admin\images\Failure02.gif" />
+    <Content Include="Admin\images\false.gif" />
+    <Content Include="Admin\images\flag.png" />
+    <Content Include="Admin\images\folder.png" />
+    <Content Include="Admin\images\font.png" />
+    <Content Include="Admin\images\ft.jpg" />
+    <Content Include="Admin\images\gif-0677.gif" />
+    <Content Include="Admin\images\help.gif" />
+    <Content Include="Admin\images\hong.gif" />
+    <Content Include="Admin\images\hover.gif" />
+    <Content Include="Admin\images\hover_bg.gif" />
+    <Content Include="Admin\images\hui.gif" />
+    <Content Include="Admin\images\ico.gif" />
+    <Content Include="Admin\images\icon.gif" />
+    <Content Include="Admin\images\icona.gif" />
+    <Content Include="Admin\images\iconad.gif" />
+    <Content Include="Admin\images\iconae.gif" />
+    <Content Include="Admin\images\iconaf.gif" />
+    <Content Include="Admin\images\iconb.gif" />
+    <Content Include="Admin\images\iconc.gif" />
+    <Content Include="Admin\images\icons.gif" />
+    <Content Include="Admin\images\icon_dalata.gif" />
+    <Content Include="Admin\images\img.gif" />
+    <Content Include="Admin\images\index.jpg" />
+    <Content Include="Admin\images\index.png" />
+    <Content Include="Admin\images\input-bg.png" />
+    <Content Include="Admin\images\inputbg.gif" />
+    <Content Include="Admin\images\install_backimg.jpg" />
+    <Content Include="Admin\images\install_lines.jpg" />
+    <Content Include="Admin\images\jia.gif" />
+    <Content Include="Admin\images\jian.gif" />
+    <Content Include="Admin\images\jshi_03.gif" />
+    <Content Include="Admin\images\kF_03.gif" />
+    <Content Include="Admin\images\kuaijie.gif" />
+    <Content Include="Admin\images\left.jpg" />
+    <Content Include="Admin\images\left_menu_icons.png" />
+    <Content Include="Admin\images\lenth.gif" />
+    <Content Include="Admin\images\li.gif" />
+    <Content Include="Admin\images\loginbg.png" />
+    <Content Include="Admin\images\login_02.gif" />
+    <Content Include="Admin\images\login_15.jpg" />
+    <Content Include="Admin\images\login_19.jpg" />
+    <Content Include="Admin\images\login_25.gif" />
+    <Content Include="Admin\images\login_29.gif" />
+    <Content Include="Admin\images\login_b2.png" />
+    <Content Include="Admin\images\logo.png" />
+    <Content Include="Admin\images\logobj1.jpg" />
+    <Content Include="Admin\images\logogo2.png" />
+    <Content Include="Admin\images\logo_ico.png" />
+    <Content Include="Admin\images\m-1.jpg" />
+    <Content Include="Admin\images\m-2.jpg" />
+    <Content Include="Admin\images\memberlogin.png" />
+    <Content Include="Admin\images\module_upload.png" />
+    <Content Include="Admin\images\msg_bg.jpg" />
+    <Content Include="Admin\images\new.jpg" />
+    <Content Include="Admin\images\next.gif" />
+    <Content Include="Admin\images\next2.gif" />
+    <Content Include="Admin\images\opcenter.gif" />
+    <Content Include="Admin\images\operend_a.gif" />
+    <Content Include="Admin\images\operstart_a.gif" />
+    <Content Include="Admin\images\oper_start.gif" />
+    <Content Include="Admin\images\page_white_text.png" />
+    <Content Include="Admin\images\panel_title.png" />
+    <Content Include="Admin\images\printSub.gif" />
+    <Content Include="Admin\images\printSub1.gif" />
+    <Content Include="Admin\images\p_icon09.gif" />
+    <Content Include="Admin\images\qqlogin.gif" />
+    <Content Include="Admin\images\radio_iphone0.png" />
+    <Content Include="Admin\images\radio_iphone_mf.png" />
+    <Content Include="Admin\images\ren.png" />
+    <Content Include="Admin\images\sideitem-curr.gif" />
+    <Content Include="Admin\images\sideitem.gif" />
+    <Content Include="Admin\images\sinalogo.gif" />
+    <Content Include="Admin\images\split.jpg" />
+    <Content Include="Admin\images\sprites.gif" />
+    <Content Include="Admin\images\Steps.gif" />
+    <Content Include="Admin\images\step_1.gif" />
+    <Content Include="Admin\images\swfupload_uploadBtn.png" />
+    <Content Include="Admin\images\t.jpg" />
+    <Content Include="Admin\images\ta.gif" />
+    <Content Include="Admin\images\tb.gif" />
+    <Content Include="Admin\images\test.png" />
+    <Content Include="Admin\images\text.jpg" />
+    <Content Include="Admin\images\toggle-collapse-dark.png" />
+    <Content Include="Admin\images\toggle-collapse-light.png" />
+    <Content Include="Admin\images\toggle-expand-dark.png" />
+    <Content Include="Admin\images\toggle-expand-light.png" />
+    <Content Include="Admin\images\tOn.gif" />
+    <Content Include="Admin\images\top.gif" />
+    <Content Include="Admin\images\TOP03.gif" />
+    <Content Include="Admin\images\TOP05.gif" />
+    <Content Include="Admin\images\TOP06.gif" />
+    <Content Include="Admin\images\TOP07.gif" />
+    <Content Include="Admin\images\top2.gif" />
+    <Content Include="Admin\images\top_bg.gif" />
+    <Content Include="Admin\images\tOver.gif" />
+    <Content Include="Admin\images\true.gif" />
+    <Content Include="Admin\images\tui.gif" />
+    <Content Include="Admin\images\txt.png" />
+    <Content Include="Admin\images\upload.jpg" />
+    <Content Include="Admin\images\upload.png" />
+    <Content Include="Admin\images\Visa.gif" />
+    <Content Include="Admin\images\watermark.gif" />
+    <Content Include="Admin\images\wechat.jpg" />
+    <Content Include="Admin\images\weinxin_templateMsg_addBtn.png" />
+    <Content Include="Admin\images\weinxin_templateMsg_addTemplate.png" />
+    <Content Include="Admin\images\weinxin_templateMsg_copyTemplateId.png" />
+    <Content Include="Admin\images\weinxin_templateMsg_editTemplateId.png" />
+    <Content Include="Admin\images\weinxin_templateMsg_saveTemplate.png" />
+    <Content Include="Admin\images\weinxin_templateMsg_search.png" />
+    <Content Include="Admin\images\weixin_templateMsg.jpg" />
+    <Content Include="Admin\images\weixin_templateMsg_step1.png" />
+    <Content Include="Admin\images\weixin_templateMsg_step2.png" />
+    <Content Include="Admin\images\wet.gif" />
+    <Content Include="Admin\images\xi.gif" />
+    <Content Include="Admin\images\xin2.gif" />
+    <Content Include="Admin\images\zm.png" />
+    <Content Include="Admin\js\BundlingProduct.js" />
+    <Content Include="Admin\js\ExpressFlex.js" />
+    <Content Include="Admin\js\Frame.js" />
+    <Content Include="Admin\js\Hishopv5.js" />
+    <Content Include="Admin\js\jquery-json-2.4.js" />
+    <Content Include="Admin\js\jquery.jOrgChart.js" />
+    <Content Include="Admin\js\jquery.treeTable.js" />
+    <Content Include="Admin\js\jquery.treeTable.min.js" />
+    <Content Include="Admin\js\LocationType.js" />
+    <Content Include="Admin\js\LodopFuncs.js" />
+    <Content Include="Admin\js\MultiBox.js" />
+    <Content Include="Admin\js\prettify.js" />
+    <Content Include="Admin\js\PrivilegeInRoles.js" />
+    <Content Include="Admin\js\ReplyOnKey.js" />
+    <Content Include="Admin\js\swfupload\handlers.js" />
+    <Content Include="Admin\js\swfupload\swfupload.js" />
+    <Content Include="Admin\js\swfupload\swfupload.swf" />
+    <Content Include="Admin\js\swfupload\swfuploadbutton.swf" />
+    <Content Include="Admin\js\swfupload\upload.js" />
+    <Content Include="Admin\js\swfupload\uploadMult.js" />
+    <Content Include="Admin\js\UploadBanner.js" />
+    <Content Include="Admin\js\UploadHandler.js" />
+    <Content Include="Admin\js\UploadNavigate.js" />
+    <Content Include="Admin\js\UploadTemplateBg.js" />
+    <Content Include="Admin\js\zTree-v3.5\css\demo.css" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\2.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\3.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\4.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\5.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\6.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\7.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\8.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\9.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\female.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\home.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\male.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\diy\Root01.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\left_menuForOutLook.gif" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\left_menuForOutLook.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\line_conn.gif" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\loading.gif" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="Admin\js\zTree-v3.5\css\zTreeStyle\zTreeStyle.css" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery-1.4.4.min.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.all-3.5.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.all-3.5.min.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.core-3.5.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.core-3.5.min.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.excheck-3.5.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.excheck-3.5.min.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.exedit-3.5.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.exedit-3.5.min.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.exhide-3.5.js" />
+    <Content Include="Admin\js\zTree-v3.5\js\jquery.ztree.exhide-3.5.min.js" />
+    <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\LoginExit.aspx" />
+    <Content Include="Admin\member\AddMemberGrade.aspx" />
+    <Content Include="Admin\member\ClientSet.aspx" />
+    <Content Include="Admin\member\EditMember.aspx" />
+    <Content Include="Admin\member\EditMemberGrade.aspx" />
+    <Content Include="Admin\member\ManageMembers.aspx" />
+    <Content Include="Admin\member\MemberDetails.aspx" />
+    <Content Include="Admin\member\MemberGrades.aspx" />
+    <Content Include="Admin\member\MemberMarket.aspx" />
+    <Content Include="Admin\member\MemberRanking.aspx" />
+    <Content Include="Admin\member\UserArealDistributionStatistics.aspx" />
+    <Content Include="Admin\member\UserIncreaseStatistics.aspx" />
+    <Content Include="Admin\Menu.xml" />
+    <Content Include="Admin\PicRar.aspx" />
+    <Content Include="Admin\printtools\install_lodop32.exe" />
+    <Content Include="Admin\product\AddAttribute.aspx" />
+    <Content Include="Admin\product\AddBrandCategory.aspx" />
+    <Content Include="Admin\product\AddCategory.aspx" />
+    <Content Include="Admin\product\AddProduct.aspx" />
+    <Content Include="Admin\product\AddProductComplete.aspx" />
+    <Content Include="Admin\product\AddProductType.aspx" />
+    <Content Include="Admin\product\AddSpecification.aspx" />
+    <Content Include="Admin\product\ascx\AttributeView.ascx" />
+    <Content Include="Admin\product\ascx\SpecificationView.ascx" />
+    <Content Include="Admin\product\attributes.helper.js" />
+    <Content Include="Admin\product\BrandCategories.aspx" />
+    <Content Include="Admin\product\DisplaceCategory.aspx" />
+    <Content Include="Admin\product\EditAttribute.aspx" />
+    <Content Include="Admin\product\EditAttributeValues.aspx" />
+    <Content Include="Admin\product\EditBaseInfo.aspx" />
+    <Content Include="Admin\product\EditBrandCategory.aspx" />
+    <Content Include="Admin\product\EditCategory.aspx" />
+    <Content Include="Admin\product\EditMemberPrices.aspx" />
+    <Content Include="Admin\product\EditProduct.aspx" />
+    <Content Include="Admin\product\EditProductLetter.aspx" />
+    <Content Include="Admin\product\EditProductType.aspx" />
+    <Content Include="Admin\product\EditSaleCounts.aspx" />
+    <Content Include="Admin\product\EditSpecification.aspx" />
+    <Content Include="Admin\product\EditSpecificationValues.aspx" />
+    <Content Include="Admin\product\EditStocks.aspx" />
+    <Content Include="Admin\product\ExportToPP.aspx" />
+    <Content Include="Admin\product\ExportToTB.aspx" />
+    <Content Include="Admin\product\grade.price.helper.js" />
+    <Content Include="Admin\product\import.yfx.helper.js" />
+    <Content Include="Admin\product\ImportFromPP.aspx" />
+    <Content Include="Admin\product\ImportFromTB.aspx" />
+    <Content Include="Admin\product\ImportFromYfx.aspx" />
+    <Content Include="Admin\product\ManageCategories.aspx" />
+    <Content Include="Admin\product\ProductOnDeleted.aspx" />
+    <Content Include="Admin\product\ProductOnSales.aspx" />
+    <Content Include="Admin\product\ProductSaleRanking.aspx" />
+    <Content Include="Admin\product\ProductSaleStatistics.aspx" />
+    <Content Include="Admin\product\producttag.helper.js" />
+    <Content Include="Admin\product\ProductTags.aspx" />
+    <Content Include="Admin\product\ProductTypes.aspx" />
+    <Content Include="Admin\product\ProductUnclassified.aspx" />
+    <Content Include="Admin\product\publish.helper.js" />
+    <Content Include="Admin\product\SelectCategory.aspx" />
+    <Content Include="Admin\product\SkuValue.aspx" />
+    <Content Include="Admin\product\TaoBaoNote.aspx" />
+    <Content Include="Admin\promotion\AddCoupon.aspx" />
+    <Content Include="Admin\promotion\AddGroupBuy.aspx" />
+    <Content Include="Admin\promotion\EditCoupon.aspx" />
+    <Content Include="Admin\promotion\EditGroupBuy.aspx" />
+    <Content Include="Admin\promotion\groupbuy.helper.js" />
+    <Content Include="Admin\promotion\GroupBuys.aspx" />
+    <Content Include="Admin\promotion\NewCoupons.aspx" />
+    <Content Include="Admin\promotion\SearchGroupbuyProduct.aspx" />
+    <Content Include="Admin\promotion\SendCouponToUsers.aspx" />
+    <Content Include="Admin\promotion\setSharePromotion.aspx" />
+    <Content Include="Admin\promotion\setShoppingScore.aspx" />
+    <Content Include="Admin\promotion\UsedCoupons.aspx" />
+    <Content Include="Admin\ResourceNotFound.aspx" />
+    <Content Include="Admin\sales\AddExpressTemplate.aspx" />
+    <Content Include="Admin\sales\AddPaymentType.aspx" />
+    <Content Include="Admin\sales\AddSampleExpressTemplate.aspx" />
+    <Content Include="Admin\sales\AddShipper.aspx" />
+    <Content Include="Admin\sales\AddShippingTemplate.aspx" />
+    <Content Include="Admin\sales\AddShippingType.aspx" />
+    <Content Include="Admin\sales\BatchPrintData.aspx" />
+    <Content Include="Admin\sales\BatchPrintSendOrderGoods.aspx" />
+    <Content Include="Admin\sales\BatchSendOrderGoods.aspx" />
+    <Content Include="Admin\sales\DistributorSaleStatistics.aspx" />
+    <Content Include="Admin\sales\EditExpressTemplate.aspx" />
+    <Content Include="Admin\sales\EditOrder.aspx" />
+    <Content Include="Admin\sales\EditPaymentType.aspx" />
+    <Content Include="Admin\sales\EditShipper.aspx" />
+    <Content Include="Admin\sales\EditShippingTemplate.aspx" />
+    <Content Include="Admin\sales\EditShippingType.aspx" />
+    <Content Include="Admin\sales\ExpressComputerpes.aspx" />
+    <Content Include="Admin\sales\ExpressTemplates.aspx" />
+    <Content Include="Admin\sales\flex\EditXmlData.aspx" />
+    <Content Include="Admin\sales\flex\GetPrintData.aspx" />
+    <Content Include="Admin\sales\flex\UploadFile.aspx" />
+    <Content Include="Admin\sales\flex\XmlData.aspx" />
+    <Content Include="Admin\sales\ManageDebitNote.aspx" />
+    <Content Include="Admin\sales\ManageOrder.aspx" />
+    <Content Include="Admin\sales\ManageOrder2.aspx" />
+    <Content Include="Admin\sales\ManageSendNote.aspx" />
+    <Content Include="Admin\sales\ManageShippingTemplates.aspx" />
+    <Content Include="Admin\sales\order.helper.js" />
+    <Content Include="Admin\sales\OrderDetails.aspx" />
+    <Content Include="Admin\sales\OrderStatistics.aspx" />
+    <Content Include="Admin\sales\PaymentTypes.aspx" />
+    <Content Include="Admin\sales\Print.aspx" />
+    <Content Include="Admin\sales\PrintComplete.aspx" />
+    <Content Include="Admin\sales\PrintPackingOrder.aspx" />
+    <Content Include="Admin\sales\Refund.aspx" />
+    <Content Include="Admin\sales\Returnsapply.aspx" />
+    <Content Include="Admin\sales\ReturnsapplyDetail.aspx" />
+    <Content Include="Admin\sales\SaleDetails.aspx" />
+    <Content Include="Admin\sales\SaleOrderStatistics.aspx" />
+    <Content Include="Admin\sales\SaleReport.aspx" />
+    <Content Include="Admin\sales\SaleReturnsOrderStatistics.aspx" />
+    <Content Include="Admin\sales\SaleReturnsStatistics.aspx" />
+    <Content Include="Admin\sales\SaleStatistics.aspx" />
+    <Content Include="Admin\sales\SaleTargets.aspx" />
+    <Content Include="Admin\sales\SendOrderGoods.aspx" />
+    <Content Include="Admin\sales\SendSubOrderLogistic.aspx" />
+    <Content Include="Admin\sales\SetOrderOption.aspx" />
+    <Content Include="Admin\sales\SetOrderPrintBatch.aspx" />
+    <Content Include="Admin\sales\ShippAddress.aspx" />
+    <Content Include="Admin\sales\Shippers.aspx" />
+    <Content Include="Admin\sales\ShippingTypes.aspx" />
+    <Content Include="Admin\script\jquery.filestyle.js" />
+    <Content Include="Admin\script\pagevalidator.js" />
+    <Content Include="Admin\Service.aspx" />
+    <Content Include="Admin\store\AddManager.aspx" />
+    <Content Include="Admin\store\AddVote.aspx" />
+    <Content Include="Admin\store\EditManager.aspx" />
+    <Content Include="Admin\store\EditManagerPassword.aspx" />
+    <Content Include="Admin\store\EditVote.aspx" />
+    <Content Include="Admin\store\ImageData.aspx" />
+    <Content Include="Admin\store\ImageFtp.aspx" />
+    <Content Include="Admin\store\ImageReplace.aspx" />
+    <Content Include="Admin\store\ImageType.aspx" />
+    <Content Include="Admin\store\ManageLogs.aspx" />
+    <Content Include="Admin\store\Managers.aspx" />
+    <Content Include="Admin\store\RolePermissions.aspx" />
+    <Content Include="Admin\store\Roles.aspx" />
+    <Content Include="Admin\store\Votes.aspx" />
+    <Content Include="Admin\tools\Backup.aspx" />
+    <Content Include="Admin\tools\CnzzStatisticsSet.aspx" />
+    <Content Include="Admin\tools\CnzzStatisticTotal.aspx" />
+    <Content Include="Admin\tools\EditTemplateId.aspx" />
+    <Content Include="Admin\tools\EmailSettings.aspx" />
+    <Content Include="Admin\tools\RestoreDatabase.aspx" />
+    <Content Include="Admin\tools\SendMessageTemplets.aspx" />
+    <Content Include="Admin\tools\SMSSettings.aspx" />
+    <Content Include="Admin\tools\WeixinSettings.html" />
+    <Content Include="Admin\UploadFileJson.aspx" />
+    <Content Include="Admin\vshop\ActivitiesList.aspx" />
+    <Content Include="Admin\vshop\ActivitiesShops.aspx" />
+    <Content Include="Admin\vshop\ActivityDetail.aspx" />
+    <Content Include="Admin\vshop\AddActivities.aspx" />
+    <Content Include="Admin\vshop\AddActivity.aspx" />
+    <Content Include="Admin\vshop\AddBanner.aspx" />
+    <Content Include="Admin\vshop\AddBusinessArticle.aspx" />
+    <Content Include="Admin\vshop\AddLotteryTicket.aspx" />
+    <Content Include="Admin\vshop\AddMenu.aspx" />
+    <Content Include="Admin\vshop\AddMultiArticle.aspx" />
+    <Content Include="Admin\vshop\AddNavigate.aspx" />
+    <Content Include="Admin\vshop\AddReplyOnKey.aspx" />
+    <Content Include="Admin\vshop\AddSingleArticle.aspx" />
+    <Content Include="Admin\vshop\AddTopic.aspx" />
+    <Content Include="Admin\vshop\AddVPGift.aspx" />
+    <Content Include="Admin\vshop\AddVPGiftDetail.aspx" />
+    <Content Include="Admin\vshop\AlarmNotify.aspx" />
+    <Content Include="Admin\vshop\BasicConfig.aspx" />
+    <Content Include="Admin\vshop\BusinessArticleList.aspx" />
+    <Content Include="Admin\vshop\EditActivities.aspx" />
+    <Content Include="Admin\vshop\EditActivity.aspx" />
+    <Content Include="Admin\vshop\EditBanner.aspx" />
+    <Content Include="Admin\vshop\EditBusinessArticle.aspx" />
+    <Content Include="Admin\vshop\EditLotteryTicket.aspx" />
+    <Content Include="Admin\vshop\EditMenu.aspx" />
+    <Content Include="Admin\vshop\EditMultiArticle.aspx" />
+    <Content Include="Admin\vshop\EditNavigate.aspx" />
+    <Content Include="Admin\vshop\EditRedPagerActivity.aspx" />
+    <Content Include="Admin\vshop\EditReplyOnKey.aspx" />
+    <Content Include="Admin\vshop\EditSingleArticle.aspx" />
+    <Content Include="Admin\vshop\EditTopic.aspx" />
+    <Content Include="Admin\vshop\EditVPGift.aspx" />
+    <Content Include="Admin\vshop\FeedBackNotify.aspx" />
+    <Content Include="Admin\vshop\HomeProductSetting.aspx" />
+    <Content Include="Admin\vshop\HomeTopicSetting.aspx" />
+    <Content Include="Admin\vshop\ManageActivity.aspx" />
+    <Content Include="Admin\vshop\ManageBanner.aspx" />
+    <Content Include="Admin\vshop\ManageLotteryActivity.aspx" />
+    <Content Include="Admin\vshop\ManageLotteryTicket.aspx" />
+    <Content Include="Admin\vshop\ManageMenu.aspx" />
+    <Content Include="Admin\vshop\ManageNavigate.aspx" />
+    <Content Include="Admin\vshop\ManageVThemes.aspx" />
+    <Content Include="Admin\vshop\OffLinePay.aspx" />
+    <Content Include="Admin\vshop\PayConfig.aspx" />
+    <Content Include="Admin\vshop\PrizeRecord.aspx" />
+    <Content Include="Admin\vshop\RedPagerActivityList.aspx" />
+    <Content Include="Admin\vshop\ReplyOnKey.aspx" />
+    <Content Include="Admin\vshop\SearchHomeProduct.aspx" />
+    <Content Include="Admin\vshop\SearchHomeTopic.aspx" />
+    <Content Include="Admin\vshop\SearchTopicProduct.aspx" />
+    <Content Include="Admin\vshop\SetTopicProducts.aspx" />
+    <Content Include="Admin\vshop\SetVThemes.aspx" />
+    <Content Include="Admin\vshop\ShengPaySet.aspx" />
+    <Content Include="Admin\vshop\ShowActivityUrl.aspx" />
+    <Content Include="Admin\vshop\TopicList.aspx" />
+    <Content Include="Admin\vshop\UpdateLotteryActivity.aspx" />
+    <Content Include="Admin\vshop\VIPcard.aspx" />
+    <Content Include="Admin\vshop\VLotteryActivity.aspx" />
+    <Content Include="Admin\vshop\VParamConfig.aspx" />
+    <Content Include="Admin\vshop\VPGiftList.aspx" />
+    <Content Include="Admin\vshop\VServerConfig.aspx" />
+    <Content Include="alipay.html" />
+    <Content Include="API\error.txt" />
+    <Content Include="API\log.txt" />
+    <Content Include="config\publickey.xml" />
+    <Content Include="config\region.js" />
+    <Content Include="distbuy\DistributorRegiest.aspx" />
+    <Content Include="Dll\Ionic.Zip.dll" />
+    <Content Include="Dll\kindeditor.Net.dll" />
+    <Content Include="Dll\LitJSON.dll" />
+    <Content Include="Dll\NewLife.Core.dll" />
+    <Content Include="Dll\Newtonsoft.Json.dll" />
+    <Content Include="Dll\ThoughtWorks.QRCode.dll" />
+    <Content Include="Express.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="index.html" />
+    <Content Include="Installer\Default.aspx" />
+    <Content Include="Installer\Images\process\2w.jpg" />
+    <Content Include="Installer\Images\process\ba_l.jpg" />
+    <Content Include="Installer\Images\process\ce_l.jpg" />
+    <Content Include="Installer\Images\process\icon.gif" />
+    <Content Include="Installer\Images\process\logo.png" />
+    <Content Include="Installer\Images\process\quit_btn.jpg" />
+    <Content Include="Installer\Images\process\tit_ba.jpg" />
+    <Content Include="Installer\Images\process\word.jpg" />
+    <Content Include="Installer\Install.aspx" />
+    <Content Include="Installer\SqlScripts\Schema.sql" />
+    <Content Include="Installer\SqlScripts\SiteDemo.zh-CN.sql" />
+    <Content Include="Installer\SqlScripts\SiteInitData.zh-CN.Sql" />
+    <Content Include="Installer\style\install.css" />
+    <Content Include="Installer\Succeed.aspx" />
+    <Content Include="kindeditor\kindeditor.js" />
+    <Content Include="kindeditor\lang\ar.js" />
+    <Content Include="kindeditor\lang\en.js" />
+    <Content Include="kindeditor\lang\ko.js" />
+    <Content Include="kindeditor\lang\zh_CN.js" />
+    <Content Include="kindeditor\lang\zh_TW.js" />
+    <Content Include="kindeditor\plugins\about.html" />
+    <Content Include="kindeditor\plugins\advtable\advtable.html" />
+    <Content Include="kindeditor\plugins\anchor\anchor.js" />
+    <Content Include="kindeditor\plugins\autoheight\autoheight.js" />
+    <Content Include="kindeditor\plugins\baidumap\baidumap.js" />
+    <Content Include="kindeditor\plugins\baidumap\index.html" />
+    <Content Include="kindeditor\plugins\baidumap\map.html" />
+    <Content Include="kindeditor\plugins\clearhtml\clearhtml.js" />
+    <Content Include="kindeditor\plugins\code\code.js" />
+    <Content Include="kindeditor\plugins\code\prettify.css" />
+    <Content Include="kindeditor\plugins\code\prettify.js" />
+    <Content Include="kindeditor\plugins\emoticons\0.gif" />
+    <Content Include="kindeditor\plugins\emoticons\1.gif" />
+    <Content Include="kindeditor\plugins\emoticons\10.gif" />
+    <Content Include="kindeditor\plugins\emoticons\100.gif" />
+    <Content Include="kindeditor\plugins\emoticons\101.gif" />
+    <Content Include="kindeditor\plugins\emoticons\102.gif" />
+    <Content Include="kindeditor\plugins\emoticons\103.gif" />
+    <Content Include="kindeditor\plugins\emoticons\104.gif" />
+    <Content Include="kindeditor\plugins\emoticons\105.gif" />
+    <Content Include="kindeditor\plugins\emoticons\106.gif" />
+    <Content Include="kindeditor\plugins\emoticons\107.gif" />
+    <Content Include="kindeditor\plugins\emoticons\108.gif" />
+    <Content Include="kindeditor\plugins\emoticons\109.gif" />
+    <Content Include="kindeditor\plugins\emoticons\11.gif" />
+    <Content Include="kindeditor\plugins\emoticons\110.gif" />
+    <Content Include="kindeditor\plugins\emoticons\111.gif" />
+    <Content Include="kindeditor\plugins\emoticons\112.gif" />
+    <Content Include="kindeditor\plugins\emoticons\113.gif" />
+    <Content Include="kindeditor\plugins\emoticons\114.gif" />
+    <Content Include="kindeditor\plugins\emoticons\115.gif" />
+    <Content Include="kindeditor\plugins\emoticons\116.gif" />
+    <Content Include="kindeditor\plugins\emoticons\117.gif" />
+    <Content Include="kindeditor\plugins\emoticons\118.gif" />
+    <Content Include="kindeditor\plugins\emoticons\119.gif" />
+    <Content Include="kindeditor\plugins\emoticons\12.gif" />
+    <Content Include="kindeditor\plugins\emoticons\120.gif" />
+    <Content Include="kindeditor\plugins\emoticons\121.gif" />
+    <Content Include="kindeditor\plugins\emoticons\122.gif" />
+    <Content Include="kindeditor\plugins\emoticons\123.gif" />
+    <Content Include="kindeditor\plugins\emoticons\124.gif" />
+    <Content Include="kindeditor\plugins\emoticons\125.gif" />
+    <Content Include="kindeditor\plugins\emoticons\126.gif" />
+    <Content Include="kindeditor\plugins\emoticons\127.gif" />
+    <Content Include="kindeditor\plugins\emoticons\128.gif" />
+    <Content Include="kindeditor\plugins\emoticons\129.gif" />
+    <Content Include="kindeditor\plugins\emoticons\13.gif" />
+    <Content Include="kindeditor\plugins\emoticons\130.gif" />
+    <Content Include="kindeditor\plugins\emoticons\131.gif" />
+    <Content Include="kindeditor\plugins\emoticons\132.gif" />
+    <Content Include="kindeditor\plugins\emoticons\133.gif" />
+    <Content Include="kindeditor\plugins\emoticons\134.gif" />
+    <Content Include="kindeditor\plugins\emoticons\14.gif" />
+    <Content Include="kindeditor\plugins\emoticons\15.gif" />
+    <Content Include="kindeditor\plugins\emoticons\16.gif" />
+    <Content Include="kindeditor\plugins\emoticons\17.gif" />
+    <Content Include="kindeditor\plugins\emoticons\18.gif" />
+    <Content Include="kindeditor\plugins\emoticons\19.gif" />
+    <Content Include="kindeditor\plugins\emoticons\2.gif" />
+    <Content Include="kindeditor\plugins\emoticons\20.gif" />
+    <Content Include="kindeditor\plugins\emoticons\21.gif" />
+    <Content Include="kindeditor\plugins\emoticons\22.gif" />
+    <Content Include="kindeditor\plugins\emoticons\23.gif" />
+    <Content Include="kindeditor\plugins\emoticons\24.gif" />
+    <Content Include="kindeditor\plugins\emoticons\25.gif" />
+    <Content Include="kindeditor\plugins\emoticons\26.gif" />
+    <Content Include="kindeditor\plugins\emoticons\27.gif" />
+    <Content Include="kindeditor\plugins\emoticons\28.gif" />
+    <Content Include="kindeditor\plugins\emoticons\29.gif" />
+    <Content Include="kindeditor\plugins\emoticons\3.gif" />
+    <Content Include="kindeditor\plugins\emoticons\30.gif" />
+    <Content Include="kindeditor\plugins\emoticons\31.gif" />
+    <Content Include="kindeditor\plugins\emoticons\32.gif" />
+    <Content Include="kindeditor\plugins\emoticons\33.gif" />
+    <Content Include="kindeditor\plugins\emoticons\34.gif" />
+    <Content Include="kindeditor\plugins\emoticons\35.gif" />
+    <Content Include="kindeditor\plugins\emoticons\36.gif" />
+    <Content Include="kindeditor\plugins\emoticons\37.gif" />
+    <Content Include="kindeditor\plugins\emoticons\38.gif" />
+    <Content Include="kindeditor\plugins\emoticons\39.gif" />
+    <Content Include="kindeditor\plugins\emoticons\4.gif" />
+    <Content Include="kindeditor\plugins\emoticons\40.gif" />
+    <Content Include="kindeditor\plugins\emoticons\41.gif" />
+    <Content Include="kindeditor\plugins\emoticons\42.gif" />
+    <Content Include="kindeditor\plugins\emoticons\43.gif" />
+    <Content Include="kindeditor\plugins\emoticons\44.gif" />
+    <Content Include="kindeditor\plugins\emoticons\45.gif" />
+    <Content Include="kindeditor\plugins\emoticons\46.gif" />
+    <Content Include="kindeditor\plugins\emoticons\47.gif" />
+    <Content Include="kindeditor\plugins\emoticons\48.gif" />
+    <Content Include="kindeditor\plugins\emoticons\49.gif" />
+    <Content Include="kindeditor\plugins\emoticons\5.gif" />
+    <Content Include="kindeditor\plugins\emoticons\50.gif" />
+    <Content Include="kindeditor\plugins\emoticons\51.gif" />
+    <Content Include="kindeditor\plugins\emoticons\52.gif" />
+    <Content Include="kindeditor\plugins\emoticons\53.gif" />
+    <Content Include="kindeditor\plugins\emoticons\54.gif" />
+    <Content Include="kindeditor\plugins\emoticons\55.gif" />
+    <Content Include="kindeditor\plugins\emoticons\56.gif" />
+    <Content Include="kindeditor\plugins\emoticons\57.gif" />
+    <Content Include="kindeditor\plugins\emoticons\58.gif" />
+    <Content Include="kindeditor\plugins\emoticons\59.gif" />
+    <Content Include="kindeditor\plugins\emoticons\6.gif" />
+    <Content Include="kindeditor\plugins\emoticons\60.gif" />
+    <Content Include="kindeditor\plugins\emoticons\61.gif" />
+    <Content Include="kindeditor\plugins\emoticons\62.gif" />
+    <Content Include="kindeditor\plugins\emoticons\63.gif" />
+    <Content Include="kindeditor\plugins\emoticons\64.gif" />
+    <Content Include="kindeditor\plugins\emoticons\65.gif" />
+    <Content Include="kindeditor\plugins\emoticons\66.gif" />
+    <Content Include="kindeditor\plugins\emoticons\67.gif" />
+    <Content Include="kindeditor\plugins\emoticons\68.gif" />
+    <Content Include="kindeditor\plugins\emoticons\69.gif" />
+    <Content Include="kindeditor\plugins\emoticons\7.gif" />
+    <Content Include="kindeditor\plugins\emoticons\70.gif" />
+    <Content Include="kindeditor\plugins\emoticons\71.gif" />
+    <Content Include="kindeditor\plugins\emoticons\72.gif" />
+    <Content Include="kindeditor\plugins\emoticons\73.gif" />
+    <Content Include="kindeditor\plugins\emoticons\74.gif" />
+    <Content Include="kindeditor\plugins\emoticons\75.gif" />
+    <Content Include="kindeditor\plugins\emoticons\76.gif" />
+    <Content Include="kindeditor\plugins\emoticons\77.gif" />
+    <Content Include="kindeditor\plugins\emoticons\78.gif" />
+    <Content Include="kindeditor\plugins\emoticons\79.gif" />
+    <Content Include="kindeditor\plugins\emoticons\8.gif" />
+    <Content Include="kindeditor\plugins\emoticons\80.gif" />
+    <Content Include="kindeditor\plugins\emoticons\81.gif" />
+    <Content Include="kindeditor\plugins\emoticons\82.gif" />
+    <Content Include="kindeditor\plugins\emoticons\83.gif" />
+    <Content Include="kindeditor\plugins\emoticons\84.gif" />
+    <Content Include="kindeditor\plugins\emoticons\85.gif" />
+    <Content Include="kindeditor\plugins\emoticons\86.gif" />
+    <Content Include="kindeditor\plugins\emoticons\87.gif" />
+    <Content Include="kindeditor\plugins\emoticons\88.gif" />
+    <Content Include="kindeditor\plugins\emoticons\89.gif" />
+    <Content Include="kindeditor\plugins\emoticons\9.gif" />
+    <Content Include="kindeditor\plugins\emoticons\90.gif" />
+    <Content Include="kindeditor\plugins\emoticons\91.gif" />
+    <Content Include="kindeditor\plugins\emoticons\92.gif" />
+    <Content Include="kindeditor\plugins\emoticons\93.gif" />
+    <Content Include="kindeditor\plugins\emoticons\94.gif" />
+    <Content Include="kindeditor\plugins\emoticons\95.gif" />
+    <Content Include="kindeditor\plugins\emoticons\96.gif" />
+    <Content Include="kindeditor\plugins\emoticons\97.gif" />
+    <Content Include="kindeditor\plugins\emoticons\98.gif" />
+    <Content Include="kindeditor\plugins\emoticons\99.gif" />
+    <Content Include="kindeditor\plugins\emoticons\emoticons.js" />
+    <Content Include="kindeditor\plugins\emoticons\images\0.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\1.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\10.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\100.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\101.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\102.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\103.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\104.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\105.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\106.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\107.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\108.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\109.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\11.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\110.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\111.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\112.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\113.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\114.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\115.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\116.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\117.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\118.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\119.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\12.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\120.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\121.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\122.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\123.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\124.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\125.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\126.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\127.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\128.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\129.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\13.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\130.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\131.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\132.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\133.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\134.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\14.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\15.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\16.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\17.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\18.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\19.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\2.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\20.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\21.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\22.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\23.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\24.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\25.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\26.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\27.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\28.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\29.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\3.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\30.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\31.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\32.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\33.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\34.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\35.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\36.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\37.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\38.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\39.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\4.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\40.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\41.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\42.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\43.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\44.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\45.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\46.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\47.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\48.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\49.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\5.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\50.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\51.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\52.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\53.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\54.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\55.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\56.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\57.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\58.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\59.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\6.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\60.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\61.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\62.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\63.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\64.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\65.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\66.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\67.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\68.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\69.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\7.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\70.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\71.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\72.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\73.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\74.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\75.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\76.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\77.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\78.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\79.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\8.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\80.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\81.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\82.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\83.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\84.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\85.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\86.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\87.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\88.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\89.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\9.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\90.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\91.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\92.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\93.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\94.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\95.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\96.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\97.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\98.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\99.gif" />
+    <Content Include="kindeditor\plugins\emoticons\images\static.gif" />
+    <Content Include="kindeditor\plugins\emoticons\qq.gif" />
+    <Content Include="kindeditor\plugins\filemanager\filemanager.js" />
+    <Content Include="kindeditor\plugins\filemanager\images\file-16.gif" />
+    <Content Include="kindeditor\plugins\filemanager\images\file-64.gif" />
+    <Content Include="kindeditor\plugins\filemanager\images\folder-16.gif" />
+    <Content Include="kindeditor\plugins\filemanager\images\folder-64.gif" />
+    <Content Include="kindeditor\plugins\filemanager\images\go-up.gif" />
+    <Content Include="kindeditor\plugins\file_manager\filemanager.js" />
+    <Content Include="kindeditor\plugins\file_manager\file_manager.css" />
+    <Content Include="kindeditor\plugins\file_manager\file_manager.html" />
+    <Content Include="kindeditor\plugins\file_manager\file_manager.js" />
+    <Content Include="kindeditor\plugins\file_manager\images\file-16.gif" />
+    <Content Include="kindeditor\plugins\file_manager\images\file-64.gif" />
+    <Content Include="kindeditor\plugins\file_manager\images\folder-16.gif" />
+    <Content Include="kindeditor\plugins\file_manager\images\folder-64.gif" />
+    <Content Include="kindeditor\plugins\file_manager\images\go-up.gif" />
+    <Content Include="kindeditor\plugins\flash.html" />
+    <Content Include="kindeditor\plugins\flash\flash.js" />
+    <Content Include="kindeditor\plugins\image\image.html" />
+    <Content Include="kindeditor\plugins\image\images\align_left.gif" />
+    <Content Include="kindeditor\plugins\image\images\align_right.gif" />
+    <Content Include="kindeditor\plugins\image\images\align_top.gif" />
+    <Content Include="kindeditor\plugins\image\images\refresh.gif" />
+    <Content Include="kindeditor\plugins\image\images\refresh.png" />
+    <Content Include="kindeditor\plugins\insertfile\insertfile.js" />
+    <Content Include="kindeditor\plugins\lineheight\lineheight.js" />
+    <Content Include="kindeditor\plugins\link\link.html" />
+    <Content Include="kindeditor\plugins\link\link.js" />
+    <Content Include="kindeditor\plugins\map\map.html" />
+    <Content Include="kindeditor\plugins\map\map.js" />
+    <Content Include="kindeditor\plugins\media.html" />
+    <Content Include="kindeditor\plugins\media\media.js" />
+    <Content Include="kindeditor\plugins\multiimage\images\image.png" />
+    <Content Include="kindeditor\plugins\multiimage\images\select-files-en.png" />
+    <Content Include="kindeditor\plugins\multiimage\images\select-files-zh_CN.png" />
+    <Content Include="kindeditor\plugins\multiimage\images\swfupload.swf" />
+    <Content Include="kindeditor\plugins\multiimage\multiimage.js" />
+    <Content Include="kindeditor\plugins\pagebreak\pagebreak.js" />
+    <Content Include="kindeditor\plugins\plainpaste.html" />
+    <Content Include="kindeditor\plugins\plainpaste\plainpaste.js" />
+    <Content Include="kindeditor\plugins\preview\preview.js" />
+    <Content Include="kindeditor\plugins\quickformat\quickformat.js" />
+    <Content Include="kindeditor\plugins\table\table.js" />
+    <Content Include="kindeditor\plugins\template\html\1.html" />
+    <Content Include="kindeditor\plugins\template\html\2.html" />
+    <Content Include="kindeditor\plugins\template\html\3.html" />
+    <Content Include="kindeditor\plugins\template\template.js" />
+    <Content Include="kindeditor\plugins\wordpaste.html" />
+    <Content Include="kindeditor\plugins\wordpaste\wordpaste.js" />
+    <Content Include="kindeditor\skins\common\blank.gif" />
+    <Content Include="kindeditor\skins\common\editor.css" />
+    <Content Include="kindeditor\skins\common\flash.gif" />
+    <Content Include="kindeditor\skins\common\loading.gif" />
+    <Content Include="kindeditor\skins\common\media.gif" />
+    <Content Include="kindeditor\skins\common\rm.gif" />
+    <Content Include="kindeditor\skins\default.css" />
+    <Content Include="kindeditor\skins\default\default.gif" />
+    <Content Include="kindeditor\themes\common\anchor.gif" />
+    <Content Include="kindeditor\themes\common\blank.gif" />
+    <Content Include="kindeditor\themes\common\flash.gif" />
+    <Content Include="kindeditor\themes\common\loading.gif" />
+    <Content Include="kindeditor\themes\common\media.gif" />
+    <Content Include="kindeditor\themes\common\rm.gif" />
+    <Content Include="kindeditor\themes\default\background.png" />
+    <Content Include="kindeditor\themes\default\default.css" />
+    <Content Include="kindeditor\themes\default\default.png" />
+    <Content Include="kindeditor\themes\qq\editor.gif" />
+    <Content Include="kindeditor\themes\qq\qq.css" />
+    <Content Include="kindeditor\themes\simple\simple.css" />
+    <Content Include="loginEntry.aspx" />
+    <Content Include="Pay\PaymentNotify_url.aspx" />
+    <Content Include="Pay\PaymentReturn_url.aspx" />
+    <Content Include="Pay\wx_Alarm.aspx" />
+    <Content Include="Pay\wx_Feedback.aspx" />
+    <Content Include="Pay\wx_Pay.aspx" />
+    <Content Include="Pay\wx_Submit.aspx" />
+    <Content Include="plugins\email\Hishop.Plugins.Email.dll" />
+    <Content Include="plugins\openid\Hishop.Plugins.OpenId.dll" />
+    <Content Include="plugins\openid\images\alipay.gif" />
+    <Content Include="plugins\openid\images\Hishop.Plugins.OpenId.AliPay.alipayservice.gif" />
+    <Content Include="plugins\openid\images\hishop.plugins.openid.qq.qqservice.gif" />
+    <Content Include="plugins\openid\images\hishop.plugins.openid.sina.sinaservice.gif" />
+    <Content Include="plugins\openid\images\hishop.plugins.openid.taobao.taobaoservice.gif" />
+    <Content Include="plugins\payment\Hishop.Plugins.Payment.dll" />
+    <Content Include="plugins\sms\Hishop.Plugins.SMS.dll" />
+    <Content Include="plugins\transfer\Hishop.Transfers.dll" />
+    <Content Include="ResourceNotFound.aspx" />
+    <Content Include="Storage\data\DistributorBackgroundPic\5ff0405f0d5c46b39d0c1089c9c2bc9d.png" />
+    <Content Include="Storage\data\DistributorBackgroundPic\6cbb6662162145c8bec161865f3e8865.png" />
+    <Content Include="Storage\data\DistributorBackgroundPic\a12bf15297224383948b872fce9270b9.png" />
+    <Content Include="Storage\data\DistributorBackgroundPic\default.jpg" />
+    <Content Include="Storage\data\DistributorBackgroundPic\e70a1d7a37e542b1a2fba6407c726398.png" />
+    <Content Include="Storage\data\DistributorLogoPic\headLogo.jpg" />
+    <Content Include="Storage\master\20151109094648_5529.jpg" />
+    <Content Include="Storage\master\ACTI\85b0558b11464833be4a2d693dcb32d1.jpg" />
+    <Content Include="Storage\master\ACTI\8baadf5604164225a1b66a467e2894cc.jpg" />
+    <Content Include="Storage\master\brand\2b7c91a9665549c7aa2f416a3ee74a68.png" />
+    <Content Include="Storage\master\brand\99c8b59b6768417db8adb295687f7dde.png" />
+    <Content Include="Storage\master\BusinessArticle\c8030c38242347b4853d2cb92593cce1.jpg" />
+    <Content Include="Storage\master\default.png" />
+    <Content Include="Storage\master\flex\2010101821050.jpg" />
+    <Content Include="Storage\master\flex\20101117152320.xml" />
+    <Content Include="Storage\master\flex\20101117155058.xml" />
+    <Content Include="Storage\master\flex\20101117155351.xml" />
+    <Content Include="Storage\master\flex\20101117155840.xml" />
+    <Content Include="Storage\master\flex\20101117161058.xml" />
+    <Content Include="Storage\master\flex\20101117162921.xml" />
+    <Content Include="Storage\master\flex\20101117163245.xml" />
+    <Content Include="Storage\master\flex\20101117163638.xml" />
+    <Content Include="Storage\master\flex\2010111718098.jpg" />
+    <Content Include="Storage\master\flex\2010111727247.jpg" />
+    <Content Include="Storage\master\flex\2010111733136.jpg" />
+    <Content Include="Storage\master\flex\2010111734679.jpg" />
+    <Content Include="Storage\master\flex\2010111741205.jpg" />
+    <Content Include="Storage\master\flex\2010111749001.jpg" />
+    <Content Include="Storage\master\flex\2010111758550.jpg" />
+    <Content Include="Storage\master\flex\2010111758806.jpg" />
+    <Content Include="Storage\master\flex\2010111766071.jpg" />
+    <Content Include="Storage\master\flex\2010111771175.jpg" />
+    <Content Include="Storage\master\flex\201046133312.xml" />
+    <Content Include="Storage\master\flex\2014812185055.xml" />
+    <Content Include="Storage\master\flex\2015617112217.xml" />
+    <Content Include="Storage\master\flex\201561711222.xml" />
+    <Content Include="Storage\master\flex\AddExpressTemplate.swf" />
+    <Content Include="Storage\master\flex\AddSimpleExpressTemplate.swf" />
+    <Content Include="Storage\master\flex\EditExpressTemplate.swf" />
+    <Content Include="Storage\master\flex\history\history.css" />
+    <Content Include="Storage\master\flex\history\history.js" />
+    <Content Include="Storage\master\flex\history\historyFrame.html" />
+    <Content Include="Storage\master\flex\PrintExpressTemplate.swf" />
+    <Content Include="Storage\master\gallery\201412\20141224172015_2159.png" />
+    <Content Include="Storage\master\gallery\201501\20150112160440_7779.png" />
+    <Content Include="Storage\master\gallery\201501\20150112160517_9570.png" />
+    <Content Include="Storage\master\gallery\201501\20150114091939_5651.jpg" />
+    <Content Include="Storage\master\link\106-402.jpg" />
+    <Content Include="Storage\master\logo.png" />
+    <Content Include="Storage\master\Logo\7d27e84276e543e6995bfd35b8ecbaa2.png" />
+    <Content Include="Storage\master\Logo\d408f3779fe44039aa9d4b09fcf362ba.png" />
+    <Content Include="Storage\master\Logo\fb297c1a0e99485982aa5206e71155f0.png" />
+    <Content Include="Storage\master\product\images\21a63870fe084d1e99208c9281c205ef.jpg" />
+    <Content Include="Storage\master\product\images\34490b1607af4d3b83f6b828198d9238.jpg" />
+    <Content Include="Storage\master\product\images\40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\images\477aea76df4f403c84b14ab87716ecb0.jpg" />
+    <Content Include="Storage\master\product\images\6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\images\75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\images\812aba3132904f32b7552335fa1b09bf.jpg" />
+    <Content Include="Storage\master\product\images\86bb223bda5442ae8248c6167225dd51.jpg" />
+    <Content Include="Storage\master\product\images\8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\images\a572b1009d974f3faae4ce09790e7050.jpg" />
+    <Content Include="Storage\master\product\images\de2be62cc2074864937bf4d29c343bff.jpg" />
+    <Content Include="Storage\master\product\images\f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_21a63870fe084d1e99208c9281c205ef.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_34490b1607af4d3b83f6b828198d9238.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_477aea76df4f403c84b14ab87716ecb0.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_812aba3132904f32b7552335fa1b09bf.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_86bb223bda5442ae8248c6167225dd51.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_a572b1009d974f3faae4ce09790e7050.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_de2be62cc2074864937bf4d29c343bff.jpg" />
+    <Content Include="Storage\master\product\thumbs100\100_f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_21a63870fe084d1e99208c9281c205ef.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_34490b1607af4d3b83f6b828198d9238.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_477aea76df4f403c84b14ab87716ecb0.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_812aba3132904f32b7552335fa1b09bf.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_86bb223bda5442ae8248c6167225dd51.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_a572b1009d974f3faae4ce09790e7050.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_de2be62cc2074864937bf4d29c343bff.jpg" />
+    <Content Include="Storage\master\product\thumbs160\160_f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\product\thumbs180\180_40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\thumbs180\180_6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\thumbs180\180_75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\thumbs180\180_8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\thumbs180\180_f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\product\thumbs220\220_40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\thumbs220\220_6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\thumbs220\220_75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\thumbs220\220_8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\thumbs220\220_f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\product\thumbs310\310_40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\thumbs310\310_6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\thumbs310\310_75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\thumbs310\310_8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\thumbs310\310_f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_21a63870fe084d1e99208c9281c205ef.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_34490b1607af4d3b83f6b828198d9238.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_477aea76df4f403c84b14ab87716ecb0.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_812aba3132904f32b7552335fa1b09bf.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_86bb223bda5442ae8248c6167225dd51.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_a572b1009d974f3faae4ce09790e7050.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_de2be62cc2074864937bf4d29c343bff.jpg" />
+    <Content Include="Storage\master\product\thumbs40\40_f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\product\thumbs410\410_40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\thumbs410\410_6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\thumbs410\410_75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\thumbs410\410_8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\thumbs410\410_f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\product\thumbs60\60_40119a32f9fb450da9b95e08fa621154.jpg" />
+    <Content Include="Storage\master\product\thumbs60\60_6acbae15dd1c47a4b330a2ca7ddeb77c.jpg" />
+    <Content Include="Storage\master\product\thumbs60\60_75fd899a5d07439595cc7b0e3a59fafa.jpg" />
+    <Content Include="Storage\master\product\thumbs60\60_8960484e4ad14eb4befd861ddb1edee9.jpg" />
+    <Content Include="Storage\master\product\thumbs60\60_f631485ebb544c29b822120a35d1d20a.jpg" />
+    <Content Include="Storage\master\QRcord.jpg" />
+    <Content Include="Storage\master\QRcord2.jpg" />
+    <Content Include="Storage\master\QRcordlas.jpg" />
+    <Content Include="Storage\master\QRcordlas.png" />
+    <Content Include="Storage\master\QRcordls.jpg" />
+    <Content Include="Storage\master\QRcordls1.jpg" />
+    <Content Include="Storage\master\QRcordls5.jpg" />
+    <Content Include="Storage\master\RedShare.jpg" />
+    <Content Include="Storage\master\topic\131d8603303b4573a95690247974859f.jpg" />
+    <Content Include="Storage\master\topic\19dc9e364e9d4d27934e50d989eee9ae.jpg" />
+    <Content Include="Storage\master\topic\1a926f1ada584430a89b05464e72a8e3.png" />
+    <Content Include="Storage\master\topic\23f5e3e5cf59444fba89132c617baffc.jpg" />
+    <Content Include="Storage\master\topic\24b5add426b74ad686cb8d0fbd6394a9.jpg" />
+    <Content Include="Storage\master\topic\278b54d8531d40af846fe57f4a464c36.jpg" />
+    <Content Include="Storage\master\topic\2bbf04e8c4a34849a8ce1b6f3cadf9ab.jpg" />
+    <Content Include="Storage\master\topic\35ecec41cc794f578e21528e478771b3.jpg" />
+    <Content Include="Storage\master\topic\59ce2c6be2e8455bbcabbaaee726a37c.jpg" />
+    <Content Include="Storage\master\topic\6f2fe9d65b7848968ff0dc3ba0523d1c.jpg" />
+    <Content Include="Storage\master\topic\7408da61d6734abba9451970fce64291.jpg" />
+    <Content Include="Storage\master\topic\815f386179c04c53943a2e3b3aedab64.jpg" />
+    <Content Include="Storage\master\topic\873227e435da4c91b5a6592467877fb0.jpg" />
+    <Content Include="Storage\master\topic\88f4a3f9d85644ff84bb1f7565bdd449.jpg" />
+    <Content Include="Storage\master\topic\899b6cee94bb4349936563e069a333b3.jpg" />
+    <Content Include="Storage\master\topic\9d2a5e33e1654596ac61c65250fb477b.jpg" />
+    <Content Include="Storage\master\topic\a42c87130e8d417eb9e363bf69f66194.jpg" />
+    <Content Include="Storage\master\topic\b221a754343b40a1a68021f245855f0c.jpg" />
+    <Content Include="Storage\master\topic\c47369bf26a44e3a85f041128627a886.jpg" />
+    <Content Include="Storage\master\topic\c5146dbfecf246e7a30180d19f57bc86.png" />
+    <Content Include="Storage\master\topic\ccd5ad31ee444f7b8ffadcc6d93fd741.jpg" />
+    <Content Include="Storage\master\topic\eefffac9ba5944a181e6cd8b28b7df03.jpg" />
+    <Content Include="Storage\master\topic\f12b74aecced44148f832a2aa40d11b0.jpg" />
+    <Content Include="Storage\master\Vipcard\logo.png" />
+    <Content Include="Storage\master\Vipcard\vipbg.png" />
+    <Content Include="Storage\master\Vipcard\vipqr.jpg" />
+    <Content Include="Storage\master\vote\images\3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\images\4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\images\ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\images\adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\images\b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\images\b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs100\100_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs100\100_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs100\100_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs100\100_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs100\100_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs100\100_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs160\160_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs160\160_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs160\160_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs160\160_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs160\160_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs160\160_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs180\180_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs180\180_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs180\180_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs180\180_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs180\180_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs180\180_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs220\220_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs220\220_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs220\220_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs220\220_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs220\220_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs220\220_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs226\226_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs226\226_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs226\226_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs226\226_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs226\226_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs226\226_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs310\310_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs310\310_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs310\310_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs310\310_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs310\310_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs310\310_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs40\40_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs40\40_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs40\40_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs40\40_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs40\40_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs40\40_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs410\410_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs410\410_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs410\410_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs410\410_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs410\410_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs410\410_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\vote\thumbs60\60_3ea6ac695a6440c4939bad7b76db0eae.png" />
+    <Content Include="Storage\master\vote\thumbs60\60_4d2cca1a349344d781c6e348acf50893.jpg" />
+    <Content Include="Storage\master\vote\thumbs60\60_ad50cdf90bd245a58c719f4482fcc931.jpg" />
+    <Content Include="Storage\master\vote\thumbs60\60_adf69c100ffe4ca1bd03b32668162d64.jpg" />
+    <Content Include="Storage\master\vote\thumbs60\60_b1f5e337d70e419485781c68c0d411a2.jpg" />
+    <Content Include="Storage\master\vote\thumbs60\60_b5707609015f40339862aabde04c1575.jpg" />
+    <Content Include="Storage\master\WeiXinCodeImageUrl.jpg" />
+    <Content Include="Storage\temp\201507\product_174815347.jpg" />
+    <Content Include="Storage\temp\201507\product_174830770.jpg" />
+    <Content Include="Storage\temp\201507\product_174850367.jpg" />
+    <Content Include="Storage\temp\201507\product_174853140.jpg" />
+    <Content Include="Storage\temp\201507\product_174921756.jpg" />
+    <Content Include="Storage\temp\201507\product_181352189.png" />
+    <Content Include="Storage\temp\201507\product_232615787.jpg" />
+    <Content Include="Storage\temp\201510\product_085913773.jpg" />
+    <Content Include="Storage\temp\201510\product_085913909.jpg" />
+    <Content Include="Storage\temp\201510\product_085914154.jpg" />
+    <Content Include="Storage\temp\201510\product_08591456.jpg" />
+    <Content Include="Storage\temp\201510\product_123630344.jpg" />
+    <Content Include="Storage\temp\201510\product_123630456.jpg" />
+    <Content Include="Storage\temp\201510\product_123630514.jpg" />
+    <Content Include="Storage\temp\201511\product_134531942.jpg" />
+    <Content Include="Storage\temp\201511\product_134532167.jpg" />
+    <Content Include="Storage\temp\201511\product_134532267.jpg" />
+    <Content Include="Storage\temp\201511\product_134532386.jpg" />
+    <Content Include="Storage\temp\201511\product_13453267.jpg" />
+    <Content Include="Templates\vshop\default\default.jpg" />
+    <Content Include="Templates\vshop\default\images\ad\imgDefaultBg.jpg" />
+    <Content Include="Templates\vshop\default\images\bad-img.png" />
+    <Content Include="Templates\vshop\default\images\banner.jpg" />
+    <Content Include="Templates\vshop\default\images\bao.jpg" />
+    <Content Include="Templates\vshop\default\images\bg_1.jpg" />
+    <Content Include="Templates\vshop\default\images\bg_2.jpg" />
+    <Content Include="Templates\vshop\default\images\bg_3.jpg" />
+    <Content Include="Templates\vshop\default\images\bg_4.jpg" />
+    <Content Include="Templates\vshop\default\images\bg_5.jpg" />
+    <Content Include="Templates\vshop\default\images\bg_6.jpg" />
+    <Content Include="Templates\vshop\default\images\bo.png" />
+    <Content Include="Templates\vshop\default\images\bo_1.png" />
+    <Content Include="Templates\vshop\default\images\bo_2.png" />
+    <Content Include="Templates\vshop\default\images\bo_3.png" />
+    <Content Include="Templates\vshop\default\images\bo_4.png" />
+    <Content Include="Templates\vshop\default\images\brand_1.jpg" />
+    <Content Include="Templates\vshop\default\images\car_1.jpg" />
+    <Content Include="Templates\vshop\default\images\car_2.jpg" />
+    <Content Include="Templates\vshop\default\images\class_bg.jpg" />
+    <Content Include="Templates\vshop\default\images\class_hover.png" />
+    <Content Include="Templates\vshop\default\images\default.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\address1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\classify1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\features1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\features2.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\features3.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\features4.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\features5.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\features6.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\link1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery10.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery11.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery12.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery2.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery3.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery4.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery5.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery6.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery7.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery8.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\lottery9.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\manberCard1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\order1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\phone1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\shopcart1.png" />
+    <Content Include="Templates\vshop\default\images\deskicon\vote1.png" />
+    <Content Include="Templates\vshop\default\images\detail_1.jpg" />
+    <Content Include="Templates\vshop\default\images\detail_2.jpg" />
+    <Content Include="Templates\vshop\default\images\detail_3.jpg" />
+    <Content Include="Templates\vshop\default\images\example-slide-1.jpg" />
+    <Content Include="Templates\vshop\default\images\example-slide-2.jpg" />
+    <Content Include="Templates\vshop\default\images\example-slide-3.jpg" />
+    <Content Include="Templates\vshop\default\images\example-slide-4.jpg" />
+    <Content Include="Templates\vshop\default\images\footer-tags.png" />
+    <Content Include="Templates\vshop\default\images\get-red-bg.png" />
+    <Content Include="Templates\vshop\default\images\getredpager.jpg" />
+    <Content Include="Templates\vshop\default\images\goods_1.jpg" />
+    <Content Include="Templates\vshop\default\images\home-head.png" />
+    <Content Include="Templates\vshop\default\images\icon\arrows.png" />
+    <Content Include="Templates\vshop\default\images\icon\btn.png" />
+    <Content Include="Templates\vshop\default\images\icon\home_ico.png" />
+    <Content Include="Templates\vshop\default\images\icon\member_ico.png" />
+    <Content Include="Templates\vshop\default\images\icon\member_ico2.png" />
+    <Content Include="Templates\vshop\default\images\icon\pagination.png" />
+    <Content Include="Templates\vshop\default\images\icon\shop_ico.png" />
+    <Content Include="Templates\vshop\default\images\icon\shuo.png" />
+    <Content Include="Templates\vshop\default\images\icon\sy-loader.gif" />
+    <Content Include="Templates\vshop\default\images\icon\zi.png" />
+    <Content Include="Templates\vshop\default\images\jiandao.png" />
+    <Content Include="Templates\vshop\default\images\lens.png" />
+    <Content Include="Templates\vshop\default\images\list_1.jpg" />
+    <Content Include="Templates\vshop\default\images\list_2.jpg" />
+    <Content Include="Templates\vshop\default\images\loading.gif" />
+    <Content Include="Templates\vshop\default\images\logi.jpg" />
+    <Content Include="Templates\vshop\default\images\logi_2.jpg" />
+    <Content Include="Templates\vshop\default\images\ls\01.jpg" />
+    <Content Include="Templates\vshop\default\images\ls\02.jpg" />
+    <Content Include="Templates\vshop\default\images\ls\05.jpg" />
+    <Content Include="Templates\vshop\default\images\membership-banner.jpg" />
+    <Content Include="Templates\vshop\default\images\membership-bg.jpg" />
+    <Content Include="Templates\vshop\default\images\membership_1.jpg" />
+    <Content Include="Templates\vshop\default\images\membership_2.jpg" />
+    <Content Include="Templates\vshop\default\images\membership_3.jpg" />
+    <Content Include="Templates\vshop\default\images\myorder_1.jpg" />
+    <Content Include="Templates\vshop\default\images\nologingetredpager.jpg" />
+    <Content Include="Templates\vshop\default\images\orderdetail_1.jpg" />
+    <Content Include="Templates\vshop\default\images\order_1.jpg" />
+    <Content Include="Templates\vshop\default\images\order_2.jpg" />
+    <Content Include="Templates\vshop\default\images\order_3.jpg" />
+    <Content Include="Templates\vshop\default\images\order_4.jpg" />
+    <Content Include="Templates\vshop\default\images\order_5.jpg" />
+    <Content Include="Templates\vshop\default\images\order_6.jpg" />
+    <Content Include="Templates\vshop\default\images\p1.jpg" />
+    <Content Include="Templates\vshop\default\images\pagination.png" />
+    <Content Include="Templates\vshop\default\images\process\2w.jpg" />
+    <Content Include="Templates\vshop\default\images\process\achtungback.jpg" />
+    <Content Include="Templates\vshop\default\images\process\arrowico.jpg" />
+    <Content Include="Templates\vshop\default\images\process\arrowico.png" />
+    <Content Include="Templates\vshop\default\images\process\bg_profile_header.jpg" />
+    <Content Include="Templates\vshop\default\images\process\btn_m.jpg" />
+    <Content Include="Templates\vshop\default\images\process\btn_span2.jpg" />
+    <Content Include="Templates\vshop\default\images\process\b_egg.jpg" />
+    <Content Include="Templates\vshop\default\images\process\cat_btn.jpg" />
+    <Content Include="Templates\vshop\default\images\process\egg.png" />
+    <Content Include="Templates\vshop\default\images\process\egg1.png" />
+    <Content Include="Templates\vshop\default\images\process\e_e.png" />
+    <Content Include="Templates\vshop\default\images\process\flag.png" />
+    <Content Include="Templates\vshop\default\images\process\hea_back.jpg" />
+    <Content Include="Templates\vshop\default\images\process\line_hea.jpg" />
+    <Content Include="Templates\vshop\default\images\process\lott.jpg" />
+    <Content Include="Templates\vshop\default\images\process\l_btn.jpg" />
+    <Content Include="Templates\vshop\default\images\process\mc_b.jpg" />
+    <Content Include="Templates\vshop\default\images\process\mc_t.jpg" />
+    <Content Include="Templates\vshop\default\images\process\mc_t2.jpg" />
+    <Content Include="Templates\vshop\default\images\process\mc_t2b.jpg" />
+    <Content Include="Templates\vshop\default\images\process\mo.png" />
+    <Content Include="Templates\vshop\default\images\process\m_b.jpg" />
+    <Content Include="Templates\vshop\default\images\process\panpic.png" />
+    <Content Include="Templates\vshop\default\images\process\panpic2.png" />
+    <Content Include="Templates\vshop\default\images\process\p_y.png" />
+    <Content Include="Templates\vshop\default\images\process\scratch.jpg" />
+    <Content Include="Templates\vshop\default\images\process\sign.jpg" />
+    <Content Include="Templates\vshop\default\images\process\signtit.jpg" />
+    <Content Include="Templates\vshop\default\images\process\s_x.jpg" />
+    <Content Include="Templates\vshop\default\images\process\t_egg.png" />
+    <Content Include="Templates\vshop\default\images\process\vote.jpg" />
+    <Content Include="Templates\vshop\default\images\process\w_r.jpg" />
+    <Content Include="Templates\vshop\default\images\red%402x.png" />
+    <Content Include="Templates\vshop\default\images\red-bg.png" />
+    <Content Include="Templates\vshop\default\images\red-top.png" />
+    <Content Include="Templates\vshop\default\images\red.png" />
+    <Content Include="Templates\vshop\default\images\RedShare.png" />
+    <Content Include="Templates\vshop\default\images\scrolltop.png" />
+    <Content Include="Templates\vshop\default\images\Sharp.png" />
+    <Content Include="Templates\vshop\default\images\shop-img-1.png" />
+    <Content Include="Templates\vshop\default\images\shop-img-2.png" />
+    <Content Include="Templates\vshop\default\images\shop-img-3.png" />
+    <Content Include="Templates\vshop\default\images\shop-img-4.png" />
+    <Content Include="Templates\vshop\default\images\shop-img-5.png" />
+    <Content Include="Templates\vshop\default\images\shop-img-6.png" />
+    <Content Include="Templates\vshop\default\images\shop-img-7.png" />
+    <Content Include="Templates\vshop\default\images\shop-img-8.png" />
+    <Content Include="Templates\vshop\default\images\shoucang_1.jpg" />
+    <Content Include="Templates\vshop\default\images\shoucang_2.jpg" />
+    <Content Include="Templates\vshop\default\images\star-full.png" />
+    <Content Include="Templates\vshop\default\images\star-null.png" />
+    <Content Include="Templates\vshop\default\images\tags-img-1.png" />
+    <Content Include="Templates\vshop\default\images\tags-img-2.png" />
+    <Content Include="Templates\vshop\default\images\test-tags-img-2.png" />
+    <Content Include="Templates\vshop\default\images\test-tags-img.png" />
+    <Content Include="Templates\vshop\default\images\top_header.png" />
+    <Content Include="Templates\vshop\default\images\top_header_logo.png" />
+    <Content Include="Templates\vshop\default\images\top_header_logo1.png" />
+    <Content Include="Templates\vshop\default\images\tuan.jpg" />
+    <Content Include="Templates\vshop\default\images\user-bg.png" />
+    <Content Include="Templates\vshop\default\images\user-img-1.png" />
+    <Content Include="Templates\vshop\default\images\user-img-2.png" />
+    <Content Include="Templates\vshop\default\images\user-img-3.png" />
+    <Content Include="Templates\vshop\default\images\user-img-4.png" />
+    <Content Include="Templates\vshop\default\images\user-img-5.png" />
+    <Content Include="Templates\vshop\default\images\user-img-6.png" />
+    <Content Include="Templates\vshop\default\images\user-img.png" />
+    <Content Include="Templates\vshop\default\images\user-tags-1.png" />
+    <Content Include="Templates\vshop\default\images\user-tags-2.png" />
+    <Content Include="Templates\vshop\default\images\user-tags-3.png" />
+    <Content Include="Templates\vshop\default\images\user-tags-4.png" />
+    <Content Include="Templates\vshop\default\images\user-tags-bg.png" />
+    <Content Include="Templates\vshop\default\images\user-tags.png" />
+    <Content Include="Templates\vshop\default\images\user.png" />
+    <Content Include="Templates\vshop\default\images\vlogo.png" />
+    <Content Include="Templates\vshop\default\images\warning.gif" />
+    <Content Include="Templates\vshop\default\images\youhui_1.jpg" />
+    <Content Include="Templates\vshop\default\images\youhui_2.jpg" />
+    <Content Include="Templates\vshop\default\images\youhui_3.jpg" />
+    <Content Include="Templates\vshop\default\script\carousel.js" />
+    <Content Include="Templates\vshop\default\script\icheck.min.js" />
+    <Content Include="Templates\vshop\default\script\jquery-1.11.0.min.js" />
+    <Content Include="Templates\vshop\default\script\jquery.slides.min.js" />
+    <Content Include="Templates\vshop\default\script\layer\extend\layer.ext.js" />
+    <Content Include="Templates\vshop\default\script\layer\layer.js" />
+    <Content Include="Templates\vshop\default\script\layer\skin\default\icon-ext.png" />
+    <Content Include="Templates\vshop\default\script\layer\skin\default\icon.png" />
+    <Content Include="Templates\vshop\default\script\layer\skin\default\loading-0.gif" />
+    <Content Include="Templates\vshop\default\script\layer\skin\default\loading-1.gif" />
+    <Content Include="Templates\vshop\default\script\layer\skin\default\loading-2.gif" />
+    <Content Include="Templates\vshop\default\script\layer\skin\layer.css" />
+    <Content Include="Templates\vshop\default\script\layer\skin\layer.ext.css" />
+    <Content Include="Templates\vshop\default\script\main.js" />
+    <Content Include="Templates\vshop\default\script\slider.js" />
+    <Content Include="Templates\vshop\default\script\swipe.js" />
+    <Content Include="Templates\vshop\default\script\weixin.js" />
+    <Content Include="Templates\vshop\default\script\WeixinApi.js" />
+    <Content Include="Templates\vshop\default\script\WeiXinShare.js" />
+    <Content Include="Templates\vshop\default\Skin-BalanceDrawRequesList.html" />
+    <Content Include="Templates\vshop\default\Skin-ChooseProducts.html" />
+    <Content Include="Templates\vshop\default\Skin-DistributorCenter.html" />
+    <Content Include="Templates\vshop\default\Skin-DistributorCommission.html" />
+    <Content Include="Templates\vshop\default\Skin-DistributorInfo.html" />
+    <Content Include="Templates\vshop\default\Skin-DistributorOrders.html" />
+    <Content Include="Templates\vshop\default\Skin-MyProducts.html" />
+    <Content Include="Templates\vshop\default\Skin-PaymentReturn.html" />
+    <Content Include="Templates\vshop\default\Skin-ProductListAll.html" />
+    <Content Include="Templates\vshop\default\Skin-ProductListTwo.html" />
+    <Content Include="Templates\vshop\default\Skin-RequestCommissions.html" />
+    <Content Include="Templates\vshop\default\Skin-RequestDistributorFinish.html" />
+    <Content Include="Templates\vshop\default\skin-VActivitieDetails.html" />
+    <Content Include="Templates\vshop\default\skin-VActivities.html" />
+    <Content Include="Templates\vshop\default\skin-vActivity.html" />
+    <Content Include="Templates\vshop\default\skin-vActivityDetail.html" />
+    <Content Include="Templates\vshop\default\skin-vaddshippingaddress.html" />
+    <Content Include="Templates\vshop\default\Skin-VApplicationDescription.html" />
+    <Content Include="Templates\vshop\default\skin-vbigwheel.html" />
+    <Content Include="Templates\vshop\default\skin-vBrandDetail.html" />
+    <Content Include="Templates\vshop\default\skin-vbrandList.html" />
+    <Content Include="Templates\vshop\default\skin-vBusinessArticleDetails.html" />
+    <Content Include="Templates\vshop\default\skin-vBusinessArticleList.html" />
+    <Content Include="Templates\vshop\default\Skin-VChirldrenDistributors.html" />
+    <Content Include="Templates\vshop\default\Skin-VChirldrenDistributorsDetails.html" />
+    <Content Include="Templates\vshop\default\Skin-VCommissionDetails.html" />
+    <Content Include="Templates\vshop\default\skin-vdefault.html" />
+    <Content Include="Templates\vshop\default\skin-vdefault1.html" />
+    <Content Include="Templates\vshop\default\Skin-VDistributorRegister.html" />
+    <Content Include="Templates\vshop\default\Skin-VDistributorRequest.html" />
+    <Content Include="Templates\vshop\default\skin-veditshippingaddress.html" />
+    <Content Include="Templates\vshop\default\skin-vfind.html" />
+    <Content Include="Templates\vshop\default\skin-vfinishorder.html" />
+    <Content Include="Templates\vshop\default\skin-vFriendsCircle.html" />
+    <Content Include="Templates\vshop\default\skin-vGetRedPager.html" />
+    <Content Include="Templates\vshop\default\skin-vGetRedShare.html" />
+    <Content Include="Templates\vshop\default\skin-vGetSuccess.html" />
+    <Content Include="Templates\vshop\default\Skin-VGroupBuyList.html" />
+    <Content Include="Templates\vshop\default\Skin-VGroupBuyProductDetail.html" />
+    <Content Include="Templates\vshop\default\skin-vHelper.html" />
+    <Content Include="Templates\vshop\default\skin-vHoutai.html" />
+    <Content Include="Templates\vshop\default\skin-vimagetextdetails.html" />
+    <Content Include="Templates\vshop\default\skin-vinvite.html" />
+    <Content Include="Templates\vshop\default\skin-vinvite_buy.html" />
+    <Content Include="Templates\vshop\default\skin-vinvite_complated.html" />
+    <Content Include="Templates\vshop\default\skin-vinvite_login.html" />
+    <Content Include="Templates\vshop\default\skin-vinvite_open.html" />
+    <Content Include="Templates\vshop\default\skin-vinvite_prod.html" />
+    <Content Include="Templates\vshop\default\skin-vinvite_success.html" />
+    <Content Include="Templates\vshop\default\skin-vLogin.html" />
+    <Content Include="Templates\vshop\default\skin-vLogout.html" />
+    <Content Include="Templates\vshop\default\skin-vmakeinvite.html" />
+    <Content Include="Templates\vshop\default\skin-vmemberCenter.html" />
+    <Content Include="Templates\vshop\default\skin-vmemberCoupons.html" />
+    <Content Include="Templates\vshop\default\skin-VMemberOrderDetails.html" />
+    <Content Include="Templates\vshop\default\skin-VMemberOrderReturn.html" />
+    <Content Include="Templates\vshop\default\skin-VMemberOrderReturnGoods.html" />
+    <Content Include="Templates\vshop\default\skin-VMemberOrders.html" />
+    <Content Include="Templates\vshop\default\skin-vMy.html" />
+    <Content Include="Templates\vshop\default\skin-vMyConsultations.html" />
+    <Content Include="Templates\vshop\default\skin-vMyFavorites.html" />
+    <Content Include="Templates\vshop\default\skin-vMyLogistics.html" />
+    <Content Include="Templates\vshop\default\Skin-vMyRanking.html" />
+    <Content Include="Templates\vshop\default\Skin-vMyRedPager.html" />
+    <Content Include="Templates\vshop\default\skin-vNameCard.html" />
+    <Content Include="Templates\vshop\default\skin-vOrderManager.html" />
+    <Content Include="Templates\vshop\default\skin-vPLDetails.html" />
+    <Content Include="Templates\vshop\default\skin-vproductConsultations.html" />
+    <Content Include="Templates\vshop\default\skin-vproductdetails.html" />
+    <Content Include="Templates\vshop\default\skin-vproductdetails2.html" />
+    <Content Include="Templates\vshop\default\skin-vproductlist.html" />
+    <Content Include="Templates\vshop\default\skin-vProductReview.html" />
+    <Content Include="Templates\vshop\default\skin-vProductSearch.html" />
+    <Content Include="Templates\vshop\default\skin-vProgressCheck.html" />
+    <Content Include="Templates\vshop\default\skin-vProgressDetail.html" />
+    <Content Include="Templates\vshop\default\skin-vQRcode.html" />
+    <Content Include="Templates\vshop\default\skin-vRegister.html" />
+    <Content Include="Templates\vshop\default\skin-vRequestReturn.html" />
+    <Content Include="Templates\vshop\default\skin-vSaleService.html" />
+    <Content Include="Templates\vshop\default\skin-vscratch.html" />
+    <Content Include="Templates\vshop\default\skin-vshippingaddresses.html" />
+    <Content Include="Templates\vshop\default\skin-vshoppingcart.html" />
+    <Content Include="Templates\vshop\default\skin-vShouyi.html" />
+    <Content Include="Templates\vshop\default\skin-vSignUp.html" />
+    <Content Include="Templates\vshop\default\skin-vsmashegg.html" />
+    <Content Include="Templates\vshop\default\skin-vsubmmitorder.html" />
+    <Content Include="Templates\vshop\default\skin-vTicket.html" />
+    <Content Include="Templates\vshop\default\skin-vtopics.html" />
+    <Content Include="Templates\vshop\default\skin-vUserInfo.html" />
+    <Content Include="Templates\vshop\default\skin-vUserLogin.html" />
+    <Content Include="Templates\vshop\default\skin-vvote.html" />
+    <Content Include="Templates\vshop\default\skin-vWenan.html" />
+    <Content Include="Templates\vshop\default\skin-vwinningResults.html" />
+    <Content Include="Templates\vshop\default\style\css.css" />
+    <Content Include="Templates\vshop\default\style\fonts\icomoon.svg" />
+    <Content Include="Templates\vshop\default\style\main.css" />
+    <Content Include="Templates\vshop\default\style\maskayer.css" />
+    <Content Include="Templates\vshop\default\style\newcss\css\address.css" />
+    <Content Include="Templates\vshop\default\style\newcss\css\common.css" />
+    <Content Include="Templates\vshop\default\style\newcss\css\index.css" />
+    <Content Include="Templates\vshop\default\style\newcss\css\invite.css" />
+    <Content Include="Templates\vshop\default\style\newcss\css\login.css" />
+    <Content Include="Templates\vshop\default\style\newcss\css\product_detail.css" />
+    <Content Include="Templates\vshop\default\style\newcss\css\product_detail_new.css" />
+    <Content Include="Templates\vshop\default\style\newcss\css\shouiyi.css" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\ai.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\android.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\banner.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\bg.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\bg1.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\close.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\close1.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon-sa7a6a9da63.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon1.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon10.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon11.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon12.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon13.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon14.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon15.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon16.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon17.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon18.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon19.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon2.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon3.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon4.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon5.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon6.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon7.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon71.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon8.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\icon9.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\in.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\1.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\10.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\11.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\12.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\13.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\14.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\15.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\16.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\17.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\18.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\19.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\2.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\20.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\21.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\22.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\23.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\24.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\3.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\4.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\5.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\6.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\7.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\8.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\9.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\bg.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\cover-test.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\icon.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\icon1.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\lasad.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\lasbg.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\lsad.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\lsad.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\lsbg.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\more1.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\more2.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\p1.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\index\repeate.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\ios.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\loading.gif" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\logo.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\pro.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\pro1.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\pro2.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\1.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\10.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\11.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\12.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\13.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\14.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\2.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\3.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\4.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\5.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\6.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\7.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\8.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product\9.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product_d\banner.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product_d\b_icon.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product_d\logo.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product_d\lslogo.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product_d\right.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\product_d\right_icon.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\qcode.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\share.png" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\tou.jpg" />
+    <Content Include="Templates\vshop\default\style\newcss\imgs\zan.png" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\bootstrapValidator.min.css" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\bootstrapValidator.min.js" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\jquery.min.js" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\zh_CN.min.js" />
+    <Content Include="Templates\vshop\default\style\newcss\js\countdown.js" />
+    <Content Include="Templates\vshop\default\style\newcss\js\swiper\swiper.3.1.7.min.css" />
+    <Content Include="Templates\vshop\default\style\newcss\js\swiper\swiper.3.1.7.min.js" />
+    <Content Include="Templates\vshop\default\style\red.css" />
+    <Content Include="Templates\vshop\default\tags\Skin-Common-ChirldrenStores.ascx" />
+    <Content Include="Templates\vshop\default\tags\Skin-Common-ChirldrenStoresDetails.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_ActivityList.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_ActivityProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Addresses.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_BalanceDrawRequest.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_BrandProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Brands.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_BusinessArticles.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_CartProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Categories.ascx" />
+    <Content Include="Templates\vshop\default\tags\Skin-Common_ChooseProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\Skin-Common_ChooseProductsTwo.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_CommissionDetails.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Coupons.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_DefaultCategories.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_DefaultProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\Skin-Common_DistributorOrders.ascx" />
+    <Content Include="Templates\vshop\default\tags\Skin-Common_DistributorProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Footer.html" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_FooterDistributor.html" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_FooterNo.html" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_FriendsCircle.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_GroupBuyCategories.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_GroupBuyProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Header.html" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_HomeCategories.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_InviteComplatedList.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_InviteList.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MemberCenterOrders.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MemberCheckOrderReturnGood.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MemberOrderProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MemberOrderReturn.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MemberOrderReturnGoods.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MyConsultations.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MyFavorites.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MyRanking.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MyRedPager.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_MyTeamRanking.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Navigate.ascx" />
+    <Content Include="Templates\vshop\default\tags\Skin-Common_OrderManager.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Prodcts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_ProductConsultations.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_ProductReview.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_ProgressCheck.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_ProgressDetail.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_ShippingAddresses.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Slide.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_SubCategory.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_SubmmitCartProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_TopicProducts.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_Topics.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_VoteItems.ascx" />
+    <Content Include="Templates\vshop\default\tags\skin-Common_VProductListCategory.ascx" />
+    <Content Include="Templates\vshop\default\template.xml" />
+    <Content Include="Utility\bigwheel.js" />
+    <Content Include="Utility\bootflat\angularicons\angularicons.svg" />
+    <Content Include="Utility\bootflat\bootflat\css\bootflat.css" />
+    <Content Include="Utility\bootflat\bootflat\css\bootflat.min.css" />
+    <Content Include="Utility\bootflat\bootflat\img\check_flat\default.png" />
+    <Content Include="Utility\bootflat\bootflat\js\icheck.min.js" />
+    <Content Include="Utility\bootflat\css\bootstrap.min.css" />
+    <Content Include="Utility\bootflat\css\site.css" />
+    <Content Include="Utility\bootflat\css\site.min.css" />
+    <Content Include="Utility\bootflat\documentation.html" />
+    <Content Include="Utility\bootflat\favicon_16.ico" />
+    <Content Include="Utility\bootflat\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Utility\bootflat\free-psd.html" />
+    <Content Include="Utility\bootflat\getting-started.html" />
+    <Content Include="Utility\bootflat\Gruntfile.js" />
+    <Content Include="Utility\bootflat\img\ascii-logo.gif" />
+    <Content Include="Utility\bootflat\img\bootflat-ui-kit.jpg" />
+    <Content Include="Utility\bootflat\img\design.png" />
+    <Content Include="Utility\bootflat\img\divider.png" />
+    <Content Include="Utility\bootflat\img\fast.png" />
+    <Content Include="Utility\bootflat\img\feature-bootstrap.png" />
+    <Content Include="Utility\bootflat\img\feature-css.png" />
+    <Content Include="Utility\bootflat\img\feature-lightweight.png" />
+    <Content Include="Utility\bootflat\img\feature-mobile.png" />
+    <Content Include="Utility\bootflat\img\footer-logo.png" />
+    <Content Include="Utility\bootflat\img\github.png" />
+    <Content Include="Utility\bootflat\img\index.png" />
+    <Content Include="Utility\bootflat\img\Jumbotron.jpg" />
+    <Content Include="Utility\bootflat\img\logo-index.png" />
+    <Content Include="Utility\bootflat\img\logo.png" />
+    <Content Include="Utility\bootflat\img\photo-1.jpg" />
+    <Content Include="Utility\bootflat\img\photo-2.jpg" />
+    <Content Include="Utility\bootflat\img\photo-3.jpg" />
+    <Content Include="Utility\bootflat\img\photo-4.jpg" />
+    <Content Include="Utility\bootflat\img\prototyping.png" />
+    <Content Include="Utility\bootflat\img\share.gif" />
+    <Content Include="Utility\bootflat\img\slider1.jpg" />
+    <Content Include="Utility\bootflat\img\slider2.jpg" />
+    <Content Include="Utility\bootflat\img\slider3.jpg" />
+    <Content Include="Utility\bootflat\img\thumbnail-1.jpg" />
+    <Content Include="Utility\bootflat\img\thumbnail-2.jpg" />
+    <Content Include="Utility\bootflat\img\thumbnail-3.jpg" />
+    <Content Include="Utility\bootflat\img\thumbnail-4.jpg" />
+    <Content Include="Utility\bootflat\img\together.png" />
+    <Content Include="Utility\bootflat\img\wild_flowers.png" />
+    <Content Include="Utility\bootflat\index.html" />
+    <Content Include="Utility\bootflat\js\application.js" />
+    <Content Include="Utility\bootflat\js\bootstrap.min.js" />
+    <Content Include="Utility\bootflat\js\html5shiv.js" />
+    <Content Include="Utility\bootflat\js\jquery-1.10.1.min.js" />
+    <Content Include="Utility\bootflat\js\respond.min.js" />
+    <Content Include="Utility\bootflat\js\site.min.js" />
+    <Content Include="Utility\common.js" />
+    <Content Include="Utility\egg.js" />
+    <Content Include="Utility\flashupload\flashupload.css" />
+    <Content Include="Utility\flashupload\flashupload.js" />
+    <Content Include="Utility\globals.js" />
+    <Content Include="Utility\html2canvas.js" />
+    <Content Include="Utility\icomoon\demo-files\demo.css" />
+    <Content Include="Utility\icomoon\demo-files\demo.js" />
+    <Content Include="Utility\icomoon\demo.html" />
+    <Content Include="Utility\icomoon\fonts\icomoon.svg" />
+    <Content Include="Utility\icomoon\Read Me.txt" />
+    <Content Include="Utility\icomoon\style.css" />
+    <Content Include="Utility\iframeTools.js" />
+    <Content Include="Utility\jquery-1.6.4.min.js" />
+    <Content Include="Utility\jquery-powerFloat-min.js" />
+    <Content Include="Utility\jquery.artDialog.js" />
+    <Content Include="Utility\jquery.bigautocomplete.css" />
+    <Content Include="Utility\jquery.bigautocomplete.js" />
+    <Content Include="Utility\jquery.cookie.js" />
+    <Content Include="Utility\jquery_hashtable.js" />
+    <Content Include="Utility\pager.js" />
+    <Content Include="Utility\pics\default.jpg" />
+    <Content Include="Utility\pics\false.gif" />
+    <Content Include="Utility\pics\flash_up_ico.png" />
+    <Content Include="Utility\pics\grade.png" />
+    <Content Include="Utility\pics\headLogo.jpg" />
+    <Content Include="Utility\pics\lazy-ico.gif" />
+    <Content Include="Utility\pics\logo.jpg" />
+    <Content Include="Utility\pics\minus.gif" />
+    <Content Include="Utility\pics\mjcx.png" />
+    <Content Include="Utility\pics\none.gif" />
+    <Content Include="Utility\pics\nonestore.gif" />
+    <Content Include="Utility\pics\plus.gif" />
+    <Content Include="Utility\pics\prevNext.gif" />
+    <Content Include="Utility\pics\prevNext.png" />
+    <Content Include="Utility\pics\sel.gif" />
+    <Content Include="Utility\pics\spinner.gif" />
+    <Content Include="Utility\pics\sprevNext.gif" />
+    <Content Include="Utility\pics\sprevNext.png" />
+    <Content Include="Utility\pics\status-green.gif" />
+    <Content Include="Utility\pics\status-red.gif" />
+    <Content Include="Utility\pics\status-yellow.gif" />
+    <Content Include="Utility\pics\top_header.png" />
+    <Content Include="Utility\pics\true.gif" />
+    <Content Include="Utility\plugin.js" />
+    <Content Include="Utility\regionSelector_FileData.js" />
+    <Content Include="Utility\regionSeletor.js" />
+    <Content Include="Utility\Scratch.js" />
+    <Content Include="Utility\scroll_tools.js" />
+    <Content Include="Utility\skins\blue.css" />
+    <Content Include="Utility\skins\blue\bg.png" />
+    <Content Include="Utility\skins\blue\bg2.png" />
+    <Content Include="Utility\skins\blue\bg_css3.png" />
+    <Content Include="Utility\skins\blue\bg_css3_2.png" />
+    <Content Include="Utility\skins\blue\ie6\close.hover.png" />
+    <Content Include="Utility\skins\blue\ie6\close.png" />
+    <Content Include="Utility\skins\blue\ie6\e.png" />
+    <Content Include="Utility\skins\blue\ie6\n.png" />
+    <Content Include="Utility\skins\blue\ie6\ne.png" />
+    <Content Include="Utility\skins\blue\ie6\nw.png" />
+    <Content Include="Utility\skins\blue\ie6\s.png" />
+    <Content Include="Utility\skins\blue\ie6\se.png" />
+    <Content Include="Utility\skins\blue\ie6\sw.png" />
+    <Content Include="Utility\skins\blue\ie6\w.png" />
+    <Content Include="Utility\submmitorder.helper.js" />
+    <Content Include="Utility\swfupload\clipboard.swf" />
+    <Content Include="Utility\swfupload\DisBankgroundswfupload.js" />
+    <Content Include="Utility\swfupload\DisLogoupload.js" />
+    <Content Include="Utility\swfupload\flash_copy_btn.png" />
+    <Content Include="Utility\swfupload\flash_copy_link.jpg" />
+    <Content Include="Utility\swfupload\handlers.js" />
+    <Content Include="Utility\swfupload\lkcopy.jpg" />
+    <Content Include="Utility\swfupload\swfobject.js" />
+    <Content Include="Utility\swfupload\swfupload.js" />
+    <Content Include="Utility\swfupload\swfupload.swf" />
+    <Content Include="Utility\swfupload\swfuploadbutton.swf" />
+    <Content Include="Utility\uploadImage\jquery.form.js" />
+    <Content Include="Utility\uploadImage\uploadPreview.js" />
+    <Content Include="Utility\vgroupbuy.helper.js" />
+    <Content Include="Utility\vproduct.helper.js" />
+    <Content Include="Utility\vshoping.helper.js" />
+    <Content Include="Utility\vshopSelector\demo.htm" />
+    <Content Include="Utility\vshopSelector\jquery-1.11.0.min.js" />
+    <Content Include="Utility\vshopSelector\vshopSelector.css" />
+    <Content Include="Utility\vshopSelector\vshopSelector.js" />
+    <Content Include="Utility\WeixinApi.js" />
+    <Content Include="Utility\Window.js" />
+    <Content Include="Utility\windows.js" />
+    <Content Include="VerifyCodeImage.aspx" />
+    <Content Include="Vshop\ActivitieDetails.aspx" />
+    <Content Include="Vshop\Activities.aspx" />
+    <Content Include="Vshop\Activity.aspx" />
+    <Content Include="Vshop\ActivityDetail.aspx" />
+    <Content Include="Vshop\AddShippingAddress.aspx" />
+    <Content Include="Vshop\ApplicationDescription.aspx" />
+    <Content Include="Vshop\BalanceDrawRequesList.aspx" />
+    <Content Include="Vshop\BigWheel.aspx" />
+    <Content Include="Vshop\BrandDetail.aspx" />
+    <Content Include="Vshop\BrandList.aspx" />
+    <Content Include="Vshop\BusinessArticleDetails.aspx" />
+    <Content Include="Vshop\BusinessArticleList.aspx" />
+    <Content Include="Vshop\ChirldrenDistributors.aspx" />
+    <Content Include="Vshop\ChirldrenDistributorsDetails.aspx" />
+    <Content Include="Vshop\ChooseProducts.aspx" />
+    <Content Include="Vshop\CommissionDetails.aspx" />
+    <Content Include="Vshop\Default.aspx" />
+    <Content Include="Vshop\DistributorCenter.aspx" />
+    <Content Include="Vshop\DistributorCommission.aspx" />
+    <Content Include="Vshop\DistributorInfo.aspx" />
+    <Content Include="Vshop\DistributorOrders.aspx" />
+    <Content Include="Vshop\DistributorRegister.aspx" />
+    <Content Include="Vshop\DistributorValid.aspx" />
+    <Content Include="Vshop\EditShippingAddress.aspx" />
+    <Content Include="Vshop\Find.aspx" />
+    <Content Include="Vshop\FinishOrder.aspx" />
+    <Content Include="Vshop\FriendsCircle.aspx" />
+    <Content Include="Vshop\GetRedPager.aspx" />
+    <Content Include="Vshop\GetRedShare.aspx" />
+    <Content Include="Vshop\GetSuccess.aspx" />
+    <Content Include="Vshop\GroupBuyList.aspx" />
+    <Content Include="Vshop\GroupBuyProductDetails.aspx" />
+    <Content Include="Vshop\Helper.aspx" />
+    <Content Include="Vshop\Houtai.aspx" />
+    <Content Include="Vshop\ImageTextDetails.aspx" />
+    <Content Include="Vshop\Invite.aspx" />
+    <Content Include="Vshop\invite_complated.aspx" />
+    <Content Include="Vshop\Invite_login.aspx" />
+    <Content Include="Vshop\Invite_open.aspx" />
+    <Content Include="Vshop\Invite_success.aspx" />
+    <Content Include="Vshop\Login.aspx" />
+    <Content Include="Vshop\LoginGuide.aspx" />
+    <Content Include="Vshop\Logout.aspx" />
+    <Content Include="Vshop\MakeInvite.aspx" />
+    <Content Include="Vshop\MemberCard.aspx" />
+    <Content Include="Vshop\MemberCenter.aspx" />
+    <Content Include="Vshop\MemberCoupons.aspx" />
+    <Content Include="Vshop\MemberOrderDetails.aspx" />
+    <Content Include="Vshop\MemberOrderReturn.aspx" />
+    <Content Include="Vshop\MemberOrderReturnGoods.aspx" />
+    <Content Include="Vshop\MemberOrders.aspx" />
+    <Content Include="Vshop\My.aspx" />
+    <Content Include="Vshop\MyConsultations.aspx" />
+    <Content Include="Vshop\MyFavorites.aspx" />
+    <Content Include="Vshop\MyLogistics.aspx" />
+    <Content Include="Vshop\MyProducts.aspx" />
+    <Content Include="Vshop\MyRanking.aspx" />
+    <Content Include="Vshop\MyRedPager.aspx" />
+    <Content Include="Vshop\NameCard.aspx" />
+    <Content Include="Vshop\OrderManager.aspx" />
+    <Content Include="Vshop\PLDetails.aspx" />
+    <Content Include="Vshop\ProductConsultations.aspx" />
+    <Content Include="Vshop\ProductDescription.aspx" />
+    <Content Include="Vshop\ProductDetails.aspx" />
+    <Content Include="Vshop\ProductList.aspx" />
+    <Content Include="Vshop\ProductListAll.aspx" />
+    <Content Include="Vshop\ProductListTwo.aspx" />
+    <Content Include="Vshop\ProductReview.aspx" />
+    <Content Include="Vshop\ProductSearch.aspx" />
+    <Content Include="Vshop\ProgressCheck.aspx" />
+    <Content Include="Vshop\ProgressDetail.aspx" />
+    <Content Include="Vshop\QRcode.aspx" />
+    <Content Include="Vshop\Register.aspx" />
+    <Content Include="Vshop\RequestCommissions.aspx" />
+    <Content Include="Vshop\RequestDistributorFinish.aspx" />
+    <Content Include="Vshop\RequestReturn.aspx" />
+    <Content Include="Vshop\SaleService.aspx" />
+    <Content Include="Vshop\Scratch.aspx" />
+    <Content Include="Vshop\ShippingAddresses.aspx" />
+    <Content Include="Vshop\ShoppingCart.aspx" />
+    <Content Include="Vshop\ShoppingCartEmpty.aspx" />
+    <Content Include="Vshop\Shouyi.aspx" />
+    <Content Include="Vshop\SignUp.aspx" />
+    <Content Include="Vshop\SmashEgg.aspx" />
+    <Content Include="Vshop\SubmmitOrder.aspx" />
+    <Content Include="Vshop\Ticket.aspx" />
+    <Content Include="Vshop\Topics.aspx" />
+    <Content Include="Vshop\UserInfo.aspx" />
+    <Content Include="Vshop\UserLogin.aspx" />
+    <Content Include="Vshop\Vote.aspx" />
+    <Content Include="Vshop\Wenan.aspx" />
+    <Content Include="Vshop\WinningResults.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="wxpay.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\distributor\DistributorGradeList.aspx.cs">
+      <DependentUpon>DistributorGradeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\distributor\DistributorGradeList.aspx.designer.cs">
+      <DependentUpon>DistributorGradeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\distributor\DistributorLogo.aspx.cs">
+      <DependentUpon>DistributorLogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\distributor\DistributorLogo.aspx.designer.cs">
+      <DependentUpon>DistributorLogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\distributor\DistributorLogoUpload.aspx.cs">
+      <DependentUpon>DistributorLogoUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\distributor\DistributorLogoUpload.aspx.designer.cs">
+      <DependentUpon>DistributorLogoUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\distributor\EditDistributorGrade.aspx.cs">
+      <DependentUpon>EditDistributorGrade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\distributor\EditDistributorGrade.aspx.designer.cs">
+      <DependentUpon>EditDistributorGrade.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\distributor\SendRedpackRecord.aspx.cs">
+      <DependentUpon>SendRedpackRecord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\distributor\SendRedpackRecord.aspx.designer.cs">
+      <DependentUpon>SendRedpackRecord.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\distributor\subdistributor.aspx.cs">
+      <DependentUpon>subdistributor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\distributor\subdistributor.aspx.designer.cs">
+      <DependentUpon>subdistributor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\product\ImportFromPP.aspx.cs">
+      <DependentUpon>ImportFromPP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\product\ImportFromPP.aspx.designer.cs">
+      <DependentUpon>ImportFromPP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\product\ImportFromTB.aspx.cs">
+      <DependentUpon>ImportFromTB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\product\ImportFromTB.aspx.designer.cs">
+      <DependentUpon>ImportFromTB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\promotion\setSharePromotion.aspx.cs">
+      <DependentUpon>setSharePromotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\promotion\setSharePromotion.aspx.designer.cs">
+      <DependentUpon>setSharePromotion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\sales\Refund.aspx.cs">
+      <DependentUpon>Refund.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\sales\Refund.aspx.designer.cs">
+      <DependentUpon>Refund.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\sales\Returnsapply.aspx.cs">
+      <DependentUpon>Returnsapply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\sales\Returnsapply.aspx.designer.cs">
+      <DependentUpon>Returnsapply.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\sales\ReturnsapplyDetail.aspx.cs">
+      <DependentUpon>ReturnsapplyDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\sales\ReturnsapplyDetail.aspx.designer.cs">
+      <DependentUpon>ReturnsapplyDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\ActivitiesList.aspx.cs">
+      <DependentUpon>ActivitiesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\ActivitiesList.aspx.designer.cs">
+      <DependentUpon>ActivitiesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\ActivitiesShops.aspx.cs">
+      <DependentUpon>ActivitiesShops.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\ActivitiesShops.aspx.designer.cs">
+      <DependentUpon>ActivitiesShops.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\AddActivities.aspx.cs">
+      <DependentUpon>AddActivities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\AddActivities.aspx.designer.cs">
+      <DependentUpon>AddActivities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\AddVPGift.aspx.cs">
+      <DependentUpon>AddVPGift.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\AddVPGift.aspx.designer.cs">
+      <DependentUpon>AddVPGift.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\AddVPGiftDetail.aspx.cs">
+      <DependentUpon>AddVPGiftDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\AddVPGiftDetail.aspx.designer.cs">
+      <DependentUpon>AddVPGiftDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\EditActivities.aspx.cs">
+      <DependentUpon>EditActivities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\EditActivities.aspx.designer.cs">
+      <DependentUpon>EditActivities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\EditRedPagerActivity.aspx.cs">
+      <DependentUpon>EditRedPagerActivity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\EditRedPagerActivity.aspx.designer.cs">
+      <DependentUpon>EditRedPagerActivity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\EditVPGift.aspx.cs">
+      <DependentUpon>EditVPGift.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\EditVPGift.aspx.designer.cs">
+      <DependentUpon>EditVPGift.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\RedPagerActivityList.aspx.cs">
+      <DependentUpon>RedPagerActivityList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\RedPagerActivityList.aspx.designer.cs">
+      <DependentUpon>RedPagerActivityList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\ShowActivityUrl.aspx.cs">
+      <DependentUpon>ShowActivityUrl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\ShowActivityUrl.aspx.designer.cs">
+      <DependentUpon>ShowActivityUrl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\vshop\VPGiftList.aspx.cs">
+      <DependentUpon>VPGiftList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\vshop\VPGiftList.aspx.designer.cs">
+      <DependentUpon>VPGiftList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="distbuy\DistributorRegiest.aspx.cs">
+      <DependentUpon>DistributorRegiest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="distbuy\DistributorRegiest.aspx.designer.cs">
+      <DependentUpon>DistributorRegiest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\vshop\default\tags\skin-Common_InviteComplatedList.ascx.cs">
+      <DependentUpon>skin-Common_InviteComplatedList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Templates\vshop\default\tags\Skin-Common_OrderManager.ascx.cs">
+      <DependentUpon>Skin-Common_OrderManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vshop\Houtai.aspx.cs">
+      <DependentUpon>Houtai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vshop\My.aspx.cs">
+      <DependentUpon>My.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vshop\OrderManager.aspx.cs">
+      <DependentUpon>OrderManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vshop\Shouyi.aspx.cs">
+      <DependentUpon>Shouyi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vshop\Wenan.aspx.cs">
+      <DependentUpon>Wenan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Admin.Master" />
+    <Content Include="Admin\images\Thumbs.db" />
+    <Content Include="Admin\LoginUser.ashx" />
+    <Content Include="Admin\printtools\install_lodop32.zip" />
+    <Content Include="Admin\printtools\install_lodop_6.198.zip" />
+    <Content Include="Admin\product\ExportToYfx_aspx" />
+    <Content Include="Admin\UploadHandler.ashx" />
+    <Content Include="Admin\VsiteHandler.ashx" />
+    <Content Include="API\Files.ashx" />
+    <Content Include="API\FlashUpload.ashx" />
+    <Content Include="API\GetQRCode.ashx" />
+    <Content Include="API\TaobaoProductHandler.ashx" />
+    <Content Include="API\UpImg.ashx" />
+    <Content Include="API\VshopProcess.ashx" />
+    <Content Include="API\wx.ashx" />
+    <Content Include="API\wx.ashx.ori" />
+    <Content Include="config\BackupFiles.config" />
+    <Content Include="config\Core.config" />
+    <Content Include="config\Hishop.config" />
+    <Content Include="config\region.config" />
+    <Content Include="config\SiteSettings.config" />
+    <Content Include="config\SiteUrls.config" />
+    <Content Include="Pay\Cert\20150929073941apiclient_cert.p12" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Utility\bootflat\.gitattributes" />
+    <Content Include="Utility\bootflat\.gitignore" />
+    <Content Include="Utility\bootflat\.travis.yml" />
+    <Content Include="Utility\bootflat\angularicons\angularicons.eot" />
+    <Content Include="Utility\bootflat\angularicons\angularicons.ttf" />
+    <Content Include="Utility\bootflat\angularicons\angularicons.woff" />
+    <Content Include="Utility\bootflat\bootflat\css\bootflat.css.map" />
+    <Content Include="Utility\bootflat\bootflat\img\check_flat\default.psd" />
+    <Content Include="Utility\bootflat\bootflat\scss\.csscomb.json" />
+    <Content Include="Utility\bootflat\bootflat\scss\.csslintrc" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_accordion.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_alert.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_breadcrumb.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_button.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_button_group.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_checkbox_radio.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_dropdown.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_footer.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_form.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_global.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_jumbotron.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_label_badge.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_list.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_media_list.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_modal.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_navbar.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_pager.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_pagination.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_panel.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_pill.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_popover.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_progress.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_tab.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_thumbnail.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_tooltip.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_typography.scss" />
+    <Content Include="Utility\bootflat\bootflat\scss\bootflat\_well.scss" />
+    <Content Include="Utility\bootflat\bower.json" />
+    <Content Include="Utility\bootflat\composer.json" />
+    <Content Include="Utility\bootflat\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Utility\bootflat\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Utility\bootflat\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Utility\bootflat\js\site.min.map" />
+    <Content Include="Utility\bootflat\LICENSE" />
+    <Content Include="Utility\bootflat\package.json" />
+    <Content Include="Utility\bootflat\README.markdown" />
+    <Content Include="Utility\bootflat\_config.yml" />
+    <Content Include="Utility\icomoon\fonts\icomoon.eot" />
+    <Content Include="Utility\icomoon\fonts\icomoon.ttf" />
+    <Content Include="Utility\icomoon\fonts\icomoon.woff" />
+    <Content Include="Utility\icomoon\icomoon.font" />
+    <Content Include="Utility\icomoon\selection.json" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Storage\data\Backup\" />
+    <Folder Include="Storage\data\express\" />
+    <Folder Include="Storage\data\FriendExtension\" />
+    <Folder Include="Storage\data\grade\images\" />
+    <Folder Include="Storage\data\grade\thumbs100\" />
+    <Folder Include="Storage\data\grade\thumbs160\" />
+    <Folder Include="Storage\data\grade\thumbs180\" />
+    <Folder Include="Storage\data\grade\thumbs220\" />
+    <Folder Include="Storage\data\grade\thumbs310\" />
+    <Folder Include="Storage\data\grade\thumbs40\" />
+    <Folder Include="Storage\data\grade\thumbs410\" />
+    <Folder Include="Storage\data\grade\thumbs60\" />
+    <Folder Include="Storage\data\Hishop\" />
+    <Folder Include="Storage\data\paipai\" />
+    <Folder Include="Storage\data\Sharp\" />
+    <Folder Include="Storage\data\taobao\" />
+    <Folder Include="Storage\data\yfx\" />
+    <Folder Include="Storage\master\article\" />
+    <Folder Include="Storage\master\banner\" />
+    <Folder Include="Storage\master\fckfiles\" />
+    <Folder Include="Storage\master\gallery\201308\" />
+    <Folder Include="Storage\master\gallery\201309\" />
+    <Folder Include="Storage\master\gallery\201401\" />
+    <Folder Include="Storage\master\gift\images\" />
+    <Folder Include="Storage\master\gift\thumbs100\" />
+    <Folder Include="Storage\master\gift\thumbs160\" />
+    <Folder Include="Storage\master\gift\thumbs180\" />
+    <Folder Include="Storage\master\gift\thumbs220\" />
+    <Folder Include="Storage\master\gift\thumbs310\" />
+    <Folder Include="Storage\master\gift\thumbs40\" />
+    <Folder Include="Storage\master\gift\thumbs410\" />
+    <Folder Include="Storage\master\gift\thumbs60\" />
+    <Folder Include="Storage\master\help\" />
+    <Folder Include="Storage\master\navigate\" />
+    <Folder Include="Storage\master\productsubject\" />
+    <Folder Include="Storage\master\product\qrcode\" />
+    <Folder Include="Storage\master\reply\" />
+    <Folder Include="Storage\master\sku\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASPNET.WebControls\ASPNET.WebControls.csproj">
+      <Project>{f0da0440-2739-482a-8f9b-651d9aa06eca}</Project>
+      <Name>ASPNET.WebControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlPanel\ControlPanel.csproj">
+      <Project>{fc8aed53-44fa-40a9-96ae-bbfc8c8effa7}</Project>
+      <Name>ControlPanel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Core\Hidistro.Core.csproj">
+      <Project>{4f98dddb-c05a-4a71-8400-bc5f790cc8df}</Project>
+      <Name>Hidistro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Entities\Hidistro.Entities.csproj">
+      <Project>{71e1154b-e640-414d-aa73-57a7f4589ba2}</Project>
+      <Name>Hidistro.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Jobs\Hidistro.Jobs.csproj">
+      <Project>{4c9accea-5b98-4c38-91d0-ad6614298973}</Project>
+      <Name>Hidistro.Jobs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Messages\Hidistro.Messages.csproj">
+      <Project>{1228793d-e2af-482c-a9bb-dfe76d6bdb8c}</Project>
+      <Name>Hidistro.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.SaleSystem.Vshop\Hidistro.SaleSystem.Vshop.csproj">
+      <Project>{9996ff6b-6624-42b7-bcd4-7234a7e9493b}</Project>
+      <Name>Hidistro.SaleSystem.Vshop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.SqlDal\Hidistro.SqlDal.csproj">
+      <Project>{962e890e-facf-4ede-bad0-d5818cbff4ba}</Project>
+      <Name>Hidistro.SqlDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.Common.Controls\Hidistro.UI.Common.Controls.csproj">
+      <Project>{532e98e3-5752-43df-934e-5eb49ff11e48}</Project>
+      <Name>Hidistro.UI.Common.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.Common.Validator\Hidistro.UI.Common.Validator.csproj">
+      <Project>{c84ae1ae-969f-4168-90b9-5a3320878f4c}</Project>
+      <Name>Hidistro.UI.Common.Validator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.ControlPanel.Utility\Hidistro.UI.ControlPanel.Utility.csproj">
+      <Project>{b477e491-2a69-47e5-bd2d-a4b8cc585da9}</Project>
+      <Name>Hidistro.UI.ControlPanel.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.SaleSystem.CodeBehind\Hidistro.UI.SaleSystem.CodeBehind.csproj">
+      <Project>{4b9881a1-a3a3-4da0-88ae-beb726e6ff4b}</Project>
+      <Name>Hidistro.UI.SaleSystem.CodeBehind</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.SaleSystem.Tags\Hidistro.UI.SaleSystem.Tags.csproj">
+      <Project>{7c9b9d24-47ef-4809-ac7a-5f4f17349266}</Project>
+      <Name>Hidistro.UI.SaleSystem.Tags</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.UI.Web\Hidistro.UI.Web.csproj">
+      <Project>{1607af93-ad41-4c8b-94e2-edf02c1d0c3c}</Project>
+      <Name>Hidistro.UI.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.Components.Validation\Hishop.Components.Validation.csproj">
+      <Project>{8e0fb795-0e87-49e0-85ef-948cc144eded}</Project>
+      <Name>Hishop.Components.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.Plugins\Hishop.Plugins.csproj">
+      <Project>{672cf77b-93c2-4453-8917-e81585968f32}</Project>
+      <Name>Hishop.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.TransferManager\Hishop.TransferManager.csproj">
+      <Project>{769a8533-d812-4cf1-a7a0-bef5726f840e}</Project>
+      <Name>Hishop.TransferManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.Weixin.MP\Hishop.Weixin.MP.csproj">
+      <Project>{db5c7311-e270-4368-af5a-dc813eb28c8b}</Project>
+      <Name>Hishop.Weixin.MP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.Weixin.Pay\Hishop.Weixin.Pay.csproj">
+      <Project>{b4748d12-1c8a-4243-971b-6cc5d603664c}</Project>
+      <Name>Hishop.Weixin.Pay</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3491/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

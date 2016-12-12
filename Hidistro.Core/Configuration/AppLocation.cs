@@ -58,7 +58,8 @@
                         XmlAttributeCollection attributes2 = node2.Attributes;
                         if (attributes2 != null)
                         {
-                            string pattern = Globals.ApplicationPath + attributes2["pattern"].Value;
+                            //string pattern = Globals.ApplicationPath + attributes2["pattern"].Value;
+                            string pattern = attributes2["pattern"].Value;
                             string name = attributes2["name"].Value;
                             ApplicationType appType = (ApplicationType) Enum.Parse(typeof(ApplicationType), attributes2["type"].Value, true);
                             location.Add(new HiApplication(pattern, name, appType));
