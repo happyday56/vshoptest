@@ -80,7 +80,6 @@ function ResetSkuRowClass(skuRowId, skuSelectId) {
 
 function ResetCurrentSku(skuId, sku, weight, stock, salePrice) {
     $("#hiddenSkuId").val(skuId);
-    alert(salePrice);
     $(".spSalaPrice").html(salePrice);
     if (!isNaN(parseInt(stock))) {
         $("#spStock").html(stock);

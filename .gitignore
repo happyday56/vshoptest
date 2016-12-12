@@ -4,3 +4,4 @@ debug/
 obj/
 web/bin/
 *.suo
+web/Storage/
