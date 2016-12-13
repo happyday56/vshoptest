@@ -2,7 +2,8 @@
 log/
 debug/
 obj/
-web/bin/
 *.suo
+web/bin/
 web/Storage/
 web2/bin/
+web2/Storage/
