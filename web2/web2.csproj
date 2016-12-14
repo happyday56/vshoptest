@@ -2282,6 +2282,7 @@
     <Content Include="Utility\icomoon\fonts\icomoon.woff" />
     <Content Include="Utility\icomoon\icomoon.font" />
     <Content Include="Utility\icomoon\selection.json" />
+    <None Include="Properties\PublishProfiles\x.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
