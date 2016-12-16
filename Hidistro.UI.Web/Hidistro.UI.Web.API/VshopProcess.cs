@@ -24,6 +24,8 @@ using NewLife.Log;
 using Hidistro.ControlPanel.Members;
 using Hidistro.ControlPanel.Sales;
 using Hidistro.ControlPanel.Store;
+using Hidistro.ControlPanel.Commodities;
+using LitJson;
 
 namespace Hidistro.UI.Web.API
 {
@@ -176,6 +178,9 @@ namespace Hidistro.UI.Web.API
                     break;
                 case "SetPrintBatch":
                     this.SetPrintBatch(context);
+                    break;
+                case "GetSecondThreeCategory":
+                    this.GetSecondThreeCategory(context);
                     break;
             }
         }
@@ -1825,7 +1830,7 @@ namespace Hidistro.UI.Web.API
                 string skuId = string.IsNullOrEmpty(context.Request["productSkuId"]) ? "" : context.Request["productSkuId"];
                 int productId = int.Parse(context.Request["productId"], System.Globalization.NumberStyles.None);
                 int categoryId = int.Parse(context.Request["categoryid"], NumberStyles.None);
-                
+
                 int skuStock = ShoppingCartProcessor.GetSkuStock(skuId);
 
                 int skuIdIsBuyNum = ProductBrowser.CheckProductSkuIsBuy(productId, MemberProcessor.GetCurrentMember().UserId, skuId);
@@ -2843,6 +2848,14 @@ namespace Hidistro.UI.Web.API
             }
             builder.Append("}");
             context.Response.Write(builder.ToString());
+        }
+
+        private void GetSecondThreeCategory(System.Web.HttpContext context)
+        {
+            int categoryId = int.Parse(context.Request["id"]);
+            IList<CategoryInfo> list = CatalogHelper.getChildrenList(categoryId);
+            string result = JsonMapper.ToJson(list);
+            context.Response.Write(result); 
         }
     }
 }

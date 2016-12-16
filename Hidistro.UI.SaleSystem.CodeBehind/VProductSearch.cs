@@ -27,7 +27,7 @@
             this.rptProducts = (VshopTemplatedRepeater) this.FindControl("rptProducts");
             this.rptCategories = (VshopTemplatedRepeater) this.FindControl("rptCategories");
             this.Page.Session["stylestatus"] = "4";
-            this.rptCategories.ItemDataBound += new RepeaterItemEventHandler(this.rptCategories_ItemDataBound);
+            //this.rptCategories.ItemDataBound += new RepeaterItemEventHandler(this.rptCategories_ItemDataBound);
             IList<CategoryInfo> maxSubCategories = CategoryBrowser.GetMaxSubCategories(this.categoryId, 0x3e8);
             this.rptCategories.DataSource = maxSubCategories;
             this.rptCategories.DataBind();
@@ -43,21 +43,21 @@
             base.OnInit(e);
         }
 
-        private void rptCategories_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if ((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem))
-            {
-                Literal literal = (Literal) e.Item.Controls[0].FindControl("litpromotion");
-                if (!string.IsNullOrEmpty(literal.Text))
-                {
-                    literal.Text = "<img src='" + literal.Text + "'></img>";
-                }
-                else
-                {
-                    literal.Text = "<img src='/Storage/master/default.png'></img>";
-                }
-            }
-        }
+        //private void rptCategories_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        //{
+        //    if ((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem))
+        //    {
+        //        Literal literal = (Literal) e.Item.Controls[0].FindControl("litpromotion");
+        //        if (!string.IsNullOrEmpty(literal.Text))
+        //        {
+        //            literal.Text = "<img src='" + literal.Text + "'></img>";
+        //        }
+        //        else
+        //        {
+        //            literal.Text = "<img src='/Storage/master/default.png'></img>";
+        //        }
+        //    }
+        //}
     }
 }
 

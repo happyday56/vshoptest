@@ -326,9 +326,9 @@
 
                     List<CategoryInfo> subList = new List<CategoryInfo>();
                     DataRow[]   threeRow =  GetCategories().Select("ParentCategoryId=" + towCategory.CategoryId);
-                    for (int j = 0; j < threeRow.Length; i++)
+                    for (int j = 0; j < threeRow.Length; j++)
                     {
-                        subList.Add(DataMapper.ConvertDataRowToProductCategory(threeRow[i]));
+                        subList.Add(DataMapper.ConvertDataRowToProductCategory(threeRow[j]));
                     }
                     towCategory.subList = subList;
                     list.Add(towCategory);
