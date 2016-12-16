@@ -1065,6 +1065,7 @@
     <Content Include="plugins\sms\Hishop.Plugins.SMS.dll" />
     <Content Include="plugins\transfer\Hishop.Transfers.dll" />
     <Content Include="ResourceNotFound.aspx" />
+    <Content Include="sql\updateqyh.sql" />
     <Content Include="Storage\data\DistributorBackgroundPic\5ff0405f0d5c46b39d0c1089c9c2bc9d.png" />
     <Content Include="Storage\data\DistributorBackgroundPic\6cbb6662162145c8bec161865f3e8865.png" />
     <Content Include="Storage\data\DistributorBackgroundPic\a12bf15297224383948b872fce9270b9.png" />

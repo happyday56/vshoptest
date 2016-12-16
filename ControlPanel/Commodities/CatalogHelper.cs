@@ -308,6 +308,34 @@
         {
             return new CategoryDao().SetHasChildren(categoryId, hasChildren);
         }
+
+
+        /// <summary>
+        /// 获取所有的子分类 12.16
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        public static IList<CategoryInfo> getChildrenList(int categoryId)
+        {
+            IList<CategoryInfo> list = new List<CategoryInfo>();
+            DataRow[] towRow = GetCategories().Select("ParentCategoryId=" + categoryId);
+                for (int i = 0; i < towRow.Length; i++)
+                {
+                    CategoryInfo towCategory = DataMapper.ConvertDataRowToProductCategory(towRow[i]);
+
+
+                    List<CategoryInfo> subList = new List<CategoryInfo>();
+                    DataRow[]   threeRow =  GetCategories().Select("ParentCategoryId=" + towCategory.CategoryId);
+                    for (int j = 0; j < threeRow.Length; i++)
+                    {
+                        subList.Add(DataMapper.ConvertDataRowToProductCategory(threeRow[i]));
+                    }
+                    towCategory.subList = subList;
+                    list.Add(towCategory);
+                }
+          
+            return list; 
+        }
     }
 }
 

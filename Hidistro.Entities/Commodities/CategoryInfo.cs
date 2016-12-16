@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Hidistro.Core;
 using Hishop.Components.Validation;
 using Hishop.Components.Validation.Validators;
+using System.Collections.Generic;
 
 namespace Hidistro.Entities.Commodities
 {
@@ -102,6 +103,8 @@ namespace Hidistro.Entities.Commodities
         public string CoverUrl { get; set; }
 
         public int IsDisplayHome { get; set; }
+
+        public List<CategoryInfo> subList { get; set; }
     }
 }
 

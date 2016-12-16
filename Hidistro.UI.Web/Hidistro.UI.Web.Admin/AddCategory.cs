@@ -155,9 +155,9 @@ namespace Hidistro.UI.Web.Admin
 			if (target.ParentCategoryId.HasValue)
 			{
 				CategoryInfo category = CatalogHelper.GetCategory(target.ParentCategoryId.Value);
-				if (category != null && category.Depth >=2)
+				if (category != null && category.Depth >=3)
 				{
-					this.ShowMsg(string.Format("您选择的上级分类有误，商品分类最多只支持{0}级分类", 2), false);
+					this.ShowMsg(string.Format("您选择的上级分类有误，商品分类最多只支持{0}级分类", 3), false);
 					result2 = null;
 					return result2;
 				}

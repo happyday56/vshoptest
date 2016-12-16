@@ -841,6 +841,18 @@
             return new ProductDao().UpdateProductLetter(product);
         }
 
+        /// <summary>
+        /// 移动商品到指定分类 12.16
+        /// </summary>
+        /// <param name="productIds"></param>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        public static bool MoveProductToCategory(string productIds,int categoryId)
+        {
+            CategoryInfo category = new CategoryDao().GetCategory(categoryId);
+            if (category == null) return false;
+            return new ProductBatchDao().UpdateCategoryIdAndMainCategoryPath(productIds, categoryId, category.Path + "|");
+        }
     }
 }
 

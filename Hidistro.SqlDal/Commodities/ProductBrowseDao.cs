@@ -170,7 +170,7 @@
                 CategoryInfo category = new CategoryDao().GetCategory(categoryId.Value);
                 if (category != null)
                 {
-                    builder2.AppendFormat(" AND ( MainCategoryPath LIKE '{0}|%' OR ExtendCategoryPath LIKE '{0}|%') ", category.Path);
+                    builder2.AppendFormat(" AND MainCategoryPath LIKE '{0}|%' ", category.Path);
                 }
             }
             if (!string.IsNullOrEmpty(keyWord))

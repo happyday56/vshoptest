@@ -366,6 +366,21 @@
             DbCommand sqlStringCommand = this.database.GetSqlStringCommand(string.Format("UPDATE Hishop_Products SET VistiCounts = VistiCounts + 1 WHERE ProductId = {0}", productId));
             return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
         }
+
+        /// <summary>
+        /// 批量更新商品的分类和分类路径
+        /// </summary>
+        /// <param name="productIds"></param>
+        /// <param name="categoryId"></param>
+        /// <param name="mainCategoryPath"></param>
+        /// <returns></returns>
+        public bool UpdateCategoryIdAndMainCategoryPath(string productIds, int categoryId, string mainCategoryPath)
+        {
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(string.Format("UPDATE Hishop_Products SET CategoryId={1},MainCategoryPath='{2}' WHERE ProductId IN ({0})"
+                , DataHelper.CleanSearchString(productIds), categoryId,mainCategoryPath));
+            return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
+        }
+
     }
 }
 
