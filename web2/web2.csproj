@@ -1759,7 +1759,7 @@
     <Content Include="Vshop\Vote.aspx" />
     <Content Include="Vshop\Wenan.aspx" />
     <Content Include="Vshop\WinningResults.aspx" />
-    <Content Include="Web.config" />
+    <None Include="Web.config" />
     <None Include="wxpay.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -1984,7 +1984,6 @@
     <None Include="config\region.config" />
     <None Include="config\SiteSettings.config" />
     <None Include="config\SiteUrls.config" />
-    <Content Include="Pay\Cert\20150929073941apiclient_cert.p12" />
     <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.woff" />
