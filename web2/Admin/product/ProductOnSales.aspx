@@ -102,6 +102,7 @@
                                 <option value="11">调整显示销售数量</option>
                                 <option value="12">调整库存</option>
                                 <option value="13">调整会员零售价</option>
+                                <option value="20">移动商品到分类</option>
                                 <%-- <option value="15">调整商品关联标签</option>--%>
                             </select>
                         </li>
@@ -306,6 +307,9 @@
                         formtype = "tag";
                         setArryText('ctl00_contentHolder_txtProductTag', "");
                         DialogShow("设置商品标签", "producttag", "divTagsProduct", "ctl00_contentHolder_btnUpdateProductTags");
+                        break;
+                    case "20":
+                        DialogFrame("product/SelectCategory.aspx?type=moveProductToCategory&ProductIds=" + productIds, "移动商品到分离", 1200, 600);
                         break;
                 }
             }

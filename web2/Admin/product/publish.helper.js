@@ -170,21 +170,50 @@ function GotoNext() {
     }
 
     nextButton.attr("disabled", "disabled");
-    var form = document.forms.item(0);
-    form.method = "post";
-    var url;
-    if (productId != "" && productId.length > 0)
-        url = form.action = "editproduct.aspx?categoryId=" + selectedCategoryId + "&productId=" + productId;
+
+    if (type == "moveProductToCategory")
+    { 
+        var ProductIds = GetQueryString("ProductIds");
+        var url = '/API/VshopProcess.ashx';
+        $.ajax({
+            type: "post",
+            url: url,
+            data: { action: 'MoveToCategory', categoryId: selectedCategoryId, productIds: ProductIds },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data.Status == "OK") {
+                    alert("转移成功");
+                    var win = art.dialog.open.origin;
+                    win.location.reload();
+                } else {
+                    alert("操作失败");
+                }
+            }
+        });
+    }
     else
-        url = form.action = "addproduct.aspx?categoryId=" + selectedCategoryId
-    url += '&time='+(new Date()).getTime().toString();
-    location.replace(url);
+    {
+        var form = document.forms.item(0);
+        form.method = "post";
+        var url;
+        if (productId != "" && productId.length > 0)
+            url = form.action = "editproduct.aspx?categoryId=" + selectedCategoryId + "&productId=" + productId;
+        else
+            url = form.action = "addproduct.aspx?categoryId=" + selectedCategoryId
+        url += '&time=' + (new Date()).getTime().toString();
+        location.replace(url);
+    }
     //    form.submit();
 
 }
 
+var type = GetQueryString("type");
 // 初始化操作
 $(document).ready(function () {
+    if (type == "moveProductToCategory") $("#btnNext").val("确定转移");
+
+
     placeHolder = $(".results_ol");
     nextButton = $("#btnNext");
     lblFullname = $("#fullName");

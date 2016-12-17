@@ -60,8 +60,8 @@
 		<PageLink  Title="批量导出商品" privilege="3021" Link="product/exporttotb.aspx"/>-->
     </Item>
     <Item Title="商品配置">
-      <PageLink  Title="类型配置" privilege="3005" Link="product/producttypes.aspx"/>
-      <PageLink  Title="分类配置" privilege="3009" Link="product/managecategories.aspx"/>
+      <PageLink  Title="供应商配置" privilege="3005" Link="product/producttypes.aspx"/>
+      <PageLink  Title="专区配置" privilege="3009" Link="product/managecategories.aspx"/>
       <PageLink  Title="品牌配置" Link="product/brandcategories.aspx"/>
     </Item>
     <Item Title="客户反馈">

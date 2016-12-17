@@ -182,6 +182,11 @@ namespace Hidistro.UI.Web.API
                 case "GetSecondThreeCategory":
                     this.GetSecondThreeCategory(context);
                     break;
+
+                case "MoveToCategory":
+                    this.MoveToCategory(context)      ;
+                    break;
+    
             }
         }
 
@@ -2857,5 +2862,28 @@ namespace Hidistro.UI.Web.API
             string result = JsonMapper.ToJson(list);
             context.Response.Write(result); 
         }
+
+        /// <summary>
+        /// 12.17
+        /// </summary>
+        /// <param name="context"></param>
+        private void  MoveToCategory(System.Web.HttpContext context)    
+            {
+             string productIds = context.Request["productIds"];
+            int categoryId = int.Parse(context.Request["categoryId"]);
+            
+             System.Text.StringBuilder builder = new System.Text.StringBuilder();
+             builder.Append("{");
+             if ( ProductHelper.MoveProductToCategory(productIds,categoryId))
+             {
+                 builder.Append("\"Status\":\"OK\"");
+             }
+             else
+             {
+                 builder.Append("\"Status\":\"Error\"");
+             }
+             builder.Append("}");
+             context.Response.Write(builder.ToString());
+          }
     }
 }

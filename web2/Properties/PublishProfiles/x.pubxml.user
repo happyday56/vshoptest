@@ -1805,43 +1805,43 @@
       <publishTime>12/13/2016 16:19:52</publishTime>
     </File>
     <File Include="bin/ControlPanel.dll">
-      <publishTime>12/13/2016 16:19:54</publishTime>
+      <publishTime>12/17/2016 09:18:05</publishTime>
     </File>
     <File Include="bin/Hidistro.Core.dll">
       <publishTime>12/13/2016 16:19:52</publishTime>
     </File>
     <File Include="bin/Hidistro.Entities.dll">
-      <publishTime>12/13/2016 16:19:53</publishTime>
+      <publishTime>12/17/2016 09:18:03</publishTime>
     </File>
     <File Include="bin/Hidistro.Jobs.dll">
-      <publishTime>12/13/2016 16:19:55</publishTime>
+      <publishTime>12/17/2016 09:18:05</publishTime>
     </File>
     <File Include="bin/Hidistro.Messages.dll">
-      <publishTime>12/13/2016 16:19:54</publishTime>
+      <publishTime>12/17/2016 09:18:04</publishTime>
     </File>
     <File Include="bin/Hidistro.SaleSystem.Vshop.dll">
-      <publishTime>12/13/2016 16:19:54</publishTime>
+      <publishTime>12/17/2016 09:18:05</publishTime>
     </File>
     <File Include="bin/Hidistro.SqlDal.dll">
-      <publishTime>12/13/2016 16:19:53</publishTime>
+      <publishTime>12/17/2016 09:18:04</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.Common.Controls.dll">
-      <publishTime>12/13/2016 16:19:55</publishTime>
+      <publishTime>12/17/2016 09:18:06</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.Common.Validator.dll">
       <publishTime>12/13/2016 16:19:53</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.ControlPanel.Utility.dll">
-      <publishTime>12/13/2016 16:19:55</publishTime>
+      <publishTime>12/17/2016 09:18:06</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.SaleSystem.CodeBehind.dll">
-      <publishTime>12/13/2016 16:19:56</publishTime>
+      <publishTime>12/17/2016 09:18:07</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.SaleSystem.Tags.dll">
-      <publishTime>12/13/2016 16:19:55</publishTime>
+      <publishTime>12/17/2016 09:18:06</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.Web.dll">
-      <publishTime>12/13/2016 16:19:57</publishTime>
+      <publishTime>12/17/2016 09:18:08</publishTime>
     </File>
     <File Include="bin/Hishop.Components.Validation.dll">
       <publishTime>12/13/2016 16:19:52</publishTime>
@@ -1886,7 +1886,7 @@
       <publishTime>12/13/2016 10:51:12</publishTime>
     </File>
     <File Include="bin/web2.dll">
-      <publishTime>12/13/2016 16:19:58</publishTime>
+      <publishTime>12/17/2016 09:18:09</publishTime>
     </File>
     <File Include="config/BackupFiles.config">
       <publishTime>12/13/2016 10:51:13</publishTime>
@@ -3117,6 +3117,9 @@
     </File>
     <File Include="ResourceNotFound.aspx">
       <publishTime>12/13/2016 10:51:12</publishTime>
+    </File>
+    <File Include="sql/updateqyh.sql">
+      <publishTime>12/16/2016 13:57:14</publishTime>
     </File>
     <File Include="Storage/data/DistributorBackgroundPic/5ff0405f0d5c46b39d0c1089c9c2bc9d.png">
       <publishTime>12/13/2016 10:51:12</publishTime>
@@ -4637,7 +4640,7 @@
       <publishTime>12/13/2016 10:51:13</publishTime>
     </File>
     <File Include="Templates/vshop/default/skin-vProductSearch.html">
-      <publishTime>12/13/2016 10:51:13</publishTime>
+      <publishTime>12/17/2016 09:17:26</publishTime>
     </File>
     <File Include="Templates/vshop/default/skin-vProgressCheck.html">
       <publishTime>12/13/2016 10:51:13</publishTime>
@@ -5099,7 +5102,7 @@
       <publishTime>12/13/2016 10:51:13</publishTime>
     </File>
     <File Include="Templates/vshop/default/tags/skin-Common_Categories.ascx">
-      <publishTime>12/13/2016 10:51:13</publishTime>
+      <publishTime>12/17/2016 09:17:26</publishTime>
     </File>
     <File Include="Templates/vshop/default/tags/Skin-Common_ChooseProducts.ascx">
       <publishTime>12/13/2016 10:51:13</publishTime>
@@ -6092,7 +6095,7 @@
       <publishTime>12/13/2016 10:51:13</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/13/2016 16:19:59</publishTime>
+      <publishTime>12/17/2016 09:18:11</publishTime>
     </File>
     <File Include="wxpay.xml">
       <publishTime>12/13/2016 10:51:13</publishTime>
