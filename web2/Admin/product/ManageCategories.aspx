@@ -13,12 +13,12 @@
         <div class="title">
             <em>
                 <img src="../images/03.gif" width="32" height="32" /></em>
-            <h1>商品分类管理</h1>
-            <span>管理店铺的商品分类.您可以添加、编辑、删除商品分类</span>
+            <h1>专区管理</h1>
+            <span>管理店铺的专区.您可以添加、编辑、删除专区</span>
         </div>
         <!-- 添加按钮-->
         <div class="btn">
-            <a href="AddCategory.aspx" class="submit_jia">添加新商品分类</a>
+            <a href="AddCategory.aspx" class="submit_jia">添加新专区</a>
         </div>
         <!--结束-->
         <!--数据列表区域-->
@@ -194,7 +194,7 @@
             if (categroyId != null && parseInt(categroyId) > 0) {
                 DialogFrame("product/DisplaceCategory.aspx?CategoryId=" + categroyId, "转移商品", 530, 270);
             } else {
-                alert("请选择要转移商品的商品分类！");
+                alert("请选择要转移商品的专区！");
             }
         }
 

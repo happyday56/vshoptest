@@ -487,6 +487,7 @@
     <Content Include="Admin\product\EditSpecification.aspx" />
     <Content Include="Admin\product\EditSpecificationValues.aspx" />
     <Content Include="Admin\product\EditStocks.aspx" />
+    <Content Include="Admin\product\EditVirtualPointRate.aspx" />
     <Content Include="Admin\product\ExportToPP.aspx" />
     <Content Include="Admin\product\ExportToTB.aspx" />
     <Content Include="Admin\product\grade.price.helper.js" />
@@ -1260,6 +1261,7 @@
     <Content Include="Templates\vshop\default\script\WeixinApi.js" />
     <Content Include="Templates\vshop\default\script\WeiXinShare.js" />
     <Content Include="Templates\vshop\default\Skin-BalanceDrawRequesList.html" />
+    <Content Include="Templates\vshop\default\Skin-vBindMobile.html" />
     <Content Include="Templates\vshop\default\Skin-ChooseProducts.html" />
     <Content Include="Templates\vshop\default\Skin-DistributorCenter.html" />
     <Content Include="Templates\vshop\default\Skin-DistributorCommission.html" />
@@ -1675,6 +1677,7 @@
     <Content Include="Vshop\ApplicationDescription.aspx" />
     <Content Include="Vshop\BalanceDrawRequesList.aspx" />
     <Content Include="Vshop\BigWheel.aspx" />
+    <Content Include="Vshop\BindMobile.aspx" />
     <Content Include="Vshop\BrandDetail.aspx" />
     <Content Include="Vshop\BrandList.aspx" />
     <Content Include="Vshop\BusinessArticleDetails.aspx" />
@@ -1759,7 +1762,9 @@
     <Content Include="Vshop\Vote.aspx" />
     <Content Include="Vshop\Wenan.aspx" />
     <Content Include="Vshop\WinningResults.aspx" />
-    <None Include="Web.config" />
+    <None Include="Web.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="wxpay.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -2146,7 +2151,7 @@
           <IISUrl>http://localhost:3491/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://www.b.com</CustomServerUrl>
+          <CustomServerUrl>http://www.xunfuli.net</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

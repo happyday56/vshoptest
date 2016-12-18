@@ -340,11 +340,10 @@ using System.Text.RegularExpressions;
 using Hidistro.UI.ControlPanel.Utility;
 using LitJson;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using Hidistro.ControlPanel.Store;
 
 namespace Hidistro.UI.Web.Admin
 {
-    using Hidistro.ControlPanel.Store;
-
     public class FileManagerJson : AdminPage
     {
         private string dir = "image";

@@ -10,7 +10,7 @@
       <div class="columnright">
           <div class="title">
             <em><img src="../images/03.gif" width="32" height="32" /></em>
-            <h1>添加商品分类</h1>
+            <h1>添加专区</h1>
             <span class="font">为不同类型的商品创建不同的分类，方便您管理也方便顾客浏览</span>
       </div>
           <div class="formitem validator2">

@@ -170,6 +170,25 @@ namespace Hidistro.UI.Common.Controls
 
                 if (null != oAuth2Attr)
                 {
+                    //12.18
+                    if (oAuth2Attr.WeiXinOAuthPage != WeiXinOAuthPage.VBindMobile && String.IsNullOrEmpty( currentMember.CellPhone))
+                    {
+
+                         int ReferralUserId = (null == currentMember ? 0 : currentMember.ReferralUserId);// GetReferralUserId();
+
+                        //跳转过来的URL
+                        Uri urlReferrer = HttpContext.Current.Request.UrlReferrer;
+
+                        string returnUrl = HttpContext.Current.Request.Url.ToString();
+
+                        if (ReferralUserId > 0 )
+                        {
+                            returnUrl += returnUrl.Contains("?") ? "&ReferralUserId=" + ReferralUserId.ToString() : "?ReferralUserId=" + ReferralUserId.ToString();
+                        }
+                        Page.Response.Redirect("~/vshop/BindMobile.aspx?returnUrl="+Globals.UrlEncode(returnUrl), true);
+                        return;
+                    }
+
                     switch (oAuth2Attr.WeiXinOAuthPage)
                     {
                         case WeiXinOAuthPage.VLogin:

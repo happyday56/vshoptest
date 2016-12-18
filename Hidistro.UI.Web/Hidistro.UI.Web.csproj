@@ -211,6 +211,9 @@
     <Compile Include="Hidistro.UI.Web.Admin.product\EditStocks.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Hidistro.UI.Web.Admin.product\EditVirtualPointRate.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Hidistro.UI.Web.Admin.product\ExportToPP.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

@@ -219,6 +219,11 @@
             }
             return flag;
         }
+
+        public static bool updateCellPhone(int userid, string CellPhone)
+        {
+            return new MemberDao().updateCellPhone(userid,CellPhone);
+        }
     }
 }
 

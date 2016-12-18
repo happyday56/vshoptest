@@ -451,7 +451,19 @@
             return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
         }
 
-        
+        /// <summary>
+        ///   12.18
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <param name="CellPhone"></param>
+        /// <returns></returns>
+        public bool updateCellPhone(int userid, string CellPhone)
+        {
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand("UPDATE aspnet_Members SET CellPhone = @CellPhone  WHERE UserId = @UserId");
+            this.database.AddInParameter(sqlStringCommand, "CellPhone", DbType.String, CellPhone);
+            this.database.AddInParameter(sqlStringCommand, "UserId", DbType.Int32, userid);
+            return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
+        }
     }
 }
 

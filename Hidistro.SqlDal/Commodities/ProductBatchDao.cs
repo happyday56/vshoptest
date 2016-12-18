@@ -63,7 +63,7 @@
 
         public DataTable GetProductBaseInfo(string productIds)
         {
-            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(string.Format("SELECT ProductId, ProductName, ProductCode, MarketPrice, ThumbnailUrl40, SaleCounts, ShowSaleCounts FROM Hishop_Products WHERE ProductId IN ({0})", DataHelper.CleanSearchString(productIds)));
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(string.Format("SELECT ProductId, ProductName, ProductCode, MarketPrice, ThumbnailUrl40, SaleCounts, ShowSaleCounts,VirtualPointRate FROM Hishop_Products WHERE ProductId IN ({0})", DataHelper.CleanSearchString(productIds)));
             using (IDataReader reader = this.database.ExecuteReader(sqlStringCommand))
             {
                 return DataHelper.ConverDataReaderToDataTable(reader);
@@ -381,6 +381,38 @@
             return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
         }
 
+
+        /// <summary>
+        /// 批量更新金贝使用率 2016.12.18
+        /// </summary>
+        /// <param name="productIds"></param>
+        /// <param name="virtualPointRate"></param>
+        /// <returns></returns>
+        public bool UpdateVirtualPointRate(string productIds, decimal virtualPointRate)
+        {
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(string.Format("UPDATE Hishop_Products SET VirtualPointRate = {0} WHERE ProductId IN ({1})"
+                , virtualPointRate, productIds));
+            return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
+        }
+
+        public bool AddVirtualPointRate(string productIds, decimal virtualPointRate)
+        {
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(string.Format("UPDATE Hishop_Products SET VirtualPointRate = VirtualPointRate+{0} WHERE ProductId IN ({1})"
+                , virtualPointRate, productIds));
+            return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
+        }
+
+
+        public bool UpdateVirtualPointRate(Dictionary<string, decimal> skuVirtualPointRates)
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var item in skuVirtualPointRates)
+            {
+                builder.AppendFormat(" UPDATE Hishop_Products SET VirtualPointRate = {0} WHERE ProductId = {1}", item.Value, item.Key);
+            }
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(builder.ToString());
+            return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
+        }
     }
 }
 

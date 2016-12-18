@@ -853,6 +853,28 @@
             if (category == null) return false;
             return new ProductBatchDao().UpdateCategoryIdAndMainCategoryPath(productIds, categoryId, category.Path + "|");
         }
+
+        /// <summary>
+        /// 批量更新金贝使用率 2016.12.18
+        /// </summary>
+        /// <param name="productIds"></param>
+        /// <param name="virtualPointRate"></param>
+        /// <returns></returns>
+        public static bool UpdateVirtualPointRate(string productIds, decimal virtualPointRate)
+        {
+            return new ProductBatchDao().UpdateVirtualPointRate(productIds,virtualPointRate);
+        }
+
+        public static bool AddVirtualPointRate(string productIds, decimal virtualPointRate)
+        {
+            return new ProductBatchDao().AddVirtualPointRate(productIds, virtualPointRate);
+        }
+
+        public static bool UpdateVirtualPointRate(Dictionary<string, decimal> skuVirtualPointRates)
+        {         
+            return new ProductBatchDao().UpdateVirtualPointRate(skuVirtualPointRates);
+        }
+
     }
 }
 

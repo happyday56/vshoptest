@@ -79,6 +79,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Compile Include="VBindMobile.cs" />
     <Compile Include="VFind.cs" />
     <Compile Include="VHoutai.cs" />
     <Compile Include="VMakeInvite.cs" />

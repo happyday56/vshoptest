@@ -186,6 +186,13 @@ namespace Hidistro.UI.Web.API
                 case "MoveToCategory":
                     this.MoveToCategory(context)      ;
                     break;
+
+                case "SendBindMobileVerifyCode":
+                    this.SendBindMobileVerifyCode(context);
+                    break;
+                case "BindMobile":
+                    this.BindMobile(context);
+                    break;
     
             }
         }
@@ -2885,5 +2892,57 @@ namespace Hidistro.UI.Web.API
              builder.Append("}");
              context.Response.Write(builder.ToString());
           }
+
+
+        private void SendBindMobileVerifyCode(HttpContext httpContext)
+        {
+            httpContext.Response.ContentType = "text/json";
+            MemberInfo currentMember = MemberProcessor.GetCurrentMember();
+
+            if (null != currentMember)
+            {
+                //暂用phone为key来获取
+                string phone = httpContext.Request["mobile"];
+                //生成4位数字
+                string code = InviteBrowser.getRandomizer(4, true, false, false, false);
+
+                var ret = MemberProcessor.UpdateVerifyCode(currentMember.UserId.ToString(), phone, code);
+                httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = ret, msg = "" }));
+            }
+            else
+            {
+                 httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = false, msg = "" }));
+            }
+
+            httpContext.Response.End();
+        }
+
+        public void BindMobile(HttpContext httpContext)
+        {
+
+            httpContext.Response.ContentType = "text/json";
+            MemberInfo currentMember = MemberProcessor.GetCurrentMember();
+
+            if (null != currentMember)
+            {
+                //暂用phone为key来获取
+                string phone = httpContext.Request["mobile"];
+                string code = httpContext.Request["code"];
+                if (currentMember.VerifyCode == code)
+                {
+                     bool ret=  MemberHelper.updateCellPhone(currentMember.UserId,phone);
+                    httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = ret, msg = "" }));
+                }
+                else {
+                    httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = false, msg = "验证码错误，请重新发送" }));
+                }
+               
+            } else
+            {
+                 httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = false, msg = "系统错误" }));
+            }
+
+            httpContext.Response.End();
+        }
     }
 }
