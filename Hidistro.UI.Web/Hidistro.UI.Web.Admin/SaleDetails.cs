@@ -211,6 +211,7 @@ namespace Hidistro.UI.Web.Admin
                 builder.AppendLine("    <tr style=\"font-weight: bold; white-space: nowrap;\">");
                 builder.AppendLine("        <td>订单号</td>");
                 builder.AppendLine("        <td>货号</td>");
+                 builder.AppendLine("        <td>商品编号</td>");
                 builder.AppendLine("        <td>商品名称</td>");
                 builder.AppendLine("        <td>发货数量</td>");
                 builder.AppendLine("        <td>商品单价</td>");
@@ -239,6 +240,7 @@ namespace Hidistro.UI.Web.Admin
                     builder.AppendLine("    <tr>");
                     builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["OrderId"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["SKU"].ToString() + "</td>");
+                    builder.AppendLine("        <td>" + row["ProductCode"].ToString() + "</td>");                    
                     builder.AppendLine("        <td>" + row["ProductName"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ShipmentQuantity"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ItemAdjustedPrice"].ToString() + "</td>");

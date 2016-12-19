@@ -107,10 +107,10 @@
 	       <li><h2 class="colorE clear">相关设置</h2></li>
 	        <li>
 			  <span class="formitemtitle Pw_198">商品销售状态：</span>
-				 <asp:RadioButton runat="server" ID="radOnSales" GroupName="SaleStatus" Text="出售中"></asp:RadioButton>
+				 <asp:RadioButton runat="server" ID="radOnSales" GroupName="SaleStatus" Text="出售中" Checked="true"></asp:RadioButton>
                 <asp:RadioButton runat="server" ID="radUnSales" GroupName="SaleStatus"  Text="下架区" Visible="false"></asp:RadioButton>
                 <%--这里默认设置入库，不直接出售，保存后需在商品列表批量处理出售，才会对外出售--%>
-                <asp:RadioButton runat="server" ID="radInStock" GroupName="SaleStatus" Checked="true"  Text="仓库中"></asp:RadioButton>
+                <asp:RadioButton runat="server" ID="radInStock" GroupName="SaleStatus"   Text="仓库中"></asp:RadioButton>
  			</li>
               <li>
 			  <span class="formitemtitle Pw_198">是否首页显示：</span>

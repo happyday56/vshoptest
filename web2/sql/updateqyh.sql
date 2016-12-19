@@ -32,17 +32,17 @@ FROM         dbo.Hishop_Products AS p LEFT OUTER JOIN
                       dbo.Hishop_ProductTypes AS type ON p.TypeId = type.TypeId
 
 GO
-
 ALTER VIEW [dbo].[vw_Hishop_SaleDetails]
 AS
 SELECT     oi.OrderId, s3.SKU, oi.ItemDescription AS ProductName, oi.Quantity, oi.ShipmentQuantity, oi.ItemAdjustedPrice, o.Amount, o.DiscountAmount, 
                       CASE WHEN o.RedPagerID <> 1 THEN o.RedPagerAmount ELSE 0 END AS RedPagerAmount, CASE WHEN o.RedPagerID = 1 THEN o.RedPagerAmount ELSE 0 END AS VirtualPointAmount, 
                       o.OrderTotal, o.OrderDate, o.PayDate, o.ShippingDate, o.FinishDate, o.OrderStatus, o.OrderType, 
                       CASE WHEN o.OrderType = 1 THEN '普通订单' WHEN o.OrderType = 2 THEN '开店订单' ELSE '' END AS OrderTypeName, oi.CostPrice, oi.ItemsCommission, oi.SecondItemsCommission, 
-                      oi.ThirdItemsCommission, oi.ItemAdjustedCommssion
+                      oi.ThirdItemsCommission, oi.ItemAdjustedCommssion, p.ProductCode
 FROM         dbo.Hishop_OrderItems AS oi LEFT OUTER JOIN
                       dbo.Hishop_Orders AS o ON oi.OrderId = o.OrderId
                        LEFT JOIN   Hishop_SKUs s3 ON s3.SkuId=oi.SkuId
+                       LEFT JOIN Hishop_Products as p on s3.ProductId =p.ProductId
 
 GO
 
