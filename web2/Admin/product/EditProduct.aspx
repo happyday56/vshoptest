@@ -29,6 +29,7 @@
 	            <span class="formitemtitle Pw_198">商品类型：</span>
                 <abbr class="formselect"><Hi:ProductTypeDownList runat="server" CssClass="productType" ID="dropProductTypes" NullToDisplay="--请选择--" /></abbr>
 	            品牌：<abbr class="formselect"><Hi:BrandCategoriesDropDownList runat="server" ID="dropBrandCategories" NullToDisplay="--请选择--" /></abbr>
+                特性：<abbr class="formselect"><Hi:ProductFeatureDropDownList runat="server" ID="dropProductFeature" NullToDisplay="--请选择--" /></abbr>
             </li>
 	        <li class=" clearfix"> <span class="formitemtitle Pw_198">商品名称：<em >*</em></span>
 	          <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtProductName" Width="350px"/>
@@ -150,6 +151,12 @@
 			   <div id="div_addtag" style="display:none"><input type="text" id="txtaddtag" /><input type="button" value="保存" onclick="return AddAjaxTags()" /></div>
 			     <Hi:TrimTextBox runat="server" ID="txtProductTag" TextMode="MultiLine" style="display:none;"></Hi:TrimTextBox> 
             </li>
+
+              <li>
+			  <span class="formitemtitle Pw_198">秒杀活动时间：
+                </span>
+				  <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtStartTime" />- <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtEndTime" />
+ 			 </li>
 	      </ul>
 	      <ul class="btntf Pa_198 clear">
 	        <asp:Button runat="server" ID="btnSave" Text="保 存" OnClientClick="return doSubmit();" CssClass="submit_DAqueding inbnt" />

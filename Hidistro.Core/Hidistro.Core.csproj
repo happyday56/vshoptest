@@ -82,6 +82,7 @@
     <Compile Include="Entities\AccessTokenBag.cs" />
     <Compile Include="Entities\JsApiTicketBag.cs" />
     <Compile Include="Entities\WXSettings.cs" />
+    <Compile Include="Enums\ProductFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\AppLocation.cs" />
     <Compile Include="Configuration\HiApplication.cs" />

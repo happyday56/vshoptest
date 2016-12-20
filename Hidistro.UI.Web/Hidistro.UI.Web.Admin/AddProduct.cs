@@ -60,6 +60,10 @@ namespace Hidistro.UI.Web.Admin
         protected RadioButton radUnCross;
         protected TrimTextBox txtMaxCross;
 
+        //12.20
+        protected ProductFeatureDropDownList dropProductFeature;
+        protected TrimTextBox txtStartTime;
+        protected TrimTextBox txtEndTime;
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
         //protected ImageUploader uploader3;
@@ -154,6 +158,12 @@ namespace Hidistro.UI.Web.Admin
                     HomePicUrl = homePicUrl
 
                 };
+
+                //12.20
+                target.ProductFeature = this.dropProductFeature.SelectedValue;
+                if (!string.IsNullOrEmpty(this.txtStartTime.Text)) target.StartTime = DateTime.Parse(this.txtStartTime.Text);
+                if (!string.IsNullOrEmpty(this.txtEndTime.Text)) target.EndTime = DateTime.Parse(this.txtEndTime.Text);
+
                 ProductSaleStatus onSale = ProductSaleStatus.OnSale;
                 if (this.radInStock.Checked)
                 {

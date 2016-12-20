@@ -75,6 +75,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Compile Include="ImageUploader.cs" />
+    <Compile Include="ProductFeatureDropDownList.cs" />
     <Compile Include="ProductFlashUpload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProductTypeDownList.cs" />

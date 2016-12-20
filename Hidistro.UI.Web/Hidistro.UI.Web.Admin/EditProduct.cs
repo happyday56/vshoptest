@@ -66,6 +66,10 @@ namespace Hidistro.UI.Web.Admin
         protected RadioButton radOnCross;
         protected RadioButton radUnCross;
         protected TrimTextBox txtMaxCross;
+        //12.20
+        protected ProductFeatureDropDownList dropProductFeature;
+        protected TrimTextBox txtStartTime;
+        protected TrimTextBox txtEndTime;
 
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
@@ -177,6 +181,12 @@ namespace Hidistro.UI.Web.Admin
                     VirtualPointRate = tmpVirtualPointRate,
                     HomePicUrl = homePicUrl
                 };
+
+                //12.20
+                target.ProductFeature = this.dropProductFeature.SelectedValue;
+                if(!string.IsNullOrEmpty(this.txtStartTime.Text)) target.StartTime =  DateTime.Parse(this.txtStartTime.Text);
+                if(!string.IsNullOrEmpty(this.txtEndTime.Text)) target.EndTime = DateTime.Parse(this.txtEndTime.Text);
+
                 ProductSaleStatus onSale = ProductSaleStatus.OnSale;
                 if (this.radInStock.Checked)
                 {
@@ -323,7 +333,7 @@ namespace Hidistro.UI.Web.Admin
         private void LoadProduct(ProductInfo product, System.Collections.Generic.Dictionary<int, System.Collections.Generic.IList<int>> attrs)
         {
             this.dropProductTypes.SelectedValue = product.TypeId;
-            this.dropBrandCategories.SelectedValue = product.BrandId;
+            this.dropBrandCategories.SelectedValue = product.BrandId;           
             this.txtDisplaySequence.Text = product.DisplaySequence.ToString();
             this.txtProductName.Text = Globals.HtmlDecode(product.ProductName);
             this.txtProductCode.Text = product.ProductCode;
@@ -470,6 +480,12 @@ namespace Hidistro.UI.Web.Admin
                 }
                 this.txtMemberPrices.Text = this.txtMemberPrices.Text + "</gradePrices></xml>";
             }
+
+            //12.20
+            this.dropProductFeature.SelectedValue = product.ProductFeature;
+            this.txtStartTime.Text = product.StartTime.ToString();
+            this.txtEndTime.Text = product.EndTime.ToString();
+         
         }
         protected override void OnInitComplete(System.EventArgs e)
         {
@@ -520,6 +536,8 @@ namespace Hidistro.UI.Web.Admin
                     }
                     this.dropProductTypes.DataBind();
                     this.dropBrandCategories.DataBind();
+                    //12.20
+                    this.dropProductFeature.DataBind();
                     this.LoadProduct(product, dictionary);
 
                     ManagerInfo manager = ManagerHelper.GetCurrentManager();

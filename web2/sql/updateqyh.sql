@@ -64,6 +64,15 @@ FROM         dbo.Hishop_Orders AS o LEFT OUTER JOIN
 
 GO
 
+--12.20
+alter table Hishop_Products add ProductFeature int
+go
+update Hishop_Products set ProductFeature=0
+go
+alter table Hishop_Products add StartTime datetime;
+go
+alter table Hishop_Products add EndTime datetime;
+go
 
 
 

@@ -19,7 +19,76 @@
 
         public int AddProduct(ProductInfo product, DbTransaction dbTran)
         {
-            DbCommand storedProcCommand = this.database.GetStoredProcCommand("cp_Product_Create");
+            string strsql = string.Format(@"Declare @Err As int
+SELECT @Err=0
+
+SET XACT_ABORT ON
+Begin Tran
+	
+IF @ParentCategoryId IS NULL OR @ParentCategoryId < 0
+	SET @ParentCategoryId = 0
+	
+--通过现有记录获取栏目ID
+
+
+Select @CategoryId = ISNULL(Max(CategoryId),0) From Hishop_Categories
+IF @CategoryId Is Not Null
+	Set @CategoryId = @CategoryId+1
+Else
+	Set @CategoryId = 1
+
+--判断是否是顶级栏目，设置其Path和Depth
+Declare @Depth As int
+Declare @Path As nvarchar(4000)
+
+IF @ParentCategoryId = 0
+Begin
+	Select @DisplaySequence = ISNULL(MAX(DisplaySequence),0) + 1 from Hishop_Categories where ParentCategoryId = 0
+	Set @Path =Ltrim(RTRIM(Str(@CategoryId)))
+	Set @Depth = 1
+End
+Else
+Begin
+	--获取父节点的路径和深度
+	Select @Path = [Path] ,@Depth = Depth From Hishop_Categories Where CategoryId=@ParentCategoryId
+	Select @DisplaySequence = ISNULL(MAX(DisplaySequence),0) + 1 from Hishop_Categories where ParentCategoryId = @ParentCategoryId
+	IF @Path Is Null
+	Begin
+		Set @Err = 1
+		Goto theEnd
+	End
+	
+	Set @Path = @Path + '|' + Ltrim(RTRIM(Str(@CategoryId)))
+	Set @Depth = @Depth+1
+End
+
+Insert Into Hishop_Categories(
+	CategoryId, [Name], DisplaySequence,IconUrl,Meta_Title, Meta_Description, Meta_Keywords, SKUPrefix,AssociatedProductType,
+	ParentCategoryId, Depth, Path, RewriteName, Notes1, Notes2, Notes3, Notes4, Notes5,FirstCommission,SecondCommission,ThirdCommission,CoverUrl, IsDisplayHome,ProductFeature,StartTime,EndTime
+) 
+Values(
+	@CategoryId, @Name, @DisplaySequence,@IconUrl,@Meta_Title, @Meta_Description, @Meta_Keywords, @SKUPrefix,@AssociatedProductType,
+	@ParentCategoryId, @Depth, @Path, @RewriteName, @Notes1, @Notes2, @Notes3, @Notes4, @Notes5,@FirstCommission,@SecondCommission,@ThirdCommission,@CoverUrl, @IsDisplayHome,@ProductFeature,@StartTime,@EndTime
+)
+
+IF @@Error<>0 
+Begin
+	Set @Err=1
+	Goto theEnd
+End
+
+theEnd:
+IF @Err=0
+Begin
+	Commit Tran
+	Return @CategoryId
+End
+Else
+Begin
+    Rollback Tran
+	Return 0
+End");
+            DbCommand storedProcCommand = this.database.GetSqlStringCommand(strsql);
             this.database.AddInParameter(storedProcCommand, "CategoryId", DbType.Int32, product.CategoryId);
             this.database.AddInParameter(storedProcCommand, "MainCategoryPath", DbType.String, product.MainCategoryPath);
             this.database.AddInParameter(storedProcCommand, "TypeId", DbType.Int32, product.TypeId);
@@ -56,6 +125,9 @@
             this.database.AddInParameter(storedProcCommand, "IsCross", DbType.Int32, product.IsCross);
             this.database.AddInParameter(storedProcCommand, "MaxCross", DbType.Int32, product.MaxCross);
             this.database.AddOutParameter(storedProcCommand, "ProductId", DbType.Int32, 4);
+            this.database.AddInParameter(storedProcCommand, "ProductFeature", DbType.Int32, product.ProductFeature);
+            this.database.AddInParameter(storedProcCommand, "StartTime", DbType.DateTime, product.StartTime);
+            this.database.AddInParameter(storedProcCommand, "EndTime", DbType.DateTime, product.EndTime);
             this.database.ExecuteNonQuery(storedProcCommand, dbTran);
             return (int)this.database.GetParameterValue(storedProcCommand, "ProductId");
         }
@@ -663,7 +735,20 @@
 
         public bool UpdateProduct(ProductInfo product, DbTransaction dbTran)
         {
-            DbCommand storedProcCommand = this.database.GetStoredProcCommand("cp_Product_Update");
+            string strsql = string.Format(@"--如果商品显示顺序存在，则所有这个商品后台的顺序加一
+IF (SELECT DisplaySequence FROM Hishop_Products WHERE ProductId = @ProductId) != @DisplaySequence AND EXISTS(SELECT ProductId FROM Hishop_Products WHERE DisplaySequence = @DisplaySequence)
+UPDATE Hishop_Products SET DisplaySequence = DisplaySequence + 1 WHERE DisplaySequence >= @DisplaySequence
+
+UPDATE Hishop_Products SET
+CategoryId = @CategoryId, MainCategoryPath = @MainCategoryPath, TypeId = @TypeId, ProductName = @ProductName, ProductCode = @ProductCode,
+ShortDescription = @ShortDescription, Unit = @Unit, [Description] = @Description, MarketPrice = @MarketPrice, SaleStatus = @SaleStatus, DisplaySequence = @DisplaySequence,
+ImageUrl1 = @ImageUrl1, ImageUrl2 = @ImageUrl2, ImageUrl3 = @ImageUrl3, ImageUrl4 = @ImageUrl4, ImageUrl5 = @ImageUrl5,
+ThumbnailUrl40 = @ThumbnailUrl40, ThumbnailUrl60 = @ThumbnailUrl60, ThumbnailUrl100 = @ThumbnailUrl100, ThumbnailUrl160 = @ThumbnailUrl160, ThumbnailUrl180 = @ThumbnailUrl180,
+ThumbnailUrl220 = @ThumbnailUrl220, ThumbnailUrl310 = @ThumbnailUrl310, ThumbnailUrl410 = @ThumbnailUrl410, 
+BrandId = @BrandId, HasSKU = @HasSKU,IsfreeShipping=@IsfreeShipping,SaleCounts = @SaleCounts, ShowSaleCounts = @ShowSaleCounts, VirtualPointRate = @VirtualPointRate, HomePicUrl = @HomePicUrl, 
+IsDisplayHome = @IsDisplayHome, IsCross = @IsCross, MaxCross = @MaxCross,ProductFeature=@ProductFeature,StartTime=@StartTime,EndTime=@EndTime
+WHERE ProductId = @ProductId");
+            DbCommand storedProcCommand = this.database.GetSqlStringCommand("strsql");
             this.database.AddInParameter(storedProcCommand, "CategoryId", DbType.Int32, product.CategoryId);
             this.database.AddInParameter(storedProcCommand, "MainCategoryPath", DbType.String, product.MainCategoryPath);
             this.database.AddInParameter(storedProcCommand, "TypeId", DbType.Int32, product.TypeId);
@@ -699,6 +784,9 @@
             this.database.AddInParameter(storedProcCommand, "IsCross", DbType.Int32, product.IsCross);
             this.database.AddInParameter(storedProcCommand, "MaxCross", DbType.Int32, product.MaxCross);
             this.database.AddInParameter(storedProcCommand, "ProductId", DbType.Int32, product.ProductId);
+            this.database.AddInParameter(storedProcCommand, "ProductFeature", DbType.Int32, product.ProductFeature);
+            this.database.AddInParameter(storedProcCommand, "StartTime", DbType.DateTime, product.StartTime);
+            this.database.AddInParameter(storedProcCommand, "EndTime", DbType.DateTime, product.EndTime);
             if (dbTran != null)
             {
                 return (this.database.ExecuteNonQuery(storedProcCommand, dbTran) > 0);

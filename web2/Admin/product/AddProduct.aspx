@@ -28,6 +28,7 @@
 	            <span class="formitemtitle Pw_198">商品类型：</span>
                 <abbr class="formselect"><Hi:ProductTypeDownList runat="server" CssClass="productType" ID="dropProductTypes" NullToDisplay="--请选择--" /></abbr>
 	            品牌：<abbr class="formselect"><Hi:BrandCategoriesDropDownList  runat="server" ID="dropBrandCategories" NullToDisplay="--请选择--" /></abbr>
+                  特性：<abbr class="formselect"><Hi:ProductFeatureDropDownList runat="server" ID="dropProductFeature" NullToDisplay="--请选择--" /></abbr>
             </li>
 	        <li class=" clearfix"> <span class="formitemtitle Pw_198"><em >*</em>商品名称：</span>
 	          <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtProductName" Width="350px"/>

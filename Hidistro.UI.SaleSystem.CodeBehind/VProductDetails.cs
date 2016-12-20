@@ -55,6 +55,8 @@
         private int ptTypeId = 0;
         private int sjCode = 0;
 
+        private HtmlInputHidden btnProductFeature;
+
         protected override void AttachChildControls()
         {
             if (!int.TryParse(this.Page.Request.QueryString["productId"], out this.productId))
@@ -111,6 +113,7 @@
             this.litD1 = (Literal)this.FindControl("litD1");
             this.litD2 = (Literal)this.FindControl("litD2");
             this.litDistributor = (Literal)this.FindControl("litDistributor");
+            this.btnProductFeature = (HtmlInputHidden)this.FindControl("btnProductFeature");
 
             SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
 

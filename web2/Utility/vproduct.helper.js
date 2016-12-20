@@ -251,3 +251,8 @@ function BuyProductToCart() {
         }
     });
 }
+
+var SecKill = {};
+SecKill.ff= function(){
+
+}

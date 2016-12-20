@@ -228,6 +228,13 @@
         public int MaxCross { get; set; }
 
         public int PTTypeId { get; set; }
+        /// <summary>
+        /// 商品特性
+        /// </summary>
+        public int ProductFeature { get; set; }
+
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
 
     }
 }

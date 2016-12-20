@@ -31,6 +31,10 @@
     </div>
 
 </div>
+<div class="well" id="seckill">
+    <label id="seckill_runTime"></label>
+    <label id="seckill_status"></label>
+</div>
 <div class="well">
     <hi:common_skuselector id="skuSelector" runat="server" />
     <div class="buy-num">
@@ -75,6 +79,7 @@
 <input type="hidden" runat="server" id="litCategoryId" />
 <input type="hidden" runat="server" id="litproductid" />
 <input type="hidden" runat="server" id="litReferralUserId" />
+<input type="hidden" runat="server" id="btnProductFeature" />
 <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
 <span id="ItemParams" style="display: none">
     <asp:literal id="litItemParams" runat="server"></asp:literal>
