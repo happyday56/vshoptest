@@ -252,7 +252,23 @@ function BuyProductToCart() {
     });
 }
 
+var seckillData = {status:0,toStartTime:0,startTime:0,endTime:0};
 var SecKill = {};
-SecKill.ff= function(){
+SecKill.init= function(){
+    if($("#btnProductFeature").val()=="Seckill")
+    {
+        seckillData.status = $("#btnSeckillStatus").val(); //0未开始，1开始，2结束
+        seckillData.toStartTime = $("#btnSeckillToStartTime").val();
+        seckillData.endTime = $("#btnSeckillEndTime").val();
+        seckillData.startTime = $("#btnSeckillStartTime").val();
+        if (seckillData.status == 0) {
 
+        } else {
+
+        }
+
+        $("#divSeckill").show();
+    }
 }
+
+SecKill.init();

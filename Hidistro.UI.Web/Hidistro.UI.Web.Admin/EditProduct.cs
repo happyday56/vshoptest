@@ -184,8 +184,11 @@ namespace Hidistro.UI.Web.Admin
 
                 //12.20
                 target.ProductFeature = this.dropProductFeature.SelectedValue;
-                if(!string.IsNullOrEmpty(this.txtStartTime.Text)) target.StartTime =  DateTime.Parse(this.txtStartTime.Text);
-                if(!string.IsNullOrEmpty(this.txtEndTime.Text)) target.EndTime = DateTime.Parse(this.txtEndTime.Text);
+                if (!string.IsNullOrEmpty(this.txtStartTime.Text)) target.StartTime = DateTime.Parse(this.txtStartTime.Text);
+                else target.StartTime = DateTime.Now;
+                if (!string.IsNullOrEmpty(this.txtEndTime.Text)) target.EndTime = DateTime.Parse(this.txtEndTime.Text);
+                else
+                    target.EndTime = DateTime.Now;
 
                 ProductSaleStatus onSale = ProductSaleStatus.OnSale;
                 if (this.radInStock.Checked)
@@ -483,8 +486,8 @@ namespace Hidistro.UI.Web.Admin
 
             //12.20
             this.dropProductFeature.SelectedValue = product.ProductFeature;
-            this.txtStartTime.Text = product.StartTime.ToString();
-            this.txtEndTime.Text = product.EndTime.ToString();
+            this.txtStartTime.Text = product.StartTime == DateTime.MinValue ? DateTime.Now.ToString() : product.StartTime.ToString();
+            this.txtEndTime.Text = product.EndTime == DateTime.MinValue ? DateTime.Now.ToString() : product.EndTime.ToString();
          
         }
         protected override void OnInitComplete(System.EventArgs e)

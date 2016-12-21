@@ -147,6 +147,10 @@
         <span><asp:literal id="litSaleLocation" runat="server" /></span>
     </div>
 </div>
+<div class="well" id="divSeckill" style="display:block">
+    <label id="seckill_runTime">12</label>
+    <label id="seckill_status">121</label>
+</div>
 <div class="remark">
     <div class="d0"><span>极速退款</span><span><asp:literal id="litReturnInfo" runat="server" /></span></div>
     <div class="d1">
@@ -318,6 +322,11 @@
 <input type="hidden" runat="server" id="litCategoryId" />
 <input type="hidden" runat="server" id="litReferralUserId" />
 <input type="hidden" runat="server" id="litproductid" />
+<input type="hidden" runat="server" id="btnProductFeature" />
+<input type="hidden" runat="server" id="btnSeckillStatus" />
+<input type="hidden" runat="server" id="btnSeckillToStartTime" />
+<input type="hidden" runat="server" id="btnSeckillStartTime" />
+<input type="hidden" runat="server" id="btnSeckillEndTime" />
 <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
 <span id="ItemParams" style="display: none">
     <asp:literal id="litItemParams" runat="server"></asp:literal>

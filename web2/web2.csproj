@@ -1528,6 +1528,7 @@
     <Content Include="Templates\vshop\default\tags\skin-Common_VoteItems.ascx" />
     <Content Include="Templates\vshop\default\tags\skin-Common_VProductListCategory.ascx" />
     <Content Include="Templates\vshop\default\template.xml" />
+    <Content Include="Test.aspx" />
     <Content Include="Utility\bigwheel.js" />
     <Content Include="Utility\bootflat\angularicons\angularicons.svg" />
     <Content Include="Utility\bootflat\bootflat\css\bootflat.css" />
@@ -1944,6 +1945,13 @@
     <Compile Include="Templates\vshop\default\tags\Skin-Common_OrderManager.ascx.cs">
       <DependentUpon>Skin-Common_OrderManager.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vshop\Houtai.aspx.cs">
       <DependentUpon>Houtai.aspx</DependentUpon>

@@ -31,7 +31,7 @@ namespace Hidistro.UI.Common.Controls
                     DescriptionAttribute descAttr = objAttrs[0] as DescriptionAttribute;
                     description = descAttr.Description;
                 }
-                this.Items.Add(new ListItem(value.ToString(), description));
+                this.Items.Add(new ListItem(description, value.ToString()));
             }
         }
 
@@ -59,20 +59,16 @@ namespace Hidistro.UI.Common.Controls
             }
         }
 
-        new public int SelectedValue
+        new public string SelectedValue
         {
             get
             {
-                if (!string.IsNullOrEmpty(base.SelectedValue))
-                {
-                    return int.Parse(base.SelectedValue, CultureInfo.InvariantCulture);
-                }
-                return 0;
+                return base.SelectedValue;
+                
             }
             set
             {
                 base.SelectedIndex = base.Items.IndexOf(base.Items.FindByValue(value.ToString(CultureInfo.InvariantCulture)));
-
             }
         }
     }

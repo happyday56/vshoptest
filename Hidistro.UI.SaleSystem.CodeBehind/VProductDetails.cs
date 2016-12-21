@@ -16,6 +16,7 @@
     using System.Linq;
     using System.Text;
     using NewLife.Log;
+    using Hidistro.Core.Enums;
 
     [ParseChildren(true)]
     public class VProductDetails : VshopTemplatedWebControl
@@ -56,6 +57,10 @@
         private int sjCode = 0;
 
         private HtmlInputHidden btnProductFeature;
+        private HtmlInputHidden btnSeckillStatus;
+        private HtmlInputHidden btnSeckillStartTime;
+        private HtmlInputHidden btnSeckillEndTime;
+        private HtmlInputHidden btnSeckillToStartTime;
 
         protected override void AttachChildControls()
         {
@@ -113,7 +118,12 @@
             this.litD1 = (Literal)this.FindControl("litD1");
             this.litD2 = (Literal)this.FindControl("litD2");
             this.litDistributor = (Literal)this.FindControl("litDistributor");
+            //12.20
             this.btnProductFeature = (HtmlInputHidden)this.FindControl("btnProductFeature");
+            this.btnSeckillStatus = (HtmlInputHidden)this.FindControl("btnSeckillStatus");
+            this.btnSeckillStartTime = (HtmlInputHidden)this.FindControl("btnSeckillStartTime");
+            this.btnSeckillEndTime = (HtmlInputHidden)this.FindControl("btnSeckillEndTime");
+            this.btnSeckillToStartTime = (HtmlInputHidden)this.FindControl("btnSeckillToStartTime");
 
             SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
 
@@ -331,7 +341,31 @@
 
             this.litItemParams.Text = string.Concat(new object[] { shareGoodsPic, "|", shareGoodsName, "|", shareGoodsDescription, "$", sharePic, "|", shareTitle, "|", shareDescription, "|", shareUrl });
 
+           
+            this.btnProductFeature.Value = product.ProductFeature;
+            if (product.ProductFeature == ProductFeature.Seckill.ToString())
+            {
+                DateTime time = DateTime.Now;
+                this.btnSeckillStatus.Value = "0";//0未开始，1开始，2结束
+                if (time >= product.StartTime && time <= product.EndTime)
+                    this.btnSeckillStatus.Value = "1";
+                if (time > product.EndTime) this.btnSeckillStatus.Value = "2";
+
+                //距离秒杀的时间
+                this.btnSeckillToStartTime.Value =(product.StartTime - time).TotalMilliseconds.ToString();
+                this.btnSeckillStartTime.Value =ConvertDateTimeInt( product.StartTime).ToString();
+                this.btnSeckillEndTime.Value = ConvertDateTimeInt(product.EndTime).ToString();
+            }
+
             //this.litItemParams.Text = string.Concat(new object[] { str3, "|", masterSettings.GoodsName, "|", masterSettings.GoodsDescription, "$", Globals.HostPath(HttpContext.Current.Request.Url), product.ImageUrl1, "|", this.litProdcutName.Text, "|", product.ShortDescription, "|", HttpContext.Current.Request.Url });
+        }
+
+        public double ConvertDateTimeInt(System.DateTime time)
+        {
+            double intResult = 0;
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+            intResult = (time - startTime).TotalMilliseconds;
+            return intResult;
         }
 
         private void GetProductImgs(SlideImage[] imageArray)

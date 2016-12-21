@@ -125,7 +125,7 @@ End");
             this.database.AddInParameter(storedProcCommand, "IsCross", DbType.Int32, product.IsCross);
             this.database.AddInParameter(storedProcCommand, "MaxCross", DbType.Int32, product.MaxCross);
             this.database.AddOutParameter(storedProcCommand, "ProductId", DbType.Int32, 4);
-            this.database.AddInParameter(storedProcCommand, "ProductFeature", DbType.Int32, product.ProductFeature);
+            this.database.AddInParameter(storedProcCommand, "ProductFeature", DbType.String, product.ProductFeature);
             this.database.AddInParameter(storedProcCommand, "StartTime", DbType.DateTime, product.StartTime);
             this.database.AddInParameter(storedProcCommand, "EndTime", DbType.DateTime, product.EndTime);
             this.database.ExecuteNonQuery(storedProcCommand, dbTran);
@@ -748,7 +748,7 @@ ThumbnailUrl220 = @ThumbnailUrl220, ThumbnailUrl310 = @ThumbnailUrl310, Thumbnai
 BrandId = @BrandId, HasSKU = @HasSKU,IsfreeShipping=@IsfreeShipping,SaleCounts = @SaleCounts, ShowSaleCounts = @ShowSaleCounts, VirtualPointRate = @VirtualPointRate, HomePicUrl = @HomePicUrl, 
 IsDisplayHome = @IsDisplayHome, IsCross = @IsCross, MaxCross = @MaxCross,ProductFeature=@ProductFeature,StartTime=@StartTime,EndTime=@EndTime
 WHERE ProductId = @ProductId");
-            DbCommand storedProcCommand = this.database.GetSqlStringCommand("strsql");
+            DbCommand storedProcCommand = this.database.GetSqlStringCommand(strsql);
             this.database.AddInParameter(storedProcCommand, "CategoryId", DbType.Int32, product.CategoryId);
             this.database.AddInParameter(storedProcCommand, "MainCategoryPath", DbType.String, product.MainCategoryPath);
             this.database.AddInParameter(storedProcCommand, "TypeId", DbType.Int32, product.TypeId);
@@ -784,7 +784,7 @@ WHERE ProductId = @ProductId");
             this.database.AddInParameter(storedProcCommand, "IsCross", DbType.Int32, product.IsCross);
             this.database.AddInParameter(storedProcCommand, "MaxCross", DbType.Int32, product.MaxCross);
             this.database.AddInParameter(storedProcCommand, "ProductId", DbType.Int32, product.ProductId);
-            this.database.AddInParameter(storedProcCommand, "ProductFeature", DbType.Int32, product.ProductFeature);
+            this.database.AddInParameter(storedProcCommand, "ProductFeature", DbType.String, product.ProductFeature);
             this.database.AddInParameter(storedProcCommand, "StartTime", DbType.DateTime, product.StartTime);
             this.database.AddInParameter(storedProcCommand, "EndTime", DbType.DateTime, product.EndTime);
             if (dbTran != null)

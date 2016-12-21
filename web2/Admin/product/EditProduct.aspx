@@ -155,7 +155,8 @@
               <li>
 			  <span class="formitemtitle Pw_198">秒杀活动时间：
                 </span>
-				  <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtStartTime" />- <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtEndTime" />
+				  <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtStartTime" /> <span class="formitemtitle Pw_30">-
+                </span> <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtEndTime" />
  			 </li>
 	      </ul>
 	      <ul class="btntf Pa_198 clear">

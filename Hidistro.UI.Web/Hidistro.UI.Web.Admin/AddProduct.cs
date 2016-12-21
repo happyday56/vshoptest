@@ -162,7 +162,10 @@ namespace Hidistro.UI.Web.Admin
                 //12.20
                 target.ProductFeature = this.dropProductFeature.SelectedValue;
                 if (!string.IsNullOrEmpty(this.txtStartTime.Text)) target.StartTime = DateTime.Parse(this.txtStartTime.Text);
+                else
+                    target.StartTime = DateTime.Now;
                 if (!string.IsNullOrEmpty(this.txtEndTime.Text)) target.EndTime = DateTime.Parse(this.txtEndTime.Text);
+                else target.EndTime = DateTime.Now;
 
                 ProductSaleStatus onSale = ProductSaleStatus.OnSale;
                 if (this.radInStock.Checked)
