@@ -1217,6 +1217,7 @@
     <Content Include="Templates\vshop\default\images\tags-img-2.png" />
     <Content Include="Templates\vshop\default\images\test-tags-img-2.png" />
     <Content Include="Templates\vshop\default\images\test-tags-img.png" />
+    <Content Include="Templates\vshop\default\images\time.jpg" />
     <Content Include="Templates\vshop\default\images\top_header.png" />
     <Content Include="Templates\vshop\default\images\top_header_logo.png" />
     <Content Include="Templates\vshop\default\images\top_header_logo1.png" />

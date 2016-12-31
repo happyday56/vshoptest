@@ -147,10 +147,36 @@
         <span><asp:literal id="litSaleLocation" runat="server" /></span>
     </div>
 </div>
-<div class="well" id="divSeckill" style="display:block">
-    <label id="seckill_runTime">12</label>
-    <label id="seckill_status">121</label>
-</div>
+ 
+<style type="text/css">
+
+    
+@charset "utf-8";
+ 
+/*倒计时*/
+.colockbox span{float:left;display:block; font-size:10px; }
+.colockbox label{ display:block; float:left;margin:0 1%;text-align:center;font-size: 10px}
+.colockbox span.second{margin:0;}
+.datebox{width: 100%;height: 36px;line-height: 36px;background: #f5f5f5}
+.zDD,.zHH,.zMM,.zSS{ font-weight: bold}
+/*end倒计时*/ 
+</style>
+   
+
+<!--    倒计时html展示-->
+    <div class="datebox" style="position: relative" id="divSeckill">
+        <div class="colockbox clearfix" id="toTitle1"style="position: absolute;left: 3%;width: 100%;top: 0%;height:100%;color: #ac2b40" >
+            <div style="width:5%;height: 100%;float: left"><img class="date_img" src="/images/time.jpg"></div>
+            <span style="margin-left: 2%" id="toTitle">距离活动开始时间还有</span>
+            <span class="zDD" style="margin-left: 2%">-</span><label>天</label>
+            <span class="zHH">-</span><label>小时</label>
+            <span class="zMM">-</span><label>分钟</label>
+            <span class="zSS">-</span><label>秒</label>
+        </div>
+    </div>
+    <!--    end倒计时html展示-->
+
+
 <div class="remark">
     <div class="d0"><span>极速退款</span><span><asp:literal id="litReturnInfo" runat="server" /></span></div>
     <div class="d1">
@@ -324,7 +350,7 @@
 <input type="hidden" runat="server" id="litproductid" />
 <input type="hidden" runat="server" id="btnProductFeature" />
 <input type="hidden" runat="server" id="btnSeckillStatus" />
-<input type="hidden" runat="server" id="btnSeckillToStartTime" />
+<input type="hidden" runat="server" id="btnSeckillCurrentTime" />
 <input type="hidden" runat="server" id="btnSeckillStartTime" />
 <input type="hidden" runat="server" id="btnSeckillEndTime" />
 <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>

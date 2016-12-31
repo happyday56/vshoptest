@@ -92,6 +92,9 @@ function ResetCurrentSku(skuId, sku, weight, stock, salePrice) {
 
 // 购买按钮单击事件
 function BuyProduct() {
+
+    if (!buyStatus) return false;
+
     if (!ValidateBuyAmount())
     {
         return false;
@@ -162,6 +165,8 @@ function ValidateBuyAmount() {
 }
 
 function AddProductToCart() {
+    if (!buyStatus) return false;
+
     if (!ValidateBuyAmount()) {
         return false;
     }
@@ -251,24 +256,93 @@ function BuyProductToCart() {
         }
     });
 }
+ 
+var buyStatus = true;
+$(function () {
+    SecKill.init();
+})
 
-var seckillData = {status:0,toStartTime:0,startTime:0,endTime:0};
+var prev = "vProductDetails_";
+var seckillData = {status:0,currentTime:0,startTime:0,endTime:0};
 var SecKill = {};
-SecKill.init= function(){
-    if($("#btnProductFeature").val()=="Seckill")
+SecKill.init = function () {
+    if ($("#" + prev + "btnProductFeature").val() == "Seckill")
     {
-        seckillData.status = $("#btnSeckillStatus").val(); //0未开始，1开始，2结束
-        seckillData.toStartTime = $("#btnSeckillToStartTime").val();
-        seckillData.endTime = $("#btnSeckillEndTime").val();
-        seckillData.startTime = $("#btnSeckillStartTime").val();
+        seckillData.status = $("#" + prev + "btnSeckillStatus").val(); //0未开始，1开始，2结束
+        seckillData.currentTime = $("#" + prev + "btnSeckillCurrentTime").val();
+        seckillData.endTime = $("#" + prev + "btnSeckillEndTime").val();
+        seckillData.startTime = $("#" + prev + "btnSeckillStartTime").val();
         if (seckillData.status == 0) {
-
-        } else {
-
+            buyStatus = false;
+            $(".pro_d_footer .a.buy ").css({ "background": "#d2d2d2" });
+            $("#addcartButton").css({ "background": "#d2d2d2" });
+            $(".pro_d_footer .a.buy ").text("马上抢");
+            $("#toTitle").html("距离活动开始时间还有");
+            dtTime(seckillData.currentTime, seckillData.startTime);
+        } else if (seckillData.status == 1) {
+            $(".pro_d_footer .a.buy ").css({ "background": "#ff9505" });
+            $("#addcartButton").css({ "background": "#a60729" });
+            $(".pro_d_footer .a.buy ").text("马上抢");
+            $("#toTitle").html("距离活动结束时间还有");
+            dtTime(seckillData.currentTime, seckillData.endTime);
+        }
+        else {
+            buyStatus = false;
+            $(".pro_d_footer .a.buy ").css({ "background": "#d2d2d2" });
+            $("#addcartButton").css({ "background": "#d2d2d2" });
+            $(".pro_d_footer .a.buy ").text("被秒光");
+            $("#toTitle1").html('<span>活动已结束</span>');
         }
 
         $("#divSeckill").show();
+
+
+        //alert(new Date(1484915889000));
     }
 }
 
-SecKill.init();
+ 
+
+
+//倒计时
+function dtTime(_oDate, _overTime) {
+
+    dtTimer = setInterval(function () {
+        //alert(_oDate);
+        //alert(_overTime);
+        //var oDate = new Date(_oDate);
+        
+        //var curTime = oDate.getTime();
+        //var overTime = new Date(_overTime);
+
+        var t = parseInt((_overTime - _oDate) / 1000);
+        
+
+        var d = parseInt(t / (24 * 3600));
+        d = d < 10 ? '0' + d : d;
+        var h = parseInt((t % (24 * 3600)) / 3600);
+        h = h < 10 ? '0' + h : h;
+        var m = parseInt((t % 3600) / 60);
+        m = m < 10 ? '0' + m : m;
+        var s = parseInt(t % 60);
+        s = s < 10 ? '0' + s : s;
+
+        if (t > 0) {
+            $('.zDD').text(d);
+            $('.zHH').text(h);
+            $('.zMM').text(m);
+            $('.zSS').text(s);
+        }
+        else {
+            $('.zDD').text("00");
+            $('.zHH').text("00");
+            $('.zMM').text("00");
+            $('.zSS').text("00");
+        }
+    }, 1000)
+}
+ 
+
+
+
+ 

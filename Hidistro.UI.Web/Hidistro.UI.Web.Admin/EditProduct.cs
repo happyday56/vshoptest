@@ -1,3 +1,4 @@
+using ASPNET.WebControls;
 using Hidistro.ControlPanel.Commodities;
 using Hidistro.ControlPanel.Store;
 using Hidistro.Core;
@@ -68,8 +69,8 @@ namespace Hidistro.UI.Web.Admin
         protected TrimTextBox txtMaxCross;
         //12.20
         protected ProductFeatureDropDownList dropProductFeature;
-        protected TrimTextBox txtStartTime;
-        protected TrimTextBox txtEndTime;
+        protected WebCalendar txtStartTime;
+        protected WebCalendar txtEndTime;
 
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
@@ -486,8 +487,8 @@ namespace Hidistro.UI.Web.Admin
 
             //12.20
             this.dropProductFeature.SelectedValue = product.ProductFeature;
-            this.txtStartTime.Text = product.StartTime == DateTime.MinValue ? DateTime.Now.ToString() : product.StartTime.ToString();
-            this.txtEndTime.Text = product.EndTime == DateTime.MinValue ? DateTime.Now.ToString() : product.EndTime.ToString();
+            this.txtStartTime.Text = product.StartTime == DateTime.MinValue ? DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") : product.StartTime.ToString("yyyy-MM-dd HH:mm:ss");
+            this.txtEndTime.Text = product.EndTime == DateTime.MinValue ? DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") : product.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
          
         }
         protected override void OnInitComplete(System.EventArgs e)

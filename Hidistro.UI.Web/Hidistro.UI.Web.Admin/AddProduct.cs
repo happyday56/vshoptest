@@ -1,3 +1,4 @@
+using ASPNET.WebControls;
 using Hidistro.ControlPanel.Commodities;
 using Hidistro.ControlPanel.Store;
 using Hidistro.Core;
@@ -62,8 +63,8 @@ namespace Hidistro.UI.Web.Admin
 
         //12.20
         protected ProductFeatureDropDownList dropProductFeature;
-        protected TrimTextBox txtStartTime;
-        protected TrimTextBox txtEndTime;
+        protected WebCalendar txtStartTime;
+        protected WebCalendar txtEndTime;
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
         //protected ImageUploader uploader3;
@@ -350,6 +351,7 @@ namespace Hidistro.UI.Web.Admin
                             this.dropProductTypes.DataBind();
                             this.dropProductTypes.SelectedValue = category.AssociatedProductType;
                             this.dropBrandCategories.DataBind();
+                            this.dropProductFeature.DataBind();
                             this.txtProductCode.Text = (this.txtSku.Text = category.SKUPrefix + new System.Random(System.DateTime.Now.Millisecond).Next(1, 99999).ToString(System.Globalization.CultureInfo.InvariantCulture).PadLeft(5, '0'));
                         }
 

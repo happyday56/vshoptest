@@ -60,7 +60,7 @@
         private HtmlInputHidden btnSeckillStatus;
         private HtmlInputHidden btnSeckillStartTime;
         private HtmlInputHidden btnSeckillEndTime;
-        private HtmlInputHidden btnSeckillToStartTime;
+        private HtmlInputHidden btnSeckillCurrentTime;
 
         protected override void AttachChildControls()
         {
@@ -123,7 +123,7 @@
             this.btnSeckillStatus = (HtmlInputHidden)this.FindControl("btnSeckillStatus");
             this.btnSeckillStartTime = (HtmlInputHidden)this.FindControl("btnSeckillStartTime");
             this.btnSeckillEndTime = (HtmlInputHidden)this.FindControl("btnSeckillEndTime");
-            this.btnSeckillToStartTime = (HtmlInputHidden)this.FindControl("btnSeckillToStartTime");
+            this.btnSeckillCurrentTime = (HtmlInputHidden)this.FindControl("btnSeckillCurrentTime");
 
             SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
 
@@ -343,6 +343,7 @@
 
            
             this.btnProductFeature.Value = product.ProductFeature;
+       
             if (product.ProductFeature == ProductFeature.Seckill.ToString())
             {
                 DateTime time = DateTime.Now;
@@ -352,7 +353,7 @@
                 if (time > product.EndTime) this.btnSeckillStatus.Value = "2";
 
                 //距离秒杀的时间
-                this.btnSeckillToStartTime.Value =(product.StartTime - time).TotalMilliseconds.ToString();
+                this.btnSeckillCurrentTime.Value = ConvertDateTimeInt(time).ToString();
                 this.btnSeckillStartTime.Value =ConvertDateTimeInt( product.StartTime).ToString();
                 this.btnSeckillEndTime.Value = ConvertDateTimeInt(product.EndTime).ToString();
             }
@@ -360,11 +361,11 @@
             //this.litItemParams.Text = string.Concat(new object[] { str3, "|", masterSettings.GoodsName, "|", masterSettings.GoodsDescription, "$", Globals.HostPath(HttpContext.Current.Request.Url), product.ImageUrl1, "|", this.litProdcutName.Text, "|", product.ShortDescription, "|", HttpContext.Current.Request.Url });
         }
 
-        public double ConvertDateTimeInt(System.DateTime time)
+        public long ConvertDateTimeInt(System.DateTime time)
         {
-            double intResult = 0;
+            long intResult = 0;
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-            intResult = (time - startTime).TotalMilliseconds;
+            intResult = (long)(time - startTime).TotalMilliseconds;
             return intResult;
         }
 

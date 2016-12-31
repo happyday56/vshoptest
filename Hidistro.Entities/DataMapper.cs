@@ -998,6 +998,11 @@
             {
                 info.PTTypeId = 0;
             }
+
+            info.ProductFeature = reader["ProductFeature"].ToString();
+            if (DBNull.Value != reader["StartTime"]) info.StartTime = (DateTime)reader["StartTime"];
+            if (DBNull.Value != reader["EndTime"]) info.EndTime = (DateTime)reader["EndTime"];
+
             return info;
         }
 

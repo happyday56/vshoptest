@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/Admin.Master" CodeBehind="EditProduct.aspx.cs" Inherits="Hidistro.UI.Web.Admin.EditProduct" %>
 <%@ Register TagPrefix="Hi" Namespace="Hidistro.UI.Common.Controls" Assembly="Hidistro.UI.Common.Controls" %>
 <%@ Register TagPrefix="Hi" Namespace="Hidistro.UI.ControlPanel.Utility" Assembly="Hidistro.UI.ControlPanel.Utility" %>
+<%@ Register TagPrefix="UI" Namespace="ASPNET.WebControls" Assembly="ASPNET.WebControls" %>
 
 <%@ Register TagPrefix="Kindeditor" Namespace="kindeditor.Net" Assembly="kindeditor.Net" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="headHolder" runat="server">
@@ -51,6 +52,17 @@
 	            <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtMarketPrice" />元
                 <p id="ctl00_contentHolder_txtMarketPriceTip">本站会员所看到的商品市场价</p>
 	        </li>
+                <li>
+			  <span class="formitemtitle Pw_198">秒杀活动时间：
+                </span>
+ 
+                   <UI:WebCalendar CalendarType="StartDate" ID="txtStartTime" runat="server" CssClass="forminput" />
+                  
+                   <span class="formitemtitle Pw_30">-
+                </span> 
+
+                  <UI:WebCalendar ID="txtEndTime" runat="server" CalendarType="EndDate" CssClass="forminput" />
+ 			 </li>
 	        <li><h2 class="colorE">扩展属性</h2></li>
 	        <li id="attributeRow" style="display:none;"><span class="formitemtitle Pw_198">商品属性：</span>
 	        <div class="attributeContent" id="attributeContent"></div>
@@ -92,6 +104,8 @@
                 <Hi:TrimTextBox runat="server" ID="txtSkus" TextMode="MultiLine" style="display:none" ></Hi:TrimTextBox>
                 <asp:CheckBox runat="server" ID="chkSkuEnabled" style="display:none;" />
             </li>
+
+              
             <li id="liImgList"><h2 class="colorE">图片和描述</h2></li>
            <li><span class="formitemtitle Pw_100">商品首页图：</span>
             <asp:FileUpload ID="homePicUrlFileUpload" CssClass="forminput" runat="server" />
@@ -152,12 +166,7 @@
 			     <Hi:TrimTextBox runat="server" ID="txtProductTag" TextMode="MultiLine" style="display:none;"></Hi:TrimTextBox> 
             </li>
 
-              <li>
-			  <span class="formitemtitle Pw_198">秒杀活动时间：
-                </span>
-				  <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtStartTime" /> <span class="formitemtitle Pw_30">-
-                </span> <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtEndTime" />
- 			 </li>
+            
 	      </ul>
 	      <ul class="btntf Pa_198 clear">
 	        <asp:Button runat="server" ID="btnSave" Text="保 存" OnClientClick="return doSubmit();" CssClass="submit_DAqueding inbnt" />

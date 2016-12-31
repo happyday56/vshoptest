@@ -1,41 +1,112 @@
 ﻿<hi:common_header runat="server" />
 
-<div id="dialogMobile">
-    <input id="mobile" type="text" />
-    <br />
-    <input id="code" type="text" /><input type="button" value="发送" id="sendCode" /><br />
-    <br />
-    <input type="button" value="绑定" id="bingdMobile" />
-   <input type="text" id="returnUrl" runat="server" style="display:none" />
-</div>
-<hi:common_footer runat="server" />
+<style type="text/css">
+  input{
+    margin: 0;padding: 0;border:0;outline: none;
+}
+.mainBody{width:100%;position:relative; background:#fff; overflow:hidden;}
+.mainBody img{ width:100%; height:auto;}
+.top{width: 100%;height: 60px;}
+.top p{color: #999;font-size: 14px;padding-left: 5%;line-height: 60px}
+.conter_one{height: 60px;border-bottom: 1px solid #eee;border-top: 1px solid #eee;}
+.conter_one p{color: #999;font-size: 14px;padding-left: 5%;float:left;line-height: 60px;}
+.myphone{float: left;height: 40px;margin-top: 10px;margin-left: 2%;font-size: 16px;color: #999;width: 40%}
+.obtain{float: right;width: 30%;background: #a60729;color: #fff;height: 36px;line-height:36px;margin-top: 12px;border: none;margin-right: 2%;font-family: "微软雅黑"}
+.verification{width: 80%;position: absolute;bottom: 10%;height: 8%;left: 10%;text-align: center;background: #a60729;border: none;color: #fff;font-family: "微软雅黑";font-size: 14px}
 
+</style>
+
+ 
+
+
+<div class="mainBody">
+    <!--专题页自定义内容开始 start -->
+     <div class="top">
+         <p>绑定手机号，可以提高账号的安全等级</p>
+     </div>
+    <div class="conter_one">
+        <p>手机号码:</p>
+        <input type="text" class="myphone" maxlength="11" id="mobile"/>
+        <input type="button" class="obtain" id="sendCode" value="获取验证码" onclick="sendCode(this)" />
+    </div>
+
+    <div class="conter_one" style="margin-top: 2rem">
+        <p>短信验证码:</p>
+        <input type="text" class="myphone" maxlength="6"  id="code"/>
+    </div>
+    <!--专题页自定义内容结束 -->
+</div>
+<button class="verification" id="bingdMobile" >验证并绑定</button>
+ <input type="text" id="returnUrl" runat="server" style="display:none" />
+
+<hi:common_footer runat="server" />
+   <script type="text/javascript">
+       /*60s后重新点击*/      
+       var countdown = 60;
+       function settime(val) {         
+           if (countdown == 0) {
+               val.removeAttribute("disabled");
+               val.value = "获取验证码";
+               clearTimeout(t);
+           } else {
+               val.setAttribute("disabled", true);              
+               countdown--;
+               val.value = "重新发送(" + (countdown) + ")";
+           }
+           setTimeout(function () {
+               if(countdown>=0)
+                settime(val)
+           }, 1000)
+       }
+       /*end60s后重新点击*/
+
+    </script>
 <script>
+    function sendCode(obj) {
+        if (!checkMobile()) {
+            alert_h("请输入正确的手机号");
+            return false;
+        }
+
+        countdown =60;
+        var t =   settime(obj);
+
+        var mobile = $("#mobile").val();
+        var url = '/API/VshopProcess.ashx';
+        $.ajax({
+            type: "get",
+            url: url,
+            data: { action: 'SendBindMobileVerifyCode', mobile: mobile },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data.success) {
+                    alert_h("成功");
+                }
+                else {
+                    alert_h("发送失败");
+                }
+            }
+        });
+    };
+
+    function checkMobile()
+    {
+        var phone = $("#mobile").val();
+        if (!/^1\d{10}$/.test(phone)) {
+            
+            return false;
+        }
+        return true;
+    }
     
     $(function () {
-        
-        $("#sendCode").click(function () {
-            var mobile = $("#mobile").val();
-            var url = '/API/VshopProcess.ashx';
-            $.ajax({
-                type: "get",
-                url: url,
-                data: { action: 'SendBindMobileVerifyCode', mobile: mobile },
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    if (data.success) {
-                        alert("成功");
-                    }
-                    else {
-                        alert("发送失败");
-                    }
-                }
-            });
-        });
-
-
         $("#bingdMobile").click(function () {
+            if (!checkMobile()) {
+                alert_h("请输入正确的手机号");
+                return false;
+            }
+
             var mobile = $("#mobile").val();
             var code = $("#code").val();
             var url = '/API/VshopProcess.ashx';
@@ -47,17 +118,15 @@
                 async: false,
                 success: function (data) {
                     if (data.success) {
-                        alert("成功");
+                        alert_h("成功");
                         window.location.href = $("#vBindMobile_returnUrl").val();
                     }
                     else {
-                        alert(data.msg);
+                        alert_h(data.msg);
                     }
                 }
             });
-        });
-
-        
-    })
+        });        
+    }) 
 
 </script>
