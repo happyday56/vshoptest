@@ -19,75 +19,25 @@
 
         public int AddProduct(ProductInfo product, DbTransaction dbTran)
         {
-            string strsql = string.Format(@"Declare @Err As int
-SELECT @Err=0
+            string strsql = string.Format(@"
+--商品的顺序号取当前的最大值加1
+DECLARE @DisplaySequence INT
+SELECT @DisplaySequence = MAX(DisplaySequence) + 1 FROM  Hishop_Products
+if @DisplaySequence is null
+ 	set @DisplaySequence = 1
 
-SET XACT_ABORT ON
-Begin Tran
-	
-IF @ParentCategoryId IS NULL OR @ParentCategoryId < 0
-	SET @ParentCategoryId = 0
-	
---通过现有记录获取栏目ID
-
-
-Select @CategoryId = ISNULL(Max(CategoryId),0) From Hishop_Categories
-IF @CategoryId Is Not Null
-	Set @CategoryId = @CategoryId+1
-Else
-	Set @CategoryId = 1
-
---判断是否是顶级栏目，设置其Path和Depth
-Declare @Depth As int
-Declare @Path As nvarchar(4000)
-
-IF @ParentCategoryId = 0
-Begin
-	Select @DisplaySequence = ISNULL(MAX(DisplaySequence),0) + 1 from Hishop_Categories where ParentCategoryId = 0
-	Set @Path =Ltrim(RTRIM(Str(@CategoryId)))
-	Set @Depth = 1
-End
-Else
-Begin
-	--获取父节点的路径和深度
-	Select @Path = [Path] ,@Depth = Depth From Hishop_Categories Where CategoryId=@ParentCategoryId
-	Select @DisplaySequence = ISNULL(MAX(DisplaySequence),0) + 1 from Hishop_Categories where ParentCategoryId = @ParentCategoryId
-	IF @Path Is Null
-	Begin
-		Set @Err = 1
-		Goto theEnd
-	End
-	
-	Set @Path = @Path + '|' + Ltrim(RTRIM(Str(@CategoryId)))
-	Set @Depth = @Depth+1
-End
-
-Insert Into Hishop_Categories(
-	CategoryId, [Name], DisplaySequence,IconUrl,Meta_Title, Meta_Description, Meta_Keywords, SKUPrefix,AssociatedProductType,
-	ParentCategoryId, Depth, Path, RewriteName, Notes1, Notes2, Notes3, Notes4, Notes5,FirstCommission,SecondCommission,ThirdCommission,CoverUrl, IsDisplayHome,ProductFeature,StartTime,EndTime
-) 
-Values(
-	@CategoryId, @Name, @DisplaySequence,@IconUrl,@Meta_Title, @Meta_Description, @Meta_Keywords, @SKUPrefix,@AssociatedProductType,
-	@ParentCategoryId, @Depth, @Path, @RewriteName, @Notes1, @Notes2, @Notes3, @Notes4, @Notes5,@FirstCommission,@SecondCommission,@ThirdCommission,@CoverUrl, @IsDisplayHome,@ProductFeature,@StartTime,@EndTime
-)
-
-IF @@Error<>0 
-Begin
-	Set @Err=1
-	Goto theEnd
-End
-
-theEnd:
-IF @Err=0
-Begin
-	Commit Tran
-	Return @CategoryId
-End
-Else
-Begin
-    Rollback Tran
-	Return 0
-End");
+INSERT INTO Hishop_Products
+(CategoryId, MainCategoryPath, TypeId, ProductName, ProductCode, ShortDescription, Unit, [Description], SaleStatus, AddedDate, DisplaySequence,
+ImageUrl1, ImageUrl2, ImageUrl3, ImageUrl4, ImageUrl5, ThumbnailUrl40, ThumbnailUrl60, ThumbnailUrl100, ThumbnailUrl160, ThumbnailUrl180,
+ThumbnailUrl220, ThumbnailUrl310, ThumbnailUrl410,
+MarketPrice, BrandId, HasSKU,IsfreeShipping,TaobaoProductId,IsDistributorBuy, VirtualPointRate, HomePicUrl, IsDisplayHome, 
+AddUserId, VistiCounts, ShowSaleCounts, SaleCounts, GoodCounts, IsCross, MaxCross, PTTypeId, StoreGiftPoint,ProductFeature,StartTime,EndTime)
+Values
+(@CategoryId, @MainCategoryPath, @TypeId, @ProductName, @ProductCode, @ShortDescription, @Unit,  @Description,@SaleStatus, @AddedDate, @DisplaySequence,
+@ImageUrl1, @ImageUrl2, @ImageUrl3, @ImageUrl4, @ImageUrl5, @ThumbnailUrl40, @ThumbnailUrl60, @ThumbnailUrl100, @ThumbnailUrl160, @ThumbnailUrl180,
+@ThumbnailUrl220, @ThumbnailUrl310, @ThumbnailUrl410,
+@MarketPrice, @BrandId, @HasSKU,@IsfreeShipping,@TaobaoProductId,@IsDistributorBuy, @VirtualPointRate, @HomePicUrl, @IsDisplayHome, @AddUserId, 0, 0, 0, 0, @IsCross, @MaxCross, 0, 0,@ProductFeature,@StartTime,@EndTime)
+SET @ProductId = @@IDENTITY;");
             DbCommand storedProcCommand = this.database.GetSqlStringCommand(strsql);
             this.database.AddInParameter(storedProcCommand, "CategoryId", DbType.Int32, product.CategoryId);
             this.database.AddInParameter(storedProcCommand, "MainCategoryPath", DbType.String, product.MainCategoryPath);

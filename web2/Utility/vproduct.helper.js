@@ -95,8 +95,7 @@ function BuyProduct() {
 
     if (!buyStatus) return false;
 
-    if (!ValidateBuyAmount())
-    {
+    if (!ValidateBuyAmount()) {
         return false;
     }
 
@@ -111,7 +110,7 @@ function BuyProduct() {
     var maxCross = parseInt($("#maxCross").html());
     var isBuy = parseInt($("#isBuy").html());
     var isPdBuy = parseInt($("#isPdBuy").html());
-    
+
     if (isNaN(stock) || stock == 0) {
         alert_h("该规格的产品没有库存，请选择其它的规格！");
         return false;
@@ -131,7 +130,7 @@ function BuyProduct() {
         alert_h("此商品已在您的购物车达到最大购买数量 " + maxCross + " 件，请修改购买数量!");
         return false;
     }
-    
+
     if (quantity > maxCross) {
         alert_h("此商品最多只能购买 " + maxCross + " 件，请修改购买数量!");
         return false;
@@ -256,18 +255,17 @@ function BuyProductToCart() {
         }
     });
 }
- 
+
 var buyStatus = true;
 $(function () {
     SecKill.init();
 })
 
 var prev = "vProductDetails_";
-var seckillData = {status:0,currentTime:0,startTime:0,endTime:0};
+var seckillData = { status: 0, currentTime: 0, startTime: 0, endTime: 0 };
 var SecKill = {};
 SecKill.init = function () {
-    if ($("#" + prev + "btnProductFeature").val() == "Seckill")
-    {
+    if ($("#" + prev + "btnProductFeature").val() == "Seckill") {
         seckillData.status = $("#" + prev + "btnSeckillStatus").val(); //0未开始，1开始，2结束
         seckillData.currentTime = $("#" + prev + "btnSeckillCurrentTime").val();
         seckillData.endTime = $("#" + prev + "btnSeckillEndTime").val();
@@ -301,22 +299,22 @@ SecKill.init = function () {
     }
 }
 
- 
+
 
 
 //倒计时
 function dtTime(_oDate, _overTime) {
-
-    dtTimer = setInterval(function () {
+    var oDate = parseFloat(_oDate);
+    var interval = setInterval(function () {
         //alert(_oDate);
         //alert(_overTime);
         //var oDate = new Date(_oDate);
-        
+
         //var curTime = oDate.getTime();
         //var overTime = new Date(_overTime);
 
-        var t = parseInt((_overTime - _oDate) / 1000);
-        
+        var t = parseInt((_overTime - oDate) / 1000);
+
 
         var d = parseInt(t / (24 * 3600));
         d = d < 10 ? '0' + d : d;
@@ -326,7 +324,7 @@ function dtTime(_oDate, _overTime) {
         m = m < 10 ? '0' + m : m;
         var s = parseInt(t % 60);
         s = s < 10 ? '0' + s : s;
-
+        //alert(t);
         if (t > 0) {
             $('.zDD').text(d);
             $('.zHH').text(h);
@@ -339,10 +337,26 @@ function dtTime(_oDate, _overTime) {
             $('.zMM').text("00");
             $('.zSS').text("00");
         }
+        oDate = oDate + 1000;
+        //alert(oDate);
+        //console.log(t);
+        if (t <= 0) {
+            clearInterval(interval);
+            //alert(seckillData.status);
+            if (seckillData.status == 0) {
+                seckillData.status = 1;
+                buyStatus = true;
+                window.location.href = window.location.href;
+            } else if (seckillData.status == 1) {
+                seckillData.status = 2;
+                buyStatus = false;
+                window.location.href = window.location.href;
+            }
+        }
     }, 1000)
 }
- 
 
 
 
- 
+
+

@@ -63,8 +63,8 @@ namespace Hidistro.UI.Web.Admin
 
         //12.20
         protected ProductFeatureDropDownList dropProductFeature;
-        protected WebCalendar txtStartTime;
-        protected WebCalendar txtEndTime;
+        protected HtmlInputText txtStartTime;
+        protected HtmlInputText txtEndTime;
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
         //protected ImageUploader uploader3;
@@ -162,10 +162,10 @@ namespace Hidistro.UI.Web.Admin
 
                 //12.20
                 target.ProductFeature = this.dropProductFeature.SelectedValue;
-                if (!string.IsNullOrEmpty(this.txtStartTime.Text)) target.StartTime = DateTime.Parse(this.txtStartTime.Text);
+                if (!string.IsNullOrEmpty(this.txtStartTime.Value)) target.StartTime = DateTime.Parse(this.txtStartTime.Value);
                 else
                     target.StartTime = DateTime.Now;
-                if (!string.IsNullOrEmpty(this.txtEndTime.Text)) target.EndTime = DateTime.Parse(this.txtEndTime.Text);
+                if (!string.IsNullOrEmpty(this.txtEndTime.Value)) target.EndTime = DateTime.Parse(this.txtEndTime.Value);
                 else target.EndTime = DateTime.Now;
 
                 ProductSaleStatus onSale = ProductSaleStatus.OnSale;

@@ -10,6 +10,8 @@
      <Hi:Script ID="Script1" runat="server" Src="/utility/jquery-powerFloat-min.js" />
     <link href="/utility/flashupload/flashupload.css" rel="stylesheet" type="text/css" />
     <Hi:Script ID="Script3" runat="server" Src="/utility/flashupload/flashupload.js" />
+      <Hi:Script ID="Script4" runat="server" Src="/utility/My97DatePicker/WdatePicker.js" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder" runat="server">
 <div class="dataarea mainwidth databody">
@@ -56,12 +58,13 @@
 			  <span class="formitemtitle Pw_198">秒杀活动时间：
                 </span>
  
-                   <UI:WebCalendar CalendarType="StartDate" ID="txtStartTime" runat="server" CssClass="forminput" />
-                  
+                  <input class="forminput"   id="txtStartTime" runat="server" type="text"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false})" />
+
                    <span class="formitemtitle Pw_30">-
                 </span> 
 
-                  <UI:WebCalendar ID="txtEndTime" runat="server" CalendarType="EndDate" CssClass="forminput" />
+                 <input class="forminput"  id="txtEndTime" runat="server" type="text"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false})" />
+
  			 </li>
 	        <li><h2 class="colorE">扩展属性</h2></li>
 	        <li id="attributeRow" style="display:none;"><span class="formitemtitle Pw_198">商品属性：</span>
