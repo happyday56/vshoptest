@@ -576,7 +576,7 @@ namespace Hidistro.UI.Web.Admin
                     builder.AppendLine("        <td>" + row["CategoryName"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["TypeName"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["BrandName"].ToString() + "　" + "</td>");
-                    builder.AppendLine("        <td>" + row["ProductCode"].ToString() + "</td>");
+                    builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["ProductCode"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["Unit"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["DisplaySequence"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["MarketPrice"].ToString() + "</td>");

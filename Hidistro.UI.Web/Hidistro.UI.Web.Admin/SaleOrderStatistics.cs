@@ -277,7 +277,7 @@ namespace Hidistro.UI.Web.Admin
 
                 foreach (DataRow row in exportData.Rows)
                 {
-                    decimal commission = (Decimal.Parse(row["FirstCommission"].ToString()) + Decimal.Parse(row["SecondCommission"].ToString()) + Decimal.Parse(row["ThirdCommission"].ToString()) + Decimal.Parse(row["ManagerCommission"].ToString()));
+                    decimal commission = (Decimal.Parse(row["FirstCommission"].ToString()) + Decimal.Parse(row["SecondCommission"].ToString()) + Decimal.Parse(row["ThirdCommission"].ToString()) + (row["ManagerCommission"].ToString()==""?0:Decimal.Parse(row["ManagerCommission"].ToString())));
                     decimal amount = Decimal.Parse(row["Amount"].ToString());
                     decimal costPrice = Decimal.Parse(row["OrderCostPrice"].ToString());
                     decimal profit = Decimal.Parse(row["OrderTotal"].ToString()) - costPrice;

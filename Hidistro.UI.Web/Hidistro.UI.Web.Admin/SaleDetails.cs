@@ -240,7 +240,7 @@ namespace Hidistro.UI.Web.Admin
                     builder.AppendLine("    <tr>");
                     builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["OrderId"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["SKU"].ToString() + "</td>");
-                    builder.AppendLine("        <td>" + row["ProductCode"].ToString() + "</td>");                    
+                    builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["ProductCode"].ToString() + "</td>");                    
                     builder.AppendLine("        <td>" + row["ProductName"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ShipmentQuantity"].ToString() + "</td>");
                     builder.AppendLine("        <td>" + row["ItemAdjustedPrice"].ToString() + "</td>");
