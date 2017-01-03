@@ -38,7 +38,7 @@ SELECT     oi.OrderId, s3.SKU, oi.ItemDescription AS ProductName, oi.Quantity, o
                       CASE WHEN o.RedPagerID <> 1 THEN o.RedPagerAmount ELSE 0 END AS RedPagerAmount, CASE WHEN o.RedPagerID = 1 THEN o.RedPagerAmount ELSE 0 END AS VirtualPointAmount, 
                       o.OrderTotal, o.OrderDate, o.PayDate, o.ShippingDate, o.FinishDate, o.OrderStatus, o.OrderType, 
                       CASE WHEN o.OrderType = 1 THEN '普通订单' WHEN o.OrderType = 2 THEN '开店订单' ELSE '' END AS OrderTypeName, oi.CostPrice, oi.ItemsCommission, oi.SecondItemsCommission, 
-                      oi.ThirdItemsCommission, oi.ItemAdjustedCommssion, p.ProductCode
+                      oi.ThirdItemsCommission, oi.ItemAdjustedCommssion, p.ProductCode,oi.ManagerItemCommission
 FROM         dbo.Hishop_OrderItems AS oi LEFT OUTER JOIN
                       dbo.Hishop_Orders AS o ON oi.OrderId = o.OrderId
                        LEFT JOIN   Hishop_SKUs s3 ON s3.SkuId=oi.SkuId
@@ -56,7 +56,7 @@ SELECT     o.OrderId, o.OrderDate, o.PayDate, o.ShippingDate, o.FinishDate, o.Re
                       o.OrderStatus, 
                       CASE WHEN o.OrderStatus = 1 THEN '待付款' WHEN o.OrderStatus = 2 THEN '待发货' WHEN o.OrderStatus = 3 THEN '已发货' WHEN o.OrderStatus = 4 THEN '已关闭' WHEN o.OrderStatus = 5 THEN
                        '订单已完成' WHEN o.OrderStatus = 6 THEN '申请退款' WHEN o.OrderStatus = 7 THEN '申请退货' WHEN o.OrderStatus = 8 THEN '申请换货' WHEN o.OrderStatus = 9 THEN '已退款' WHEN o.OrderStatus
-                       = 10 THEN '已退货' ELSE '历史订单' END AS OrderStatusName, o.FirstCommission, o.SecondCommission, o.ThirdCommission, o.OrderCostPrice
+                       = 10 THEN '已退货' ELSE '历史订单' END AS OrderStatusName, o.FirstCommission, o.SecondCommission, o.ThirdCommission, o.OrderCostPrice,o.ManagerCommission
 FROM         dbo.Hishop_Orders AS o LEFT OUTER JOIN
                       dbo.aspnet_Distributors AS rd ON o.ReferralUserId = rd.UserId LEFT OUTER JOIN
                       dbo.aspnet_Members AS rm ON o.ReferralUserId = rm.UserId LEFT OUTER JOIN

@@ -231,11 +231,11 @@ namespace Hidistro.UI.Web.Admin
 
                 foreach (DataRow row in exportData.Rows)
                 {
-                    //todo‘› ±3≤„
+                   
                     decimal commission = (Decimal.Parse(row["ItemsCommission"].ToString()) + Decimal.Parse(row["SecondItemsCommission"].ToString()) + Decimal.Parse(row["ThirdItemsCommission"].ToString()));
                     decimal amount = Decimal.Parse(row["Amount"].ToString());
                     decimal costPrice = Decimal.Parse(row["CostPrice"].ToString());
-                    decimal profit = amount - costPrice;
+                    decimal profit = Decimal.Parse(row["OrderTotal"].ToString()) - costPrice;
                     decimal maoProfit = profit - commission;
                     builder.AppendLine("    <tr>");
                     builder.AppendLine("        <td style=\"vnd.ms-excel.numberformat:@\">" + row["OrderId"].ToString() + "</td>");
