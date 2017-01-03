@@ -1175,10 +1175,10 @@
       <publishTime>12/12/2016 22:31:29</publishTime>
     </File>
     <File Include="Admin/product/AddCategory.aspx">
-      <publishTime>12/12/2016 22:31:29</publishTime>
+      <publishTime>12/18/2016 15:38:46</publishTime>
     </File>
     <File Include="Admin/product/AddProduct.aspx">
-      <publishTime>12/12/2016 22:31:29</publishTime>
+      <publishTime>01/02/2017 17:18:49</publishTime>
     </File>
     <File Include="Admin/product/AddProductComplete.aspx">
       <publishTime>12/12/2016 22:31:29</publishTime>
@@ -1217,13 +1217,13 @@
       <publishTime>12/12/2016 22:31:29</publishTime>
     </File>
     <File Include="Admin/product/EditCategory.aspx">
-      <publishTime>12/12/2016 22:31:29</publishTime>
+      <publishTime>12/18/2016 15:39:15</publishTime>
     </File>
     <File Include="Admin/product/EditMemberPrices.aspx">
       <publishTime>12/12/2016 22:31:29</publishTime>
     </File>
     <File Include="Admin/product/EditProduct.aspx">
-      <publishTime>12/12/2016 22:31:29</publishTime>
+      <publishTime>01/02/2017 17:16:28</publishTime>
     </File>
     <File Include="Admin/product/EditProductLetter.aspx">
       <publishTime>12/12/2016 22:31:29</publishTime>
@@ -1241,7 +1241,10 @@
       <publishTime>12/12/2016 22:31:29</publishTime>
     </File>
     <File Include="Admin/product/EditStocks.aspx">
-      <publishTime>12/12/2016 22:31:29</publishTime>
+      <publishTime>12/18/2016 14:18:14</publishTime>
+    </File>
+    <File Include="Admin/product/EditVirtualPointRate.aspx">
+      <publishTime>12/18/2016 15:27:27</publishTime>
     </File>
     <File Include="Admin/product/ExportToPP.aspx">
       <publishTime>12/12/2016 22:31:29</publishTime>
@@ -1268,13 +1271,13 @@
       <publishTime>12/12/2016 22:31:29</publishTime>
     </File>
     <File Include="Admin/product/ManageCategories.aspx">
-      <publishTime>12/12/2016 22:31:29</publishTime>
+      <publishTime>12/18/2016 15:38:34</publishTime>
     </File>
     <File Include="Admin/product/ProductOnDeleted.aspx">
       <publishTime>12/12/2016 22:31:29</publishTime>
     </File>
     <File Include="Admin/product/ProductOnSales.aspx">
-      <publishTime>12/17/2016 16:41:19</publishTime>
+      <publishTime>12/18/2016 15:03:54</publishTime>
     </File>
     <File Include="Admin/product/ProductSaleRanking.aspx">
       <publishTime>12/12/2016 22:31:29</publishTime>
@@ -1802,61 +1805,61 @@
       <publishTime>12/12/2016 22:31:29</publishTime>
     </File>
     <File Include="bin/ASPNET.WebControls.dll">
-      <publishTime>12/17/2016 16:43:30</publishTime>
+      <publishTime>01/02/2017 17:36:28</publishTime>
     </File>
     <File Include="bin/ControlPanel.dll">
-      <publishTime>12/17/2016 16:43:33</publishTime>
+      <publishTime>01/02/2017 17:41:20</publishTime>
     </File>
     <File Include="bin/Hidistro.Core.dll">
-      <publishTime>12/17/2016 16:43:28</publishTime>
+      <publishTime>01/02/2017 17:41:18</publishTime>
     </File>
     <File Include="bin/Hidistro.Entities.dll">
-      <publishTime>12/17/2016 16:43:32</publishTime>
+      <publishTime>01/02/2017 17:41:19</publishTime>
     </File>
     <File Include="bin/Hidistro.Jobs.dll">
-      <publishTime>12/17/2016 16:43:34</publishTime>
+      <publishTime>01/02/2017 17:41:21</publishTime>
     </File>
     <File Include="bin/Hidistro.Messages.dll">
-      <publishTime>12/17/2016 16:43:33</publishTime>
+      <publishTime>01/02/2017 17:41:20</publishTime>
     </File>
     <File Include="bin/Hidistro.SaleSystem.Vshop.dll">
-      <publishTime>12/17/2016 16:43:34</publishTime>
+      <publishTime>01/02/2017 17:41:20</publishTime>
     </File>
     <File Include="bin/Hidistro.SqlDal.dll">
-      <publishTime>12/17/2016 16:43:32</publishTime>
+      <publishTime>01/02/2017 17:41:19</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.Common.Controls.dll">
-      <publishTime>12/17/2016 16:43:35</publishTime>
+      <publishTime>01/02/2017 17:41:21</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.Common.Validator.dll">
-      <publishTime>12/17/2016 16:43:31</publishTime>
+      <publishTime>01/02/2017 17:36:29</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.ControlPanel.Utility.dll">
-      <publishTime>12/17/2016 16:43:35</publishTime>
+      <publishTime>01/02/2017 17:41:22</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.SaleSystem.CodeBehind.dll">
-      <publishTime>12/17/2016 16:43:36</publishTime>
+      <publishTime>01/02/2017 17:41:22</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.SaleSystem.Tags.dll">
-      <publishTime>12/17/2016 16:43:35</publishTime>
+      <publishTime>01/02/2017 17:41:22</publishTime>
     </File>
     <File Include="bin/Hidistro.UI.Web.dll">
-      <publishTime>12/17/2016 16:43:38</publishTime>
+      <publishTime>01/02/2017 17:41:24</publishTime>
     </File>
     <File Include="bin/Hishop.Components.Validation.dll">
-      <publishTime>12/17/2016 16:43:28</publishTime>
+      <publishTime>01/02/2017 17:36:26</publishTime>
     </File>
     <File Include="bin/Hishop.Plugins.dll">
-      <publishTime>12/17/2016 16:43:28</publishTime>
+      <publishTime>01/02/2017 17:36:26</publishTime>
     </File>
     <File Include="bin/Hishop.TransferManager.dll">
-      <publishTime>12/17/2016 16:43:31</publishTime>
+      <publishTime>01/02/2017 17:36:29</publishTime>
     </File>
     <File Include="bin/Hishop.Weixin.MP.dll">
-      <publishTime>12/17/2016 16:43:28</publishTime>
+      <publishTime>01/02/2017 17:36:26</publishTime>
     </File>
     <File Include="bin/Hishop.Weixin.Pay.dll">
-      <publishTime>12/17/2016 16:43:31</publishTime>
+      <publishTime>01/02/2017 17:36:29</publishTime>
     </File>
     <File Include="bin/Ionic.Zip.dll">
       <publishTime>12/12/2016 22:31:30</publishTime>
@@ -1886,7 +1889,7 @@
       <publishTime>12/12/2016 22:31:30</publishTime>
     </File>
     <File Include="bin/web2.dll">
-      <publishTime>12/17/2016 16:52:34</publishTime>
+      <publishTime>01/02/2017 17:41:25</publishTime>
     </File>
     <File Include="config/BackupFiles.config">
       <publishTime>12/13/2016 10:51:13</publishTime>
@@ -4294,6 +4297,9 @@
     <File Include="Templates/vshop/default/images/test-tags-img.png">
       <publishTime>12/12/2016 22:31:34</publishTime>
     </File>
+    <File Include="Templates/vshop/default/images/time.jpg">
+      <publishTime>12/31/2016 14:59:09</publishTime>
+    </File>
     <File Include="Templates/vshop/default/images/top_header.png">
       <publishTime>12/12/2016 22:31:34</publishTime>
     </File>
@@ -4480,6 +4486,9 @@
     <File Include="Templates/vshop/default/skin-vbigwheel.html">
       <publishTime>12/12/2016 22:31:34</publishTime>
     </File>
+    <File Include="Templates/vshop/default/Skin-vBindMobile.html">
+      <publishTime>12/31/2016 15:58:36</publishTime>
+    </File>
     <File Include="Templates/vshop/default/skin-vBrandDetail.html">
       <publishTime>12/12/2016 22:31:34</publishTime>
     </File>
@@ -4505,7 +4514,7 @@
       <publishTime>12/12/2016 22:31:34</publishTime>
     </File>
     <File Include="Templates/vshop/default/skin-vdefault1.html">
-      <publishTime>12/12/2016 22:31:34</publishTime>
+      <publishTime>12/18/2016 19:03:31</publishTime>
     </File>
     <File Include="Templates/vshop/default/Skin-VDistributorRegister.html">
       <publishTime>12/12/2016 22:31:34</publishTime>
@@ -4628,10 +4637,10 @@
       <publishTime>12/12/2016 22:31:34</publishTime>
     </File>
     <File Include="Templates/vshop/default/skin-vproductdetails.html">
-      <publishTime>12/12/2016 22:31:34</publishTime>
+      <publishTime>12/20/2016 21:12:30</publishTime>
     </File>
     <File Include="Templates/vshop/default/skin-vproductdetails2.html">
-      <publishTime>12/12/2016 22:31:34</publishTime>
+      <publishTime>01/02/2017 12:31:58</publishTime>
     </File>
     <File Include="Templates/vshop/default/skin-vproductlist.html">
       <publishTime>12/12/2016 22:31:34</publishTime>
@@ -5236,6 +5245,9 @@
     <File Include="Templates/vshop/default/template.xml">
       <publishTime>12/12/2016 22:31:35</publishTime>
     </File>
+    <File Include="Test.aspx">
+      <publishTime>12/20/2016 20:04:05</publishTime>
+    </File>
     <File Include="Utility/bigwheel.js">
       <publishTime>12/12/2016 22:31:35</publishTime>
     </File>
@@ -5611,6 +5623,42 @@
     <File Include="Utility/jquery_hashtable.js">
       <publishTime>12/12/2016 22:31:35</publishTime>
     </File>
+    <File Include="Utility/My97DatePicker/calendar.js">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/lang/en.js">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/lang/zh-cn.js">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/lang/zh-tw.js">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/skin/datePicker.gif">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/skin/default/datepicker.css">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/skin/default/img.gif">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/skin/WdatePicker.css">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/skin/whyGreen/bg.jpg">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/skin/whyGreen/datepicker.css">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/skin/whyGreen/img.gif">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
+    <File Include="Utility/My97DatePicker/WdatePicker.js">
+      <publishTime>01/02/2017 17:04:25</publishTime>
+    </File>
     <File Include="Utility/pager.js">
       <publishTime>12/12/2016 22:31:35</publishTime>
     </File>
@@ -5789,7 +5837,7 @@
       <publishTime>12/12/2016 22:31:36</publishTime>
     </File>
     <File Include="Utility/vproduct.helper.js">
-      <publishTime>12/12/2016 22:31:36</publishTime>
+      <publishTime>01/02/2017 16:42:36</publishTime>
     </File>
     <File Include="Utility/vshoping.helper.js">
       <publishTime>12/12/2016 22:31:36</publishTime>
@@ -5841,6 +5889,9 @@
     </File>
     <File Include="Vshop/BigWheel.aspx">
       <publishTime>12/12/2016 22:31:36</publishTime>
+    </File>
+    <File Include="Vshop/BindMobile.aspx">
+      <publishTime>12/18/2016 19:19:06</publishTime>
     </File>
     <File Include="Vshop/BrandDetail.aspx">
       <publishTime>12/12/2016 22:31:36</publishTime>
