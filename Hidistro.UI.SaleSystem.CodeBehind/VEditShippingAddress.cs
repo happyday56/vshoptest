@@ -8,7 +8,7 @@
     using System.Web.UI;
     using System.Web.UI.HtmlControls;
 
-    [ParseChildren(true)]
+    [ParseChildren(true), WeiXinOAuth(Common.Controls.WeiXinOAuthPage.VEditShippingAddress)]
     public class VEditShippingAddress : VWeiXinOAuthTemplatedWebControl
     {
         private HtmlTextArea address;

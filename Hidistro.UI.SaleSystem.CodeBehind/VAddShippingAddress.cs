@@ -4,7 +4,7 @@
     using System;
     using System.Web.UI;
 
-    [ParseChildren(true)]
+    [ParseChildren(true), WeiXinOAuth(Common.Controls.WeiXinOAuthPage.VAddShippingAddress)]
     public class VAddShippingAddress : VWeiXinOAuthTemplatedWebControl
     {
         private RegionSelector dropRegions;

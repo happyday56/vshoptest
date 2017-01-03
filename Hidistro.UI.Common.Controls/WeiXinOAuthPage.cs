@@ -19,6 +19,8 @@ namespace Hidistro.UI.Common.Controls
         VDistributorCenter,
         VInvite_Open,
         VInvite_Login,
-        VBindMobile
+        VBindMobile,
+        VAddShippingAddress,
+        VEditShippingAddress
     }
 }
