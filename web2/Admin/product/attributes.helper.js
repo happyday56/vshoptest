@@ -840,6 +840,7 @@ function reBindValid() {
 }
 
 function doSubmit() {
+    
     // 1.先执行jquery客户端验证检查其他表单项
     if (!PageIsValid())
         return false;
@@ -864,6 +865,11 @@ function doSubmit() {
         if (!checkCostPrice()) return false;
         if (!checkQty()) return false;
         if (!checkWeight()) return false;
+    }
+
+    if ($("#ctl00_contentHolder_dropProductFeature").val() == "") {
+        alert("请选择特性！");
+        return false;
     }
 
     // 收集扩展属性和规格数据
