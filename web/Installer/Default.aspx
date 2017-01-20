@@ -1,1 +1,0 @@
-﻿<script language="javascript">document.location = "Install.aspx";</script>
