@@ -283,7 +283,7 @@ SET @ProductId = @@IDENTITY;");
             }
             if (query.CategoryId.HasValue && (query.CategoryId.Value > 0))
             {
-                builder.AppendFormat(" AND ( MainCategoryPath LIKE '{0}|%'  OR ExtendCategoryPath LIKE '{0}|%' )", query.MaiCategoryPath);
+                builder.AppendFormat(" AND Path LIKE '{0}|%' ", query.MaiCategoryPath);
             }
             if (query.StartDate.HasValue)
             {
@@ -298,7 +298,7 @@ SET @ProductId = @@IDENTITY;");
                 builder.AppendFormat(" AND ProductId NOT IN ({0})", removeProductIds);
             }
             string selectFields = "ProductId, ProductCode, ProductName, ThumbnailUrl40, MarketPrice, SalePrice, (SELECT CostPrice FROM Hishop_SKUs WHERE SkuId = p.SkuId) AS  CostPrice,  Stock, DisplaySequence";
-            return DataHelper.PagingByRownumber(query.PageIndex, query.PageSize, query.SortBy, query.SortOrder, query.IsCount, "vw_Hishop_BrowseProductList p", "ProductId", builder.ToString(), selectFields);
+            return DataHelper.PagingByRownumber(query.PageIndex, query.PageSize, query.SortBy, query.SortOrder, query.IsCount, (query.CategoryId.HasValue && (query.CategoryId.Value > 0)) ? "vw_Hishop_BrowseProductListCategory" : "vw_Hishop_BrowseProductList p", "ProductId", builder.ToString(), selectFields);
         }
 
         public DataSet GetExportProducts(AdvancedProductQuery query, bool includeCostPrice, bool includeStock, string removeProductIds)

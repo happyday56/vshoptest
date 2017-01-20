@@ -74,5 +74,46 @@ go
 alter table Hishop_Products add EndTime datetime;
 go
 
+--1.20
+CREATE TABLE [dbo].[Hishop_ProductsToCategory](
+	[CategoryId] [int] NOT NULL,
+	[ProductId] [int] NOT NULL,
+ CONSTRAINT [PK_Hishop_ProductsToCategory] PRIMARY KEY CLUSTERED 
+(
+	[CategoryId] ASC,
+	[ProductId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
 
 
+CREATE VIEW [dbo].[vw_Hishop_BrowseProductListCategory]
+AS
+SELECT     pc.CategoryId, p.TypeId, p.BrandId, pc.ProductId, p.ProductName, p.ProductCode, p.ShortDescription, p.MarketPrice, p.ThumbnailUrl40, p.ThumbnailUrl60, 
+                      p.ThumbnailUrl100, p.ThumbnailUrl160, p.ThumbnailUrl180, p.ThumbnailUrl220, p.ThumbnailUrl310, p.SaleStatus, p.DisplaySequence, p.SaleCounts, 
+                      p.ShowSaleCounts, p.AddedDate, p.VistiCounts,
+                          (SELECT     MIN(SalePrice) AS Expr1
+                            FROM          dbo.Hishop_SKUs
+                            WHERE      (ProductId = p.ProductId)) AS SalePrice,
+                          (SELECT     TOP (1) SkuId
+                            FROM          dbo.Hishop_SKUs AS Hishop_SKUs_3
+                            WHERE      (ProductId = p.ProductId)
+                            ORDER BY SalePrice) AS SkuId,
+                          (SELECT     SUM(Stock) AS Expr1
+                            FROM          dbo.Hishop_SKUs AS Hishop_SKUs_2
+                            WHERE      (ProductId = p.ProductId)) AS Stock,
+                          (SELECT     TOP (1) Weight
+                            FROM          dbo.Hishop_SKUs AS Hishop_SKUs_1
+                            WHERE      (ProductId = p.ProductId)
+                            ORDER BY SalePrice) AS Weight,
+                          (SELECT     COUNT(*) AS Expr1
+                            FROM          dbo.Taobao_Products
+                            WHERE      (ProductId = p.ProductId)) AS IsMakeTaobao,
+                          (SELECT     COUNT(*) AS Expr1
+                            FROM          dbo.Hishop_ProductReviews
+                            WHERE      (ProductId = p.ProductId)) AS ReviewsCount, p.HomePicUrl, p.IsDisplayHome, p.AddUserId, p.VirtualPointRate, p.IsCross, p.MaxCross, c.Path
+FROM         dbo.Hishop_ProductsToCategory AS pc LEFT OUTER JOIN
+                      dbo.Hishop_Products AS p ON p.ProductId = pc.ProductId LEFT OUTER JOIN
+                      dbo.Hishop_Categories AS c ON pc.CategoryId = c.CategoryId
+WHERE     (p.IsDistributorBuy = 0)

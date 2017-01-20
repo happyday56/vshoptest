@@ -170,7 +170,7 @@
                 CategoryInfo category = new CategoryDao().GetCategory(categoryId.Value);
                 if (category != null)
                 {
-                    builder2.AppendFormat(" AND MainCategoryPath LIKE '{0}|%' ", category.Path);
+                    builder2.AppendFormat(" AND Path LIKE '{0}|%' ", category.Path);
                 }
             }
             if (!string.IsNullOrEmpty(keyWord))
@@ -185,7 +185,7 @@
             {
                 sort = "ProductId";
             }
-            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
+            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory" : "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
             DataTable data = (DataTable)result.Data;
             toal = result.TotalRecords;
             return data;
@@ -218,7 +218,7 @@
                 CategoryInfo category = new CategoryDao().GetCategory(categoryId.Value);
                 if (category != null)
                 {
-                    builder2.AppendFormat(" AND ( MainCategoryPath LIKE '{0}|%' OR ExtendCategoryPath LIKE '{0}|%') ", category.Path);
+                    builder2.AppendFormat(" AND Path LIKE '{0}|%' ", category.Path);
                 }
             }
             if (!string.IsNullOrEmpty(keyWord))
@@ -233,7 +233,7 @@
             {
                 sort = "ProductId";
             }
-            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
+            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory" : "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
             DataTable data = (DataTable)result.Data;
             toal = result.TotalRecords;
             return data;
@@ -268,7 +268,7 @@
                 CategoryInfo category = new CategoryDao().GetCategory(categoryId.Value);
                 if (category != null)
                 {
-                    builder2.AppendFormat(" AND ( MainCategoryPath LIKE '{0}|%' OR ExtendCategoryPath LIKE '{0}|%') ", category.Path);
+                    builder2.AppendFormat(" AND Path LIKE '{0}|%' ", category.Path);
                 }
             }
             if (!string.IsNullOrEmpty(keyWord))
@@ -287,7 +287,7 @@
             {
                 sort = "ProductId";
             }
-            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
+            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true,categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory": "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
             DataTable data = (DataTable)result.Data;
             toal = result.TotalRecords;
             return data;
