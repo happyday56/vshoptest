@@ -2067,7 +2067,6 @@
     <Content Include="Utility\icomoon\fonts\icomoon.woff" />
     <Content Include="Utility\icomoon\icomoon.font" />
     <Content Include="Utility\icomoon\selection.json" />
-    <None Include="Properties\PublishProfiles\x.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2075,7 +2074,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ASPNET.WebControls\ASPNET.WebControls.csproj">
       <Project>{f0da0440-2739-482a-8f9b-651d9aa06eca}</Project>
