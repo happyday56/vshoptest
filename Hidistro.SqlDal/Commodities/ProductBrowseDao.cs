@@ -170,7 +170,7 @@
                 CategoryInfo category = new CategoryDao().GetCategory(categoryId.Value);
                 if (category != null)
                 {
-                    builder2.AppendFormat(" AND Path LIKE '{0}|%' ", category.Path);
+                    builder2.AppendFormat("  AND (Path='{0}' or Path LIKE '{0}|%') ", category.Path);
                 }
             }
             if (!string.IsNullOrEmpty(keyWord))
@@ -218,7 +218,7 @@
                 CategoryInfo category = new CategoryDao().GetCategory(categoryId.Value);
                 if (category != null)
                 {
-                    builder2.AppendFormat(" AND Path LIKE '{0}|%' ", category.Path);
+                    builder2.AppendFormat("  AND (Path='{0}' or Path LIKE '{0}|%') ", category.Path);
                 }
             }
             if (!string.IsNullOrEmpty(keyWord))
@@ -268,7 +268,7 @@
                 CategoryInfo category = new CategoryDao().GetCategory(categoryId.Value);
                 if (category != null)
                 {
-                    builder2.AppendFormat(" AND Path LIKE '{0}|%' ", category.Path);
+                    builder2.AppendFormat("  AND (Path='{0}' or Path LIKE '{0}|%') ", category.Path);
                 }
             }
             if (!string.IsNullOrEmpty(keyWord))

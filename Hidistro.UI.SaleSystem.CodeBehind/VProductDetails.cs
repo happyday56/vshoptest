@@ -62,6 +62,8 @@
         private HtmlInputHidden btnSeckillEndTime;
         private HtmlInputHidden btnSeckillCurrentTime;
 
+        private Literal bCross;
+
         protected override void AttachChildControls()
         {
             if (!int.TryParse(this.Page.Request.QueryString["productId"], out this.productId))
@@ -124,7 +126,7 @@
             this.btnSeckillStartTime = (HtmlInputHidden)this.FindControl("btnSeckillStartTime");
             this.btnSeckillEndTime = (HtmlInputHidden)this.FindControl("btnSeckillEndTime");
             this.btnSeckillCurrentTime = (HtmlInputHidden)this.FindControl("btnSeckillCurrentTime");
-
+            this.bCross = (Literal)this.FindControl("bCross");
             SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
 
             if (masterSettings.SiteFlag.EqualIgnoreCase("ls"))
@@ -153,12 +155,14 @@
                 // 判断是否可以购买达到最大数
                 this.litIsPdBuy.Text = ProductBrowser.CheckProductIsBuy(product.ProductId, currUserId, 0).ToString();
                 this.litMaxCross.Text = product.MaxCross.ToString();
+
             }
             else
             {
                 this.litIsPdBuy.Text = "0";
                 this.litIsBuy.Text = "0";
                 this.litMaxCross.Text = "200";
+                bCross.Visible = false;
             }
 
             this.litD2.Text = "display:block;";

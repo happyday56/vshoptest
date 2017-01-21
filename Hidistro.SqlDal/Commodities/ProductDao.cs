@@ -283,7 +283,7 @@ SET @ProductId = @@IDENTITY;");
             }
             if (query.CategoryId.HasValue && (query.CategoryId.Value > 0))
             {
-                builder.AppendFormat(" AND Path LIKE '{0}|%' ", query.MaiCategoryPath);
+                builder.AppendFormat(" AND (Path='{0}' or Path LIKE '{0}|%') ", query.MaiCategoryPath);
             }
             if (query.StartDate.HasValue)
             {
@@ -512,14 +512,7 @@ SET @ProductId = @@IDENTITY;");
         {
             string viewName = "";
 
-            if (isAP)
-            {
-                viewName = "vw_Hishop_BrowseProductListNoBuy p";
-            }
-            else
-            {
-                viewName = "vw_Hishop_BrowseProductList p";
-            }
+           
 
             StringBuilder builder = new StringBuilder();
             builder.Append(" 1=1 ");
@@ -580,12 +573,12 @@ SET @ProductId = @@IDENTITY;");
             {
                 if (query.CategoryId.Value > 0)
                 {
-                    builder.AppendFormat(" AND (MainCategoryPath LIKE '{0}|%'  OR ExtendCategoryPath LIKE '{0}|%') ", query.MaiCategoryPath);
+                    builder.AppendFormat(" AND (Path='{0}' or Path LIKE '{0}|%')", query.MaiCategoryPath);
                 }
-                else
-                {
-                    builder.Append(" AND (CategoryId = 0 OR CategoryId IS NULL)");
-                }
+                //else
+                //{
+                //    builder.Append(" AND (CategoryId = 0 OR CategoryId IS NULL)");
+                //}
             }
             if (query.StartDate.HasValue)
             {
@@ -596,6 +589,23 @@ SET @ProductId = @@IDENTITY;");
                 builder.AppendFormat(" AND AddedDate <='{0}'", DataHelper.GetSafeDateTimeFormat(query.EndDate.Value));
             }
             string selectFields = "*, (SELECT CostPrice FROM Hishop_SKUs WHERE SkuId = p.SkuId) AS  CostPrice ";
+
+            if (isAP)
+            {
+                if (query.CategoryId.HasValue && query.CategoryId.Value > 0)
+                    viewName = "vw_Hishop_BrowseProductListNoBuyCategory p";
+                else
+                    viewName = "vw_Hishop_BrowseProductListNoBuy p";
+            }
+            else
+            {
+                if (query.CategoryId.HasValue && query.CategoryId.Value > 0)
+                    viewName = "vw_Hishop_BrowseProductListCategory p";
+                else
+                    viewName = "vw_Hishop_BrowseProductList p";
+                    
+            }
+
             return DataHelper.PagingByRownumber(query.PageIndex, query.PageSize, query.SortBy, query.SortOrder, query.IsCount, viewName, "ProductId", builder.ToString(), selectFields);
         }
 

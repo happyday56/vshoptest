@@ -112,6 +112,8 @@
 
         public DataTable GetGroupBuyProducts(int? categoryId, string keyWord, int page, int size, out int total, bool onlyUnFinished = true)
         {
+
+            //todo path
             StringBuilder builder = new StringBuilder();
             builder.Append("a.GroupBuyId,a.ProductId,ProductName,ProductCode,ShortDescription,SoldCount,");
             builder.Append(" ThumbnailUrl60,ThumbnailUrl100,ThumbnailUrl160,ThumbnailUrl180,ThumbnailUrl220,ThumbnailUrl310,a.Price,b.SalePrice");

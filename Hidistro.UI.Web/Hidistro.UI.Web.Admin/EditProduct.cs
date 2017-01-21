@@ -378,7 +378,7 @@ namespace Hidistro.UI.Web.Admin
             }
             else
             {
-                this.radUnCross.Checked = false;
+                this.radUnCross.Checked = true;
             }
 
             this.txtMaxCross.Text = product.MaxCross.ToString();
