@@ -152,8 +152,8 @@
             if (member != null)
             {
                 discount = new MemberGradeDao().GetMemberGrade(member.GradeId).Discount;
-                builder.AppendFormat(" (CASE WHEN (SELECT COUNT(*) FROM Hishop_SKUMemberPrice WHERE SkuId = vw_Hishop_BrowseProductList.SkuId AND GradeId = {0}) = 1", member.GradeId);
-                builder.AppendFormat(" THEN (SELECT MemberSalePrice FROM Hishop_SKUMemberPrice WHERE SkuId = vw_Hishop_BrowseProductList.SkuId AND GradeId = {0}) ELSE SalePrice*{1}/100 END) AS SalePrice", member.GradeId, discount);
+                builder.AppendFormat(" (CASE WHEN (SELECT COUNT(*) FROM Hishop_SKUMemberPrice WHERE SkuId = p.SkuId AND GradeId = {0}) = 1", member.GradeId);
+                builder.AppendFormat(" THEN (SELECT MemberSalePrice FROM Hishop_SKUMemberPrice WHERE SkuId = p.SkuId AND GradeId = {0}) ELSE SalePrice*{1}/100 END) AS SalePrice", member.GradeId, discount);
             }
             else
             {
@@ -185,7 +185,7 @@
             {
                 sort = "ProductId";
             }
-            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory" : "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
+            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory p" : "vw_Hishop_BrowseProductList p", "ProductId", builder2.ToString(), builder.ToString());
             DataTable data = (DataTable)result.Data;
             toal = result.TotalRecords;
             return data;
@@ -200,8 +200,8 @@
             if (member != null)
             {
                 discount = new MemberGradeDao().GetMemberGrade(member.GradeId).Discount;
-                builder.AppendFormat(" (CASE WHEN (SELECT COUNT(*) FROM Hishop_SKUMemberPrice WHERE SkuId = vw_Hishop_BrowseProductList.SkuId AND GradeId = {0}) = 1", member.GradeId);
-                builder.AppendFormat(" THEN (SELECT MemberSalePrice FROM Hishop_SKUMemberPrice WHERE SkuId = vw_Hishop_BrowseProductList.SkuId AND GradeId = {0}) ELSE SalePrice*{1}/100 END) AS SalePrice", member.GradeId, discount);
+                builder.AppendFormat(" (CASE WHEN (SELECT COUNT(*) FROM Hishop_SKUMemberPrice WHERE SkuId = p.SkuId AND GradeId = {0}) = 1", member.GradeId);
+                builder.AppendFormat(" THEN (SELECT MemberSalePrice FROM Hishop_SKUMemberPrice WHERE SkuId = p.SkuId AND GradeId = {0}) ELSE SalePrice*{1}/100 END) AS SalePrice", member.GradeId, discount);
             }
             else
             {
@@ -233,7 +233,7 @@
             {
                 sort = "ProductId";
             }
-            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory" : "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
+            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true, categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory p" : "vw_Hishop_BrowseProductList p", "ProductId", builder2.ToString(), builder.ToString());
             DataTable data = (DataTable)result.Data;
             toal = result.TotalRecords;
             return data;
@@ -249,9 +249,9 @@
             {
                 discount = new MemberGradeDao().GetMemberGrade(member.GradeId).Discount;
 
-                builder.AppendFormat(" (CASE WHEN (SELECT COUNT(*) FROM Hishop_SKUMemberPrice WHERE SkuId = vw_Hishop_BrowseProductList.SkuId AND GradeId = {0}) = 1", member.GradeId);
-                builder.AppendFormat(" THEN (SELECT MemberSalePrice FROM Hishop_SKUMemberPrice WHERE SkuId = vw_Hishop_BrowseProductList.SkuId AND GradeId = {0}) ELSE SalePrice*{1}/100 END) AS SalePrice,", member.GradeId, discount);
-                builder.AppendFormat(" dbo.GetCommissionTwo ({0},SkuId) CommissionPrice, Stock,VirtualPointRate,0 as VirtualPoint,0 as StrikePrice,dbo.GetCommissionRemoveVirtualPoint ({0},SkuId,VirtualPointRate) as CommissionPriceByRemoveVirtualPoint", distributorId);
+                builder.AppendFormat(" (CASE WHEN (SELECT COUNT(*) FROM Hishop_SKUMemberPrice WHERE SkuId = p.SkuId AND GradeId = {0}) = 1", member.GradeId);
+                builder.AppendFormat(" THEN (SELECT MemberSalePrice FROM Hishop_SKUMemberPrice WHERE SkuId = p.SkuId AND GradeId = {0}) ELSE SalePrice*{1}/100 END) AS SalePrice,", member.GradeId, discount);
+                builder.AppendFormat(" dbo.GetCommissionTwo ({0},SkuId) CommissionPrice, Stock,VirtualPointRate,0 as VirtualPoint,0 as StrikePrice,dbo.GetCommissionRemoveVirtualPoint ({0},SkuId,VirtualPointRate*0.01) as CommissionPriceByRemoveVirtualPoint", distributorId);
             }
             else
             {
@@ -287,7 +287,7 @@
             {
                 sort = "ProductId";
             }
-            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true,categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory": "vw_Hishop_BrowseProductList", "ProductId", builder2.ToString(), builder.ToString());
+            DbQueryResult result = DataHelper.PagingByRownumber(pageNumber, maxNum, sort, isAsc ? SortAction.Asc : SortAction.Desc, true,categoryId.HasValue ? "vw_Hishop_BrowseProductListCategory p": "vw_Hishop_BrowseProductList p", "ProductId", builder2.ToString(), builder.ToString());
             DataTable data = (DataTable)result.Data;
             toal = result.TotalRecords;
             return data;

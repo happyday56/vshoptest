@@ -112,33 +112,37 @@
 
         public DataTable GetGroupBuyProducts(int? categoryId, string keyWord, int page, int size, out int total, bool onlyUnFinished = true)
         {
+            CategoryInfo category = null;
+            if (categoryId.HasValue)
+            {
+                category = new CategoryDao().GetCategory(categoryId.Value);
+            }
 
             //todo path
             StringBuilder builder = new StringBuilder();
             builder.Append("a.GroupBuyId,a.ProductId,ProductName,ProductCode,ShortDescription,SoldCount,");
             builder.Append(" ThumbnailUrl60,ThumbnailUrl100,ThumbnailUrl160,ThumbnailUrl180,ThumbnailUrl220,ThumbnailUrl310,a.Price,b.SalePrice");
             StringBuilder builder2 = new StringBuilder();
-            builder2.Append(" Hishop_GroupBuy a left join vw_Hishop_BrowseProductList b on a.ProductId = b.ProductId ");
+            builder2.Append(" Hishop_GroupBuy a left join  " + ((category != null) ? "vw_Hishop_BrowseProductListCategory b" : "vw_Hishop_BrowseProductList b") + " on a.ProductId = b.ProductId ");
             StringBuilder builder3 = new StringBuilder(" SaleStatus=1");
             if (onlyUnFinished)
             {
                 builder3.AppendFormat(" AND  a.Status = {0}", 1);
             }
-            if (categoryId.HasValue)
+
+            if (category != null)
             {
-                CategoryInfo category = new CategoryDao().GetCategory(categoryId.Value);
-                if (category != null)
-                {
-                    builder3.AppendFormat(" AND ( MainCategoryPath LIKE '{0}|%' OR ExtendCategoryPath LIKE '{0}|%') ", category.Path);
-                }
+                //builder3.AppendFormat(" AND ( MainCategoryPath LIKE '{0}|%' OR ExtendCategoryPath LIKE '{0}|%') ", category.Path);
+                builder3.AppendFormat(" AND (Path='{0}' or Path LIKE '{0}|%') ", category.Path);
             }
+
             if (!string.IsNullOrEmpty(keyWord))
             {
                 builder3.AppendFormat(" AND (ProductName LIKE '%{0}%' OR ProductCode LIKE '%{0}%')", keyWord);
             }
             string sortBy = "a.DisplaySequence";
             DbQueryResult result = DataHelper.PagingByRownumber(page, size, sortBy, SortAction.Desc, true, builder2.ToString(), "GroupBuyId", builder3.ToString(), builder.ToString());
-            DataTable data = (DataTable) result.Data;
+            DataTable data = (DataTable)result.Data;
             total = result.TotalRecords;
             return data;
         }
@@ -150,7 +154,7 @@
             object obj2 = this.database.ExecuteScalar(sqlStringCommand);
             if ((obj2 != null) && (obj2 != DBNull.Value))
             {
-                return (int) obj2;
+                return (int)obj2;
             }
             return 0;
         }
@@ -167,7 +171,7 @@
             DbCommand sqlStringCommand = this.database.GetSqlStringCommand("SELECT COUNT(*) FROM Hishop_GroupBuy WHERE ProductId=@ProductId AND Status=@Status");
             this.database.AddInParameter(sqlStringCommand, "ProductId", DbType.Int32, productId);
             this.database.AddInParameter(sqlStringCommand, "Status", DbType.Int32, 1);
-            return (((int) this.database.ExecuteScalar(sqlStringCommand)) > 0);
+            return (((int)this.database.ExecuteScalar(sqlStringCommand)) > 0);
         }
 
         public void RefreshGroupBuyFinishState(int groupbuyId, DbTransaction trans = null)
@@ -256,7 +260,7 @@
             {
                 DbCommand sqlStringCommand = this.database.GetSqlStringCommand("UPDATE Hishop_GroupBuy SET Status=@Status WHERE GroupBuyId=@GroupBuyId;UPDATE Hishop_Orders SET GroupBuyStatus=@Status WHERE GroupBuyId=@GroupBuyId");
                 this.database.AddInParameter(sqlStringCommand, "GroupBuyId", DbType.Int32, groupBuyId);
-                this.database.AddInParameter(sqlStringCommand, "Status", DbType.Int32, (int) status);
+                this.database.AddInParameter(sqlStringCommand, "Status", DbType.Int32, (int)status);
                 return (this.database.ExecuteNonQuery(sqlStringCommand) > 0);
             }
             return this.SetGroupBuyFailed(groupBuyId);

@@ -163,8 +163,8 @@
             DataTable dt = ProductBrowser.GetProducts(MemberProcessor.GetCurrentMember(), null, new int?(this.categoryId), this.keyWord, 1, 0x2710, out num, "DisplaySequence", "desc", true);
             foreach (DataRow row in dt.Rows)
             {
-                row["VirtualPoint"] = decimal.Parse(row["SalePrice"].ToString()) * decimal.Parse(row["VirtualPointRate"].ToString());
-                row["StrikePrice"] = decimal.Parse(row["SalePrice"].ToString()) * (1 - decimal.Parse(row["VirtualPointRate"].ToString()));
+                row["VirtualPoint"] = decimal.Parse(row["SalePrice"].ToString()) * decimal.Parse(row["VirtualPointRate"].ToString()) / 100;
+                row["StrikePrice"] = decimal.Parse(row["SalePrice"].ToString()) * (1 - decimal.Parse(row["VirtualPointRate"].ToString())/100);
             }
 
             this.rpChooseProducts.DataSource = dt;
