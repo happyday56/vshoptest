@@ -76,7 +76,8 @@
                 RecruitCntPoint = decimal.Parse(node.SelectSingleNode("RecruitCntPoint").InnerText),
                 IsProcessCommissions = bool.Parse(node.SelectSingleNode("IsProcessCommissions").InnerText),
                 TempStorePoint = decimal.Parse(node.SelectSingleNode("TempStorePoint").InnerText),
-                TempStoreSaleAmount = decimal.Parse(node.SelectSingleNode("TempStoreSaleAmount").InnerText)
+                TempStoreSaleAmount = decimal.Parse(node.SelectSingleNode("TempStoreSaleAmount").InnerText),
+                SiteNote = node.SelectSingleNode("SiteNote").InnerText
              };
         }
 
@@ -203,6 +204,7 @@
             SetNodeValue(doc, root, "IsProcessCommissions", this.IsProcessCommissions ? "true" : "false");
             SetNodeValue(doc, root, "TempStorePoint", this.TempStorePoint.ToString());
             SetNodeValue(doc, root, "TempStoreSaleAmount", this.TempStoreSaleAmount.ToString());
+            SetNodeValue(doc, root, "SiteNote", this.SiteNote.ToString());
         }
 
         public string ApplicationDescription { get; set; }
@@ -478,8 +480,10 @@
 
         public decimal TempStoreSaleAmount { get; set; }
 
-        
-
+        /// <summary>
+        /// 网站公告
+        /// </summary>
+        public string SiteNote { get; set; }
     }
 }
 

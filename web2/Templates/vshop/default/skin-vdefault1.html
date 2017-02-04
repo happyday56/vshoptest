@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="/style/newcss/js/swiper/swiper.3.1.7.min.css">
 <script type="text/javascript" src="/style/newcss/js/swiper/swiper.3.1.7.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/style/newcss/css/invite.css">
+<script type="text/javascript" src="/Utility/jquery.marquee.js"></script>
 <script>
     window.onload = function () {
         var slider = new Swiper("#d0", {
@@ -99,6 +100,7 @@
         <button class="btn btn-default" type="button" id="btnSearch">搜索</button>
     </div>
     <!--e:搜索框 -->
+    <div id="note" runat="server" style="background:#ffffff;overflow:hidden"></div>
 
     <hi:vshoptemplatedrepeater id="rptCategories" visible="true" templatefile="/Tags/skin-Common_HomeCategories.ascx" runat="server">
         <headertemplate>
@@ -203,6 +205,7 @@
             if ($("#keyword").val())
                 location.href = "/Vshop/ProductList.aspx?categoryId=&keyWord=" + $("#keyword").val();
         });
+        if ($("#vDefault_note")) $("#vDefault_note").marquee({ yScroll: "bottom", scrollSpeed: 12 });
     })
 
     function getQueryString(name) {

@@ -5,6 +5,7 @@ using Hidistro.Core;
 using Hidistro.Core.Entities;
 using Hidistro.Entities.Commodities;
 using Hidistro.Entities.Store;
+using Hidistro.SqlDal.Commodities;
 using Hidistro.UI.Common.Controls;
 using Hishop.Components.Validation;
 using kindeditor.Net;
@@ -31,7 +32,7 @@ namespace Hidistro.UI.Web.Admin
         protected System.Web.UI.HtmlControls.HtmlGenericControl l_tags;
         protected System.Web.UI.WebControls.Literal litCategoryName;
         protected ProductTagsLiteral litralProductTag;
-        protected System.Web.UI.WebControls.HyperLink lnkEditCategory;
+        //protected System.Web.UI.WebControls.HyperLink lnkEditCategory;
         private int productId;
         protected System.Web.UI.WebControls.RadioButton radInStock;
         protected System.Web.UI.WebControls.RadioButton radOnSales;
@@ -72,6 +73,8 @@ namespace Hidistro.UI.Web.Admin
         protected HtmlInputText txtStartTime;
         protected HtmlInputText txtEndTime;
 
+        protected HtmlInputHidden btnCategories;
+
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
         //protected ImageUploader uploader3;
@@ -79,13 +82,15 @@ namespace Hidistro.UI.Web.Admin
         //protected ImageUploader uploader5;
         private void btnSave_Click(object sender, System.EventArgs e)
         {
-            if (this.categoryId == 0)
-            {
-                this.categoryId = (int)this.ViewState["ProductCategoryId"];
-            }
-            int num;
+            //if (this.categoryId == 0)
+            //{
+            //    this.categoryId = (int)this.ViewState["ProductCategoryId"];
+            //}
+         
+
             decimal num2;
             decimal? nullable;
+            int num;
             decimal? nullable2;
             int num3;
             decimal? nullable3;
@@ -153,7 +158,7 @@ namespace Hidistro.UI.Web.Admin
                 ProductInfo target = new ProductInfo
                 {
                     ProductId = this.productId,
-                    CategoryId = this.categoryId,
+                    CategoryId = 0,
                     TypeId = this.dropProductTypes.SelectedValue,
                     ProductName = this.txtProductName.Text,
                     ProductCode = this.txtProductCode.Text,
@@ -230,11 +235,11 @@ namespace Hidistro.UI.Web.Admin
                     target.MaxCross = int.Parse(this.txtMaxCross.Text.Trim());
                 }
 
-                CategoryInfo category = CatalogHelper.GetCategory(this.categoryId);
-                if (category != null)
-                {
-                    target.MainCategoryPath = category.Path + "|";
-                }
+                //CategoryInfo category = CatalogHelper.GetCategory(this.categoryId);
+                //if (category != null)
+                //{
+                //    target.MainCategoryPath = category.Path + "|";
+                //}
                 System.Collections.Generic.Dictionary<int, System.Collections.Generic.IList<int>> attrs = null;
                 System.Collections.Generic.Dictionary<string, SKUItem> skus;
                 if (this.chkSkuEnabled.Checked)
@@ -301,6 +306,20 @@ namespace Hidistro.UI.Web.Admin
                     switch (ProductHelper.UpdateProduct(target, skus, attrs, tagIds))
                     {
                         case ProductActionStatus.Success:
+                         
+                        //处理分类
+                         var categories =   btnCategories.Value;
+                         //if (categories == "")
+                         //{
+                         //    this.ShowMsg("请选择一个分类", false);
+                         //    return;
+                         //}
+
+                         if (categories != "")
+                         {
+                              new ProductsToCategoryDao().save(productId,categories);
+                         }
+
                             this.litralProductTag.SelectedValue = tagIds;
                             if (base.Request.QueryString["reurl"] != null)
                             {
@@ -516,19 +535,31 @@ namespace Hidistro.UI.Web.Admin
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(base.Request.QueryString["categoryId"]))
+                    //if (!string.IsNullOrEmpty(base.Request.QueryString["categoryId"]))
+                    //{
+                    //    this.litCategoryName.Text = CatalogHelper.GetFullCategory(this.categoryId);
+                    //    this.ViewState["ProductCategoryId"] = this.categoryId;
+                    //    this.lnkEditCategory.NavigateUrl = "SelectCategory.aspx?categoryId=" + this.categoryId.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    //}
+                    //else
+                    //{
+                    //    this.litCategoryName.Text = CatalogHelper.GetFullCategory(product.CategoryId);
+                    //    this.ViewState["ProductCategoryId"] = product.CategoryId;
+                    //    this.lnkEditCategory.NavigateUrl = "SelectCategory.aspx?categoryId=" + product.CategoryId.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    //}
+                    //this.lnkEditCategory.NavigateUrl = this.lnkEditCategory.NavigateUrl + "&productId=" + product.ProductId.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+                  List<int> categories =  new ProductsToCategoryDao().getCategoriesByProductId(productId);
+                  StringBuilder strCategories = new StringBuilder();
+                    StringBuilder strCategoryIds = new StringBuilder();
+                    foreach(int categoryId in categories)
                     {
-                        this.litCategoryName.Text = CatalogHelper.GetFullCategory(this.categoryId);
-                        this.ViewState["ProductCategoryId"] = this.categoryId;
-                        this.lnkEditCategory.NavigateUrl = "SelectCategory.aspx?categoryId=" + this.categoryId.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        strCategories.Append("<div>" + CatalogHelper.GetFullCategory(categoryId) + " <input type='button' value='-' onclick='removeCategory(this," + categoryId + ")'/></div>");
+                        strCategoryIds.Append(categoryId + ",");
                     }
-                    else
-                    {
-                        this.litCategoryName.Text = CatalogHelper.GetFullCategory(product.CategoryId);
-                        this.ViewState["ProductCategoryId"] = product.CategoryId;
-                        this.lnkEditCategory.NavigateUrl = "SelectCategory.aspx?categoryId=" + product.CategoryId.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                    }
-                    this.lnkEditCategory.NavigateUrl = this.lnkEditCategory.NavigateUrl + "&productId=" + product.ProductId.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    this.litCategoryName.Text = strCategories.ToString();
+                    btnCategories.Value = strCategoryIds.ToString().Length > 0 ? strCategoryIds.ToString().Substring(0, strCategoryIds.ToString().Length-1) : "";
+
                     this.litralProductTag.SelectedValue = tagsId;
                     if (tagsId.Count > 0)
                     {

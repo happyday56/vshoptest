@@ -473,6 +473,7 @@
     <Content Include="Admin\product\ascx\SpecificationView.ascx" />
     <Content Include="Admin\product\attributes.helper.js" />
     <Content Include="Admin\product\BrandCategories.aspx" />
+    <Content Include="Admin\product\category.helper.js" />
     <Content Include="Admin\product\DisplaceCategory.aspx" />
     <Content Include="Admin\product\EditAttribute.aspx" />
     <Content Include="Admin\product\EditAttributeValues.aspx" />
@@ -505,6 +506,7 @@
     <Content Include="Admin\product\ProductTypes.aspx" />
     <Content Include="Admin\product\ProductUnclassified.aspx" />
     <Content Include="Admin\product\publish.helper.js" />
+    <Content Include="Admin\product\SelectCategories.aspx" />
     <Content Include="Admin\product\SelectCategory.aspx" />
     <Content Include="Admin\product\SkuValue.aspx" />
     <Content Include="Admin\product\TaoBaoNote.aspx" />
@@ -1601,7 +1603,17 @@
     <Content Include="Utility\jquery.bigautocomplete.css" />
     <Content Include="Utility\jquery.bigautocomplete.js" />
     <Content Include="Utility\jquery.cookie.js" />
+    <Content Include="Utility\jquery.marquee.js" />
     <Content Include="Utility\jquery_hashtable.js" />
+    <Content Include="Utility\layer\layer.js" />
+    <Content Include="Utility\layer\mobile\layer.js" />
+    <Content Include="Utility\layer\mobile\need\layer.css" />
+    <Content Include="Utility\layer\skin\default\icon-ext.png" />
+    <Content Include="Utility\layer\skin\default\icon.png" />
+    <Content Include="Utility\layer\skin\default\layer.css" />
+    <Content Include="Utility\layer\skin\default\loading-0.gif" />
+    <Content Include="Utility\layer\skin\default\loading-1.gif" />
+    <Content Include="Utility\layer\skin\default\loading-2.gif" />
     <Content Include="Utility\My97DatePicker\calendar.js" />
     <Content Include="Utility\My97DatePicker\lang\en.js" />
     <Content Include="Utility\My97DatePicker\lang\zh-cn.js" />
@@ -1658,6 +1670,12 @@
     <Content Include="Utility\skins\blue\ie6\se.png" />
     <Content Include="Utility\skins\blue\ie6\sw.png" />
     <Content Include="Utility\skins\blue\ie6\w.png" />
+    <Content Include="Utility\skin\default\icon-ext.png" />
+    <Content Include="Utility\skin\default\icon.png" />
+    <Content Include="Utility\skin\default\layer.css" />
+    <Content Include="Utility\skin\default\loading-0.gif" />
+    <Content Include="Utility\skin\default\loading-1.gif" />
+    <Content Include="Utility\skin\default\loading-2.gif" />
     <Content Include="Utility\submmitorder.helper.js" />
     <Content Include="Utility\swfupload\clipboard.swf" />
     <Content Include="Utility\swfupload\DisBankgroundswfupload.js" />

@@ -20,6 +20,14 @@
                 佣金&nbsp;¥<%# Eval("CommissionPrice","{0:F2}")%>
                 <span>库存&nbsp;<%# Eval("Stock")%></span>
             </div>
+             <div class="price">
+                可抵金贝&nbsp;¥<%# Eval("VirtualPoint","{0:F2}")%>
+                <span>成交价&nbsp;<%# Eval("StrikePrice","{0:F2}")%></span>
+            </div>
+             <div class="price">
+                抵扣金贝后佣金&nbsp;¥<%# Eval("CommissionPriceByRemoveVirtualPoint","{0:F2}")%>
+            </div>
+            
         </div>
     </div>
     <div class="right">

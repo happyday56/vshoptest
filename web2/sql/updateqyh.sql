@@ -156,3 +156,47 @@ FROM         dbo.Hishop_ProductsToCategory AS pc LEFT OUTER JOIN
 WHERE     (p.IsDistributorBuy = 0)
 
 GO
+
+--
+--SiteSettings.config 添加 SiteNote节点
+
+--2017.2.4
+Create FUNCTION [dbo].[GetCommissionRemoveVirtualPoint]
+(
+	@UserId INT,
+	@SkuId NVARCHAR(100),
+	@VirtualPointRate decimal(18,2)
+)
+RETURNS Money
+AS
+BEGIN
+	
+	
+	DECLARE @CommPrice Money;
+	DECLARE @ProfitRise MONEY;
+	
+	SET @CommPrice = 0;
+	
+	IF(@UserId > 0 AND len(isnull(@SkuId,'')) > 0)
+	BEGIN
+		--SELECT s.SalePrice - s.CostPrice,* FROM Hishop_SKUs s
+		SELECT TOP  1 @ProfitRise = s.SalePrice*(1-@VirtualPointRate) - s.CostPrice
+		  FROM Hishop_SKUs s WHERE s.SkuId = @SkuId;
+		
+		IF (isnull(@ProfitRise,0) = 0) RETURN @CommPrice;
+		
+		SELECT TOP 1 @CommPrice = 
+		CASE d.GradeId 
+			WHEN 1 THEN @ProfitRise * (FirstCommissionRise / 100)
+			WHEN 2 THEN @ProfitRise * (FirstCommissionRise / 100)
+			WHEN 3 THEN @ProfitRise * (FirstCommissionRise / 100)
+		ELSE 0 END
+		FROM aspnet_Distributors d INNER JOIN aspnet_DistributorGrade dg 
+		ON d.DistributorGradeId = dg.GradeId
+		
+		
+	END
+	
+	RETURN @CommPrice;
+
+END

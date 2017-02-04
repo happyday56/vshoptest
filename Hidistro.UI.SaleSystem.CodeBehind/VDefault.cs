@@ -40,6 +40,7 @@ namespace Hidistro.UI.SaleSystem.CodeBehind
         private VshopTemplatedRepeater rptProducts;
         private Literal litGood;
         private Literal litActivitiesAd;
+        protected HtmlGenericControl note;
 
         #region "注销代码"
         /*
@@ -249,6 +250,7 @@ namespace Hidistro.UI.SaleSystem.CodeBehind
             this.litProducts = (Literal)this.FindControl("litProducts");
             this.litattention = (Literal)this.FindControl("litattention");
             this.litGood = (Literal)this.FindControl("litGood");
+            this.note = (HtmlGenericControl)this.FindControl("note");
             this.pager.PageSize = 1000;
             // 如果分享过来的链接中不存在ReferralId，则从Cookie中获取
             if (string.IsNullOrEmpty(this.Page.Request.QueryString["ReferralId"]))
@@ -460,6 +462,14 @@ namespace Hidistro.UI.SaleSystem.CodeBehind
                 GetCategoriesProducts();
             }
 
+            if (string.IsNullOrEmpty(masterSettings.SiteNote))
+            {
+                note.Visible = false;
+            }
+            else
+            {
+                note.InnerHtml = masterSettings.SiteNote;
+            }
         }
 
         private void GetActivities(string siteFlag)

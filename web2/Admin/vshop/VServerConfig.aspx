@@ -108,7 +108,13 @@
                         <asp:Literal ID="litKeycode" runat="server" />
                         <p id="P1" runat="server">系统开放的接口，需要用到此安全校验码进行签名验证，如果安全校验码泄漏，请联系客户人员更换</p>
                     </li>
+                     <li>
+                        <h2 class="colorE">公告配置</h2>
+                    </li>
 
+                      <li class="clearfix"><span class="formitemtitle Pw_198">公告内容：</span>
+                        <asp:TextBox ID="txtSiteNote" CssClass="forminput formwidth" runat="server" />
+                    </li>
                 </ul>
                 <ul class="btntf Pa_198 clear">
                     <asp:Button runat="server" ID="btnAdd" Text="保 存" OnClientClick="return PageIsValid();" OnClick="btnOK_Click" CssClass="submit_DAqueding inbnt" />

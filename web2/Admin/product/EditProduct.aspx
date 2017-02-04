@@ -11,7 +11,7 @@
     <link href="/utility/flashupload/flashupload.css" rel="stylesheet" type="text/css" />
     <Hi:Script ID="Script3" runat="server" Src="/utility/flashupload/flashupload.js" />
       <Hi:Script ID="Script4" runat="server" Src="/utility/My97DatePicker/WdatePicker.js" />
-
+     <Hi:Script ID="Script5" runat="server" Src="/utility/layer/layer.js" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder" runat="server">
 <div class="dataarea mainwidth databody">
@@ -25,8 +25,10 @@
           <li><h2 class="colorE">基本信息</h2></li>
 	        <li>
 	            <span class="formitemtitle Pw_198">所属商品分类：</span>
-                <span class="colorE float fonts"><asp:Literal runat="server" ID="litCategoryName"></asp:Literal></span>
-                [<asp:HyperLink runat="server" ID="lnkEditCategory" CssClass="a" Text="编辑"></asp:HyperLink>]
+                <span class="colorE float fonts" id="spCategories"><asp:Literal runat="server" ID="litCategoryName"></asp:Literal></span>
+                <%--[<asp:HyperLink runat="server" ID="lnkEditCategory" CssClass="a" Text="编辑"></asp:HyperLink>]--%>
+                <a href="javascript:selectCategories()">[新增投放区域]</a>
+                <input type="hidden"  id="btnCategories" runat="server"/>
             </li>
 	        <li>
 	            <span class="formitemtitle Pw_198">商品类型：</span>
@@ -176,7 +178,21 @@
           </ul>
         </div>
       </div>
+
+
 </div>
+
+    <%--  <div id="divCategory" style="display: none;">
+        <div class="frame-content">
+            <p>
+                <em>确定要上架商品？上架后商品将前台出售</em></p>
+        </div>
+    </div>
+
+     <div style="display: none">
+        <asp:Button ID="btnSaveCategory" runat="server" Text="选择商品分类" CssClass="submit_DAqueding" />
+         </div>--%>
+
 <div class="Pop_up" id="priceBox" style="display: none;">
     <h1>
         <span id="popTitle"></span>
@@ -239,7 +255,47 @@
             appendValid(new MoneyRangeValidator('ctl00_contentHolder_txtVirtualPointRate', 0.00, 100, '输入的数值超出了系统表示范围'));
 
         }
-        $(document).ready(function() { InitValidators(); });
+        $(document).ready(function () { InitValidators(); });
+
+        function selectCategories()
+        {
+            //DialogFrame("product/SelectCategories.aspx?selectedCategories=" + $("#ctl00_contentHolder_btnCategories").val(), "请选择投放的分类", 1000, 560);
+
+            layer.open({
+                title:null,
+                type: 2,
+                area: ['1000px', '530px'],
+                maxmin: true,
+                content: 'SelectCategories.aspx',
+                success: function (layero, index) {
+                    //alert(1);
+                    //var categoryId = $("#categoryId").val();
+                    //alert(categoryId);
+                },
+                end: function () {
+                    //alert(2);
+                    //var categoryId = $("#categoryId").val();
+                    //alert(categoryId);
+                }
+            });
+        }
+
+        function removeCategory(obj,id)
+        {
+           
+            var result = "";
+            var categoryIds = $("#ctl00_contentHolder_btnCategories").val();
+          
+            for (var i = 0; i < categoryIds.split(',').length ; i++) {
+                if (categoryIds.split(',')[i] != id) {
+                    result += ((i == 0) ? categoryIds.split(',')[i] : ',' + categoryIds.split(',')[i]);
+                }
+            }
+            $("#ctl00_contentHolder_btnCategories").val(result);
+
+            $(obj).parent().remove();
+        }
     </script>
     
 </asp:Content>
+

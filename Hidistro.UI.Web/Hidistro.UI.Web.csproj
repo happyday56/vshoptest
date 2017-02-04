@@ -709,6 +709,9 @@
     <Compile Include="Hidistro.UI.Web.Admin\SearchGroupbuyProduct.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Hidistro.UI.Web.Admin\SelectCategories.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Hidistro.UI.Web.Admin\SelectCategory.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

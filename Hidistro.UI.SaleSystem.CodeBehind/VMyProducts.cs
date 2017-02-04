@@ -7,6 +7,7 @@
     using Hidistro.UI.Common.Controls;
     using NewLife.Log;
     using System;
+    using System.Data;
     using System.Web;
     using System.Web.UI;
     using System.Web.UI.HtmlControls;
@@ -156,7 +157,17 @@
             this.txtkeywords.Value = this.keyWord;
             this.rpCategorys.DataSource = CategoryBrowser.GetCategories();
             this.rpCategorys.DataBind();
-            this.rpChooseProducts.DataSource = ProductBrowser.GetProducts(MemberProcessor.GetCurrentMember(), null, new int?(this.categoryId), this.keyWord, 1, 0x2710, out num, "DisplaySequence", "desc", true);
+
+            //VirtualPointRate,0 as VirtualPoint,0 as StrikePrice,0 as CommissionPriceByRemoveVirtualPoint
+
+            DataTable dt = ProductBrowser.GetProducts(MemberProcessor.GetCurrentMember(), null, new int?(this.categoryId), this.keyWord, 1, 0x2710, out num, "DisplaySequence", "desc", true);
+            foreach (DataRow row in dt.Rows)
+            {
+                row["VirtualPoint"] = decimal.Parse(row["SalePrice"].ToString()) * decimal.Parse(row["VirtualPointRate"].ToString());
+                row["StrikePrice"] = decimal.Parse(row["SalePrice"].ToString()) * (1 - decimal.Parse(row["VirtualPointRate"].ToString()));
+            }
+
+            this.rpChooseProducts.DataSource = dt;
             this.rpChooseProducts.DataBind();
         }
 

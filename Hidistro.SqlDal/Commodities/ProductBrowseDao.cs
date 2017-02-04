@@ -251,7 +251,7 @@
 
                 builder.AppendFormat(" (CASE WHEN (SELECT COUNT(*) FROM Hishop_SKUMemberPrice WHERE SkuId = vw_Hishop_BrowseProductList.SkuId AND GradeId = {0}) = 1", member.GradeId);
                 builder.AppendFormat(" THEN (SELECT MemberSalePrice FROM Hishop_SKUMemberPrice WHERE SkuId = vw_Hishop_BrowseProductList.SkuId AND GradeId = {0}) ELSE SalePrice*{1}/100 END) AS SalePrice,", member.GradeId, discount);
-                builder.AppendFormat(" dbo.GetCommissionTwo ({0},SkuId) CommissionPrice, Stock", distributorId);
+                builder.AppendFormat(" dbo.GetCommissionTwo ({0},SkuId) CommissionPrice, Stock,VirtualPointRate,0 as VirtualPoint,0 as StrikePrice,dbo.GetCommissionRemoveVirtualPoint ({0},SkuId,VirtualPointRate) as CommissionPriceByRemoveVirtualPoint", distributorId);
             }
             else
             {

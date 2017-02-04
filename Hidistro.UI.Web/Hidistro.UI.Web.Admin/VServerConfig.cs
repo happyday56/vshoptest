@@ -32,6 +32,7 @@ namespace Hidistro.UI.Web.Admin
 		protected System.Web.UI.WebControls.TextBox txtWeixinLoginUrl;
 		protected System.Web.UI.WebControls.TextBox txtWeixinNumber;
         protected System.Web.UI.WebControls.TextBox txtGuidePageSet;
+        protected System.Web.UI.WebControls.TextBox txtSiteNote;
 
 		protected void btnOK_Click(object sender, System.EventArgs e)
 		{
@@ -45,6 +46,7 @@ namespace Hidistro.UI.Web.Admin
 			masterSettings.OpenManyService = this.chk_manyService.Checked;
 			masterSettings.ShopIntroduction = this.txtShopIntroduction.Text.Trim();
             masterSettings.GuidePageSet = this.txtGuidePageSet.Text.Trim();
+            masterSettings.SiteNote = this.txtSiteNote.Text.Trim();
 			SettingsManager.Save(masterSettings);
 			this.ShowMsg("修改成功", true);
 		}
@@ -122,6 +124,7 @@ namespace Hidistro.UI.Web.Admin
 				this.chk_manyService.Checked = masterSettings.OpenManyService;
 				this.txtShopIntroduction.Text = masterSettings.ShopIntroduction;
                 this.txtGuidePageSet.Text = masterSettings.GuidePageSet;
+                this.txtSiteNote.Text = masterSettings.SiteNote;
 			}
 		}
 	}
