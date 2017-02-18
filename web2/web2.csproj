@@ -459,7 +459,9 @@
     <Content Include="Admin\member\MemberRanking.aspx" />
     <Content Include="Admin\member\UserArealDistributionStatistics.aspx" />
     <Content Include="Admin\member\UserIncreaseStatistics.aspx" />
-    <Content Include="Admin\Menu.xml" />
+    <Content Include="Admin\Menu.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Admin\PicRar.aspx" />
     <Content Include="Admin\printtools\install_lodop32.exe" />
     <Content Include="Admin\product\AddAttribute.aspx" />
@@ -1066,6 +1068,7 @@
     <Content Include="plugins\sms\Hishop.Plugins.SMS.dll" />
     <Content Include="plugins\transfer\Hishop.Transfers.dll" />
     <Content Include="ResourceNotFound.aspx" />
+    <None Include="Properties\PublishProfiles\x.pubxml" />
     <None Include="sql\updateqyh.sql" />
     <Content Include="Templates\vshop\default\default.jpg" />
     <Content Include="Templates\vshop\default\images\ad\imgDefaultBg.jpg" />
@@ -2026,7 +2029,9 @@
     <None Include="config\Core.config" />
     <None Include="config\Hishop.config" />
     <None Include="config\region.config" />
-    <None Include="config\SiteSettings.config" />
+    <None Include="config\SiteSettings.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="config\SiteUrls.config" />
     <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Templates\vshop\default\style\newcss\js\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
@@ -2092,9 +2097,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\PublishProfiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ASPNET.WebControls\ASPNET.WebControls.csproj">
       <Project>{f0da0440-2739-482a-8f9b-651d9aa06eca}</Project>

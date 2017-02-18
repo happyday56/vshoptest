@@ -1157,25 +1157,25 @@
         public bool UpdateCalcRecommendedIncome(string UserId, string ReferralUserId, string OrderFromStoreId, string OrderId, decimal OrderTotal, decimal resultCommTatal, int commType, string remark = "")
         {
 
-            bool flag = false;
-            string query = "SELECT * FROM Hishop_Commissions WHERE OrderId = @OrderId AND CommTotal = @CommTotal AND OrderFromStoreId = @OrderFromStoreId AND CommType = @CommType AND State = 1 ";
-            DbCommand sqlCommand = this.database.GetSqlStringCommand(query);
-            this.database.AddInParameter(sqlCommand, "OrderId", DbType.String, OrderId);
-            this.database.AddInParameter(sqlCommand, "CommTotal", DbType.Decimal, resultCommTatal);
-            this.database.AddInParameter(sqlCommand, "OrderFromStoreId", DbType.Int32, OrderFromStoreId);
-            this.database.AddInParameter(sqlCommand, "CommType", DbType.Int32, commType);
-            using (IDataReader reader = this.database.ExecuteReader(sqlCommand))
-            {
-                if (reader.Read())
-                {
-                    flag = true;
-                }
-            }
+            //bool flag = false;
+            //string query = "SELECT * FROM Hishop_Commissions WHERE OrderId = @OrderId AND CommTotal = @CommTotal AND OrderFromStoreId = @OrderFromStoreId AND CommType = @CommType AND State = 1 ";
+            //DbCommand sqlCommand = this.database.GetSqlStringCommand(query);
+            //this.database.AddInParameter(sqlCommand, "OrderId", DbType.String, OrderId);
+            //this.database.AddInParameter(sqlCommand, "CommTotal", DbType.Decimal, resultCommTatal);
+            //this.database.AddInParameter(sqlCommand, "OrderFromStoreId", DbType.Int32, OrderFromStoreId);
+            //this.database.AddInParameter(sqlCommand, "CommType", DbType.Int32, commType);
+            //using (IDataReader reader = this.database.ExecuteReader(sqlCommand))
+            //{
+            //    if (reader.Read())
+            //    {
+            //        flag = true;
+            //    }
+            //}
 
-            if (flag)
-            {
-                return false;
-            }
+            //if (flag)
+            //{
+            //    return false;
+            //}
 
             StringBuilder sql = new StringBuilder();
             sql.AppendLine("begin try  ");

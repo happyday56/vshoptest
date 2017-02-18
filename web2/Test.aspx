@@ -11,6 +11,9 @@
     <form id="form1" runat="server">
     <div>
     
+   open     <asp:TextBox ID="txtOpenUser" runat="server"></asp:TextBox>
+        distrobutor <asp:TextBox ID="txtDistribute" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
     </div>
     </form>
 </body>
