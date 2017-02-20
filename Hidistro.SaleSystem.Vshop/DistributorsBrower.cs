@@ -183,12 +183,12 @@
 
                 // 更新订单状态(完成)
                 DistributorsBrower.UpdateOrderStatus(orderId, 5, DateTime.Now);
-                
+
                 // 判断是否要处理收益或钻石会员订单不计算佣金
                 if (siteSettings.IsProcessCommissions && distributors.IsTempStore != 1)
                 {
 
-                    #region 推荐收益                    
+                    #region 推荐收益
 
                     if (string.IsNullOrEmpty(orderId) || orderId.EqualIgnoreCase("推荐收入"))
                     {
@@ -197,7 +197,7 @@
                     else
                     {
                         // 判断订单上的邀请人是否跟邀请记录中的一致，不一致的情况下更新订单上的邀请人
-                        
+
                         // 获取到了订单号才处理佣金数据
                         // 计算推荐收益
                         StringBuilder recommendSql = new StringBuilder();
@@ -275,13 +275,16 @@
 
                                             if (currRecommendedIncome > 0)
                                             {
-                                                DistributorsBrower.UpdateCalcRecommendedIncome(parentDistributor.UserId.ToString(), parentDistributor.ReferralUserId.ToString()
+                                                var t = DistributorsBrower.UpdateCalcRecommendedIncome(parentDistributor.UserId.ToString(), parentDistributor.ReferralUserId.ToString()
                                                     , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+
+                                                XTrace.WriteLine("11 status " + t.ToString());
                                             }
                                             else
                                             {
-                                                DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(parentDistributor.UserId.ToString(), parentDistributor.ReferralUserId.ToString()
-                                                    , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                var t = DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(parentDistributor.UserId.ToString(), parentDistributor.ReferralUserId.ToString()
+                                                      , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                XTrace.WriteLine("12 status " + t.ToString());
                                             }
                                             recommendSql.AppendLine("当前佣金计算：------当前提成者ID：" + parentDistributor.UserId + ";上级ID："
                                                 + parentDistributor.ReferralUserId + "（" + parentDistributorGrade.Name + "）" + ";佣金金额：" + currRecommendedIncome
@@ -344,13 +347,15 @@
                                                             currRecommendedIncome = currDistributorGrade.RecommendedIncome;
                                                             if (currRecommendedIncome > 0)
                                                             {
-                                                                DistributorsBrower.UpdateCalcRecommendedIncome(currDistributor.UserId.ToString(), currDistributor.ReferralUserId.ToString()
+                                                              var t =  DistributorsBrower.UpdateCalcRecommendedIncome(currDistributor.UserId.ToString(), currDistributor.ReferralUserId.ToString()
                                                                     , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                                XTrace.WriteLine("21 status " + t.ToString());
                                                             }
                                                             else
                                                             {
-                                                                DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(currDistributor.UserId.ToString(), currDistributor.ReferralUserId.ToString()
+                                                              var t =  DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(currDistributor.UserId.ToString(), currDistributor.ReferralUserId.ToString()
                                                                     , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                                XTrace.WriteLine("22 status " + t.ToString());
                                                             }
                                                             recommendSql.AppendLine("当前佣金计算：------当前提成者ID：" + currDistributor.UserId + ";上级ID："
                                                                 + currDistributor.ReferralUserId + "（" + currDistributorGrade.Name + "）" + ";佣金金额：" + currRecommendedIncome
@@ -369,13 +374,15 @@
                                                                 currRecommendedIncome = siteSettings.DefaultCompanyIncomeEight;
                                                                 if (currRecommendedIncome > 0)
                                                                 {
-                                                                    DistributorsBrower.UpdateCalcRecommendedIncome(twoTutorDistributor.UserId.ToString(), twoTutorDistributor.ReferralUserId.ToString()
+                                                                  var t=  DistributorsBrower.UpdateCalcRecommendedIncome(twoTutorDistributor.UserId.ToString(), twoTutorDistributor.ReferralUserId.ToString()
                                                                         , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                                    XTrace.WriteLine("31 status " + t.ToString());
                                                                 }
                                                                 else
                                                                 {
-                                                                    DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(twoTutorDistributor.UserId.ToString(), twoTutorDistributor.ReferralUserId.ToString()
+                                                                  var t =  DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(twoTutorDistributor.UserId.ToString(), twoTutorDistributor.ReferralUserId.ToString()
                                                                         , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                                    XTrace.WriteLine("32 status " + t.ToString());
                                                                 }
                                                                 recommendSql.AppendLine("当前佣金计算：------当前提成者ID：" + twoTutorDistributor.UserId + ";上级ID："
                                                                     + twoTutorDistributor.ReferralUserId + "（" + twoTutorDistributor.DistriGradeId + "）" + ";佣金金额：" + currRecommendedIncome
@@ -414,13 +421,15 @@
                                                             currRecommendedIncome = currDistributorGrade.RecommendedIncome - firstParentDeductionAmount;
                                                             if (currRecommendedIncome > 0)
                                                             {
-                                                                DistributorsBrower.UpdateCalcRecommendedIncome(currDistributor.UserId.ToString(), currDistributor.ReferralUserId.ToString()
+                                                               var t = DistributorsBrower.UpdateCalcRecommendedIncome(currDistributor.UserId.ToString(), currDistributor.ReferralUserId.ToString()
                                                                     , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                                XTrace.WriteLine("41 status " + t.ToString());
                                                             }
                                                             else
                                                             {
-                                                                DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(currDistributor.UserId.ToString(), currDistributor.ReferralUserId.ToString()
+                                                               var t=  DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(currDistributor.UserId.ToString(), currDistributor.ReferralUserId.ToString()
                                                                     , OrderFromStoreId.ToString(), orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                                XTrace.WriteLine("42 status " + t.ToString()); 
                                                             }
                                                             recommendSql.AppendLine("当前佣金计算：------当前提成者ID：" + currDistributor.UserId + ";上级ID："
                                                                 + currDistributor.ReferralUserId + "（" + currDistributorGrade.Name + "）" + ";佣金金额：" + currRecommendedIncome + ";来自哪里："
@@ -439,13 +448,15 @@
 
                                                                 if (currRecommendedIncome > 0)
                                                                 {
-                                                                    DistributorsBrower.UpdateCalcRecommendedIncome(twoParentDistributor.UserId.ToString(), twoParentDistributor.ReferralUserId.ToString(), OrderFromStoreId.ToString()
+                                                                 var t=   DistributorsBrower.UpdateCalcRecommendedIncome(twoParentDistributor.UserId.ToString(), twoParentDistributor.ReferralUserId.ToString(), OrderFromStoreId.ToString()
                                                                     , orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                                    XTrace.WriteLine("51 status " + t.ToString());
                                                                 }
                                                                 else
                                                                 {
-                                                                    DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(twoParentDistributor.UserId.ToString(), twoParentDistributor.ReferralUserId.ToString(), OrderFromStoreId.ToString()
+                                                                 var t=   DistributorsBrower.UpdateCalcRecommendedIncomeLTZero(twoParentDistributor.UserId.ToString(), twoParentDistributor.ReferralUserId.ToString(), OrderFromStoreId.ToString()
                                                                     , orderId, 0, currRecommendedIncome, 3, "推荐收入" + rodNum);
+                                                                    XTrace.WriteLine("52 status " + t.ToString());
                                                                 }
                                                                 recommendSql.AppendLine("当前佣金计算：------当前提成者ID：" + twoParentDistributor.UserId + ";上级ID："
                                                                     + twoParentDistributor.ReferralUserId + "（" + twoParentDistributor.GradeId + "）" + ";佣金金额："
@@ -1765,7 +1776,7 @@
             return new DistributorsDao().GetOrderIdByUserIdAndProductId(userId, productId);
         }
 
-        public static ProductInfo GetQRCodeDistProductByPTTypeId(int ptTypeId) 
+        public static ProductInfo GetQRCodeDistProductByPTTypeId(int ptTypeId)
         {
             return new ProductDao().GetQRCodeDistProductByPTTypeId(ptTypeId);
         }
