@@ -168,12 +168,13 @@
                     //    num5 += info.SubTotal;
                     //}
 
-                    productCategoryId = int.Parse(info.MainCategoryPath.Split(new char[] { '|' })[0].ToString());
+                  
 
                     // 新处理
                     // 商品分类不为空
                     if (!string.IsNullOrEmpty(info.MainCategoryPath))
                     {
+                        productCategoryId = int.Parse(info.MainCategoryPath.Split(new char[] { '|' })[0].ToString());
                         if((int.Parse(type.Rows[i]["ActivitiesType"].ToString()) == 0)){
                             // 全类目处理
                             // 1.获取全类目下是否有排除的分类不参与

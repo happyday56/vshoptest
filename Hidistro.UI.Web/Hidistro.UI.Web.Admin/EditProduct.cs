@@ -86,7 +86,7 @@ namespace Hidistro.UI.Web.Admin
             //{
             //    this.categoryId = (int)this.ViewState["ProductCategoryId"];
             //}
-         
+
 
             decimal num2;
             decimal? nullable;
@@ -154,6 +154,9 @@ namespace Hidistro.UI.Web.Admin
                         homePicUrl = this.imgCover.ImageUrl;
                     }
                 }
+
+                //处理分类
+                var categories = btnCategories.Value;
 
                 ProductInfo target = new ProductInfo
                 {
@@ -235,11 +238,16 @@ namespace Hidistro.UI.Web.Admin
                     target.MaxCross = int.Parse(this.txtMaxCross.Text.Trim());
                 }
 
-                //CategoryInfo category = CatalogHelper.GetCategory(this.categoryId);
-                //if (category != null)
-                //{
-                //    target.MainCategoryPath = category.Path + "|";
-                //}
+                if (categories != "")
+                {
+                    CategoryInfo category = CatalogHelper.GetCategory(int.Parse(categories.Split(',')[0]));
+                    if (category != null)
+                    {
+                        target.MainCategoryPath = category.Path + "|";
+                    }
+                }
+
+
                 System.Collections.Generic.Dictionary<int, System.Collections.Generic.IList<int>> attrs = null;
                 System.Collections.Generic.Dictionary<string, SKUItem> skus;
                 if (this.chkSkuEnabled.Checked)
@@ -306,19 +314,18 @@ namespace Hidistro.UI.Web.Admin
                     switch (ProductHelper.UpdateProduct(target, skus, attrs, tagIds))
                     {
                         case ProductActionStatus.Success:
-                         
-                        //处理分类
-                         var categories =   btnCategories.Value;
-                         //if (categories == "")
-                         //{
-                         //    this.ShowMsg("请选择一个分类", false);
-                         //    return;
-                         //}
 
-                         if (categories != "")
-                         {
-                              new ProductsToCategoryDao().save(productId,categories);
-                         }
+
+                            //if (categories == "")
+                            //{
+                            //    this.ShowMsg("请选择一个分类", false);
+                            //    return;
+                            //}
+
+                            if (categories != "")
+                            {
+                                new ProductsToCategoryDao().save(productId, categories);
+                            }
 
                             this.litralProductTag.SelectedValue = tagIds;
                             if (base.Request.QueryString["reurl"] != null)
@@ -356,7 +363,7 @@ namespace Hidistro.UI.Web.Admin
         private void LoadProduct(ProductInfo product, System.Collections.Generic.Dictionary<int, System.Collections.Generic.IList<int>> attrs)
         {
             this.dropProductTypes.SelectedValue = product.TypeId;
-            this.dropBrandCategories.SelectedValue = product.BrandId;           
+            this.dropBrandCategories.SelectedValue = product.BrandId;
             this.txtDisplaySequence.Text = product.DisplaySequence.ToString();
             this.txtProductName.Text = Globals.HtmlDecode(product.ProductName);
             this.txtProductCode.Text = product.ProductCode;
@@ -508,7 +515,7 @@ namespace Hidistro.UI.Web.Admin
             this.dropProductFeature.SelectedValue = product.ProductFeature;
             this.txtStartTime.Value = product.StartTime == DateTime.MinValue ? DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") : product.StartTime.ToString("yyyy-MM-dd HH:mm:ss");
             this.txtEndTime.Value = product.EndTime == DateTime.MinValue ? DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") : product.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
-         
+
         }
         protected override void OnInitComplete(System.EventArgs e)
         {
@@ -549,16 +556,16 @@ namespace Hidistro.UI.Web.Admin
                     //}
                     //this.lnkEditCategory.NavigateUrl = this.lnkEditCategory.NavigateUrl + "&productId=" + product.ProductId.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
-                  List<int> categories =  new ProductsToCategoryDao().getCategoriesByProductId(productId);
-                  StringBuilder strCategories = new StringBuilder();
+                    List<int> categories = new ProductsToCategoryDao().getCategoriesByProductId(productId);
+                    StringBuilder strCategories = new StringBuilder();
                     StringBuilder strCategoryIds = new StringBuilder();
-                    foreach(int categoryId in categories)
+                    foreach (int categoryId in categories)
                     {
                         strCategories.Append("<div>" + CatalogHelper.GetFullCategory(categoryId) + " <input type='button' value='-' onclick='removeCategory(this," + categoryId + ")'/></div>");
                         strCategoryIds.Append(categoryId + ",");
                     }
                     this.litCategoryName.Text = strCategories.ToString();
-                    btnCategories.Value = strCategoryIds.ToString().Length > 0 ? strCategoryIds.ToString().Substring(0, strCategoryIds.ToString().Length-1) : "";
+                    btnCategories.Value = strCategoryIds.ToString().Length > 0 ? strCategoryIds.ToString().Substring(0, strCategoryIds.ToString().Length - 1) : "";
 
                     this.litralProductTag.SelectedValue = tagsId;
                     if (tagsId.Count > 0)
