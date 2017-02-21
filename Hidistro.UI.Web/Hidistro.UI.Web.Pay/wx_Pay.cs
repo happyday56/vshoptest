@@ -14,38 +14,43 @@ namespace Hidistro.UI.Web.Pay
 {
 	public class wx_Pay : System.Web.UI.Page
 	{
-		protected OrderInfo Order;
-		protected string OrderId;
+		
 		protected void Page_Load(object sender, System.EventArgs e)
 		{
+           OrderInfo Order;
+		    string OrderId;
+            XTrace.WriteLine("微信回调back");
 			SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
 			PayNotify payNotify = new NotifyClient(masterSettings.WeixinAppId, masterSettings.WeixinAppSecret, masterSettings.WeixinPartnerID, masterSettings.WeixinPartnerKey, masterSettings.WeixinPaySignKey).GetPayNotify(base.Request.InputStream);
             
 			if (payNotify != null)
 			{
-
-				this.OrderId = payNotify.PayInfo.OutTradeNo;
-				this.Order = ShoppingProcessor.GetOrderInfo(this.OrderId);
-				if (this.Order == null)
+                //XTrace.WriteLine("通知进入");
+				OrderId = payNotify.PayInfo.OutTradeNo;
+				Order = ShoppingProcessor.GetOrderInfo(OrderId);
+				if (Order == null)
 				{
 					base.Response.Write("success");
 				}
 				else
 				{
-					this.Order.GatewayOrderId = payNotify.PayInfo.TransactionId;
-					this.UserPayOrder();
+                    //XTrace.WriteLine(OrderId + "订单不为空");
+					Order.GatewayOrderId = payNotify.PayInfo.TransactionId;
+                    this.UserPayOrder(Order);
 				}
 			}
 		}
-		private void UserPayOrder()
+        private void UserPayOrder(OrderInfo Order)
 		{
-			if (this.Order.OrderStatus == OrderStatus.BuyerAlreadyPaid)
+            //XTrace.WriteLine(Order.OrderId + "当前订单状态 " + Order.OrderStatus);
+			if (Order.OrderStatus == OrderStatus.BuyerAlreadyPaid)
 			{
 				base.Response.Write("success");
 			}
 			else
 			{
-				if (this.Order.CheckAction(OrderActions.BUYER_PAY) && MemberProcessor.UserPayOrder(this.Order))
+                //XTrace.WriteLine(Order.OrderId + "准备开始处理");
+				if (Order.CheckAction(OrderActions.BUYER_PAY) && MemberProcessor.UserPayOrder(Order))
 				{
                     //if (this.Order.UserId != 0 && this.Order.UserId != 1100)
                     //{
@@ -56,7 +61,7 @@ namespace Hidistro.UI.Web.Pay
                     //        XTrace.WriteLine("支付微信通知1");
                     //    }
                     //}
-					this.Order.OnPayment();
+					Order.OnPayment();
 					base.Response.Write("success");
 				}
 			}

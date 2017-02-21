@@ -51,13 +51,13 @@
         public static bool ConfirmCloseOrder(OrderInfo order)
         {
             bool flag = false;
-            
+
             order.OrderStatus = OrderStatus.Closed;
             order.CloseReason = "未付款关闭";
             order.FinishDate = new DateTime?(DateTime.Now);
             flag = new OrderDao().UpdateOrder(order, null);
             HiCache.Remove(string.Format("DataCache-Member-{0}", order.UserId));
-            
+
             return flag;
         }
 
@@ -284,27 +284,41 @@
 
         public static bool UserPayOrder(OrderInfo order)
         {
+            //XTrace.WriteLine(order.OrderId + "正式进入");
             OrderDao dao = new OrderDao();
             order.OrderStatus = OrderStatus.BuyerAlreadyPaid;
             order.PayDate = new DateTime?(DateTime.Now);
             bool flag = dao.UpdateOrder(order, null);
+            //XTrace.WriteLine(order.OrderId + "处理完订单状态");
             string str = "";
             if (flag)
             {
                 dao.UpdatePayOrderStock(order.OrderId);
+                //XTrace.WriteLine(order.OrderId + "处理完库存");
+                if (order.LineItems!=null) XTrace.WriteLine(order.LineItems.Count.ToString());
+
                 foreach (LineItemInfo info in order.LineItems.Values)
                 {
+                    //XTrace.WriteLine("skuid " + info.SkuId + " productId" + info.ProductId);
                     ProductDao dao2 = new ProductDao();
                     str = str + "'" + info.SkuId + "',";
                     ProductInfo productDetails = dao2.GetProductDetails(info.ProductId);
+                    //if (productDetails != null)
+                    //{
+                    //    XTrace.WriteLine(productDetails.EndTime + " endtime value");                     
+                    //}
+
                     productDetails.SaleCounts += info.Quantity;
                     productDetails.ShowSaleCounts += info.Quantity;
                     dao2.UpdateProduct(productDetails, null);
+                    //XTrace.WriteLine("更新商品量结束");
                 }
+                //XTrace.WriteLine(order.OrderId + "准备处理子项订单");
                 if (!string.IsNullOrEmpty(str))
                 {
                     dao.UpdateItemsStatus(order.OrderId, 2, str.Substring(0, str.Length - 1));
                 }
+                //XTrace.WriteLine(order.OrderId + "处理完子项状态");
                 if (!string.IsNullOrEmpty(order.ActivitiesId))
                 {
                     new ActivitiesDao().UpdateActivitiesTakeEffect(order.ActivitiesId);
@@ -328,6 +342,7 @@
                 {
                     point.Points = 0x7fffffff;
                 }
+                //XTrace.WriteLine(order.OrderId + "马上要发送消息");
                 PointDetailDao dao5 = new PointDetailDao();
                 dao5.AddPointDetail(point);
                 member.Expenditure += order.GetTotal();

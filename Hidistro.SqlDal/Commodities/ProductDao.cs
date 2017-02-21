@@ -512,7 +512,7 @@ SET @ProductId = @@IDENTITY;");
         {
             string viewName = "";
 
-           
+
 
             StringBuilder builder = new StringBuilder();
             builder.Append(" 1=1 ");
@@ -603,7 +603,7 @@ SET @ProductId = @@IDENTITY;");
                     viewName = "vw_Hishop_BrowseProductListCategory p";
                 else
                     viewName = "vw_Hishop_BrowseProductList p";
-                    
+
             }
 
             return DataHelper.PagingByRownumber(query.PageIndex, query.PageSize, query.SortBy, query.SortOrder, query.IsCount, viewName, "ProductId", builder.ToString(), selectFields);
@@ -706,8 +706,8 @@ ImageUrl1 = @ImageUrl1, ImageUrl2 = @ImageUrl2, ImageUrl3 = @ImageUrl3, ImageUrl
 ThumbnailUrl40 = @ThumbnailUrl40, ThumbnailUrl60 = @ThumbnailUrl60, ThumbnailUrl100 = @ThumbnailUrl100, ThumbnailUrl160 = @ThumbnailUrl160, ThumbnailUrl180 = @ThumbnailUrl180,
 ThumbnailUrl220 = @ThumbnailUrl220, ThumbnailUrl310 = @ThumbnailUrl310, ThumbnailUrl410 = @ThumbnailUrl410, 
 BrandId = @BrandId, HasSKU = @HasSKU,IsfreeShipping=@IsfreeShipping,SaleCounts = @SaleCounts, ShowSaleCounts = @ShowSaleCounts, VirtualPointRate = @VirtualPointRate, HomePicUrl = @HomePicUrl, 
-IsDisplayHome = @IsDisplayHome, IsCross = @IsCross, MaxCross = @MaxCross,ProductFeature=@ProductFeature,StartTime=@StartTime,EndTime=@EndTime
-WHERE ProductId = @ProductId");
+IsDisplayHome = @IsDisplayHome, IsCross = @IsCross, MaxCross = @MaxCross,ProductFeature=@ProductFeature {0} {1}
+WHERE ProductId = @ProductId", product.StartTime != DateTime.MinValue ? ",StartTime=@StartTime" : "", product.EndTime != DateTime.MinValue ? ",EndTime=@EndTime" : "");
             DbCommand storedProcCommand = this.database.GetSqlStringCommand(strsql);
             this.database.AddInParameter(storedProcCommand, "CategoryId", DbType.Int32, product.CategoryId);
             this.database.AddInParameter(storedProcCommand, "MainCategoryPath", DbType.String, product.MainCategoryPath);
@@ -745,8 +745,10 @@ WHERE ProductId = @ProductId");
             this.database.AddInParameter(storedProcCommand, "MaxCross", DbType.Int32, product.MaxCross);
             this.database.AddInParameter(storedProcCommand, "ProductId", DbType.Int32, product.ProductId);
             this.database.AddInParameter(storedProcCommand, "ProductFeature", DbType.String, product.ProductFeature);
-            this.database.AddInParameter(storedProcCommand, "StartTime", DbType.DateTime, product.StartTime);
-            this.database.AddInParameter(storedProcCommand, "EndTime", DbType.DateTime, product.EndTime);
+            if (product.StartTime != DateTime.MinValue)
+                this.database.AddInParameter(storedProcCommand, "StartTime", DbType.DateTime, product.StartTime);
+            if (product.EndTime != DateTime.MinValue)
+                this.database.AddInParameter(storedProcCommand, "EndTime", DbType.DateTime, product.EndTime);
             if (dbTran != null)
             {
                 return (this.database.ExecuteNonQuery(storedProcCommand, dbTran) > 0);
