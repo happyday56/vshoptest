@@ -1158,11 +1158,11 @@
         {
 
             bool flag = false;
-            string query = "SELECT * FROM Hishop_Commissions WHERE OrderId = @OrderId AND CommTotal = @CommTotal AND UserId = @UserId AND CommType = @CommType AND State = 1 ";
+            string query = "SELECT * FROM Hishop_Commissions WHERE OrderId = @OrderId AND CommTotal = @CommTotal AND OrderFromStoreId = @OrderFromStoreId AND CommType = @CommType AND State = 1 ";
             DbCommand sqlCommand = this.database.GetSqlStringCommand(query);
             this.database.AddInParameter(sqlCommand, "OrderId", DbType.String, OrderId);
             this.database.AddInParameter(sqlCommand, "CommTotal", DbType.Decimal, resultCommTatal);
-            this.database.AddInParameter(sqlCommand, "UserId", DbType.Int32, UserId);
+            this.database.AddInParameter(sqlCommand, "OrderFromStoreId", DbType.Int32, OrderFromStoreId);
             this.database.AddInParameter(sqlCommand, "CommType", DbType.Int32, commType);
             using (IDataReader reader = this.database.ExecuteReader(sqlCommand))
             {
@@ -1171,7 +1171,7 @@
                     flag = true;
                 }
             }
-            XTrace.WriteLine(" UpdateCalcRecommendedIncome " + UserId + "  result " + flag.ToString());
+
             if (flag)
             {
                 return false;
