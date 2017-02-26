@@ -71,6 +71,14 @@
             }
             base.OnInit(e);
         }
+
+        public string StockOver(int stock)
+        {
+            if (stock <= 0) {
+                return "StockOver";
+            }
+            return "";
+        }
     }
 }
 

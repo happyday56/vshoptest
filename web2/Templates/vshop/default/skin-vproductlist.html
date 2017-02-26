@@ -63,8 +63,7 @@
 
 
     $(function () {
-
-
+      
         if (!$.trim($('#goodslist').html())) {
 
             $('#productListContainer').addClass('hide');
@@ -104,6 +103,14 @@
         });
 
         vshopPager('pager', $('#txtTotal').val(), 1, 50);
+
+        $("div[name='StockOver']").each(function () {
+            if (parseInt($(this).attr("StockOver")) <= 0)
+            {
+                $(this).addClass("StockOver");
+            }
+        });
+
 
     });
     function searchs() {

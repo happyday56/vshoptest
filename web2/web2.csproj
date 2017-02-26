@@ -1218,6 +1218,7 @@
     <Content Include="Templates\vshop\default\images\shoucang_2.jpg" />
     <Content Include="Templates\vshop\default\images\star-full.png" />
     <Content Include="Templates\vshop\default\images\star-null.png" />
+    <Content Include="Templates\vshop\default\images\StockOver.png" />
     <Content Include="Templates\vshop\default\images\tags-img-1.png" />
     <Content Include="Templates\vshop\default\images\tags-img-2.png" />
     <Content Include="Templates\vshop\default\images\test-tags-img-2.png" />

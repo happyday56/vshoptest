@@ -200,3 +200,13 @@ BEGIN
 	RETURN @CommPrice;
 
 END
+
+
+--2017 2 26
+alter table Hishop_Products add LimitBuy int;
+go
+alter table Hishop_Products add LimitBuyNums int;
+go
+update Hishop_Products set LimitBuy=0,LimitBuyNums=0;
+go
+

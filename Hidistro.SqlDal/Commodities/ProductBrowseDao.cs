@@ -148,7 +148,7 @@
             int discount = 100;
             StringBuilder builder = new StringBuilder();
             builder.AppendFormat("ProductId,ProductName,ProductCode,ShowSaleCounts AS SaleCounts,ShortDescription,", maxNum);
-            builder.Append(" ThumbnailUrl60,ThumbnailUrl100,ThumbnailUrl160,ThumbnailUrl180,ThumbnailUrl220,ThumbnailUrl310,MarketPrice,VistiCounts, HomePicUrl,");
+            builder.Append(" ThumbnailUrl60,ThumbnailUrl100,ThumbnailUrl160,ThumbnailUrl180,ThumbnailUrl220,ThumbnailUrl310,MarketPrice,VistiCounts, HomePicUrl,Stock,");
             if (member != null)
             {
                 discount = new MemberGradeDao().GetMemberGrade(member.GradeId).Discount;
