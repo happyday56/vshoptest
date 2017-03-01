@@ -26,6 +26,7 @@ using Hidistro.ControlPanel.Sales;
 using Hidistro.ControlPanel.Store;
 using Hidistro.ControlPanel.Commodities;
 using LitJson;
+using Hidistro.SqlDal.VShop;
 
 namespace Hidistro.UI.Web.API
 {
@@ -184,7 +185,7 @@ namespace Hidistro.UI.Web.API
                     break;
 
                 case "MoveToCategory":
-                    this.MoveToCategory(context)      ;
+                    this.MoveToCategory(context);
                     break;
 
                 case "SendBindMobileVerifyCode":
@@ -193,7 +194,7 @@ namespace Hidistro.UI.Web.API
                 case "BindMobile":
                     this.BindMobile(context);
                     break;
-    
+
             }
         }
 
@@ -2019,10 +2020,30 @@ namespace Hidistro.UI.Web.API
             }
 
             bool isCrossProduct = DistributorsBrower.CheckProductIsCrossByProductId(DistributorsBrower.GetProductId(shoppingCart.LineItems));
+
+              //2017.3.1检测限购数量
+            bool checkPassOneBuyAmount = true;
+            string OneBuyAmountName ="";          
+           foreach( ShoppingCartItemInfo info in shoppingCart.LineItems)
+           {
+               int allowAmount = new UserProductNumDao().GetUserAllowBuyNum(MemberProcessor.GetCurrentMember().UserId, info.ProductId);
+               if( info.Quantity>allowAmount)
+               {
+                    checkPassOneBuyAmount = false;
+                    OneBuyAmountName= info.Name; 
+                    break;
+               }
+           }
+
             if (isCrossProduct && string.IsNullOrEmpty(idCard))
             {
                 builder.Append("\"Status\":\"Error\"");
                 builder.AppendFormat(",\"ErrorMsg\":\"{0}\"", "请输入跟收货人姓名一致的身份证号码!");
+            }
+            else if(!checkPassOneBuyAmount)
+            {
+                builder.Append("\"Status\":\"Error\"");
+                builder.AppendFormat(",\"ErrorMsg\":\"{0}\"", OneBuyAmountName + "是限购商品，超出了限购数量!");
             }
             else
             {
@@ -2867,31 +2888,31 @@ namespace Hidistro.UI.Web.API
             int categoryId = int.Parse(context.Request["id"]);
             IList<CategoryInfo> list = CatalogHelper.getChildrenList(categoryId);
             string result = JsonMapper.ToJson(list);
-            context.Response.Write(result); 
+            context.Response.Write(result);
         }
 
         /// <summary>
         /// 12.17
         /// </summary>
         /// <param name="context"></param>
-        private void  MoveToCategory(System.Web.HttpContext context)    
-            {
-             string productIds = context.Request["productIds"];
+        private void MoveToCategory(System.Web.HttpContext context)
+        {
+            string productIds = context.Request["productIds"];
             int categoryId = int.Parse(context.Request["categoryId"]);
-            
-             System.Text.StringBuilder builder = new System.Text.StringBuilder();
-             builder.Append("{");
-             if ( ProductHelper.MoveProductToCategory(productIds,categoryId))
-             {
-                 builder.Append("\"Status\":\"OK\"");
-             }
-             else
-             {
-                 builder.Append("\"Status\":\"Error\"");
-             }
-             builder.Append("}");
-             context.Response.Write(builder.ToString());
-          }
+
+            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            builder.Append("{");
+            if (ProductHelper.MoveProductToCategory(productIds, categoryId))
+            {
+                builder.Append("\"Status\":\"OK\"");
+            }
+            else
+            {
+                builder.Append("\"Status\":\"Error\"");
+            }
+            builder.Append("}");
+            context.Response.Write(builder.ToString());
+        }
 
 
         private void SendBindMobileVerifyCode(HttpContext httpContext)
@@ -2911,7 +2932,7 @@ namespace Hidistro.UI.Web.API
             }
             else
             {
-                 httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = false, msg = "" }));
+                httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = false, msg = "" }));
             }
 
             httpContext.Response.End();
@@ -2930,16 +2951,18 @@ namespace Hidistro.UI.Web.API
                 string code = httpContext.Request["code"];
                 if (currentMember.VerifyCode == code)
                 {
-                     bool ret=  MemberHelper.updateCellPhone(currentMember.UserId,phone);
+                    bool ret = MemberHelper.updateCellPhone(currentMember.UserId, phone);
                     httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = ret, msg = "" }));
                 }
-                else {
+                else
+                {
                     httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = false, msg = "验证码错误，请重新发送" }));
                 }
-               
-            } else
+
+            }
+            else
             {
-                 httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = false, msg = "系统错误" }));
+                httpContext.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(new { success = false, msg = "系统错误" }));
             }
 
             httpContext.Response.End();

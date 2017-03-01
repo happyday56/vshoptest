@@ -2195,7 +2195,7 @@
           <IISUrl>http://localhost:3491/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://www.b.com</CustomServerUrl>
+          <CustomServerUrl>http://www.xunfuli.net</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

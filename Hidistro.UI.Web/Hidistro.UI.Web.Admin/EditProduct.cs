@@ -75,6 +75,7 @@ namespace Hidistro.UI.Web.Admin
 
         protected HtmlInputHidden btnCategories;
 
+        protected TrimTextBox txtOneBuyNum;
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
         //protected ImageUploader uploader3;
@@ -188,7 +189,8 @@ namespace Hidistro.UI.Web.Admin
                     AddedDate = System.DateTime.Now,
                     BrandId = this.dropBrandCategories.SelectedValue,
                     VirtualPointRate = tmpVirtualPointRate,
-                    HomePicUrl = homePicUrl
+                    HomePicUrl = homePicUrl,
+                    OneBuyNum =  int.Parse( txtOneBuyNum.Text)
                 };
 
                 //12.20
@@ -515,6 +517,8 @@ namespace Hidistro.UI.Web.Admin
             this.dropProductFeature.SelectedValue = product.ProductFeature;
             this.txtStartTime.Value = product.StartTime == DateTime.MinValue ? DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") : product.StartTime.ToString("yyyy-MM-dd HH:mm:ss");
             this.txtEndTime.Value = product.EndTime == DateTime.MinValue ? DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") : product.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+            this.txtOneBuyNum.Text = product.OneBuyNum.ToString();
 
         }
         protected override void OnInitComplete(System.EventArgs e)

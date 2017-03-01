@@ -183,6 +183,7 @@
     <Compile Include="VShop\BannerInfo.cs" />
     <Compile Include="VShop\SendRedpackRecordQuery.cs" />
     <Compile Include="VShop\SendRedpackRecordInfo.cs" />
+    <Compile Include="VShop\UserProductNumInfo.cs" />
     <Compile Include="VShop\UserRedPagerQuery.cs" />
     <Compile Include="VShop\UserRedPagerType.cs" />
     <Compile Include="VShop\UserRedPagerInfo.cs" />

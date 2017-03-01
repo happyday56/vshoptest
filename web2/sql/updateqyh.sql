@@ -203,10 +203,21 @@ END
 
 
 --2017 2 26
-alter table Hishop_Products add LimitBuy int;
+--单人上限制购买量 0不受限制
+alter table Hishop_Products add OneBuyNum int;
 go
-alter table Hishop_Products add LimitBuyNums int;
+update Hishop_Products set OneBuyNum=0;
 go
-update Hishop_Products set LimitBuy=0,LimitBuyNums=0;
-go
+--用户购买的商品数量
+CREATE TABLE [dbo].[Hishop_UserProductNum](
+	[UserId] [int] NOT NULL,
+	[ProductId] [int] NOT NULL,
+	[BuyNum] [int] NULL,
+ CONSTRAINT [PK_Hishop_UserProductNum] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[ProductId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
+GO

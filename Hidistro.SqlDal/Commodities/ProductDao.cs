@@ -31,12 +31,12 @@ INSERT INTO Hishop_Products
 ImageUrl1, ImageUrl2, ImageUrl3, ImageUrl4, ImageUrl5, ThumbnailUrl40, ThumbnailUrl60, ThumbnailUrl100, ThumbnailUrl160, ThumbnailUrl180,
 ThumbnailUrl220, ThumbnailUrl310, ThumbnailUrl410,
 MarketPrice, BrandId, HasSKU,IsfreeShipping,TaobaoProductId,IsDistributorBuy, VirtualPointRate, HomePicUrl, IsDisplayHome, 
-AddUserId, VistiCounts, ShowSaleCounts, SaleCounts, GoodCounts, IsCross, MaxCross, PTTypeId, StoreGiftPoint,ProductFeature,StartTime,EndTime)
+AddUserId, VistiCounts, ShowSaleCounts, SaleCounts, GoodCounts, IsCross, MaxCross, PTTypeId, StoreGiftPoint,ProductFeature,StartTime,EndTime,OneBuyNum)
 Values
 (@CategoryId, @MainCategoryPath, @TypeId, @ProductName, @ProductCode, @ShortDescription, @Unit,  @Description,@SaleStatus, @AddedDate, @DisplaySequence,
 @ImageUrl1, @ImageUrl2, @ImageUrl3, @ImageUrl4, @ImageUrl5, @ThumbnailUrl40, @ThumbnailUrl60, @ThumbnailUrl100, @ThumbnailUrl160, @ThumbnailUrl180,
 @ThumbnailUrl220, @ThumbnailUrl310, @ThumbnailUrl410,
-@MarketPrice, @BrandId, @HasSKU,@IsfreeShipping,@TaobaoProductId,@IsDistributorBuy, @VirtualPointRate, @HomePicUrl, @IsDisplayHome, @AddUserId, 0, 0, 0, 0, @IsCross, @MaxCross, 0, 0,@ProductFeature,@StartTime,@EndTime)
+@MarketPrice, @BrandId, @HasSKU,@IsfreeShipping,@TaobaoProductId,@IsDistributorBuy, @VirtualPointRate, @HomePicUrl, @IsDisplayHome, @AddUserId, 0, 0, 0, 0, @IsCross, @MaxCross, 0, 0,@ProductFeature,@StartTime,@EndTime,@OneBuyNum)
 SET @ProductId = @@IDENTITY;");
             DbCommand storedProcCommand = this.database.GetSqlStringCommand(strsql);
             this.database.AddInParameter(storedProcCommand, "CategoryId", DbType.Int32, product.CategoryId);
@@ -78,6 +78,7 @@ SET @ProductId = @@IDENTITY;");
             this.database.AddInParameter(storedProcCommand, "ProductFeature", DbType.String, product.ProductFeature);
             this.database.AddInParameter(storedProcCommand, "StartTime", DbType.DateTime, product.StartTime);
             this.database.AddInParameter(storedProcCommand, "EndTime", DbType.DateTime, product.EndTime);
+            this.database.AddInParameter(storedProcCommand, "OneBuyNum", DbType.Int32, product.OneBuyNum);
             this.database.ExecuteNonQuery(storedProcCommand, dbTran);
             return (int)this.database.GetParameterValue(storedProcCommand, "ProductId");
         }
@@ -706,7 +707,7 @@ ImageUrl1 = @ImageUrl1, ImageUrl2 = @ImageUrl2, ImageUrl3 = @ImageUrl3, ImageUrl
 ThumbnailUrl40 = @ThumbnailUrl40, ThumbnailUrl60 = @ThumbnailUrl60, ThumbnailUrl100 = @ThumbnailUrl100, ThumbnailUrl160 = @ThumbnailUrl160, ThumbnailUrl180 = @ThumbnailUrl180,
 ThumbnailUrl220 = @ThumbnailUrl220, ThumbnailUrl310 = @ThumbnailUrl310, ThumbnailUrl410 = @ThumbnailUrl410, 
 BrandId = @BrandId, HasSKU = @HasSKU,IsfreeShipping=@IsfreeShipping,SaleCounts = @SaleCounts, ShowSaleCounts = @ShowSaleCounts, VirtualPointRate = @VirtualPointRate, HomePicUrl = @HomePicUrl, 
-IsDisplayHome = @IsDisplayHome, IsCross = @IsCross, MaxCross = @MaxCross,ProductFeature=@ProductFeature {0} {1}
+IsDisplayHome = @IsDisplayHome, IsCross = @IsCross, MaxCross = @MaxCross,ProductFeature=@ProductFeature,OneBuyNum=@OneBuyNum {0} {1}
 WHERE ProductId = @ProductId", product.StartTime != DateTime.MinValue ? ",StartTime=@StartTime" : "", product.EndTime != DateTime.MinValue ? ",EndTime=@EndTime" : "");
             DbCommand storedProcCommand = this.database.GetSqlStringCommand(strsql);
             this.database.AddInParameter(storedProcCommand, "CategoryId", DbType.Int32, product.CategoryId);
@@ -749,10 +750,13 @@ WHERE ProductId = @ProductId", product.StartTime != DateTime.MinValue ? ",StartT
                 this.database.AddInParameter(storedProcCommand, "StartTime", DbType.DateTime, product.StartTime);
             if (product.EndTime != DateTime.MinValue)
                 this.database.AddInParameter(storedProcCommand, "EndTime", DbType.DateTime, product.EndTime);
+            this.database.AddInParameter(storedProcCommand, "OneBuyNum", DbType.Int32, product.OneBuyNum);
+
             if (dbTran != null)
             {
                 return (this.database.ExecuteNonQuery(storedProcCommand, dbTran) > 0);
             }
+            
             return (this.database.ExecuteNonQuery(storedProcCommand) > 0);
         }
 

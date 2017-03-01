@@ -66,6 +66,8 @@ namespace Hidistro.UI.Web.Admin
         protected ProductFeatureDropDownList dropProductFeature;
         protected HtmlInputText txtStartTime;
         protected HtmlInputText txtEndTime;
+
+        protected TrimTextBox txtOneBuyNum;
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
         //protected ImageUploader uploader3;
@@ -157,7 +159,8 @@ namespace Hidistro.UI.Web.Admin
                     MainCategoryPath = CatalogHelper.GetCategory(this.categoryId).Path + "|",
                     IsDistributorBuy = 0,
                     VirtualPointRate = tmpVirtualPointRate,
-                    HomePicUrl = homePicUrl
+                    HomePicUrl = homePicUrl,
+                    OneBuyNum = int.Parse( txtOneBuyNum.Text)
 
                 };
 

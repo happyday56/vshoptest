@@ -59,6 +59,10 @@
                  <input class="forminput"  id="txtEndTime" runat="server" type="text"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false})" />
 
  			 </li>
+                <li><span class="formitemtitle Pw_198">单人限购数量：</span>
+                  <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtOneBuyNum" Text="0" />
+                <p>如为0则不限购</p>
+            </li>
 	        <li><h2 class="colorE">扩展属性</h2></li>
 	        <li id="attributeRow" style="display:none;"><span class="formitemtitle Pw_198">商品属性：</span>
 	        <div class="attributeContent" id="attributeContent"></div>

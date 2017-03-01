@@ -371,7 +371,15 @@
                         dao4.Update(member);
                         return flag;
                     }
+                } 
+                
+                //2017.3.1 处理限购购买量
+                foreach (LineItemInfo info in order.LineItems.Values)
+                {
+                    new UserProductNumDao().updateBuyNum(order.UserId, info.ProductId, info.Quantity);
                 }
+                XTrace.WriteLine("处理限购购买量");
+
             }
             return flag;
         }
