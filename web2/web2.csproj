@@ -499,6 +499,7 @@
     <Content Include="Admin\product\ImportFromTB.aspx" />
     <Content Include="Admin\product\ImportFromYfx.aspx" />
     <Content Include="Admin\product\ManageCategories.aspx" />
+    <Content Include="Admin\product\ProductDo.aspx" />
     <Content Include="Admin\product\ProductOnDeleted.aspx" />
     <Content Include="Admin\product\ProductOnSales.aspx" />
     <Content Include="Admin\product\ProductSaleRanking.aspx" />
@@ -1859,6 +1860,13 @@
     </Compile>
     <Compile Include="Admin\product\ImportFromTB.aspx.designer.cs">
       <DependentUpon>ImportFromTB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\product\ProductDo.aspx.cs">
+      <DependentUpon>ProductDo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\product\ProductDo.aspx.designer.cs">
+      <DependentUpon>ProductDo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\promotion\setSharePromotion.aspx.cs">
       <DependentUpon>setSharePromotion.aspx</DependentUpon>

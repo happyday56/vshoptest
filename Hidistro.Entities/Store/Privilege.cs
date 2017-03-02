@@ -70,7 +70,8 @@ using System.Collections.Generic;
         Summary = 0x3e8,
         UpShelfProducts = 0xbbe,
         UserIncreaseStatistics = 0x2719,
-        Votes = 0x7d9
+        Votes = 0x7d9,
+        ProductDo = 0x7d8 
     }
 
     //上面对应的编码和js还有xml里面对应的编码不一致，不知道哪个是标准的，而且系统本身没有实现权限控制，

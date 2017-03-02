@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/Admin.Master" CodeBehind="EditProduct.aspx.cs" Inherits="Hidistro.UI.Web.Admin.EditProduct" %>
+
 <%@ Register TagPrefix="Hi" Namespace="Hidistro.UI.Common.Controls" Assembly="Hidistro.UI.Common.Controls" %>
 <%@ Register TagPrefix="Hi" Namespace="Hidistro.UI.ControlPanel.Utility" Assembly="Hidistro.UI.ControlPanel.Utility" %>
 <%@ Register TagPrefix="UI" Namespace="ASPNET.WebControls" Assembly="ASPNET.WebControls" %>
@@ -7,185 +8,210 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="headHolder" runat="server">
     <link id="cssLink" rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
     <Hi:Script ID="Script2" runat="server" Src="/utility/jquery_hashtable.js" />
-     <Hi:Script ID="Script1" runat="server" Src="/utility/jquery-powerFloat-min.js" />
+    <Hi:Script ID="Script1" runat="server" Src="/utility/jquery-powerFloat-min.js" />
     <link href="/utility/flashupload/flashupload.css" rel="stylesheet" type="text/css" />
     <Hi:Script ID="Script3" runat="server" Src="/utility/flashupload/flashupload.js" />
-      <Hi:Script ID="Script4" runat="server" Src="/utility/My97DatePicker/WdatePicker.js" />
-     <Hi:Script ID="Script5" runat="server" Src="/utility/layer/layer.js" />
+    <Hi:Script ID="Script4" runat="server" Src="/utility/My97DatePicker/WdatePicker.js" />
+    <Hi:Script ID="Script5" runat="server" Src="/utility/layer/layer.js" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentHolder" runat="server">
-<div class="dataarea mainwidth databody">
-	  <div class="title"> <em><img src="../images/01.gif" width="32" height="32" /></em>
-	    <h1>编辑商品信息</h1>
-	    <span>商品信息修改</span>
-      </div>
-	  <div class="datafrom">
-	    <div class="formitem validator1">
-	      <ul>
-          <li><h2 class="colorE">基本信息</h2></li>
-	        <li>
-	            <span class="formitemtitle Pw_198">所属商品分类：</span>
-                <span class="colorE float fonts" id="spCategories"><asp:Literal runat="server" ID="litCategoryName"></asp:Literal></span>
-                <%--[<asp:HyperLink runat="server" ID="lnkEditCategory" CssClass="a" Text="编辑"></asp:HyperLink>]--%>
-                <a href="javascript:selectCategories()">[新增投放区域]</a>
-                <input type="hidden"  id="btnCategories" runat="server"/>
-            </li>
-	        <li>
-	            <span class="formitemtitle Pw_198">商品类型：</span>
-                <abbr class="formselect"><Hi:ProductTypeDownList runat="server" CssClass="productType" ID="dropProductTypes" NullToDisplay="--请选择--" /></abbr>
-	            品牌：<abbr class="formselect"><Hi:BrandCategoriesDropDownList runat="server" ID="dropBrandCategories" NullToDisplay="--请选择--" /></abbr>
-                特性：<abbr class="formselect"><Hi:ProductFeatureDropDownList runat="server" ID="dropProductFeature" NullToDisplay="--请选择--" /></abbr>
-            </li>
-	        <li class=" clearfix"> <span class="formitemtitle Pw_198">商品名称：<em >*</em></span>
-	          <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtProductName" Width="350px"/>
-              <p id="ctl00_contentHolder_txtProductNameTip">限定在60个字符</p>
-	        </li>
-	        <li> <span class="formitemtitle Pw_198">排序：<em >*</em></span>
-	          <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtDisplaySequence" />
-              <p id="ctl00_contentHolder_txtDisplaySequenceTip">商品显示顺序，越大排在越前</p>
-	        </li>
-	        <li><span class="formitemtitle Pw_198">商家编码：</span>
-                <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtProductCode" />
-                <p id="ctl00_contentHolder_txtProductCodeTip">长度不能超过20个字符</p>
-            </li>
-	        <li><span class="formitemtitle Pw_198">计量单位：</span>
-                <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtUnit" />
-                <p id="ctl00_contentHolder_txtUnitTip">必须限制在20个字符以内且只能是英文和中文例:g/元</p>
-            </li>
-            <li><span class="formitemtitle Pw_198">市场价：<em >*</em></span>
-	            <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtMarketPrice" />元
-                <p id="ctl00_contentHolder_txtMarketPriceTip">本站会员所看到的商品市场价</p>
-	        </li>
-                <li>
-			  <span class="formitemtitle Pw_198">秒杀活动时间：
-                </span>
- 
-                  <input class="forminput"   id="txtStartTime" runat="server" type="text"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false})" />
-
-                   <span class="formitemtitle Pw_30">-
-                </span> 
-
-                 <input class="forminput"  id="txtEndTime" runat="server" type="text"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false})" />
-
- 			 </li>
-             <li><span class="formitemtitle Pw_198">单人限购数量：</span>
-                  <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtOneBuyNum" />
-                <p>如为0则不限购</p>
-            </li>
-
-	        <li><h2 class="colorE">扩展属性</h2></li>
-	        <li id="attributeRow" style="display:none;"><span class="formitemtitle Pw_198">商品属性：</span>
-	        <div class="attributeContent" id="attributeContent"></div>
-            <Hi:TrimTextBox runat="server" ID="txtAttributes" TextMode="MultiLine" style="display:none;"></Hi:TrimTextBox>
-            </li>
-	        <li id="skuCodeRow"><span class="formitemtitle Pw_198">货号：</span>
-                <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtSku" />
-                <p id="ctl00_contentHolder_txtSkuTip">限定在20个字符</p>
-            </li>
-	        <li id="salePriceRow"><span class="formitemtitle Pw_198">一口价：<em >*</em></span>
-              <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtSalePrice" />元<input type="button" onclick="editProductMemberPrice();" value="编辑会员价" />
-              <Hi:TrimTextBox runat="server" ID="txtMemberPrices" TextMode="MultiLine" style="display:none;"></Hi:TrimTextBox>
-              <p id="ctl00_contentHolder_txtSalePriceTip">本站会员所看到的商品零售价</p>
-	        </li>
-	        <li id="costPriceRow"><span class="formitemtitle Pw_198">成本价：<em >*</em></span>
-	            <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtCostPrice" />元
-	            <p id="ctl00_contentHolder_txtCostPriceTip">商品的成本价</p>
-	        </li>              
-              <li id="costPriceRow"><span class="formitemtitle Pw_198"><asp:Literal runat="server" ID="litVPName"></asp:Literal>使用率：<em >*</em></span>
-	            <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtVirtualPointRate" />&nbsp;%
-	            <p id="ctl00_contentHolder_txtVirtualPointRateTip"></p>
-	        </li>
-            <li id="qtyRow"><span class="formitemtitle Pw_198">商品库存：<em >*</em></span><Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtStock" /></li>
-            <li id="weightRow"><span class="formitemtitle Pw_198">商品重量：</span><Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtWeight" />克</li>
-            <li><span class="formitemtitle Pw_198">累计销量：</span><Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtShowSaleCounts" /></li>
-            <li id="skuTitle" style="display:none;"><h2 class="colorE">商品规格</h2></li>
-            <li id="enableSkuRow" style="display:none;"><span class="formitemtitle Pw_198">规格：</span><input id="btnEnableSku" type="button" value="开启规格" /> 
-                开启规格前先填写以上信息，可自动复制信息到每个规格</li>
-            <li id="skuRow"  style="display:none;">
-                <p id="skuContent">
-                    <input type="button" id="btnshowSkuValue" value="生成部分规格" />
-                    <input type="button" id="btnAddItem" value="增加一个规格" />
-                    <input type="button" id="btnCloseSku" value="关闭规格" />
-                     <input type="button" id="btnGenerateAll" value="生成所有规格" />
-                </p>
-                <p id="skuFieldHolder" style="margin:0px auto;display:none;"></p>
-                <div id="skuTableHolder">
-                </div>
-                <Hi:TrimTextBox runat="server" ID="txtSkus" TextMode="MultiLine" style="display:none" ></Hi:TrimTextBox>
-                <asp:CheckBox runat="server" ID="chkSkuEnabled" style="display:none;" />
-            </li>
-
-              
-            <li id="liImgList"><h2 class="colorE">图片和描述</h2></li>
-           <li><span class="formitemtitle Pw_100">商品首页图：</span>
-            <asp:FileUpload ID="homePicUrlFileUpload" CssClass="forminput" runat="server" />
-            <div class="Pa_128 Pg_8 clear">
-              <table width="300" border="0" cellspacing="0">
-                <tr>
-                <td width="177"> <Hi:HiImage runat="server" ID="imgCover" CssClass="Img100_60" /></td>                  
-                  <td width="55" align="center"> <Hi:ImageLinkButton Id="btnCoverDelete" runat="server" IsShow="true"  Text="删除" /></td>
-                  <td width="177"></td>
-                </tr>
-              </table>
-            </div>
-          </li>
-              <li style="height: 126px;"><span class="formitemtitle Pw_198">商品图片：</span><Hi:ProductFlashUpload ID="ucFlashUpload1" runat="server" MaxNum="5" />             
-                  </li>
-              <li><p class="Pa_198 clearfix m_none" style="padding-left:200px;">支持多图上传,最多5个,每个图应小于120k,jpg,gif,png格式。建议为500x500像素</p></li>
-            <li class="clearfix"><span class="formitemtitle Pw_198">商品简介：</span>
-                <Hi:TrimTextBox runat="server" Rows="6" Height="100px" Columns="76" ID="txtShortDescription" TextMode="MultiLine" />
-                <p class="Pa_198">限定在300个字符以内</p>
-            </li>
-            <li class="clearfix"><span class="formitemtitle Pw_198">商品描述：</span>
-                <Kindeditor:KindeditorControl ID="fckDescription" runat="server"  Height="300"/>
-                <p style="color:Red;"><asp:CheckBox runat="server" ID="ckbIsDownPic" Text="是否下载商品描述外站图片" /></p>
-                <p class="Pa_198">如果勾选此选项时，商品里面有外站的图片则会下载到本地，相反则不会，由于要下载图片，如果图片过多或图片很大，需要下载的时间就多，请慎重选择。</p>
-            </li>
-	        <li><h2 class="colorE clear"> 相关设置</h2></li>
-	        <li>
-			  <span class="formitemtitle Pw_198">商品销售状态：</span>
-				 <asp:RadioButton runat="server" ID="radOnSales" GroupName="SaleStatus"  Text="出售中"></asp:RadioButton>
-                <asp:RadioButton runat="server" ID="radUnSales" GroupName="SaleStatus"  Text="下架区" Visible="false"></asp:RadioButton>
-                <asp:RadioButton runat="server" ID="radInStock" GroupName="SaleStatus"  Text="仓库中"></asp:RadioButton>
- 			</li>
-              <li>
-			  <span class="formitemtitle Pw_198">是否首页显示：</span>
-				 <asp:RadioButton runat="server" ID="radOnHome" GroupName="DisplayHomeStatus" Text="显示" ></asp:RadioButton>
-                <asp:RadioButton runat="server" ID="radUnHome" GroupName="DisplayHomeStatus"  Text="不显示" ></asp:RadioButton>
- 			</li>
-              <li>
-			  <span class="formitemtitle Pw_198">跨境商品：</span>
-				 <asp:RadioButton runat="server" ID="radOnCross" GroupName="CrossStatus" Text="是"></asp:RadioButton>
-                <asp:RadioButton runat="server" ID="radUnCross" GroupName="CrossStatus"  Text="不是" ></asp:RadioButton>
- 			</li>
-               <li>
-                  <span class="formitemtitle Pw_198">跨境商品最大购买数：</span>
-                  <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtMaxCross" Text="1" />
-              </li>
-             <li>
-			  <span class="formitemtitle Pw_198">商品包邮：
-                </span>
-				<asp:CheckBox ID="ChkisfreeShipping" 
-                    runat="server" />
- 			&nbsp;</li>
-            <li class="clearfix" id="l_tags" runat="server" style="display:none;">
-			   <span class="formitemtitle Pw_198">商品标签定义：<a id="a_addtag" href="javascript:void(0)" onclick="javascript:AddTags()" class="add">添加</a></span>
-			   
-			   <div id="div_tags"> <Hi:ProductTagsLiteral ID="litralProductTag" runat="server"></Hi:ProductTagsLiteral></div>
-			   <div id="div_addtag" style="display:none"><input type="text" id="txtaddtag" /><input type="button" value="保存" onclick="return AddAjaxTags()" /></div>
-			     <Hi:TrimTextBox runat="server" ID="txtProductTag" TextMode="MultiLine" style="display:none;"></Hi:TrimTextBox> 
-            </li>
-
-            
-	      </ul>
-	      <ul class="btntf Pa_198 clear">
-	        <asp:Button runat="server" ID="btnSave" Text="保 存" OnClientClick="return doSubmit();" CssClass="submit_DAqueding inbnt" />
-          </ul>
+    <div class="dataarea mainwidth databody">
+        <div class="title">
+            <em>
+                <img src="../images/01.gif" width="32" height="32" /></em>
+            <h1>编辑商品信息</h1>
+            <span>商品信息修改</span>
         </div>
-      </div>
+        <div class="datafrom">
+            <div class="formitem validator1">
+                <ul>
+                    <li>
+                        <h2 class="colorE">基本信息</h2>
+                    </li>
+                    <li>
+                        <span class="formitemtitle Pw_198">所属商品分类：</span>
+                        <span class="colorE float fonts" id="spCategories">
+                            <asp:Literal runat="server" ID="litCategoryName"></asp:Literal></span>
+                        <%--[<asp:HyperLink runat="server" ID="lnkEditCategory" CssClass="a" Text="编辑"></asp:HyperLink>]--%>
+                        <a href="javascript:selectCategories()">[新增投放区域]</a>
+                        <input type="hidden" id="btnCategories" runat="server" />
+                    </li>
+                    <li>
+                        <span class="formitemtitle Pw_198">商品类型：</span>
+                        <abbr class="formselect">
+                            <Hi:ProductTypeDownList runat="server" CssClass="productType" ID="dropProductTypes" NullToDisplay="--请选择--" /></abbr>
+                        品牌：<abbr class="formselect"><Hi:BrandCategoriesDropDownList runat="server" ID="dropBrandCategories" NullToDisplay="--请选择--" /></abbr>
+                        特性：<abbr class="formselect"><Hi:ProductFeatureDropDownList runat="server" ID="dropProductFeature" NullToDisplay="--请选择--" /></abbr>
+                    </li>
+                    <li class=" clearfix"><span class="formitemtitle Pw_198">商品名称：<em>*</em></span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtProductName" Width="350px" />
+                        <p id="ctl00_contentHolder_txtProductNameTip">限定在60个字符</p>
+                    </li>
+                    <li><span class="formitemtitle Pw_198">排序：<em>*</em></span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtDisplaySequence" />
+                        <p id="ctl00_contentHolder_txtDisplaySequenceTip">商品显示顺序，越大排在越前</p>
+                    </li>
+                    <li><span class="formitemtitle Pw_198">商家编码：</span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtProductCode" />
+                        <p id="ctl00_contentHolder_txtProductCodeTip">长度不能超过20个字符</p>
+                    </li>
+                    <li><span class="formitemtitle Pw_198">计量单位：</span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtUnit" />
+                        <p id="ctl00_contentHolder_txtUnitTip">必须限制在20个字符以内且只能是英文和中文例:g/元</p>
+                    </li>
+                    <li><span class="formitemtitle Pw_198">市场价：<em>*</em></span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtMarketPrice" />元
+                <p id="ctl00_contentHolder_txtMarketPriceTip">本站会员所看到的商品市场价</p>
+                    </li>
+                    <li>
+                        <span class="formitemtitle Pw_198">秒杀活动时间：
+                        </span>
+
+                        <input class="forminput" id="txtStartTime" runat="server" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false})" />
+
+                        <span class="formitemtitle Pw_30">-
+                        </span>
+
+                        <input class="forminput" id="txtEndTime" runat="server" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false})" />
+
+                    </li>
+                    <li><span class="formitemtitle Pw_198">单人限购数量：</span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtOneBuyNum" />
+                        <%--<asp:Button ID="resetUserBuyNum" runat="server" Text="重置用户购买次数" OnClientClick="return resetUserBuyNum()" />--%>
+                        <input type="button" value="重置用户购买次数" onclick="resetUserBuyNum()"/>
+                        <p>如为0则不限购</p>
+                    </li>
+
+                    <li>
+                        <h2 class="colorE">扩展属性</h2>
+                    </li>
+                    <li id="attributeRow" style="display: none;"><span class="formitemtitle Pw_198">商品属性：</span>
+                        <div class="attributeContent" id="attributeContent"></div>
+                        <Hi:TrimTextBox runat="server" ID="txtAttributes" TextMode="MultiLine" Style="display: none;"></Hi:TrimTextBox>
+                    </li>
+                    <li id="skuCodeRow"><span class="formitemtitle Pw_198">货号：</span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtSku" />
+                        <p id="ctl00_contentHolder_txtSkuTip">限定在20个字符</p>
+                    </li>
+                    <li id="salePriceRow"><span class="formitemtitle Pw_198">一口价：<em>*</em></span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtSalePrice" />元<input type="button" onclick="editProductMemberPrice();" value="编辑会员价" />
+                        <Hi:TrimTextBox runat="server" ID="txtMemberPrices" TextMode="MultiLine" Style="display: none;"></Hi:TrimTextBox>
+                        <p id="ctl00_contentHolder_txtSalePriceTip">本站会员所看到的商品零售价</p>
+                    </li>
+                    <li id="costPriceRow"><span class="formitemtitle Pw_198">成本价：<em>*</em></span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtCostPrice" />元
+	            <p id="ctl00_contentHolder_txtCostPriceTip">商品的成本价</p>
+                    </li>
+                    <li id="costPriceRow"><span class="formitemtitle Pw_198">
+                        <asp:Literal runat="server" ID="litVPName"></asp:Literal>使用率：<em>*</em></span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtVirtualPointRate" />&nbsp;%
+	            <p id="ctl00_contentHolder_txtVirtualPointRateTip"></p>
+                    </li>
+                    <li id="qtyRow"><span class="formitemtitle Pw_198">商品库存：<em>*</em></span><Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtStock" /></li>
+                    <li id="weightRow"><span class="formitemtitle Pw_198">商品重量：</span><Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtWeight" />克</li>
+                    <li><span class="formitemtitle Pw_198">累计销量：</span><Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtShowSaleCounts" /></li>
+                    <li id="skuTitle" style="display: none;">
+                        <h2 class="colorE">商品规格</h2>
+                    </li>
+                    <li id="enableSkuRow" style="display: none;"><span class="formitemtitle Pw_198">规格：</span><input id="btnEnableSku" type="button" value="开启规格" />
+                        开启规格前先填写以上信息，可自动复制信息到每个规格</li>
+                    <li id="skuRow" style="display: none;">
+                        <p id="skuContent">
+                            <input type="button" id="btnshowSkuValue" value="生成部分规格" />
+                            <input type="button" id="btnAddItem" value="增加一个规格" />
+                            <input type="button" id="btnCloseSku" value="关闭规格" />
+                            <input type="button" id="btnGenerateAll" value="生成所有规格" />
+                        </p>
+                        <p id="skuFieldHolder" style="margin: 0px auto; display: none;"></p>
+                        <div id="skuTableHolder">
+                        </div>
+                        <Hi:TrimTextBox runat="server" ID="txtSkus" TextMode="MultiLine" Style="display: none"></Hi:TrimTextBox>
+                        <asp:CheckBox runat="server" ID="chkSkuEnabled" Style="display: none;" />
+                    </li>
 
 
-</div>
+                    <li id="liImgList">
+                        <h2 class="colorE">图片和描述</h2>
+                    </li>
+                    <li><span class="formitemtitle Pw_100">商品首页图：</span>
+                        <asp:FileUpload ID="homePicUrlFileUpload" CssClass="forminput" runat="server" />
+                        <div class="Pa_128 Pg_8 clear">
+                            <table width="300" border="0" cellspacing="0">
+                                <tr>
+                                    <td width="177">
+                                        <Hi:HiImage runat="server" ID="imgCover" CssClass="Img100_60" /></td>
+                                    <td width="55" align="center">
+                                        <Hi:ImageLinkButton ID="btnCoverDelete" runat="server" IsShow="true" Text="删除" /></td>
+                                    <td width="177"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </li>
+                    <li style="height: 126px;"><span class="formitemtitle Pw_198">商品图片：</span><Hi:ProductFlashUpload ID="ucFlashUpload1" runat="server" MaxNum="5" />
+                    </li>
+                    <li>
+                        <p class="Pa_198 clearfix m_none" style="padding-left: 200px;">支持多图上传,最多5个,每个图应小于120k,jpg,gif,png格式。建议为500x500像素</p>
+                    </li>
+                    <li class="clearfix"><span class="formitemtitle Pw_198">商品简介：</span>
+                        <Hi:TrimTextBox runat="server" Rows="6" Height="100px" Columns="76" ID="txtShortDescription" TextMode="MultiLine" />
+                        <p class="Pa_198">限定在300个字符以内</p>
+                    </li>
+                    <li class="clearfix"><span class="formitemtitle Pw_198">商品描述：</span>
+                        <Kindeditor:KindeditorControl ID="fckDescription" runat="server" Height="300" />
+                        <p style="color: Red;">
+                            <asp:CheckBox runat="server" ID="ckbIsDownPic" Text="是否下载商品描述外站图片" /></p>
+                        <p class="Pa_198">如果勾选此选项时，商品里面有外站的图片则会下载到本地，相反则不会，由于要下载图片，如果图片过多或图片很大，需要下载的时间就多，请慎重选择。</p>
+                    </li>
+                    <li>
+                        <h2 class="colorE clear">相关设置</h2>
+                    </li>
+                    <li>
+                        <span class="formitemtitle Pw_198">商品销售状态：</span>
+                        <asp:RadioButton runat="server" ID="radOnSales" GroupName="SaleStatus" Text="出售中"></asp:RadioButton>
+                        <asp:RadioButton runat="server" ID="radUnSales" GroupName="SaleStatus" Text="下架区" Visible="false"></asp:RadioButton>
+                        <asp:RadioButton runat="server" ID="radInStock" GroupName="SaleStatus" Text="仓库中"></asp:RadioButton>
+                    </li>
+                    <li>
+                        <span class="formitemtitle Pw_198">是否首页显示：</span>
+                        <asp:RadioButton runat="server" ID="radOnHome" GroupName="DisplayHomeStatus" Text="显示"></asp:RadioButton>
+                        <asp:RadioButton runat="server" ID="radUnHome" GroupName="DisplayHomeStatus" Text="不显示"></asp:RadioButton>
+                    </li>
+                    <li>
+                        <span class="formitemtitle Pw_198">跨境商品：</span>
+                        <asp:RadioButton runat="server" ID="radOnCross" GroupName="CrossStatus" Text="是"></asp:RadioButton>
+                        <asp:RadioButton runat="server" ID="radUnCross" GroupName="CrossStatus" Text="不是"></asp:RadioButton>
+                    </li>
+                    <li>
+                        <span class="formitemtitle Pw_198">跨境商品最大购买数：</span>
+                        <Hi:TrimTextBox runat="server" CssClass="forminput" ID="txtMaxCross" Text="1" />
+                    </li>
+                    <li>
+                        <span class="formitemtitle Pw_198">商品包邮：
+                        </span>
+                        <asp:CheckBox ID="ChkisfreeShipping"
+                            runat="server" />
+                        &nbsp;</li>
+                    <li class="clearfix" id="l_tags" runat="server" style="display: none;">
+                        <span class="formitemtitle Pw_198">商品标签定义：<a id="a_addtag" href="javascript:void(0)" onclick="javascript:AddTags()" class="add">添加</a></span>
+
+                        <div id="div_tags">
+                            <Hi:ProductTagsLiteral ID="litralProductTag" runat="server"></Hi:ProductTagsLiteral></div>
+                        <div id="div_addtag" style="display: none">
+                            <input type="text" id="txtaddtag" /><input type="button" value="保存" onclick="return AddAjaxTags()" /></div>
+                        <Hi:TrimTextBox runat="server" ID="txtProductTag" TextMode="MultiLine" Style="display: none;"></Hi:TrimTextBox>
+                    </li>
+
+
+                </ul>
+                <ul class="btntf Pa_198 clear">
+                    <asp:HiddenField ID="btnProductId" runat="server" />
+                    <asp:Button runat="server" ID="btnSave" Text="保 存" OnClientClick="return doSubmit();" CssClass="submit_DAqueding inbnt" />
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
 
     <%--  <div id="divCategory" style="display: none;">
         <div class="frame-content">
@@ -198,38 +224,38 @@
         <asp:Button ID="btnSaveCategory" runat="server" Text="选择商品分类" CssClass="submit_DAqueding" />
          </div>--%>
 
-<div class="Pop_up" id="priceBox" style="display: none;">
-    <h1>
-        <span id="popTitle"></span>
-    </h1>
-    <div class="img_datala">
-        <img src="../images/icon_dalata.gif" alt="关闭" width="38" height="20" />
-   </div>
-    <div class="mianform ">
-        <div id="priceContent">
+    <div class="Pop_up" id="priceBox" style="display: none;">
+        <h1>
+            <span id="popTitle"></span>
+        </h1>
+        <div class="img_datala">
+            <img src="../images/icon_dalata.gif" alt="关闭" width="38" height="20" />
         </div>
-        <div style="margin-top:10px;text-align:center;">
-            <input type="button" value="确定" onclick="doneEditPrice();" />
+        <div class="mianform ">
+            <div id="priceContent">
+            </div>
+            <div style="margin-top: 10px; text-align: center;">
+                <input type="button" value="确定" onclick="doneEditPrice();" />
+            </div>
         </div>
     </div>
-</div>
 
-<div class="Pop_up" id="skuValueBox" style="display: none;">
-    <h1>
-        <span>选择要生成的规格</span>
-    </h1>
-    <div class="img_datala">
-        <img src="../images/icon_dalata.gif" alt="关闭" width="38" height="20" />
-   </div>
-   
-    <div class="mianform ">
-        <div id="skuItems" >
+    <div class="Pop_up" id="skuValueBox" style="display: none;">
+        <h1>
+            <span>选择要生成的规格</span>
+        </h1>
+        <div class="img_datala">
+            <img src="../images/icon_dalata.gif" alt="关闭" width="38" height="20" />
         </div>
-        <div style="margin-top:10px;text-align:center;">
-            <input type="button" value="确定" id="btnGenerate" />
+
+        <div class="mianform ">
+            <div id="skuItems">
+            </div>
+            <div style="margin-top: 10px; text-align: center;">
+                <input type="button" value="确定" id="btnGenerate" />
+            </div>
         </div>
     </div>
-</div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="validateHolder" runat="server">
     <script type="text/javascript" src="attributes.helper.js"></script>
@@ -242,14 +268,14 @@
             appendValid(new NumberRangeValidator('ctl00_contentHolder_txtDisplaySequence', 1, 9999999, '输入的数值超出了系统表示范围'));
             initValid(new InputValidator('ctl00_contentHolder_txtProductCode', 0, 20, true, null, '商家编码的长度不能超过20个字符'));
             initValid(new InputValidator('ctl00_contentHolder_txtSalePrice', 1, 10, false, '(0|(0+(\\.[0-9]{1,2}))|[1-9]\\d*(\\.\\d{1,2})?)', '数据类型错误，只能输入实数型数值'))
-            appendValid(new MoneyRangeValidator('ctl00_contentHolder_txtSalePrice', 0.01, 10000000, '输入的数值超出了系统表示范围'));            
+            appendValid(new MoneyRangeValidator('ctl00_contentHolder_txtSalePrice', 0.01, 10000000, '输入的数值超出了系统表示范围'));
             initValid(new InputValidator('ctl00_contentHolder_txtCostPrice', 1, 10, false, '(0|(0+(\\.[0-9]{1,2}))|[1-9]\\d*(\\.\\d{1,2})?)', '数据类型错误，只能输入实数型数值'))
             appendValid(new MoneyRangeValidator('ctl00_contentHolder_txtCostPrice', 0.01, 99999999, '输入的数值超出了系统表示范围'));
             initValid(new InputValidator('ctl00_contentHolder_txtMarketPrice', 1, 10, false, '(0|(0+(\\.[0-9]{1,2}))|[1-9]\\d*(\\.\\d{1,2})?)', '数据类型错误，只能输入实数型数值'))
             appendValid(new MoneyRangeValidator('ctl00_contentHolder_txtMarketPrice', 0.01, 99999999, '输入的数值超出了系统表示范围'));
             initValid(new InputValidator('ctl00_contentHolder_txtSku', 0, 20, true, null, '货号的长度不能超过20个字符'));
             initValid(new InputValidator('ctl00_contentHolder_txtStock', 1, 10, false, '-?[0-9]\\d*', '数据类型错误，只能输入整数型数值'))
-            appendValid(new NumberRangeValidator('ctl00_contentHolder_txtStock', 1, 9999999, '输入的数值超出了系统表示范围'));            
+            appendValid(new NumberRangeValidator('ctl00_contentHolder_txtStock', 1, 9999999, '输入的数值超出了系统表示范围'));
             initValid(new InputValidator('ctl00_contentHolder_txtUnit', 1, 20, true, '[a-zA-Z\/\u4e00-\u9fa5]*$', '必须限制在20个字符以内且只能是英文和中文例:g/元'))
             initValid(new InputValidator('ctl00_contentHolder_txtWeight', 0, 10, true, '(0|(0+(\\.[0-9]{1,2}))|[1-9]\\d*(\\.\\d{1,2})?)', '数据类型错误，只能输入实数型数值'))
             initValid(new InputValidator('ct100_contentHolder_txtShowSaleCounts', 0, 10, false, '-?[0-9]\\d*', '数据类型错误，只能输入整数型数值'))
@@ -262,12 +288,11 @@
         }
         $(document).ready(function () { InitValidators(); });
 
-        function selectCategories()
-        {
+        function selectCategories() {
             //DialogFrame("product/SelectCategories.aspx?selectedCategories=" + $("#ctl00_contentHolder_btnCategories").val(), "请选择投放的分类", 1000, 560);
 
             layer.open({
-                title:null,
+                title: null,
                 type: 2,
                 area: ['1000px', '530px'],
                 maxmin: true,
@@ -285,12 +310,11 @@
             });
         }
 
-        function removeCategory(obj,id)
-        {
-           
+        function removeCategory(obj, id) {
+
             var result = "";
             var categoryIds = $("#ctl00_contentHolder_btnCategories").val();
-          
+
             for (var i = 0; i < categoryIds.split(',').length ; i++) {
                 if (categoryIds.split(',')[i] != id) {
                     result += ((i == 0) ? categoryIds.split(',')[i] : ',' + categoryIds.split(',')[i]);
@@ -300,7 +324,29 @@
 
             $(obj).parent().remove();
         }
+
+        function resetUserBuyNum() {
+            var productid = $("#ctl00_contentHolder_btnProductId").val();
+           
+            if (window.confirm("确定要重置该商品的用户购买次数吗")) {
+                $.ajax({
+                    url: "ProductDo.aspx",
+                    type: 'post', dataType: 'json', timeout: 10000,
+                    data: { Mode: "resetUserBuyNum", productId: productid },
+                    async: false,
+                    success: function (data) {
+                        if (data.Status == "1") {
+                            ShowMsg("重置该商品的用户购买次数成功", true);
+                        }
+                        else {
+                            ShowMsg(data.msg, false);
+                        }
+                    }
+                });
+            }
+          
+        }
     </script>
-    
+
 </asp:Content>
 

@@ -59,5 +59,18 @@ end";
             return this.database.ExecuteNonQuery(sqlStringCommand);
 
         }
+
+        /// <summary>
+        /// 重置商品的用户购买次数
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public int clearProductBuyNum(int productId)
+        {
+            string strsql = @"update Hishop_UserProductNum set BuyNum=0 where ProductId=@ProductId";
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(strsql);
+            this.database.AddInParameter(sqlStringCommand, "ProductId", DbType.Int32, productId);
+            return this.database.ExecuteNonQuery(sqlStringCommand);
+        }
     }
 }

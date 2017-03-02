@@ -112,16 +112,16 @@
                                 <td  width="40" class="td_right td_left">
                                     选择
                                 </td>
-                                <td  width="120" class="td_right td_left">
+                                <td  width="60" class="td_right td_left">
                                     订单编号
                                 </td>
-                                <td class="td_right td_left">
+                                <td   width="60" class="td_right td_left">
                                     会员名
                                 </td>
-                                <td  width="80" class="td_right td_left">
+                                <td  width="40" class="td_right td_left">
                                     实收金额
                                 </td>
-                                <td width="80"  class="td_right td_left">
+                                <td width="40"  class="td_right td_left">
                                     退款金额
                                 </td>
                                 <td  width="40" class="td_right td_left">
@@ -130,28 +130,28 @@
                                 <td  width="80" class="td_right td_left">
                                     申请时间
                                 </td>
-                                <td class="td_right td_left">
+                                <td   width="60" class="td_right td_left">
                                     申请备注
                                 </td>
                                 <td  width="40" class="td_right td_left">
                                     处理状态
                                 </td>
-                                <td  width="80" class="td_right td_left">
+                                <td  width="40" class="td_right td_left">
                                     处理时间
                                 </td>
                                 <td  width="80" class="td_right td_left">
                                     订单总额
                                 </td>
-                                <td  width="80" class="td_right td_left">
+                                <td  width="40" class="td_right td_left">
                                     优惠减免
                                 </td>
-                                <td  width="80" class="td_right td_left">
+                                <td  width="40" class="td_right td_left">
                                     红包抵扣
                                 </td>
-                                <td  width="80" class="td_right td_left">
+                                <td  width="40" class="td_right td_left">
                                     金贝赠送
                                 </td>
-                                <td  class="td_right td_left">
+                                <td   width="30" class="td_right td_left">
                                     管理员备注
                                 </td> 
                                 <td  class="td_right td_left">

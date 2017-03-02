@@ -6,6 +6,7 @@ using Hidistro.Core.Entities;
 using Hidistro.Entities.Commodities;
 using Hidistro.Entities.Store;
 using Hidistro.SqlDal.Commodities;
+using Hidistro.SqlDal.VShop;
 using Hidistro.UI.Common.Controls;
 using Hishop.Components.Validation;
 using kindeditor.Net;
@@ -76,11 +77,21 @@ namespace Hidistro.UI.Web.Admin
         protected HtmlInputHidden btnCategories;
 
         protected TrimTextBox txtOneBuyNum;
+
+        protected HiddenField btnProductId;
+
+        //protected Button resetUserBuyNum;
         //protected ImageUploader uploader1;
         //protected ImageUploader uploader2;
         //protected ImageUploader uploader3;
         //protected ImageUploader uploader4;
         //protected ImageUploader uploader5;
+
+        //private void resetUserBuyNum_Click(object sender, System.EventArgs e)
+        //{
+        //    new UserProductNumDao().clearProductBuyNum(this.productId);
+        //    this.ShowMsg("商品成本价必须小于商品一口价", true);
+        //}
         private void btnSave_Click(object sender, System.EventArgs e)
         {
             //if (this.categoryId == 0)
@@ -525,6 +536,7 @@ namespace Hidistro.UI.Web.Admin
         {
             base.OnInitComplete(e);
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            //this.resetUserBuyNum.Click += new EventHandler(this.resetUserBuyNum_Click); 
         }
         protected void Page_Load(object sender, System.EventArgs e)
         {
@@ -534,7 +546,7 @@ namespace Hidistro.UI.Web.Admin
             SiteSettings siteSettings = SettingsManager.GetMasterSettings(false);
 
             this.litVPName.Text = siteSettings.VirtualPointName;
-
+            this.btnProductId.Value = this.productId.ToString() ;
             if (!this.Page.IsPostBack)
             {
                 System.Collections.Generic.IList<int> tagsId = null;
