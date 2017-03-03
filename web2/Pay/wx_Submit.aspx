@@ -19,7 +19,8 @@
                     location.href = "/vshop/DistributorCenter.aspx";
                 }else{
                     alert("订单支付成功!点击确认进入我的订单中心");
-                    SubmitCalCommission(orderId);
+                    ////3.3
+                    //SubmitCalCommission(orderId);
                     //location.href = "/vshop/MemberCenter.aspx?status=3";
                 }
             }
@@ -31,18 +32,18 @@
         });
     });
 
-    function SubmitCalCommission(orderId) {
+    //function SubmitCalCommission(orderId) {
         
-        $.ajax({
-            url: "/API/VshopProcess.ashx",
-            type: 'POST', dataType: 'json', timeout: 10000,
-            data: { action: "SubmitCalCommission", Params: orderId },
-            async: false,
-            success: function (resultData) {
-                location.href = "/vshop/MemberCenter.aspx?status=3";
-            }
-        });
-    }
+    //    $.ajax({
+    //        url: "/API/VshopProcess.ashx",
+    //        type: 'POST', dataType: 'json', timeout: 10000,
+    //        data: { action: "SubmitCalCommission", Params: orderId },
+    //        async: false,
+    //        success: function (resultData) {
+    //            location.href = "/vshop/MemberCenter.aspx?status=3";
+    //        }
+    //    });
+    //}
 
 </script>
 </body>

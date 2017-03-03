@@ -379,6 +379,9 @@
                     new UserProductNumDao().updateBuyNum(order.UserId, info.ProductId, info.Quantity);
                 }
                 XTrace.WriteLine("处理限购购买量");
+                
+                //3.3
+                DistributorsBrower.UpdateCalculationCommissionNew(order);
 
             }
             return flag;
