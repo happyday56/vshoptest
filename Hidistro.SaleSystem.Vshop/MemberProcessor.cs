@@ -284,107 +284,119 @@
 
         public static bool UserPayOrder(OrderInfo order)
         {
-            //XTrace.WriteLine(order.OrderId + "正式进入");
-            OrderDao dao = new OrderDao();
-            order.OrderStatus = OrderStatus.BuyerAlreadyPaid;
-            order.PayDate = new DateTime?(DateTime.Now);
-            bool flag = dao.UpdateOrder(order, null);
-            //XTrace.WriteLine(order.OrderId + "处理完订单状态");
-            string str = "";
-            if (flag)
+            try
             {
-                dao.UpdatePayOrderStock(order.OrderId);
-                //XTrace.WriteLine(order.OrderId + "处理完库存");
-                if (order.LineItems!=null) XTrace.WriteLine(order.LineItems.Count.ToString());
+                //XTrace.WriteLine(order.OrderId + "正式进入");
+                OrderDao dao = new OrderDao();
+                order.OrderStatus = OrderStatus.BuyerAlreadyPaid;
+                order.PayDate = new DateTime?(DateTime.Now);
+                bool flag = dao.UpdateOrder(order, null);
+                //XTrace.WriteLine(order.OrderId + "处理完订单状态");
+                string str = "";
+                if (flag)
+                {
+                    dao.UpdatePayOrderStock(order.OrderId);
+                    //XTrace.WriteLine(order.OrderId + "处理完库存");
+                    if (order.LineItems != null) XTrace.WriteLine(order.LineItems.Count.ToString());
 
-                foreach (LineItemInfo info in order.LineItems.Values)
-                {
-                    //XTrace.WriteLine("skuid " + info.SkuId + " productId" + info.ProductId);
-                    ProductDao dao2 = new ProductDao();
-                    str = str + "'" + info.SkuId + "',";
-                    ProductInfo productDetails = dao2.GetProductDetails(info.ProductId);
-                    //if (productDetails != null)
-                    //{
-                    //    XTrace.WriteLine(productDetails.EndTime + " endtime value");                     
-                    //}
+                    foreach (LineItemInfo info in order.LineItems.Values)
+                    {
+                        //XTrace.WriteLine("skuid " + info.SkuId + " productId" + info.ProductId);
+                        ProductDao dao2 = new ProductDao();
+                        str = str + "'" + info.SkuId + "',";
+                        ProductInfo productDetails = dao2.GetProductDetails(info.ProductId);
+                        //if (productDetails != null)
+                        //{
+                        //    XTrace.WriteLine(productDetails.EndTime + " endtime value");                     
+                        //}
 
-                    productDetails.SaleCounts += info.Quantity;
-                    productDetails.ShowSaleCounts += info.Quantity;
-                    dao2.UpdateProduct(productDetails, null);
-                    //XTrace.WriteLine("更新商品量结束");
-                }
-                //XTrace.WriteLine(order.OrderId + "准备处理子项订单");
-                if (!string.IsNullOrEmpty(str))
-                {
-                    dao.UpdateItemsStatus(order.OrderId, 2, str.Substring(0, str.Length - 1));
-                }
-                //XTrace.WriteLine(order.OrderId + "处理完子项状态");
-                if (!string.IsNullOrEmpty(order.ActivitiesId))
-                {
-                    new ActivitiesDao().UpdateActivitiesTakeEffect(order.ActivitiesId);
-                }
-                MemberInfo member = GetMember(order.UserId);
-                if (member == null)
-                {
-                    return flag;
-                }
-                MemberDao dao4 = new MemberDao();
-                PointDetailInfo point = new PointDetailInfo
-                {
-                    OrderId = order.OrderId,
-                    UserId = member.UserId,
-                    TradeDate = DateTime.Now,
-                    TradeType = PointTradeType.Bounty,
-                    Increased = new int?(order.Points),
-                    Points = order.Points + member.Points
-                };
-                if ((point.Points > 0x7fffffff) || (point.Points < 0))
-                {
-                    point.Points = 0x7fffffff;
-                }
-                //XTrace.WriteLine(order.OrderId + "马上要发送消息");
-                PointDetailDao dao5 = new PointDetailDao();
-                dao5.AddPointDetail(point);
-                member.Expenditure += order.GetTotal();
-                member.OrderNumber++;
-                dao4.Update(member);
-                Messenger.OrderPayment(member, order.OrderId, order.GetTotal());
-                XTrace.WriteLine("支付微信通知3");
-                int historyPoint = dao5.GetHistoryPoint(member.UserId);
-                MemberGradeInfo memberGrade = GetMemberGrade(member.GradeId);
-                if ((memberGrade != null) && (memberGrade.Points > historyPoint))
-                {
-                    return flag;
-                }
-                List<MemberGradeInfo> memberGrades = new MemberGradeDao().GetMemberGrades() as List<MemberGradeInfo>;
-                foreach (MemberGradeInfo info6 in from item in memberGrades
-                                                  orderby item.Points descending
-                                                  select item)
-                {
-                    if (member.GradeId == info6.GradeId)
+                        productDetails.SaleCounts += info.Quantity;
+                        productDetails.ShowSaleCounts += info.Quantity;
+                        dao2.UpdateProduct(productDetails, null);
+                        //XTrace.WriteLine("更新商品量结束");
+                    }
+                    //XTrace.WriteLine(order.OrderId + "准备处理子项订单");
+                    if (!string.IsNullOrEmpty(str))
+                    {
+                        dao.UpdateItemsStatus(order.OrderId, 2, str.Substring(0, str.Length - 1));
+                    }
+                    //XTrace.WriteLine(order.OrderId + "处理完子项状态");
+                    if (!string.IsNullOrEmpty(order.ActivitiesId))
+                    {
+                        new ActivitiesDao().UpdateActivitiesTakeEffect(order.ActivitiesId);
+                    }
+                    MemberInfo member = GetMember(order.UserId);
+                    if (member == null)
                     {
                         return flag;
                     }
-                    if (info6.Points <= historyPoint)
+                    MemberDao dao4 = new MemberDao();
+                    PointDetailInfo point = new PointDetailInfo
                     {
-                        member.GradeId = info6.GradeId;
-                        dao4.Update(member);
+                        OrderId = order.OrderId,
+                        UserId = member.UserId,
+                        TradeDate = DateTime.Now,
+                        TradeType = PointTradeType.Bounty,
+                        Increased = new int?(order.Points),
+                        Points = order.Points + member.Points
+                    };
+                    if ((point.Points > 0x7fffffff) || (point.Points < 0))
+                    {
+                        point.Points = 0x7fffffff;
+                    }
+                    //XTrace.WriteLine(order.OrderId + "马上要发送消息");
+                    PointDetailDao dao5 = new PointDetailDao();
+                    dao5.AddPointDetail(point);
+                    member.Expenditure += order.GetTotal();
+                    member.OrderNumber++;
+                    dao4.Update(member);
+                    Messenger.OrderPayment(member, order.OrderId, order.GetTotal());
+                    XTrace.WriteLine("支付微信通知3");
+                    //3.3
+                    DistributorsBrower.UpdateCalculationCommissionNew(order);
+
+                    XTrace.WriteLine("处理限购购买量开始");
+                    //2017.3.1 处理限购购买量
+                    foreach (LineItemInfo info in order.LineItems.Values)
+                    {
+                        new UserProductNumDao().updateBuyNum(order.UserId, info.ProductId, info.Quantity);
+                    }
+                   
+
+                    XTrace.WriteLine("处理会员等级");
+                    int historyPoint = dao5.GetHistoryPoint(member.UserId);
+                    MemberGradeInfo memberGrade = GetMemberGrade(member.GradeId);
+                    if ((memberGrade != null) && (memberGrade.Points > historyPoint))
+                    {
                         return flag;
                     }
-                } 
-                
-                //2017.3.1 处理限购购买量
-                foreach (LineItemInfo info in order.LineItems.Values)
-                {
-                    new UserProductNumDao().updateBuyNum(order.UserId, info.ProductId, info.Quantity);
-                }
-                XTrace.WriteLine("处理限购购买量");
-                
-                //3.3
-                DistributorsBrower.UpdateCalculationCommissionNew(order);
+                    List<MemberGradeInfo> memberGrades = new MemberGradeDao().GetMemberGrades() as List<MemberGradeInfo>;
+                    foreach (MemberGradeInfo info6 in from item in memberGrades
+                                                      orderby item.Points descending
+                                                      select item)
+                    {
+                        if (member.GradeId == info6.GradeId)
+                        {
+                            return flag;
+                        }
+                        if (info6.Points <= historyPoint)
+                        {
+                            member.GradeId = info6.GradeId;
+                            dao4.Update(member);
+                            return flag;
+                        }
+                    }
+                    XTrace.WriteLine("处理会员等级结束");
+                   
+                    return flag;
 
+                }
             }
-            return flag;
+            catch (Exception ex)
+            {
+                XTrace.WriteLine(ex.Message);
+            }
+            return false;
         }
 
         public static bool UpdateUserIsStore(int userId, int isStore)

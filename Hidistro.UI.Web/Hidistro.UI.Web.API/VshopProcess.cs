@@ -168,9 +168,9 @@ namespace Hidistro.UI.Web.API
                     this.CloseOrder(context);
                     break;
                 // 订单付款完成后
-                case "SubmitCalCommission":
-                    this.SubmitCalCommission(context);
-                    break;
+                //case "SubmitCalCommission":
+                //    this.SubmitCalCommission(context);
+                //    break;
                 case "AttendActivity":
                     this.AttendActivity(context);
                     break;
