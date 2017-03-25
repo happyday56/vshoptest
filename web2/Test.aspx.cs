@@ -3,6 +3,7 @@ using Hidistro.Core.Entities;
 using Hidistro.Core.Enums;
 using Hidistro.Entities.Commodities;
 using Hidistro.Entities.Members;
+using Hidistro.Entities.Orders;
 using Hidistro.SaleSystem.Vshop;
 using Hidistro.SqlDal.Commodities;
 using NewLife.Log;
@@ -62,6 +63,24 @@ namespace web2
             //var t = DistributorsBrower.AddDistributors(distributorsInfo);
             //XTrace.WriteLine(t.ToString());
             //Response.Write("nice");
+
+            string orderId = txtDistribute.Text;
+            if (string.IsNullOrEmpty(orderId)) { Response.Write("请输入订单号"); }
+            else
+            {
+                OrderInfo orderInfo = ShoppingProcessor.GetOrderInfo(orderId);
+                if (null != orderInfo)
+                {
+                    // 订单付款完成后计算提成
+                    //DistributorsBrower.CalcCommissionByBuy(orderInfo);
+                    XTrace.WriteLine("开始计算订单佣金SubmitCalCommission------订单ID：" + orderId);
+                    DistributorsBrower.UpdateCalculationCommissionNew(orderInfo);
+
+                    Response.Write(orderId + "订单处理完成");
+                }
+
+            }
+
         }
     }
 }

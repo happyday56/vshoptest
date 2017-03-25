@@ -11,9 +11,9 @@
     <form id="form1" runat="server">
     <div>
     
-   open     <asp:TextBox ID="txtOpenUser" runat="server"></asp:TextBox>
-        distrobutor <asp:TextBox ID="txtDistribute" runat="server"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+         <asp:TextBox ID="txtOpenUser" runat="server" Visible="false"></asp:TextBox>
+        订单号 <asp:TextBox ID="txtDistribute" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="处理没有返利的" OnClick="Button1_Click" />
     </div>
     </form>
 </body>
