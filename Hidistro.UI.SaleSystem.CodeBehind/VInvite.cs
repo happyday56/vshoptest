@@ -38,7 +38,9 @@
             {
                 DistributorsInfo userIdDistributors = DistributorsBrower.GetUserIdDistributors(currentMember.UserId);
 
-                if (null != userIdDistributors && userIdDistributors.IsTempStore == 0)
+                //3.26 砖石会员允许邀请开店
+                //if (null != userIdDistributors && userIdDistributors.IsTempStore == 0)
+                if (null != userIdDistributors)
                 {
                     this.litD1.Text = "display:none;";
                     this.litD2.Text = "display:block;";

@@ -6,6 +6,7 @@ using Hidistro.Core.Entities;
 using Hidistro.Entities.Commodities;
 using Hidistro.Entities.Store;
 using Hidistro.SqlDal.Commodities;
+using Hidistro.SqlDal.Members;
 using Hidistro.SqlDal.VShop;
 using Hidistro.UI.Common.Controls;
 using Hishop.Components.Validation;
@@ -338,6 +339,15 @@ namespace Hidistro.UI.Web.Admin
                             if (categories != "")
                             {
                                 new ProductsToCategoryDao().save(productId, categories);
+                            }
+
+                            if (target.SaleStatus == ProductSaleStatus.OnSale)
+                            {
+                                new DistributorsDao().RemoveDistributorProductsByProductId(productId);
+                                new DistributorsDao().InsertDistributorProductsByProductId(productId);
+                            }
+                            else {
+                                new DistributorsDao().RemoveDistributorProductsByProductId(productId);
                             }
 
                             this.litralProductTag.SelectedValue = tagIds;

@@ -6,6 +6,7 @@ using Hidistro.Core.Entities;
 using Hidistro.Entities.Commodities;
 using Hidistro.Entities.Store;
 using Hidistro.SqlDal.Commodities;
+using Hidistro.SqlDal.Members;
 using Hidistro.UI.Common.Controls;
 using Hishop.Components.Validation;
 using kindeditor.Net;
@@ -293,6 +294,7 @@ namespace Hidistro.UI.Web.Admin
                         case ProductActionStatus.Success:
                             new ProductsToCategoryDao().save(target.ProductId, categoryId.ToString());
 
+                            if (target.SaleStatus == ProductSaleStatus.OnSale) new DistributorsDao().InsertDistributorProductsByProductId(target.ProductId);
                             this.ShowMsg("添加商品成功", true);
                             base.Response.Redirect(Globals.GetAdminAbsolutePath(string.Format("/product/AddProductComplete.aspx?categoryId={0}&productId={1}", this.categoryId, target.ProductId)), true);
                             return;

@@ -1087,6 +1087,23 @@
             this.database.ExecuteNonQuery(sqlStringCommand);
         }
 
+        public void RemoveDistributorProductsByProductId(int ProductId)
+        {
+
+            string query = "DELETE FROM Hishop_DistributorProducts WHERE ProductId=@ProductId ;";
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(query);
+            this.database.AddInParameter(sqlStringCommand, "ProductId", DbType.Int32, ProductId);
+            this.database.ExecuteNonQuery(sqlStringCommand);
+        }
+
+        public void InsertDistributorProductsByProductId(int ProductId)
+        {
+            string query = "insert Hishop_DistributorProducts select @ProductId,UserId from aspnet_Distributors;";
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(query);
+            this.database.AddInParameter(sqlStringCommand, "ProductId", DbType.Int32, ProductId);
+            this.database.ExecuteNonQuery(sqlStringCommand);
+        }
+
         public string SendRedPackToBalanceDrawRequest(int serialid)
         {
             if (!SettingsManager.GetMasterSettings(false).EnableWeiXinRequest)

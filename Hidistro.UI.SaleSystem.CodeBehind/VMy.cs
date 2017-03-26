@@ -93,7 +93,7 @@
                            //今日收益
                            Jinrishouyi = DistributorsBrower.GetUserCommissions(userIdDistributors.UserId, DateTime.Now),
                            //累计访问
-                           Leijifangwen = userIdDistributors.VistiCounts, 
+                           Leijifangwen = userIdDistributors.VistiCounts,
                            // 今日订单数
                            TodayOrderNum = todayOrderNum
                        });
@@ -104,27 +104,29 @@
 
                     this.litRefId.Text = "?ReferralId=" + userIdDistributors.UserId;
 
-                    if (userIdDistributors.IsTempStore == 1)
-                    {
-                        int tmpProductId = 0;
-                        ProductInfo product = DistributorsBrower.GetQRCodeDistProductByPTTypeId(1);
-                        if (null != product)
-                        {
-                            tmpProductId = product.ProductId;
-                        }
-                        this.litSJStore.Text = "/vshop/ProductDetails.aspx?SJCode=1&PTTypeId=1&ReferralId=" + userIdDistributors.ReferralUserId + "&ReferralUserId=" + userIdDistributors.ReferralUserId + "&ProductId=" + tmpProductId;
-                        this.litSJName.Text = "升级店主";
 
-                    }
-                    else
-                    {
-                        this.litSJStore.Text = "/vshop/invite.aspx";
-                        this.litSJName.Text = "邀请开店";
-                    }
+                    //3.26 砖石会员允许邀请开店
+                    //if (userIdDistributors.IsTempStore == 1)
+                    //{
+                    //    int tmpProductId = 0;
+                    //    ProductInfo product = DistributorsBrower.GetQRCodeDistProductByPTTypeId(1);
+                    //    if (null != product)
+                    //    {
+                    //        tmpProductId = product.ProductId;
+                    //    }
+                    //    this.litSJStore.Text = "/vshop/ProductDetails.aspx?SJCode=1&PTTypeId=1&ReferralId=" + userIdDistributors.ReferralUserId + "&ReferralUserId=" + userIdDistributors.ReferralUserId + "&ProductId=" + tmpProductId;
+                    //    this.litSJName.Text = "升级店主";
+
+                    //}
+                    //else
+                    //{
+                    this.litSJStore.Text = "/vshop/invite.aspx";
+                    this.litSJName.Text = "邀请开店";
+                    //}
 
                     this.litStartDate.Text = userIdDistributors.CreateTime.ToString("yyyy-MM-dd");
                     this.litEndDate.Text = userIdDistributors.DeadlineTime.ToString("yyyy-MM-dd");
-                }             
+                }
 
             }
             else
