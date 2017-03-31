@@ -30,6 +30,8 @@
         private Literal litStartDate;
         private Literal litEndDate;
 
+        private Literal litUpdateStore;
+        private Literal litUpdateStoreName;
         public int todayOrderNum = 0;
 
         protected override void AttachChildControls()
@@ -44,6 +46,8 @@
             this.litSJName = (Literal)FindControl("litSJName");
             this.litStartDate = (Literal)FindControl("litStartDate");
             this.litEndDate = (Literal)FindControl("litEndDate");
+            this.litUpdateStore = (Literal)FindControl("litUpdateStore");
+            this.litUpdateStoreName = (Literal)FindControl("litUpdateStoreName");
 
             var currentMember = MemberProcessor.GetCurrentMember();
             int currentMemberUserId = Globals.GetCurrentMemberUserId();
@@ -106,18 +110,18 @@
 
 
                     //3.26 砖石会员允许邀请开店
-                    //if (userIdDistributors.IsTempStore == 1)
-                    //{
-                    //    int tmpProductId = 0;
-                    //    ProductInfo product = DistributorsBrower.GetQRCodeDistProductByPTTypeId(1);
-                    //    if (null != product)
-                    //    {
-                    //        tmpProductId = product.ProductId;
-                    //    }
-                    //    this.litSJStore.Text = "/vshop/ProductDetails.aspx?SJCode=1&PTTypeId=1&ReferralId=" + userIdDistributors.ReferralUserId + "&ReferralUserId=" + userIdDistributors.ReferralUserId + "&ProductId=" + tmpProductId;
-                    //    this.litSJName.Text = "升级店主";
+                    if (userIdDistributors.IsTempStore == 1)
+                    {
+                        int tmpProductId = 0;
+                        ProductInfo product = DistributorsBrower.GetQRCodeDistProductByPTTypeId(1);
+                        if (null != product)
+                        {
+                            tmpProductId = product.ProductId;
+                        }
+                        this.litUpdateStore.Text = "/vshop/ProductDetails.aspx?SJCode=1&PTTypeId=1&ReferralId=" + userIdDistributors.ReferralUserId + "&ReferralUserId=" + userIdDistributors.ReferralUserId + "&ProductId=" + tmpProductId;
+                        this.litUpdateStoreName.Text = "升级店主";
 
-                    //}
+                    }
                     //else
                     //{
                     this.litSJStore.Text = "/vshop/invite.aspx";
