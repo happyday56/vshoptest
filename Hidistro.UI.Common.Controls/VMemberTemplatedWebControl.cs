@@ -185,7 +185,7 @@ namespace Hidistro.UI.Common.Controls
                         {
                             returnUrl += returnUrl.Contains("?") ? "&ReferralUserId=" + ReferralUserId.ToString() : "?ReferralUserId=" + ReferralUserId.ToString();
                         }
-                        Page.Response.Redirect("~/vshop/BindMobile.aspx?returnUrl="+Globals.UrlEncode(returnUrl), true);
+                        //Page.Response.Redirect("~/vshop/BindMobile.aspx?returnUrl="+Globals.UrlEncode(returnUrl), true);
                         return;
                     }
 
